@@ -12,6 +12,7 @@ using System.Windows.Threading;
 
 namespace Deloco_Pos_C.views
 {
+    //somechange
     public partial class frmMqtt : Form
     {
         helper_functions.globalHelper logic_global = helper_functions.globalHelper.Instance;
