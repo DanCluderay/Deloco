@@ -281,13 +281,29 @@ namespace Deloco_Pos_C {
             
             private global::System.Data.DataColumn columncustomers_autoid;
             
-            private global::System.Data.DataColumn columnCustomer_Name;
+            private global::System.Data.DataColumn columntitle;
             
-            private global::System.Data.DataColumn columnDataColumn3;
+            private global::System.Data.DataColumn columnfname;
             
-            private global::System.Data.DataColumn columnDataColumn4;
+            private global::System.Data.DataColumn columnsname;
             
-            private global::System.Data.DataColumn columnDataColumn5;
+            private global::System.Data.DataColumn columnpostcode;
+            
+            private global::System.Data.DataColumn columnlocalshop;
+            
+            private global::System.Data.DataColumn columnamazon_id;
+            
+            private global::System.Data.DataColumn columnshippingAddressLine1;
+            
+            private global::System.Data.DataColumn columnshippingAddressLine2;
+            
+            private global::System.Data.DataColumn columnshippingTown;
+            
+            private global::System.Data.DataColumn columnshippingCity;
+            
+            private global::System.Data.DataColumn columnshippingCounty;
+            
+            private global::System.Data.DataColumn columnCustomerBillingDayOfWeek;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -332,33 +348,97 @@ namespace Deloco_Pos_C {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Customer_NameColumn {
+            public global::System.Data.DataColumn titleColumn {
                 get {
-                    return this.columnCustomer_Name;
+                    return this.columntitle;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn DataColumn3Column {
+            public global::System.Data.DataColumn fnameColumn {
                 get {
-                    return this.columnDataColumn3;
+                    return this.columnfname;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn DataColumn4Column {
+            public global::System.Data.DataColumn snameColumn {
                 get {
-                    return this.columnDataColumn4;
+                    return this.columnsname;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn DataColumn5Column {
+            public global::System.Data.DataColumn postcodeColumn {
                 get {
-                    return this.columnDataColumn5;
+                    return this.columnpostcode;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn localshopColumn {
+                get {
+                    return this.columnlocalshop;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn amazon_idColumn {
+                get {
+                    return this.columnamazon_id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn shippingAddressLine1Column {
+                get {
+                    return this.columnshippingAddressLine1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn shippingAddressLine2Column {
+                get {
+                    return this.columnshippingAddressLine2;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn shippingTownColumn {
+                get {
+                    return this.columnshippingTown;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn shippingCityColumn {
+                get {
+                    return this.columnshippingCity;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn shippingCountyColumn {
+                get {
+                    return this.columnshippingCounty;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CustomerBillingDayOfWeekColumn {
+                get {
+                    return this.columnCustomerBillingDayOfWeek;
                 }
             }
             
@@ -399,14 +479,22 @@ namespace Deloco_Pos_C {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public CustomersRow AddCustomersRow(string customers_autoid, string Customer_Name, string DataColumn3, string DataColumn4, string DataColumn5) {
+            public CustomersRow AddCustomersRow(string customers_autoid, string title, string fname, string sname, string postcode, string localshop, string amazon_id, string shippingAddressLine1, string shippingAddressLine2, string shippingTown, string shippingCity, string shippingCounty, string CustomerBillingDayOfWeek) {
                 CustomersRow rowCustomersRow = ((CustomersRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         customers_autoid,
-                        Customer_Name,
-                        DataColumn3,
-                        DataColumn4,
-                        DataColumn5};
+                        title,
+                        fname,
+                        sname,
+                        postcode,
+                        localshop,
+                        amazon_id,
+                        shippingAddressLine1,
+                        shippingAddressLine2,
+                        shippingTown,
+                        shippingCity,
+                        shippingCounty,
+                        CustomerBillingDayOfWeek};
                 rowCustomersRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowCustomersRow);
                 return rowCustomersRow;
@@ -430,10 +518,18 @@ namespace Deloco_Pos_C {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
                 this.columncustomers_autoid = base.Columns["customers_autoid"];
-                this.columnCustomer_Name = base.Columns["Customer Name"];
-                this.columnDataColumn3 = base.Columns["DataColumn3"];
-                this.columnDataColumn4 = base.Columns["DataColumn4"];
-                this.columnDataColumn5 = base.Columns["DataColumn5"];
+                this.columntitle = base.Columns["title"];
+                this.columnfname = base.Columns["fname"];
+                this.columnsname = base.Columns["sname"];
+                this.columnpostcode = base.Columns["postcode"];
+                this.columnlocalshop = base.Columns["localshop"];
+                this.columnamazon_id = base.Columns["amazon_id"];
+                this.columnshippingAddressLine1 = base.Columns["shippingAddressLine1"];
+                this.columnshippingAddressLine2 = base.Columns["shippingAddressLine2"];
+                this.columnshippingTown = base.Columns["shippingTown"];
+                this.columnshippingCity = base.Columns["shippingCity"];
+                this.columnshippingCounty = base.Columns["shippingCounty"];
+                this.columnCustomerBillingDayOfWeek = base.Columns["CustomerBillingDayOfWeek"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -441,14 +537,30 @@ namespace Deloco_Pos_C {
             private void InitClass() {
                 this.columncustomers_autoid = new global::System.Data.DataColumn("customers_autoid", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncustomers_autoid);
-                this.columnCustomer_Name = new global::System.Data.DataColumn("Customer Name", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCustomer_Name);
-                this.columnDataColumn3 = new global::System.Data.DataColumn("DataColumn3", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDataColumn3);
-                this.columnDataColumn4 = new global::System.Data.DataColumn("DataColumn4", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDataColumn4);
-                this.columnDataColumn5 = new global::System.Data.DataColumn("DataColumn5", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDataColumn5);
+                this.columntitle = new global::System.Data.DataColumn("title", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntitle);
+                this.columnfname = new global::System.Data.DataColumn("fname", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnfname);
+                this.columnsname = new global::System.Data.DataColumn("sname", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnsname);
+                this.columnpostcode = new global::System.Data.DataColumn("postcode", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnpostcode);
+                this.columnlocalshop = new global::System.Data.DataColumn("localshop", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnlocalshop);
+                this.columnamazon_id = new global::System.Data.DataColumn("amazon_id", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnamazon_id);
+                this.columnshippingAddressLine1 = new global::System.Data.DataColumn("shippingAddressLine1", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnshippingAddressLine1);
+                this.columnshippingAddressLine2 = new global::System.Data.DataColumn("shippingAddressLine2", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnshippingAddressLine2);
+                this.columnshippingTown = new global::System.Data.DataColumn("shippingTown", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnshippingTown);
+                this.columnshippingCity = new global::System.Data.DataColumn("shippingCity", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnshippingCity);
+                this.columnshippingCounty = new global::System.Data.DataColumn("shippingCounty", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnshippingCounty);
+                this.columnCustomerBillingDayOfWeek = new global::System.Data.DataColumn("CustomerBillingDayOfWeek", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCustomerBillingDayOfWeek);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -607,65 +719,193 @@ namespace Deloco_Pos_C {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Customer_Name {
+            public string title {
                 get {
                     try {
-                        return ((string)(this[this.tableCustomers.Customer_NameColumn]));
+                        return ((string)(this[this.tableCustomers.titleColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Customer Name\' in table \'Customers\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'title\' in table \'Customers\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableCustomers.Customer_NameColumn] = value;
+                    this[this.tableCustomers.titleColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string DataColumn3 {
+            public string fname {
                 get {
                     try {
-                        return ((string)(this[this.tableCustomers.DataColumn3Column]));
+                        return ((string)(this[this.tableCustomers.fnameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'DataColumn3\' in table \'Customers\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'fname\' in table \'Customers\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableCustomers.DataColumn3Column] = value;
+                    this[this.tableCustomers.fnameColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string DataColumn4 {
+            public string sname {
                 get {
                     try {
-                        return ((string)(this[this.tableCustomers.DataColumn4Column]));
+                        return ((string)(this[this.tableCustomers.snameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'DataColumn4\' in table \'Customers\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'sname\' in table \'Customers\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableCustomers.DataColumn4Column] = value;
+                    this[this.tableCustomers.snameColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string DataColumn5 {
+            public string postcode {
                 get {
                     try {
-                        return ((string)(this[this.tableCustomers.DataColumn5Column]));
+                        return ((string)(this[this.tableCustomers.postcodeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'DataColumn5\' in table \'Customers\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'postcode\' in table \'Customers\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableCustomers.DataColumn5Column] = value;
+                    this[this.tableCustomers.postcodeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string localshop {
+                get {
+                    try {
+                        return ((string)(this[this.tableCustomers.localshopColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'localshop\' in table \'Customers\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableCustomers.localshopColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string amazon_id {
+                get {
+                    try {
+                        return ((string)(this[this.tableCustomers.amazon_idColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'amazon_id\' in table \'Customers\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableCustomers.amazon_idColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string shippingAddressLine1 {
+                get {
+                    try {
+                        return ((string)(this[this.tableCustomers.shippingAddressLine1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'shippingAddressLine1\' in table \'Customers\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableCustomers.shippingAddressLine1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string shippingAddressLine2 {
+                get {
+                    try {
+                        return ((string)(this[this.tableCustomers.shippingAddressLine2Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'shippingAddressLine2\' in table \'Customers\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableCustomers.shippingAddressLine2Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string shippingTown {
+                get {
+                    try {
+                        return ((string)(this[this.tableCustomers.shippingTownColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'shippingTown\' in table \'Customers\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableCustomers.shippingTownColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string shippingCity {
+                get {
+                    try {
+                        return ((string)(this[this.tableCustomers.shippingCityColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'shippingCity\' in table \'Customers\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableCustomers.shippingCityColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string shippingCounty {
+                get {
+                    try {
+                        return ((string)(this[this.tableCustomers.shippingCountyColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'shippingCounty\' in table \'Customers\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableCustomers.shippingCountyColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string CustomerBillingDayOfWeek {
+                get {
+                    try {
+                        return ((string)(this[this.tableCustomers.CustomerBillingDayOfWeekColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CustomerBillingDayOfWeek\' in table \'Customers\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableCustomers.CustomerBillingDayOfWeekColumn] = value;
                 }
             }
             
@@ -683,50 +923,146 @@ namespace Deloco_Pos_C {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsCustomer_NameNull() {
-                return this.IsNull(this.tableCustomers.Customer_NameColumn);
+            public bool IstitleNull() {
+                return this.IsNull(this.tableCustomers.titleColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetCustomer_NameNull() {
-                this[this.tableCustomers.Customer_NameColumn] = global::System.Convert.DBNull;
+            public void SettitleNull() {
+                this[this.tableCustomers.titleColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDataColumn3Null() {
-                return this.IsNull(this.tableCustomers.DataColumn3Column);
+            public bool IsfnameNull() {
+                return this.IsNull(this.tableCustomers.fnameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDataColumn3Null() {
-                this[this.tableCustomers.DataColumn3Column] = global::System.Convert.DBNull;
+            public void SetfnameNull() {
+                this[this.tableCustomers.fnameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDataColumn4Null() {
-                return this.IsNull(this.tableCustomers.DataColumn4Column);
+            public bool IssnameNull() {
+                return this.IsNull(this.tableCustomers.snameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDataColumn4Null() {
-                this[this.tableCustomers.DataColumn4Column] = global::System.Convert.DBNull;
+            public void SetsnameNull() {
+                this[this.tableCustomers.snameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDataColumn5Null() {
-                return this.IsNull(this.tableCustomers.DataColumn5Column);
+            public bool IspostcodeNull() {
+                return this.IsNull(this.tableCustomers.postcodeColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDataColumn5Null() {
-                this[this.tableCustomers.DataColumn5Column] = global::System.Convert.DBNull;
+            public void SetpostcodeNull() {
+                this[this.tableCustomers.postcodeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IslocalshopNull() {
+                return this.IsNull(this.tableCustomers.localshopColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetlocalshopNull() {
+                this[this.tableCustomers.localshopColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool Isamazon_idNull() {
+                return this.IsNull(this.tableCustomers.amazon_idColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void Setamazon_idNull() {
+                this[this.tableCustomers.amazon_idColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsshippingAddressLine1Null() {
+                return this.IsNull(this.tableCustomers.shippingAddressLine1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetshippingAddressLine1Null() {
+                this[this.tableCustomers.shippingAddressLine1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsshippingAddressLine2Null() {
+                return this.IsNull(this.tableCustomers.shippingAddressLine2Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetshippingAddressLine2Null() {
+                this[this.tableCustomers.shippingAddressLine2Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsshippingTownNull() {
+                return this.IsNull(this.tableCustomers.shippingTownColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetshippingTownNull() {
+                this[this.tableCustomers.shippingTownColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsshippingCityNull() {
+                return this.IsNull(this.tableCustomers.shippingCityColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetshippingCityNull() {
+                this[this.tableCustomers.shippingCityColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsshippingCountyNull() {
+                return this.IsNull(this.tableCustomers.shippingCountyColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetshippingCountyNull() {
+                this[this.tableCustomers.shippingCountyColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCustomerBillingDayOfWeekNull() {
+                return this.IsNull(this.tableCustomers.CustomerBillingDayOfWeekColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCustomerBillingDayOfWeekNull() {
+                this[this.tableCustomers.CustomerBillingDayOfWeekColumn] = global::System.Convert.DBNull;
             }
         }
         
