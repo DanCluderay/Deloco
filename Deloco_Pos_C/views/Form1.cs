@@ -38,7 +38,7 @@ namespace Deloco_Pos_C
 
            
 
-            // register to message received
+            //// register to message received
             client.MqttMsgPublishReceived += client_MqttMsgPublishReceived;
 
             string clientId = Guid.NewGuid().ToString();
@@ -77,9 +77,13 @@ namespace Deloco_Pos_C
 
                         //DataSet tester = (DataSet)JsonConvert.DeserializeObject(newstring, (typeof(DataSet)));
                         DataTable tester = (DataTable)JsonConvert.DeserializeObject(newstring, (typeof(DataTable)));
-                        customersds.Tables.Add(tester);
-                        customersdsBindingSource.DataSource = customersds;
-                        //customersdsBindingSource.DataMember = tester.TableName;
+                        tester.TableName = "Customers";
+
+                        customersdataset.Tables.Remove("Customers");
+                        customersdataset.Tables.Add(tester);
+
+                        customersdsBindingSource.DataSource = customersdataset;
+                        customersdsBindingSource.DataMember = tester.TableName;
                         customersdsBindingSource.Filter = "";
                         dataGridView1.DataMember = tester.TableName;
                       
