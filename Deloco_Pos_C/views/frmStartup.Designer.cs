@@ -35,13 +35,15 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ordersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.outstandingOrdersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.managementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.areaManagmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.developmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mQTTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.outstandingOrdersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.areaManagmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.marketingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salesAnalysisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,6 +51,7 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
+            this.marketingToolStripMenuItem,
             this.customersToolStripMenuItem,
             this.ordersToolStripMenuItem,
             this.stockToolStripMenuItem,
@@ -91,10 +94,18 @@
             // ordersToolStripMenuItem
             // 
             this.ordersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.outstandingOrdersToolStripMenuItem});
+            this.outstandingOrdersToolStripMenuItem,
+            this.salesAnalysisToolStripMenuItem});
             this.ordersToolStripMenuItem.Name = "ordersToolStripMenuItem";
             this.ordersToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.ordersToolStripMenuItem.Text = "Orders";
+            // 
+            // outstandingOrdersToolStripMenuItem
+            // 
+            this.outstandingOrdersToolStripMenuItem.Name = "outstandingOrdersToolStripMenuItem";
+            this.outstandingOrdersToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.outstandingOrdersToolStripMenuItem.Text = "Alexa Live Demo";
+            this.outstandingOrdersToolStripMenuItem.Click += new System.EventHandler(this.outstandingOrdersToolStripMenuItem_Click);
             // 
             // stockToolStripMenuItem
             // 
@@ -107,6 +118,12 @@
             this.managementToolStripMenuItem.Name = "managementToolStripMenuItem";
             this.managementToolStripMenuItem.Size = new System.Drawing.Size(120, 20);
             this.managementToolStripMenuItem.Text = "Shop Management";
+            // 
+            // areaManagmentToolStripMenuItem
+            // 
+            this.areaManagmentToolStripMenuItem.Name = "areaManagmentToolStripMenuItem";
+            this.areaManagmentToolStripMenuItem.Size = new System.Drawing.Size(111, 20);
+            this.areaManagmentToolStripMenuItem.Text = "Area Managment";
             // 
             // configToolStripMenuItem
             // 
@@ -131,18 +148,17 @@
             this.mQTTToolStripMenuItem.Text = "MQTT";
             this.mQTTToolStripMenuItem.Click += new System.EventHandler(this.mQTTToolStripMenuItem_Click);
             // 
-            // outstandingOrdersToolStripMenuItem
+            // marketingToolStripMenuItem
             // 
-            this.outstandingOrdersToolStripMenuItem.Name = "outstandingOrdersToolStripMenuItem";
-            this.outstandingOrdersToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.outstandingOrdersToolStripMenuItem.Text = "Outstanding Orders";
-            this.outstandingOrdersToolStripMenuItem.Click += new System.EventHandler(this.outstandingOrdersToolStripMenuItem_Click);
+            this.marketingToolStripMenuItem.Name = "marketingToolStripMenuItem";
+            this.marketingToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
+            this.marketingToolStripMenuItem.Text = "Marketing";
             // 
-            // areaManagmentToolStripMenuItem
+            // salesAnalysisToolStripMenuItem
             // 
-            this.areaManagmentToolStripMenuItem.Name = "areaManagmentToolStripMenuItem";
-            this.areaManagmentToolStripMenuItem.Size = new System.Drawing.Size(111, 20);
-            this.areaManagmentToolStripMenuItem.Text = "Area Managment";
+            this.salesAnalysisToolStripMenuItem.Name = "salesAnalysisToolStripMenuItem";
+            this.salesAnalysisToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.salesAnalysisToolStripMenuItem.Text = "Sales Analysis";
             // 
             // frmStartup
             // 
@@ -178,5 +194,7 @@
         private System.Windows.Forms.ToolStripMenuItem mQTTToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem outstandingOrdersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem areaManagmentToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem marketingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem salesAnalysisToolStripMenuItem;
     }
 }

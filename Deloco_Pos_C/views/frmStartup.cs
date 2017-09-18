@@ -30,6 +30,7 @@ namespace Deloco_Pos_C
         {
             logic_global.MqttClient_Server = "test.mosquitto.org";
             logic_global.connectToMQTTServer("cluderay");
+            this.Text = "Ask the milkman - Langold Shop";
             
         }
 
