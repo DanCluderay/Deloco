@@ -256,13 +256,13 @@ namespace Deloco_Pos_C.helper_functions
                     _Customer_Second_Name = Item["Customer_Second_Name"].ToString();
                     NewRow.Customer_Second_Name = _Customer_Second_Name;
 
-                    //string test_deliverydate = Item["delivery_date"].ToString();
-                    //if (test_deliverydate=="")
-                    //{
-                    //    test_deliverydate = "2017-01-01";
-                    //}
-                    //_delivery_date = Convert.ToDateTime(test_deliverydate);
-                    //NewRow.delivery_date = _delivery_date;
+                    string test_deliverydate = Item["delivery_date"].ToString();
+                    if (test_deliverydate == "")
+                    {
+                        test_deliverydate = "2017-01-01";
+                    }
+                    _delivery_date = Convert.ToDateTime(test_deliverydate);
+                    NewRow.delivery_date = _delivery_date;
 
                     _ORDERID = Item["ORDERID"].ToString();
                     NewRow.ORDERID = _ORDERID;
@@ -303,6 +303,7 @@ namespace Deloco_Pos_C.helper_functions
                 int _qty = 0;
                 DateTime _order_date;
                 DateTime _order_time;
+                double _DealRetail = 0;
 
                 //create the empty returning dataset
                 local_datasets.OrderItems_DS OrderLines = new local_datasets.OrderItems_DS();
@@ -338,7 +339,8 @@ namespace Deloco_Pos_C.helper_functions
                     _qty = Int32.Parse(Item["qty"].ToString());
                     NewRow.qty = _qty;
 
-
+                    _DealRetail = Double.Parse(Item["DealRetail"].ToString());
+                    NewRow.DealRetail = _DealRetail;
                     //string test_orderdate = Item["order_date"].ToString();
                     //if (test_orderdate == "")
                     //{

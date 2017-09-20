@@ -129,7 +129,7 @@ namespace Deloco_Pos_C.views
 
             txtCustomerName.Text = FullName;
             txtDeliveryDate.Text = OrderDS.OrderDetails.Rows[0]["delivery_date"].ToString();
-
+            txtLatestOrderID.Text = ORDER_ID.ToString();
 
             txtOrderValue.Text = OrderDS.OrderDetails.Rows[0]["ordervalue"].ToString();
 
@@ -148,11 +148,27 @@ namespace Deloco_Pos_C.views
             OrderItems.Merge(returnedDataSet);
             orderitemsBindingSource.DataSource = OrderItems;
             orderitemsBindingSource.ResetBindings(false);
+            txLineCount.Text = dataGridView1.RowCount.ToString();
+            AddUpOrderValue();
         }
+        private void AddUpOrderValue()
+        {
 
+            double orderTotal = 0;
+            foreach (DataGridViewRow r in dataGridView1.Rows)
+            {
+                orderTotal = orderTotal + double.Parse( r.Cells["DealRetail"].Value.ToString());
+            }
+            txtOrderValue.Text = "£" + orderTotal.ToString();
+        }
         private void button1_Click_1(object sender, EventArgs e)
         {
             FindOrder(txtCustomerID.Text,"" );
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

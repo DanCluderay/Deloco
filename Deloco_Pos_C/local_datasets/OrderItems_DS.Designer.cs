@@ -297,6 +297,8 @@ namespace Deloco_Pos_C.local_datasets {
             
             private global::System.Data.DataColumn columnorder_time;
             
+            private global::System.Data.DataColumn columnDealRetail;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public order_itemsDataTable() {
@@ -404,6 +406,14 @@ namespace Deloco_Pos_C.local_datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn DealRetailColumn {
+                get {
+                    return this.columnDealRetail;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -439,7 +449,7 @@ namespace Deloco_Pos_C.local_datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public order_itemsRow Addorder_itemsRow(int order_items_autoid, int oitems_orderid, string Items_product_varientid, string item_description, double items_cost_ex_vat, int vatcode, int qty, System.DateTime order_date, System.DateTime order_time) {
+            public order_itemsRow Addorder_itemsRow(int order_items_autoid, int oitems_orderid, string Items_product_varientid, string item_description, double items_cost_ex_vat, int vatcode, int qty, System.DateTime order_date, System.DateTime order_time, double DealRetail) {
                 order_itemsRow roworder_itemsRow = ((order_itemsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         order_items_autoid,
@@ -450,7 +460,8 @@ namespace Deloco_Pos_C.local_datasets {
                         vatcode,
                         qty,
                         order_date,
-                        order_time};
+                        order_time,
+                        DealRetail};
                 roworder_itemsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(roworder_itemsRow);
                 return roworder_itemsRow;
@@ -482,6 +493,7 @@ namespace Deloco_Pos_C.local_datasets {
                 this.columnqty = base.Columns["qty"];
                 this.columnorder_date = base.Columns["order_date"];
                 this.columnorder_time = base.Columns["order_time"];
+                this.columnDealRetail = base.Columns["DealRetail"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -505,6 +517,8 @@ namespace Deloco_Pos_C.local_datasets {
                 base.Columns.Add(this.columnorder_date);
                 this.columnorder_time = new global::System.Data.DataColumn("order_time", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnorder_time);
+                this.columnDealRetail = new global::System.Data.DataColumn("DealRetail", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDealRetail);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("order_itemsKey1", new global::System.Data.DataColumn[] {
                                 this.columnorder_items_autoid}, false));
                 this.columnorder_items_autoid.Unique = true;
@@ -514,6 +528,7 @@ namespace Deloco_Pos_C.local_datasets {
                 this.columnitems_cost_ex_vat.DefaultValue = ((double)(0D));
                 this.columnvatcode.DefaultValue = ((int)(0));
                 this.columnqty.DefaultValue = ((int)(0));
+                this.columnDealRetail.DefaultValue = ((double)(0D));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -800,6 +815,22 @@ namespace Deloco_Pos_C.local_datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public double DealRetail {
+                get {
+                    try {
+                        return ((double)(this[this.tableorder_items.DealRetailColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'DealRetail\' in table \'order_items\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableorder_items.DealRetailColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool Isorder_items_autoidNull() {
                 return this.IsNull(this.tableorder_items.order_items_autoidColumn);
             }
@@ -904,6 +935,18 @@ namespace Deloco_Pos_C.local_datasets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void Setorder_timeNull() {
                 this[this.tableorder_items.order_timeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsDealRetailNull() {
+                return this.IsNull(this.tableorder_items.DealRetailColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetDealRetailNull() {
+                this[this.tableorder_items.DealRetailColumn] = global::System.Convert.DBNull;
             }
         }
         

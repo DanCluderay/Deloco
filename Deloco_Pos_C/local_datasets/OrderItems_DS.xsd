@@ -24,6 +24,7 @@
               <xs:element name="qty" msprop:Generator_ColumnVarNameInTable="columnqty" msprop:Generator_ColumnPropNameInRow="qty" msprop:Generator_ColumnPropNameInTable="qtyColumn" msprop:Generator_UserColumnName="qty" type="xs:int" default="0" minOccurs="0" />
               <xs:element name="order_date" msprop:Generator_ColumnVarNameInTable="columnorder_date" msprop:Generator_ColumnPropNameInRow="order_date" msprop:Generator_ColumnPropNameInTable="order_dateColumn" msprop:Generator_UserColumnName="order_date" type="xs:dateTime" minOccurs="0" />
               <xs:element name="order_time" msprop:Generator_ColumnVarNameInTable="columnorder_time" msprop:Generator_ColumnPropNameInRow="order_time" msprop:Generator_ColumnPropNameInTable="order_timeColumn" msprop:Generator_UserColumnName="order_time" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="DealRetail" msprop:Generator_ColumnVarNameInTable="columnDealRetail" msprop:Generator_ColumnPropNameInRow="DealRetail" msprop:Generator_ColumnPropNameInTable="DealRetailColumn" msprop:Generator_UserColumnName="DealRetail" type="xs:double" default="0" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
