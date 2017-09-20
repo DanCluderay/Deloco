@@ -47,5 +47,12 @@ namespace Deloco_Pos_C
             LiveDemo.MdiParent = this;
             LiveDemo.Show();
         }
+
+        private void pOSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            views.frmPOS POS = new views.frmPOS();
+            POS.MdiParent = this;
+            POS.Show();
+        }
     }
 }

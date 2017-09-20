@@ -108,7 +108,11 @@ namespace Deloco_Pos_C.views
             int ORDER_ID = 0;
             local_datasets.OrderDetails_ds OrderDS = new local_datasets.OrderDetails_ds();
             DataSet returnedDataSet = new DataSet();
-            if (OrderID == "")
+            if (OrderID == ""  && CustomerID == "")
+            {
+                return;
+            }
+                if (OrderID == "")
             {
                 if (CustomerID != "")
                 {

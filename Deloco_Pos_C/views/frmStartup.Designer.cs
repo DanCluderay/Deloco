@@ -44,6 +44,7 @@
             this.mQTTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.marketingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salesAnalysisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pOSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -95,10 +96,11 @@
             // 
             this.ordersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.outstandingOrdersToolStripMenuItem,
-            this.salesAnalysisToolStripMenuItem});
+            this.salesAnalysisToolStripMenuItem,
+            this.pOSToolStripMenuItem});
             this.ordersToolStripMenuItem.Name = "ordersToolStripMenuItem";
-            this.ordersToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
-            this.ordersToolStripMenuItem.Text = "Orders";
+            this.ordersToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.ordersToolStripMenuItem.Text = "Shop";
             // 
             // outstandingOrdersToolStripMenuItem
             // 
@@ -160,6 +162,13 @@
             this.salesAnalysisToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.salesAnalysisToolStripMenuItem.Text = "Sales Analysis";
             // 
+            // pOSToolStripMenuItem
+            // 
+            this.pOSToolStripMenuItem.Name = "pOSToolStripMenuItem";
+            this.pOSToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.pOSToolStripMenuItem.Text = "POS";
+            this.pOSToolStripMenuItem.Click += new System.EventHandler(this.pOSToolStripMenuItem_Click);
+            // 
             // frmStartup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -196,5 +205,6 @@
         private System.Windows.Forms.ToolStripMenuItem areaManagmentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem marketingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salesAnalysisToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pOSToolStripMenuItem;
     }
 }

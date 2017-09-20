@@ -127,6 +127,12 @@
     <Compile Include="views\frmOutOrders.Designer.cs">
       <DependentUpon>frmOutOrders.cs</DependentUpon>
     </Compile>
+    <Compile Include="views\frmPOS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\frmPOS.Designer.cs">
+      <DependentUpon>frmPOS.cs</DependentUpon>
+    </Compile>
     <Compile Include="views\frmStartup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,6 +160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="views\frmOutOrders.resx">
       <DependentUpon>frmOutOrders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\frmPOS.resx">
+      <DependentUpon>frmPOS.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="views\frmStartup.resx">
       <DependentUpon>frmStartup.cs</DependentUpon>
