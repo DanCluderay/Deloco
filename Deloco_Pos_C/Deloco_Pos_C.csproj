@@ -87,6 +87,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>customersds.xsd</DependentUpon>
     </Compile>
+    <Compile Include="local_datasets\OrderDetails_ds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OrderDetails_ds.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="local_datasets\OrderItems_DS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OrderItems_DS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="views\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,6 +188,28 @@
     </None>
     <None Include="local_datasets\mqtt_ds.xss">
       <DependentUpon>mqtt_ds.xsd</DependentUpon>
+    </None>
+    <None Include="local_datasets\OrderDetails_ds.xsc">
+      <DependentUpon>OrderDetails_ds.xsd</DependentUpon>
+    </None>
+    <None Include="local_datasets\OrderDetails_ds.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>OrderDetails_ds.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="local_datasets\OrderDetails_ds.xss">
+      <DependentUpon>OrderDetails_ds.xsd</DependentUpon>
+    </None>
+    <None Include="local_datasets\OrderItems_DS.xsc">
+      <DependentUpon>OrderItems_DS.xsd</DependentUpon>
+    </None>
+    <None Include="local_datasets\OrderItems_DS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>OrderItems_DS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="local_datasets\OrderItems_DS.xss">
+      <DependentUpon>OrderItems_DS.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

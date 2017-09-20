@@ -43,9 +43,9 @@ namespace Deloco_Pos_C
 
         private void outstandingOrdersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            views.frmOutOrders OutOrders = new views.frmOutOrders();
-            OutOrders.MdiParent = this;
-            OutOrders.Show();
+            views.frmLiveDemo LiveDemo = new views.frmLiveDemo();
+            LiveDemo.MdiParent = this;
+            LiveDemo.Show();
         }
     }
 }
