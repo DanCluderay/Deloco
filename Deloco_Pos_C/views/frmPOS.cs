@@ -32,5 +32,39 @@ namespace Deloco_Pos_C.views
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            tab_payment.Show();
+            tab_customer.Hide();
+            tab_other.Hide();
+            tab_transaction.Hide();
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            tab_payment.Hide();
+            tab_customer.Hide();
+            tab_other.Hide();
+            tab_transaction.Show();
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            tab_payment.Hide();
+            tab_customer.Show();
+            tab_other.Hide();
+            tab_transaction.Hide();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            tab_payment.Hide();
+            tab_customer.Hide();
+            tab_other.Show();
+            tab_transaction.Hide();
+        }
     }
 }

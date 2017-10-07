@@ -97,11 +97,31 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>OrderItems_DS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="local_datasets\store_locations.cs">
+      <DependentUpon>store_locations.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="local_datasets\store_locations.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>store_locations.xsd</DependentUpon>
+    </Compile>
     <Compile Include="views\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="views\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\frmAddEditLocations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\frmAddEditLocations.Designer.cs">
+      <DependentUpon>frmAddEditLocations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\frmAllCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\frmAllCustomer.Designer.cs">
+      <DependentUpon>frmAllCustomer.cs</DependentUpon>
     </Compile>
     <Compile Include="views\frmLiveDemo.cs">
       <SubType>Form</SubType>
@@ -133,6 +153,24 @@
     <Compile Include="views\frmPOS.Designer.cs">
       <DependentUpon>frmPOS.cs</DependentUpon>
     </Compile>
+    <Compile Include="views\frmProductCollectionTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\frmProductCollectionTest.Designer.cs">
+      <DependentUpon>frmProductCollectionTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\frmShoplocations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\frmShoplocations.Designer.cs">
+      <DependentUpon>frmShoplocations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\frmSignIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\frmSignIn.Designer.cs">
+      <DependentUpon>frmSignIn.cs</DependentUpon>
+    </Compile>
     <Compile Include="views\frmStartup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,8 +184,26 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="views\frmStockManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\frmStockManagement.Designer.cs">
+      <DependentUpon>frmStockManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\frmStoreLocations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\frmStoreLocations.Designer.cs">
+      <DependentUpon>frmStoreLocations.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="views\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\frmAddEditLocations.resx">
+      <DependentUpon>frmAddEditLocations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\frmAllCustomer.resx">
+      <DependentUpon>frmAllCustomer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="views\frmLiveDemo.resx">
       <DependentUpon>frmLiveDemo.cs</DependentUpon>
@@ -164,6 +220,15 @@
     <EmbeddedResource Include="views\frmPOS.resx">
       <DependentUpon>frmPOS.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="views\frmProductCollectionTest.resx">
+      <DependentUpon>frmProductCollectionTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\frmShoplocations.resx">
+      <DependentUpon>frmShoplocations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\frmSignIn.resx">
+      <DependentUpon>frmSignIn.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="views\frmStartup.resx">
       <DependentUpon>frmStartup.cs</DependentUpon>
     </EmbeddedResource>
@@ -176,6 +241,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="views\frmStockManagement.resx">
+      <DependentUpon>frmStockManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\frmStoreLocations.resx">
+      <DependentUpon>frmStoreLocations.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="local_datasets\customersds.xsc">
       <DependentUpon>customersds.xsd</DependentUpon>
     </None>
@@ -219,6 +290,17 @@
     </None>
     <None Include="local_datasets\OrderItems_DS.xss">
       <DependentUpon>OrderItems_DS.xsd</DependentUpon>
+    </None>
+    <None Include="local_datasets\store_locations.xsc">
+      <DependentUpon>store_locations.xsd</DependentUpon>
+    </None>
+    <None Include="local_datasets\store_locations.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>store_locations.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="local_datasets\store_locations.xss">
+      <DependentUpon>store_locations.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

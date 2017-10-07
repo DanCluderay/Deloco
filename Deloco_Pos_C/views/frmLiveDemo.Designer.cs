@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.txtCustomerID = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -222,9 +222,9 @@
             // DealRetail
             // 
             this.DealRetail.DataPropertyName = "DealRetail";
-            dataGridViewCellStyle2.Format = "C2";
-            dataGridViewCellStyle2.NullValue = "0";
-            this.DealRetail.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Format = "C2";
+            dataGridViewCellStyle1.NullValue = "0";
+            this.DealRetail.DefaultCellStyle = dataGridViewCellStyle1;
             this.DealRetail.HeaderText = "DealRetail";
             this.DealRetail.Name = "DealRetail";
             this.DealRetail.ReadOnly = true;
@@ -290,6 +290,7 @@
             this.Controls.Add(this.label1);
             this.Name = "frmLiveDemo";
             this.Text = "Alexa Live Demo";
+            this.Load += new System.EventHandler(this.frmLiveDemo_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

@@ -174,5 +174,10 @@ namespace Deloco_Pos_C.views
         {
 
         }
+
+        private void frmLiveDemo_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

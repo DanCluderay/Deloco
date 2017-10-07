@@ -13,9 +13,12 @@ namespace Deloco_Pos_C.helper_functions
 {
     public class globalHelper
     {
-
+        public string clientId;
         public event EventHandler On_mqtt_new = delegate { };
+        public event EventHandler On_Signed_in = delegate { };
         //public event SetStatus SetStatusEvent = delegate { };
+
+        public event EventHandler On_Shop_Location_Update = delegate { };
 
 
         MqttClient client;
@@ -26,6 +29,14 @@ namespace Deloco_Pos_C.helper_functions
         private globalHelper() { }
         private string _mqttserver = "";
 
+        public string Sign_In(string username, string password)
+        {
+            string retval = "";
+
+            On_Signed_in(this, new EventArgs());
+
+            return retval;
+        }
         
         public string MqttClient_Server
 
@@ -51,20 +62,20 @@ namespace Deloco_Pos_C.helper_functions
                 {
                     instance = new globalHelper();
                     //when you create a new instance create a new 
-                    
-                    
+
+                 
                 }
                 return instance;
             }
         }
-
+        
         public string connectToMQTTServer(string Topic)
         {
             string returnValue = "";
             mqtt_list = new List<mqtt_msg_object>();
             client = new MqttClient(MqttClient_Server);
             returnValue = "Connected to client";
-
+            clientId = Guid.NewGuid().ToString();
             Mqtt_Subscribe(Topic);
             
 
@@ -79,7 +90,7 @@ namespace Deloco_Pos_C.helper_functions
             client.MqttMsgPublishReceived += client_MqttMsgPublishReceived;
 
             //Later this will be a shop/userid
-            string clientId = Guid.NewGuid().ToString();
+            
             client.Connect(clientId);
 
             // subscribe to the topic "/home/temperature" with QoS 2
@@ -361,6 +372,31 @@ namespace Deloco_Pos_C.helper_functions
                 }
                 ReturnDS = OrderLines;
             }
+
+            else if (functionName == "get_all_shops")
+            {
+                int shopid = 0;
+                string shopname = "";
+                string shopshortcode = "";
+
+                local_datasets.store_locations Stores = new local_datasets.store_locations(); //creates the new dataset
+
+                foreach (DataRow Item in ReturnDataTable.Rows)
+                {
+                    local_datasets.store_locations.storesRow StoreRow = Stores.stores.NewstoresRow();
+                    shopid=Int32.Parse(Item["store_autoid"].ToString());
+                    shopname = Item["store_name"].ToString();
+                    shopshortcode = Item["store_shortcode"].ToString();
+                    StoreRow.store_autoid = shopid;
+                    StoreRow.store_name = shopname;
+                    StoreRow.store_shortcode = shopshortcode;
+
+                    Stores.stores.AddstoresRow(StoreRow);
+                }
+
+                ReturnDS = Stores;
+            }
+
             else
             {
                 //just pass a blank table back
@@ -370,6 +406,13 @@ namespace Deloco_Pos_C.helper_functions
             }
 
             return ReturnDS;
+        }
+        private string Register_for_Store_Location_Updates(string id)
+        {
+            string retvalue = "";
+
+
+            return retvalue;
         }
 
     }

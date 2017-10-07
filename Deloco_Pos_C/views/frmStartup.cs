@@ -13,10 +13,29 @@ namespace Deloco_Pos_C
     public partial class frmStartup : Form
     {
         helper_functions.globalHelper logic_global =  helper_functions.globalHelper.Instance;
+        views.frmSignIn Signin;
         public frmStartup()
         {
             InitializeComponent();
             helper_functions.globalHelper logic_global = helper_functions.globalHelper.Instance;
+            logic_global.On_Signed_in += Logic_global_On_Signed_in;
+        }
+
+        private void Logic_global_On_Signed_in(object sender, EventArgs e)
+        {
+            //when a user has been signed in
+            this.marketingToolStripMenuItem.Enabled = true;
+            this.customersToolStripMenuItem.Enabled = true;
+            this.productsToolStripMenuItem.Enabled = true;
+            this.shopLocationsToolStripMenuItem.Enabled = true;
+            this.stockManagerToolStripMenuItem.Enabled = true;
+            this.managementToolStripMenuItem.Enabled = true;
+            this.areaManagmentToolStripMenuItem.Enabled = true;
+            this.configToolStripMenuItem.Enabled = true;
+            this.ordersToolStripMenuItem.Enabled = true;
+            this.stockToolStripMenuItem.Enabled = true;
+            this.Text = "Ask the milkman - Langold Shop";
+            Signin.WindowState = FormWindowState.Minimized;
         }
 
         private void developmentToolStripMenuItem_Click(object sender, EventArgs e)
@@ -25,13 +44,32 @@ namespace Deloco_Pos_C
             devform.MdiParent = this;
             devform.Show();
         }
+        private void DisplayLogin()
+        {
+            if (Signin != null)
 
+            {
+                Signin.Close();
+            }
+                  
+
+            Signin = new views.frmSignIn();
+            Signin.MdiParent = this;
+            Signin.Show();
+            Signin.WindowState = FormWindowState.Normal;
+            
+           
+           
+        }
         private void frmStartup_Load(object sender, EventArgs e)
         {
-            logic_global.MqttClient_Server = "test.mosquitto.org";
-            logic_global.connectToMQTTServer("cluderay");
-            this.Text = "Ask the milkman - Langold Shop";
-            
+           
+       
+            //logic_global.Mqtt_Subscribe("cluderay");
+            //logic_global.Mqtt_Subscribe("locations_change");
+            //logic_global.Mqtt_Subscribe("users_change");
+
+            this.Text = "Ask the milkman";
         }
 
         private void mQTTToolStripMenuItem_Click(object sender, EventArgs e)
@@ -53,6 +91,55 @@ namespace Deloco_Pos_C
             views.frmPOS POS = new views.frmPOS();
             POS.MdiParent = this;
             POS.Show();
+        }
+
+        private void viewAllCustomerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            views.frmAllCustomer CustForm= new views.frmAllCustomer();
+            CustForm.MdiParent = this;
+            CustForm.Show();
+        }
+
+        private void ordersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void stockManagerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void shopLocationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            views.frmStoreLocations storeLocations = new views.frmStoreLocations();
+            storeLocations.MdiParent = this;
+            storeLocations.Show();
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.marketingToolStripMenuItem.Enabled = false;
+            this.customersToolStripMenuItem.Enabled = false;
+            this.productsToolStripMenuItem.Enabled = false;
+            this.shopLocationsToolStripMenuItem.Enabled = false;
+            this.stockManagerToolStripMenuItem.Enabled = false;
+            this.managementToolStripMenuItem.Enabled = false;
+            this.areaManagmentToolStripMenuItem.Enabled = false;
+            this.configToolStripMenuItem.Enabled = false;
+            this.ordersToolStripMenuItem.Enabled = false;
+            this.stockToolStripMenuItem.Enabled = false;
+            Signin.Close();
+        }
+
+        private void loginToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DisplayLogin();
         }
     }
 }

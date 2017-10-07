@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="store_locations" targetNamespace="http://tempuri.org/store_locations.xsd" xmlns:mstns="http://tempuri.org/store_locations.xsd" xmlns="http://tempuri.org/store_locations.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="store_locations" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="store_locations" msprop:Generator_UserDSName="store_locations">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="stores" msprop:Generator_TableClassName="storesDataTable" msprop:Generator_TableVarName="tablestores" msprop:Generator_TablePropName="stores" msprop:Generator_RowDeletingName="storesRowDeleting" msprop:Generator_RowChangingName="storesRowChanging" msprop:Generator_RowEvHandlerName="storesRowChangeEventHandler" msprop:Generator_RowDeletedName="storesRowDeleted" msprop:Generator_UserTableName="stores" msprop:Generator_RowChangedName="storesRowChanged" msprop:Generator_RowEvArgName="storesRowChangeEvent" msprop:Generator_RowClassName="storesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="store_autoid" msprop:Generator_ColumnVarNameInTable="columnstore_autoid" msprop:Generator_ColumnPropNameInRow="store_autoid" msprop:Generator_ColumnPropNameInTable="store_autoidColumn" msprop:Generator_UserColumnName="store_autoid" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="store_name" msprop:Generator_ColumnVarNameInTable="columnstore_name" msprop:Generator_ColumnPropNameInRow="store_name" msprop:Generator_ColumnPropNameInTable="store_nameColumn" msprop:Generator_UserColumnName="store_name" type="xs:string" default="" minOccurs="0" />
+              <xs:element name="store_shortcode" msprop:Generator_ColumnVarNameInTable="columnstore_shortcode" msprop:Generator_ColumnPropNameInRow="store_shortcode" msprop:Generator_ColumnPropNameInTable="store_shortcodeColumn" msprop:Generator_UserColumnName="store_shortcode" type="xs:string" default="" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
