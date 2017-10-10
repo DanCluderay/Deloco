@@ -63,12 +63,12 @@ namespace Deloco_Pos_C
         }
         private void frmStartup_Load(object sender, EventArgs e)
         {
-           
-       
+
+
             //logic_global.Mqtt_Subscribe("cluderay");
             //logic_global.Mqtt_Subscribe("locations_change");
             //logic_global.Mqtt_Subscribe("users_change");
-
+            DisplayLogin();
             this.Text = "Ask the milkman";
         }
 
@@ -107,6 +107,9 @@ namespace Deloco_Pos_C
 
         private void stockManagerToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            views.frmStockManagement Stock = new views.frmStockManagement();
+            Stock.MdiParent = this;
+            Stock.Show();
 
         }
 
@@ -140,6 +143,13 @@ namespace Deloco_Pos_C
         private void loginToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DisplayLogin();
+        }
+
+        private void locationGridToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            views.frmLocation_Grid LocGrid = new views.frmLocation_Grid();
+            LocGrid.MdiParent = this;
+            LocGrid.Show();
         }
     }
 }

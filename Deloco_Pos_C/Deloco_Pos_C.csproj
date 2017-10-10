@@ -87,6 +87,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>customersds.xsd</DependentUpon>
     </Compile>
+    <Compile Include="local_datasets\LocationGrid.cs">
+      <DependentUpon>LocationGrid.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="local_datasets\LocationGrid.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocationGrid.xsd</DependentUpon>
+    </Compile>
     <Compile Include="local_datasets\OrderDetails_ds.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -96,6 +104,14 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>OrderItems_DS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="local_datasets\ProductVarientView.cs">
+      <DependentUpon>ProductVarientView.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="local_datasets\ProductVarientView.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProductVarientView.xsd</DependentUpon>
     </Compile>
     <Compile Include="local_datasets\store_locations.cs">
       <DependentUpon>store_locations.xsd</DependentUpon>
@@ -128,6 +144,12 @@
     </Compile>
     <Compile Include="views\frmLiveDemo.Designer.cs">
       <DependentUpon>frmLiveDemo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\frmLocation_Grid.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\frmLocation_Grid.Designer.cs">
+      <DependentUpon>frmLocation_Grid.cs</DependentUpon>
     </Compile>
     <Compile Include="views\frmMqtt.cs">
       <SubType>Form</SubType>
@@ -208,6 +230,9 @@
     <EmbeddedResource Include="views\frmLiveDemo.resx">
       <DependentUpon>frmLiveDemo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="views\frmLocation_Grid.resx">
+      <DependentUpon>frmLocation_Grid.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="views\frmMqtt.resx">
       <DependentUpon>frmMqtt.cs</DependentUpon>
     </EmbeddedResource>
@@ -258,6 +283,17 @@
     <None Include="local_datasets\customersds.xss">
       <DependentUpon>customersds.xsd</DependentUpon>
     </None>
+    <None Include="local_datasets\LocationGrid.xsc">
+      <DependentUpon>LocationGrid.xsd</DependentUpon>
+    </None>
+    <None Include="local_datasets\LocationGrid.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>LocationGrid.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="local_datasets\LocationGrid.xss">
+      <DependentUpon>LocationGrid.xsd</DependentUpon>
+    </None>
     <None Include="local_datasets\mqtt_ds.xsc">
       <DependentUpon>mqtt_ds.xsd</DependentUpon>
     </None>
@@ -290,6 +326,17 @@
     </None>
     <None Include="local_datasets\OrderItems_DS.xss">
       <DependentUpon>OrderItems_DS.xsd</DependentUpon>
+    </None>
+    <None Include="local_datasets\ProductVarientView.xsc">
+      <DependentUpon>ProductVarientView.xsd</DependentUpon>
+    </None>
+    <None Include="local_datasets\ProductVarientView.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProductVarientView.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="local_datasets\ProductVarientView.xss">
+      <DependentUpon>ProductVarientView.xsd</DependentUpon>
     </None>
     <None Include="local_datasets\store_locations.xsc">
       <DependentUpon>store_locations.xsd</DependentUpon>

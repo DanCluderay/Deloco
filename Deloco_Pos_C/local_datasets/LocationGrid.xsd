@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="LocationGrid" targetNamespace="http://tempuri.org/LocationGrid.xsd" xmlns:mstns="http://tempuri.org/LocationGrid.xsd" xmlns="http://tempuri.org/LocationGrid.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="LocationGrid" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="LocationGrid" msprop:Generator_UserDSName="LocationGrid">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Location_Grid" msprop:Generator_TableClassName="Location_GridDataTable" msprop:Generator_TableVarName="tableLocation_Grid" msprop:Generator_TablePropName="Location_Grid" msprop:Generator_RowDeletingName="Location_GridRowDeleting" msprop:Generator_RowChangingName="Location_GridRowChanging" msprop:Generator_RowEvHandlerName="Location_GridRowChangeEventHandler" msprop:Generator_RowDeletedName="Location_GridRowDeleted" msprop:Generator_UserTableName="Location_Grid" msprop:Generator_RowChangedName="Location_GridRowChanged" msprop:Generator_RowEvArgName="Location_GridRowChangeEvent" msprop:Generator_RowClassName="Location_GridRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="LocGridID" msprop:Generator_ColumnVarNameInTable="columnLocGridID" msprop:Generator_ColumnPropNameInRow="LocGridID" msprop:Generator_ColumnPropNameInTable="LocGridIDColumn" msprop:Generator_UserColumnName="LocGridID" type="xs:int" default="0" />
+              <xs:element name="LocName" msprop:Generator_ColumnVarNameInTable="columnLocName" msprop:Generator_ColumnPropNameInRow="LocName" msprop:Generator_ColumnPropNameInTable="LocNameColumn" msprop:Generator_UserColumnName="LocName" type="xs:string" default="" minOccurs="0" />
+              <xs:element name="LocType" msprop:Generator_ColumnVarNameInTable="columnLocType" msprop:Generator_ColumnPropNameInRow="LocType" msprop:Generator_ColumnPropNameInTable="LocTypeColumn" msprop:Generator_UserColumnName="LocType" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="LocParent" msprop:Generator_ColumnVarNameInTable="columnLocParent" msprop:Generator_ColumnPropNameInRow="LocParent" msprop:Generator_ColumnPropNameInTable="LocParentColumn" msprop:Generator_UserColumnName="LocParent" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="Updated_at" msprop:Generator_ColumnVarNameInTable="columnUpdated_at" msprop:Generator_ColumnPropNameInRow="Updated_at" msprop:Generator_ColumnPropNameInTable="Updated_atColumn" msprop:Generator_UserColumnName="Updated_at" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Created_at" msprop:Generator_ColumnVarNameInTable="columnCreated_at" msprop:Generator_ColumnPropNameInRow="Created_at" msprop:Generator_ColumnPropNameInTable="Created_atColumn" msprop:Generator_UserColumnName="Created_at" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Location_GridKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Location_Grid" />
+      <xs:field xpath="mstns:LocGridID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

@@ -94,8 +94,15 @@ namespace Deloco_Pos_C.helper_functions
             client.Connect(clientId);
 
             // subscribe to the topic "/home/temperature" with QoS 2
-            client.Subscribe(new string[] { Topic }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+            //client.Subscribe(new string[] { Topic }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+            string[] Topics = new string[3];
+            Topics[0] = "cluderay";
+            Topics[1] = "cluderay1";
+            Topics[2] = "cluderay2";
+         
 
+            //client.Subscribe(new string[] { Topic }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+            client.Subscribe(new string[] { Topic, "cluderay/#" }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
 
             return_value = "subcribed to: " + Topic + " successfully";
             return return_value;
@@ -110,11 +117,29 @@ namespace Deloco_Pos_C.helper_functions
             
             mqtt_msg_object newItem = new mqtt_msg_object();
             newItem.msg_payload = ReceivedMessage;
-            newItem.msg_topic = "cluderay";
+            newItem.msg_topic = e.Topic;
 
             mqtt_list.Add(newItem);
 
             On_mqtt_new(this, new EventArgs());
+            if (newItem.msg_topic == "cluderay/global/store_update")
+            {
+                //debug the payload
+                object tester = (object)JsonConvert.DeserializeObject(newItem.msg_payload, (typeof(object)));
+                try
+                {
+                    On_Shop_Location_Update(this, new EventArgs());
+                }
+                catch
+                {
+                }
+
+                
+            }
+            else if (newItem.msg_topic == "cluderay")
+            {
+
+            }
 
         }
         public void ActionOnPayload(string Payload)
@@ -396,7 +421,63 @@ namespace Deloco_Pos_C.helper_functions
 
                 ReturnDS = Stores;
             }
+            else if(functionName== "get_productview_by_prodID")
+            {
 
+                local_datasets.ProductVarientView ProdViewDS = new local_datasets.ProductVarientView();
+
+                foreach (DataRow Item in ReturnDataTable.Rows)
+                {
+
+
+                    local_datasets.ProductVarientView.ProdVarViewRow ProdViewRow = ProdViewDS.ProdVarView.NewProdVarViewRow();
+
+                    ProdViewRow.id = int.Parse(Item["id"].ToString());
+                    ProdViewRow.qty = int.Parse(Item["Varient_QTY"].ToString());
+                    ProdViewRow.Reserve = int.Parse(Item["reserve"].ToString()); 
+                    ProdViewRow.ProductID = int.Parse(Item["ProductTypesautoid"].ToString());
+                    ProdViewRow.last_updated = "";// Item["store_autoid"].ToString(); 
+                    ProdViewRow.ProdVarientID = int.Parse(Item["Varient_Instance_ID"].ToString()); 
+                    ProdViewRow.ForSale = int.Parse(Item["ForSale"].ToString());
+                    ProdViewRow.Inbastet = int.Parse(Item["Inbasket"].ToString());
+                    ProdViewRow.ShopID = int.Parse(Item["Varient_Location_ID"].ToString());
+                    ProdViewRow.shopifyvarientid = 0;// Int64.Parse(Item["store_autoid"].ToString());
+                    ProdViewRow.ShopName = Item["store_name"].ToString();
+                    ProdViewRow.Sold = int.Parse(Item["sold"].ToString());
+                    ProdViewRow.Transit = int.Parse(Item["transit"].ToString());
+                    ProdViewRow.ProductVarientName= Item["pv_Name"].ToString();
+                    // - product Name
+
+                    ProdViewDS.ProdVarView.AddProdVarViewRow(ProdViewRow);
+                }
+                ReturnDS = ProdViewDS;
+
+
+            
+            }
+            else if (functionName == "get_gridlocations")
+            {
+
+                local_datasets.LocationGrid locationGridDS = new local_datasets.LocationGrid();
+
+                foreach (DataRow Item in ReturnDataTable.Rows)
+                {
+
+
+                    local_datasets.LocationGrid.Location_GridRow LocRow = locationGridDS.Location_Grid.NewLocation_GridRow();
+                    LocRow.LocGridID = int.Parse(Item["LocGridID"].ToString());
+                    LocRow.LocName = Item["LocName"].ToString();
+                    LocRow.LocType = int.Parse(Item["LocType"].ToString());
+                    LocRow.LocParent = int.Parse(Item["LocParent"].ToString());
+                    
+
+                    locationGridDS.Location_Grid.AddLocation_GridRow(LocRow);
+                }
+                ReturnDS = locationGridDS;
+
+
+
+            }
             else
             {
                 //just pass a blank table back
@@ -415,5 +496,13 @@ namespace Deloco_Pos_C.helper_functions
             return retvalue;
         }
 
+        public local_datasets.LocationGrid GetLocationGrid(int LocationRef)
+        {
+            local_datasets.LocationGrid RetGrid = new local_datasets.LocationGrid();
+            string job = "get_gridlocations";
+            string res = Make_db_call(job, LocationRef.ToString());
+            RetGrid.Merge(FormatStringToDataTable(job, res));
+            return RetGrid;
+        }
     }
 }
