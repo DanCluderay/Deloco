@@ -27,13 +27,14 @@ namespace Deloco_Pos_C.views
             if (Mode == "NEW")
                
             {
-               //do nothing
+                this.Text = "Add a new Location";
             }
             else if (Mode == "UPDATE")
             {
                 this.txtShopName.Text = shopname;
                 this.txtShopCode.Text = shopcode;
                 this.txtShopID.Text = Shopid.ToString();
+                this.Text = "Add a existing Location - " + shopname;
             }
 
             return retvalue;
@@ -47,16 +48,26 @@ namespace Deloco_Pos_C.views
         {
             string job = "";
             string parameters = "";
-            if(CurrentMode=="NEW")
+
+            string shopid = txtShopID.Text.ToString();
+            string shopname = txtShopName.Text.ToString();
+            string shopcode = txtShopCode.Text.ToString();
+
+            //parameters = "{ \"update_address\": { \"shopid\": \"" + shopid + "\", \"shopname\": \"" + shopname + "\", \"shopcode\": \"" + shopcode + "\" } }";
+            parameters = "{'shopid': '" + shopid + "', 'shopname': '" + shopname + "', 'shopcode': '" + shopcode + "'}";
+
+            if (CurrentMode=="NEW")
             {
                 job = "add_new_store_location";
-            }
+                            }
+            
             else if(CurrentMode=="UPDATE")
             {
                 job = "update_store_location";
             }
 
-            string responece = logic_global.Make_db_call(job, "");
+            string responece = logic_global.Make_db_call(job, parameters);
+            this.Close();
         }
     }
 }
