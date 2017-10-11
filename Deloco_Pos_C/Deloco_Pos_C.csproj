@@ -95,6 +95,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LocationGrid.xsd</DependentUpon>
     </Compile>
+    <Compile Include="local_datasets\LocationTypes.cs">
+      <DependentUpon>LocationTypes.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="local_datasets\LocationTypes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocationTypes.xsd</DependentUpon>
+    </Compile>
     <Compile Include="local_datasets\OrderDetails_ds.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -133,11 +141,23 @@
     <Compile Include="views\frmAddEditLocations.Designer.cs">
       <DependentUpon>frmAddEditLocations.cs</DependentUpon>
     </Compile>
+    <Compile Include="views\frmAddLocation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\frmAddLocation.Designer.cs">
+      <DependentUpon>frmAddLocation.cs</DependentUpon>
+    </Compile>
     <Compile Include="views\frmAllCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="views\frmAllCustomer.Designer.cs">
       <DependentUpon>frmAllCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\frmBASE_INHERIT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\frmBASE_INHERIT.Designer.cs">
+      <DependentUpon>frmBASE_INHERIT.cs</DependentUpon>
     </Compile>
     <Compile Include="views\frmLiveDemo.cs">
       <SubType>Form</SubType>
@@ -224,8 +244,14 @@
     <EmbeddedResource Include="views\frmAddEditLocations.resx">
       <DependentUpon>frmAddEditLocations.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="views\frmAddLocation.resx">
+      <DependentUpon>frmAddLocation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="views\frmAllCustomer.resx">
       <DependentUpon>frmAllCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\frmBASE_INHERIT.resx">
+      <DependentUpon>frmBASE_INHERIT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="views\frmLiveDemo.resx">
       <DependentUpon>frmLiveDemo.cs</DependentUpon>
@@ -293,6 +319,17 @@
     </None>
     <None Include="local_datasets\LocationGrid.xss">
       <DependentUpon>LocationGrid.xsd</DependentUpon>
+    </None>
+    <None Include="local_datasets\LocationTypes.xsc">
+      <DependentUpon>LocationTypes.xsd</DependentUpon>
+    </None>
+    <None Include="local_datasets\LocationTypes.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>LocationTypes.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="local_datasets\LocationTypes.xss">
+      <DependentUpon>LocationTypes.xsd</DependentUpon>
     </None>
     <None Include="local_datasets\mqtt_ds.xsc">
       <DependentUpon>mqtt_ds.xsd</DependentUpon>

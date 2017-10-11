@@ -16,7 +16,7 @@ namespace Deloco_Pos_C.helper_functions
         public string clientId;
         public event EventHandler On_mqtt_new = delegate { };
         public event EventHandler On_Signed_in = delegate { };
-        //public event SetStatus SetStatusEvent = delegate { };
+        public event EventHandler On_LocationChanged = delegate { };
 
         public event EventHandler On_Shop_Location_Update = delegate { };
 
@@ -478,6 +478,20 @@ namespace Deloco_Pos_C.helper_functions
 
 
             }
+            else if (functionName == "get_location_types")
+            {
+                local_datasets.LocationTypes LocType = new local_datasets.LocationTypes();
+                foreach(DataRow Item in ReturnDataTable.Rows)
+                {
+                    local_datasets.LocationTypes.LocationTypesRow  Loc_Row = LocType._LocationTypes.NewLocationTypesRow();
+
+                    Loc_Row.LocationTypeID = int.Parse(Item["LocationTypeID"].ToString());
+                    Loc_Row.LocationName = Item["LocationName"].ToString();
+
+                    LocType._LocationTypes.AddLocationTypesRow(Loc_Row);
+                }
+                ReturnDS = LocType;
+            }
             else
             {
                 //just pass a blank table back
@@ -503,6 +517,38 @@ namespace Deloco_Pos_C.helper_functions
             string res = Make_db_call(job, LocationRef.ToString());
             RetGrid.Merge(FormatStringToDataTable(job, res));
             return RetGrid;
+        }
+
+        public local_datasets.LocationGrid CreateLocGridItem(string LocName,int LocType,int LocParent)
+        {
+            local_datasets.LocationGrid RetGrid = new local_datasets.LocationGrid();
+            string parameters = "{'LocName': '" + LocName + "', 'LocType': '" + LocType.ToString() + "', 'LocParent': '" + LocParent.ToString() + "'}";
+            string job = "add_node_to_loc_grid";
+            string res = Make_db_call(job, parameters.ToString());
+            RetGrid.Merge(FormatStringToDataTable("get_gridlocations", res));
+            On_LocationChanged(this, new EventArgs());
+            return RetGrid;
+        }
+
+        public local_datasets.LocationGrid EditLocGridItem(string LocName, int LocType, int LocParent, int LocGridID)
+        {
+            local_datasets.LocationGrid RetGrid = new local_datasets.LocationGrid();
+            string parameters = "{'LocName': '" + LocName + "', 'LocType': '" + LocType.ToString() + "', 'LocParent': '" + LocParent.ToString() + "', 'LocGridID': '" + LocGridID.ToString() + "'}";
+            string job = "edit_node_to_loc_grid";
+            string res = Make_db_call(job, parameters.ToString());
+            RetGrid.Merge(FormatStringToDataTable("get_gridlocations", res));
+            On_LocationChanged(this, new EventArgs());
+            return RetGrid;
+        }
+        //get_location_types
+        public local_datasets.LocationTypes Get_LocationTypes()
+        {
+            local_datasets.LocationTypes LocTypes = new local_datasets.LocationTypes();
+            string job = "get_location_types";
+            string res = Make_db_call(job, "");
+            LocTypes.Merge(FormatStringToDataTable(job, res));
+            
+            return LocTypes;
         }
     }
 }
