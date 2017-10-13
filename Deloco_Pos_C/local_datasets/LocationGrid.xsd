@@ -21,6 +21,9 @@
               <xs:element name="LocParent" msprop:Generator_ColumnVarNameInTable="columnLocParent" msprop:Generator_ColumnPropNameInRow="LocParent" msprop:Generator_ColumnPropNameInTable="LocParentColumn" msprop:Generator_UserColumnName="LocParent" type="xs:int" default="0" minOccurs="0" />
               <xs:element name="Updated_at" msprop:Generator_ColumnVarNameInTable="columnUpdated_at" msprop:Generator_ColumnPropNameInRow="Updated_at" msprop:Generator_ColumnPropNameInTable="Updated_atColumn" msprop:Generator_UserColumnName="Updated_at" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Created_at" msprop:Generator_ColumnVarNameInTable="columnCreated_at" msprop:Generator_ColumnPropNameInRow="Created_at" msprop:Generator_ColumnPropNameInTable="Created_atColumn" msprop:Generator_UserColumnName="Created_at" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="PickOrder" msprop:Generator_ColumnVarNameInTable="columnPickOrder" msprop:Generator_ColumnPropNameInRow="PickOrder" msprop:Generator_ColumnPropNameInTable="PickOrderColumn" msprop:Generator_UserColumnName="PickOrder" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="FullName" msprop:Generator_ColumnVarNameInTable="columnFullName" msprop:Generator_ColumnPropNameInRow="FullName" msprop:Generator_ColumnPropNameInTable="FullNameColumn" msprop:Generator_UserColumnName="FullName" type="xs:string" default="" minOccurs="0" />
+              <xs:element name="ShortName" msprop:Generator_ColumnVarNameInTable="columnShortName" msprop:Generator_ColumnPropNameInRow="ShortName" msprop:Generator_ColumnPropNameInTable="ShortNameColumn" msprop:Generator_UserColumnName="ShortName" type="xs:string" default="" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

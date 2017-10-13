@@ -291,6 +291,12 @@ namespace Deloco_Pos_C.local_datasets {
             
             private global::System.Data.DataColumn columnCreated_at;
             
+            private global::System.Data.DataColumn columnPickOrder;
+            
+            private global::System.Data.DataColumn columnFullName;
+            
+            private global::System.Data.DataColumn columnShortName;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public Location_GridDataTable() {
@@ -374,6 +380,30 @@ namespace Deloco_Pos_C.local_datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PickOrderColumn {
+                get {
+                    return this.columnPickOrder;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn FullNameColumn {
+                get {
+                    return this.columnFullName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ShortNameColumn {
+                get {
+                    return this.columnShortName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -409,7 +439,7 @@ namespace Deloco_Pos_C.local_datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public Location_GridRow AddLocation_GridRow(int LocGridID, string LocName, int LocType, int LocParent, System.DateTime Updated_at, System.DateTime Created_at) {
+            public Location_GridRow AddLocation_GridRow(int LocGridID, string LocName, int LocType, int LocParent, System.DateTime Updated_at, System.DateTime Created_at, int PickOrder, string FullName, string ShortName) {
                 Location_GridRow rowLocation_GridRow = ((Location_GridRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         LocGridID,
@@ -417,7 +447,10 @@ namespace Deloco_Pos_C.local_datasets {
                         LocType,
                         LocParent,
                         Updated_at,
-                        Created_at};
+                        Created_at,
+                        PickOrder,
+                        FullName,
+                        ShortName};
                 rowLocation_GridRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowLocation_GridRow);
                 return rowLocation_GridRow;
@@ -453,6 +486,9 @@ namespace Deloco_Pos_C.local_datasets {
                 this.columnLocParent = base.Columns["LocParent"];
                 this.columnUpdated_at = base.Columns["Updated_at"];
                 this.columnCreated_at = base.Columns["Created_at"];
+                this.columnPickOrder = base.Columns["PickOrder"];
+                this.columnFullName = base.Columns["FullName"];
+                this.columnShortName = base.Columns["ShortName"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -470,6 +506,12 @@ namespace Deloco_Pos_C.local_datasets {
                 base.Columns.Add(this.columnUpdated_at);
                 this.columnCreated_at = new global::System.Data.DataColumn("Created_at", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCreated_at);
+                this.columnPickOrder = new global::System.Data.DataColumn("PickOrder", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPickOrder);
+                this.columnFullName = new global::System.Data.DataColumn("FullName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFullName);
+                this.columnShortName = new global::System.Data.DataColumn("ShortName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnShortName);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Location_GridKey1", new global::System.Data.DataColumn[] {
                                 this.columnLocGridID}, true));
                 this.columnLocGridID.AllowDBNull = false;
@@ -478,6 +520,9 @@ namespace Deloco_Pos_C.local_datasets {
                 this.columnLocName.DefaultValue = ((string)(""));
                 this.columnLocType.DefaultValue = ((int)(0));
                 this.columnLocParent.DefaultValue = ((int)(0));
+                this.columnPickOrder.DefaultValue = ((int)(0));
+                this.columnFullName.DefaultValue = ((string)(""));
+                this.columnShortName.DefaultValue = ((string)(""));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -711,6 +756,54 @@ namespace Deloco_Pos_C.local_datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int PickOrder {
+                get {
+                    try {
+                        return ((int)(this[this.tableLocation_Grid.PickOrderColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PickOrder\' in table \'Location_Grid\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLocation_Grid.PickOrderColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string FullName {
+                get {
+                    try {
+                        return ((string)(this[this.tableLocation_Grid.FullNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FullName\' in table \'Location_Grid\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLocation_Grid.FullNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string ShortName {
+                get {
+                    try {
+                        return ((string)(this[this.tableLocation_Grid.ShortNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ShortName\' in table \'Location_Grid\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLocation_Grid.ShortNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsLocNameNull() {
                 return this.IsNull(this.tableLocation_Grid.LocNameColumn);
             }
@@ -767,6 +860,42 @@ namespace Deloco_Pos_C.local_datasets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetCreated_atNull() {
                 this[this.tableLocation_Grid.Created_atColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsPickOrderNull() {
+                return this.IsNull(this.tableLocation_Grid.PickOrderColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetPickOrderNull() {
+                this[this.tableLocation_Grid.PickOrderColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsFullNameNull() {
+                return this.IsNull(this.tableLocation_Grid.FullNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetFullNameNull() {
+                this[this.tableLocation_Grid.FullNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsShortNameNull() {
+                return this.IsNull(this.tableLocation_Grid.ShortNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetShortNameNull() {
+                this[this.tableLocation_Grid.ShortNameColumn] = global::System.Convert.DBNull;
             }
         }
         

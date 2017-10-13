@@ -469,7 +469,9 @@ namespace Deloco_Pos_C.helper_functions
                     LocRow.LocName = Item["LocName"].ToString();
                     LocRow.LocType = int.Parse(Item["LocType"].ToString());
                     LocRow.LocParent = int.Parse(Item["LocParent"].ToString());
-                    
+                    LocRow.PickOrder = int.Parse(Item["PickOrder"].ToString());
+                    LocRow.ShortName = Item["ShortName"].ToString();
+                    LocRow.FullName = Item["FullName"].ToString();
 
                     locationGridDS.Location_Grid.AddLocation_GridRow(LocRow);
                 }
@@ -519,10 +521,10 @@ namespace Deloco_Pos_C.helper_functions
             return RetGrid;
         }
 
-        public local_datasets.LocationGrid CreateLocGridItem(string LocName,int LocType,int LocParent)
+        public local_datasets.LocationGrid CreateLocGridItem(string LocName,int LocType,int LocParent,string FullName, string ShortName,int PickOrder)
         {
             local_datasets.LocationGrid RetGrid = new local_datasets.LocationGrid();
-            string parameters = "{'LocName': '" + LocName + "', 'LocType': '" + LocType.ToString() + "', 'LocParent': '" + LocParent.ToString() + "'}";
+            string parameters = "{'LocName': '" + LocName + "', 'LocType': '" + LocType.ToString() + "', 'LocParent': '" + LocParent.ToString() + "','FullName': '" + FullName.ToString() + "','ShortName': '" + ShortName.ToString() + "','PickOrder': '" + PickOrder.ToString() + "'}";
             string job = "add_node_to_loc_grid";
             string res = Make_db_call(job, parameters.ToString());
             RetGrid.Merge(FormatStringToDataTable("get_gridlocations", res));
@@ -530,10 +532,10 @@ namespace Deloco_Pos_C.helper_functions
             return RetGrid;
         }
 
-        public local_datasets.LocationGrid EditLocGridItem(string LocName, int LocType, int LocParent, int LocGridID)
+        public local_datasets.LocationGrid EditLocGridItem(string LocName, int LocType, int LocParent, int LocGridID, string FullName, string ShortName, int PickOrder)
         {
             local_datasets.LocationGrid RetGrid = new local_datasets.LocationGrid();
-            string parameters = "{'LocName': '" + LocName + "', 'LocType': '" + LocType.ToString() + "', 'LocParent': '" + LocParent.ToString() + "', 'LocGridID': '" + LocGridID.ToString() + "'}";
+            string parameters = "{'LocName': '" + LocName + "', 'LocType': '" + LocType.ToString() + "', 'LocParent': '" + LocParent.ToString() + "', 'LocGridID': '" + LocGridID.ToString() + "','FullName': '" + FullName.ToString() + "','ShortName': '" + ShortName.ToString() + "','PickOrder': '" + PickOrder.ToString() + "'}";
             string job = "edit_node_to_loc_grid";
             string res = Make_db_call(job, parameters.ToString());
             RetGrid.Merge(FormatStringToDataTable("get_gridlocations", res));
