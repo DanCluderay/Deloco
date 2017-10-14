@@ -62,7 +62,7 @@ namespace Deloco_Pos_C.views
                     string LocationFullName = Results[0]["FullName"].ToString();
                     string LocationShortName = Results[0]["ShortName"].ToString();
 
-                    txtParentName.Text = LocationName;
+                    txtParentName.Text = LocationFullName;
                     txtFullName.Text = LocationFullName;
                     txtShortName.Text = LocationShortName;
                     txtLocationPickOrder.Text = Ord.ToString();
@@ -120,7 +120,8 @@ namespace Deloco_Pos_C.views
         }
         private void CheckFullNames()
         {
-            string Locreplace = txtLocationName.Text;
+            string Locreplace = txtLocationName.Text.Replace(" ","_");
+            
             string pname = txtParentName.Text;
             if(pname=="")
                 {

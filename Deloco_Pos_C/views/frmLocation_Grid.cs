@@ -73,8 +73,14 @@ namespace Deloco_Pos_C.views
         {
             tabControl1.TabPages.Remove( tabBuilding);
             tabControl1.TabPages.Remove(tabBusiness);
-            tabControl1.TabPages.Remove(tabZone);
-            tabControl1.TabPages.Remove(tabLocations);
+            //tabControl1.TabPages.Remove(tabZone);
+            //tabControl1.TabPages.Remove(tabLocations);
+            //tabControl1.TabPages.Remove(tabBay);
+
+            //tabControl1.TabPages.Remove(tabShelf);
+            //tabControl1.TabPages.Remove(tabPick);
+            //tabControl1.TabPages.Remove(tabHole);
+
         }
         private void DisplayDetails()
         {
@@ -108,10 +114,30 @@ namespace Deloco_Pos_C.views
                     else if (LocationType == 2)
                     {
                         tabControl1.TabPages.Add(tabBuilding); 
+                        //Draw the layout of the shop
                     }
                     else if (LocationType == 3)
                     {
-                        tabControl1.TabPages.Add(tabZone); 
+                        //tabControl1.TabPages.Add(tabZone);
+                        //get the zone ID
+
+                        //Find the Zon
+                    }
+                    else if (LocationType == 4)
+                    {
+                        //tabControl1.TabPages.Add(tabBay);
+                    }
+                    else if (LocationType == 5)
+                    {
+                        //tabControl1.TabPages.Add(tabShelf);
+                    }
+                    else if (LocationType == 6)
+                    {
+                        //tabControl1.TabPages.Add(tabPick);
+                    }
+                    else if (LocationType == 7)
+                    {
+                        //tabControl1.TabPages.Add(tabHole);
                     }
                 }
             }
@@ -347,6 +373,56 @@ namespace Deloco_Pos_C.views
         private void button18_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button46_Click(object sender, EventArgs e)
+        {
+            CreateSibling();
+        }
+
+        private void button45_Click(object sender, EventArgs e)
+        {
+            CreateChild();
+        }
+
+        private void button29_Click(object sender, EventArgs e)
+        {
+            CreateSibling();
+        }
+
+        private void button28_Click(object sender, EventArgs e)
+        {
+            CreateChild();
+        }
+
+        private void button35_Click(object sender, EventArgs e)
+        {
+            CreateSibling();
+        }
+
+        private void button34_Click(object sender, EventArgs e)
+        {
+            CreateChild();
+        }
+
+        private void button41_Click(object sender, EventArgs e)
+        {
+            CreateSibling();
+        }
+
+        private void button48_Click(object sender, EventArgs e)
+        {
+            GetLocations();
+        }
+
+        private void button22_Click(object sender, EventArgs e)
+        {
+            CreateChild();
+        }
+
+        private void button23_Click(object sender, EventArgs e)
+        {
+            CreateSibling();
         }
     }
 }
