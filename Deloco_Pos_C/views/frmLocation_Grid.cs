@@ -47,6 +47,7 @@ namespace Deloco_Pos_C.views
             LocTree.Nodes.Clear();
             LocGrid.Clear();
             LocGrid=logic_global.GetLocationGrid(0);
+            ctrl_ShopLayout1.SetupDS(LocGrid);
 
             foreach (local_datasets.LocationGrid.Location_GridRow Item in LocGrid.Location_Grid.Rows)
             {
@@ -73,13 +74,13 @@ namespace Deloco_Pos_C.views
         {
             tabControl1.TabPages.Remove( tabBuilding);
             tabControl1.TabPages.Remove(tabBusiness);
-            //tabControl1.TabPages.Remove(tabZone);
-            //tabControl1.TabPages.Remove(tabLocations);
-            //tabControl1.TabPages.Remove(tabBay);
+            tabControl1.TabPages.Remove(tabZone);
+            tabControl1.TabPages.Remove(tabLocations);
+            tabControl1.TabPages.Remove(tabBay);
 
-            //tabControl1.TabPages.Remove(tabShelf);
-            //tabControl1.TabPages.Remove(tabPick);
-            //tabControl1.TabPages.Remove(tabHole);
+            tabControl1.TabPages.Remove(tabShelf);
+            tabControl1.TabPages.Remove(tabPick);
+            tabControl1.TabPages.Remove(tabHole);
 
         }
         private void DisplayDetails()
@@ -113,8 +114,11 @@ namespace Deloco_Pos_C.views
                     }
                     else if (LocationType == 2)
                     {
-                        tabControl1.TabPages.Add(tabBuilding); 
+                        tabControl1.TabPages.Add(tabBuilding);
                         //Draw the layout of the shop
+                        //get the ShopID
+                       
+                        ctrl_ShopLayout1.DisplayShopLayout(NodeID);
                     }
                     else if (LocationType == 3)
                     {
@@ -161,7 +165,8 @@ namespace Deloco_Pos_C.views
             expression = "LocParent = " + ChildKey;
             // Use the Select method to find all rows matching the filter.
             foundRows = LocGrid.Location_Grid.Select(expression);
-
+            TreeNode PreviousTreeNode = new TreeNode();
+            PreviousTreeNode = Tree.SelectedNode;
             if(foundRows.Length==0)
             {
                 //do nothing
@@ -171,6 +176,7 @@ namespace Deloco_Pos_C.views
             {
                 foreach (DataRow Item in foundRows)
                 {
+                    
                     string name = Item["LocName"].ToString();
                     TreeNode treeNode = new TreeNode( name);
                     treeNode.Tag = Item["LocGridID"].ToString();
@@ -190,9 +196,10 @@ namespace Deloco_Pos_C.views
                             Tree.SelectedNode.Nodes.Add(treeNode);
                            
                         }
+
                         Tree.SelectedNode = treeNode;
                         addchildrentoTree(Tree, treeNode.Tag.ToString());
-
+                        Tree.SelectedNode= PreviousTreeNode;
 
                     }
 
@@ -423,6 +430,11 @@ namespace Deloco_Pos_C.views
         private void button23_Click(object sender, EventArgs e)
         {
             CreateSibling();
+        }
+
+        private void ctrl_ShopLayout1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

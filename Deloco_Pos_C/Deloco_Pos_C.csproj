@@ -78,29 +78,29 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="base_classes\zoneclass.cs" />
-    <Compile Include="controls\Furniture\ctrl_checkout.cs">
+    <Compile Include="ctrl\Furniture\ctrl_checkout.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="controls\Furniture\ctrl_checkout.Designer.cs">
+    <Compile Include="ctrl\Furniture\ctrl_checkout.Designer.cs">
       <DependentUpon>ctrl_checkout.cs</DependentUpon>
     </Compile>
-    <Compile Include="controls\Furniture\ctrl_HorizontalTenFoot.cs">
+    <Compile Include="ctrl\Furniture\ctrl_HorizontalTenFoot.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="controls\Furniture\ctrl_HorizontalTenFoot.Designer.cs">
+    <Compile Include="ctrl\Furniture\ctrl_HorizontalTenFoot.Designer.cs">
       <DependentUpon>ctrl_HorizontalTenFoot.cs</DependentUpon>
     </Compile>
-    <Compile Include="controls\ctrl_ShopLayout.cs">
+    <Compile Include="ctrl\ctrl_ShopLayout.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="controls\ctrl_ShopLayout.Designer.cs">
+    <Compile Include="ctrl\ctrl_ShopLayout.Designer.cs">
       <DependentUpon>ctrl_ShopLayout.cs</DependentUpon>
     </Compile>
-    <Compile Include="controls\Furniture\ctrl_VirticalTenFootUnit.cs">
+    <Compile Include="ctrl\Furniture\ctrl_VerticalTenFootUnit.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="controls\Furniture\ctrl_VirticalTenFootUnit.Designer.cs">
-      <DependentUpon>ctrl_VirticalTenFootUnit.cs</DependentUpon>
+    <Compile Include="ctrl\Furniture\ctrl_VerticalTenFootUnit.Designer.cs">
+      <DependentUpon>ctrl_VerticalTenFootUnit.cs</DependentUpon>
     </Compile>
     <Compile Include="helper_functions\global_helper.cs" />
     <Compile Include="helper_functions\mqtt_msg_object.cs" />
@@ -263,17 +263,17 @@
     <Compile Include="views\frmStoreLocations.Designer.cs">
       <DependentUpon>frmStoreLocations.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="controls\Furniture\ctrl_checkout.resx">
+    <EmbeddedResource Include="ctrl\Furniture\ctrl_checkout.resx">
       <DependentUpon>ctrl_checkout.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="controls\Furniture\ctrl_HorizontalTenFoot.resx">
+    <EmbeddedResource Include="ctrl\Furniture\ctrl_HorizontalTenFoot.resx">
       <DependentUpon>ctrl_HorizontalTenFoot.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="controls\ctrl_ShopLayout.resx">
+    <EmbeddedResource Include="ctrl\ctrl_ShopLayout.resx">
       <DependentUpon>ctrl_ShopLayout.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="controls\Furniture\ctrl_VirticalTenFootUnit.resx">
-      <DependentUpon>ctrl_VirticalTenFootUnit.cs</DependentUpon>
+    <EmbeddedResource Include="ctrl\Furniture\ctrl_VerticalTenFootUnit.resx">
+      <DependentUpon>ctrl_VerticalTenFootUnit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="views\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

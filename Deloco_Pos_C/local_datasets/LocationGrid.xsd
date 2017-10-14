@@ -12,7 +12,7 @@
   <xs:element name="LocationGrid" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="LocationGrid" msprop:Generator_UserDSName="LocationGrid">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Location_Grid" msprop:Generator_TableClassName="Location_GridDataTable" msprop:Generator_TableVarName="tableLocation_Grid" msprop:Generator_TablePropName="Location_Grid" msprop:Generator_RowDeletingName="Location_GridRowDeleting" msprop:Generator_RowChangingName="Location_GridRowChanging" msprop:Generator_RowEvHandlerName="Location_GridRowChangeEventHandler" msprop:Generator_RowDeletedName="Location_GridRowDeleted" msprop:Generator_UserTableName="Location_Grid" msprop:Generator_RowChangedName="Location_GridRowChanged" msprop:Generator_RowEvArgName="Location_GridRowChangeEvent" msprop:Generator_RowClassName="Location_GridRow">
+        <xs:element name="Location_Grid" msprop:Generator_TableClassName="Location_GridDataTable" msprop:Generator_TableVarName="tableLocation_Grid" msprop:Generator_RowChangedName="Location_GridRowChanged" msprop:Generator_TablePropName="Location_Grid" msprop:Generator_RowDeletingName="Location_GridRowDeleting" msprop:Generator_RowChangingName="Location_GridRowChanging" msprop:Generator_RowEvHandlerName="Location_GridRowChangeEventHandler" msprop:Generator_RowDeletedName="Location_GridRowDeleted" msprop:Generator_RowClassName="Location_GridRow" msprop:Generator_UserTableName="Location_Grid" msprop:Generator_RowEvArgName="Location_GridRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="LocGridID" msprop:Generator_ColumnVarNameInTable="columnLocGridID" msprop:Generator_ColumnPropNameInRow="LocGridID" msprop:Generator_ColumnPropNameInTable="LocGridIDColumn" msprop:Generator_UserColumnName="LocGridID" type="xs:int" default="0" />
@@ -24,6 +24,19 @@
               <xs:element name="PickOrder" msprop:Generator_ColumnVarNameInTable="columnPickOrder" msprop:Generator_ColumnPropNameInRow="PickOrder" msprop:Generator_ColumnPropNameInTable="PickOrderColumn" msprop:Generator_UserColumnName="PickOrder" type="xs:int" default="0" minOccurs="0" />
               <xs:element name="FullName" msprop:Generator_ColumnVarNameInTable="columnFullName" msprop:Generator_ColumnPropNameInRow="FullName" msprop:Generator_ColumnPropNameInTable="FullNameColumn" msprop:Generator_UserColumnName="FullName" type="xs:string" default="" minOccurs="0" />
               <xs:element name="ShortName" msprop:Generator_ColumnVarNameInTable="columnShortName" msprop:Generator_ColumnPropNameInRow="ShortName" msprop:Generator_ColumnPropNameInTable="ShortNameColumn" msprop:Generator_UserColumnName="ShortName" type="xs:string" default="" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="storelayout" msprop:Generator_TableClassName="storelayoutDataTable" msprop:Generator_TableVarName="tablestorelayout" msprop:Generator_TablePropName="storelayout" msprop:Generator_RowDeletingName="storelayoutRowDeleting" msprop:Generator_RowChangingName="storelayoutRowChanging" msprop:Generator_RowEvHandlerName="storelayoutRowChangeEventHandler" msprop:Generator_RowDeletedName="storelayoutRowDeleted" msprop:Generator_UserTableName="storelayout" msprop:Generator_RowChangedName="storelayoutRowChanged" msprop:Generator_RowEvArgName="storelayoutRowChangeEvent" msprop:Generator_RowClassName="storelayoutRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="BuildingID" msprop:Generator_ColumnVarNameInTable="columnBuildingID" msprop:Generator_ColumnPropNameInRow="BuildingID" msprop:Generator_ColumnPropNameInTable="BuildingIDColumn" msprop:Generator_UserColumnName="BuildingID" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="LocGrid_ID" msprop:Generator_ColumnVarNameInTable="columnLocGrid_ID" msprop:Generator_ColumnPropNameInRow="LocGrid_ID" msprop:Generator_ColumnPropNameInTable="LocGrid_IDColumn" msprop:Generator_UserColumnName="LocGrid_ID" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="Control_Type" msprop:Generator_ColumnVarNameInTable="columnControl_Type" msprop:Generator_ColumnPropNameInRow="Control_Type" msprop:Generator_ColumnPropNameInTable="Control_TypeColumn" msprop:Generator_UserColumnName="Control_Type" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="Control_X" msprop:Generator_ColumnVarNameInTable="columnControl_X" msprop:Generator_ColumnPropNameInRow="Control_X" msprop:Generator_ColumnPropNameInTable="Control_XColumn" msprop:Generator_UserColumnName="Control_X" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="Control_Y" msprop:Generator_ColumnVarNameInTable="columnControl_Y" msprop:Generator_ColumnPropNameInRow="Control_Y" msprop:Generator_ColumnPropNameInTable="Control_YColumn" msprop:Generator_UserColumnName="Control_Y" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="Control_Z" msprop:Generator_ColumnVarNameInTable="columnControl_Z" msprop:Generator_ColumnPropNameInRow="Control_Z" msprop:Generator_ColumnPropNameInTable="Control_ZColumn" msprop:Generator_UserColumnName="Control_Z" type="xs:int" default="0" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

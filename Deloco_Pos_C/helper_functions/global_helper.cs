@@ -228,7 +228,7 @@ namespace Deloco_Pos_C.helper_functions
                 DateTime _delivery_date;
                 string _ORDERID = "";
                 DateTime _orders_date;
-                DateTime _orders_time;
+                //DateTime _orders_time;
 
                 //create the empty returning dataset
                 local_datasets.OrderDetails_ds OrderDS = new local_datasets.OrderDetails_ds();
@@ -337,8 +337,8 @@ namespace Deloco_Pos_C.helper_functions
                 double _items_cost_ex_vat = 0.00;
                 int _vatcode = 0;
                 int _qty = 0;
-                DateTime _order_date;
-                DateTime _order_time;
+                //DateTime _order_date;
+                //DateTime _order_time;
                 double _DealRetail = 0;
 
                 //create the empty returning dataset
@@ -494,6 +494,26 @@ namespace Deloco_Pos_C.helper_functions
                 }
                 ReturnDS = LocType;
             }
+            //
+            else if (functionName == "get_location_Store_Zone_Layout")
+            {
+                local_datasets.LocationGrid LocDS = new local_datasets.LocationGrid();
+                foreach (DataRow Item in ReturnDataTable.Rows)
+                {
+                    local_datasets.LocationGrid.storelayoutRow Loc_Row = LocDS.storelayout.NewstorelayoutRow();
+
+                    Loc_Row.id = int.Parse(Item["id"].ToString());
+                    Loc_Row.BuildingID = int.Parse(Item["BuildingID"].ToString());
+                    Loc_Row.LocGrid_ID = int.Parse(Item["LocGrid_ID"].ToString());
+                    Loc_Row.Control_Type = int.Parse(Item["Control_Type"].ToString());
+                    Loc_Row.Control_X = int.Parse(Item["Control_X"].ToString());
+                    Loc_Row.Control_Y = int.Parse(Item["Control_Y"].ToString());
+                    //Loc_Row.Control_Z = int.Parse(Item["Control_Z"].ToString());
+
+                    LocDS.storelayout.AddstorelayoutRow(Loc_Row);
+                }
+                ReturnDS = LocDS;
+            }
             else
             {
                 //just pass a blank table back
@@ -551,6 +571,19 @@ namespace Deloco_Pos_C.helper_functions
             LocTypes.Merge(FormatStringToDataTable(job, res));
             
             return LocTypes;
+        }
+
+        public local_datasets.LocationGrid Get_Location_Zone_Layout(int shopid)
+        {
+            local_datasets.LocationGrid RetGrid = new local_datasets.LocationGrid();
+            string parameters = shopid.ToString();
+            string job = "get_location_Store_Zone_Layout";
+            string res = Make_db_call(job, parameters.ToString());
+            RetGrid.Merge(FormatStringToDataTable(job, res));
+           
+            return RetGrid;
+
+
         }
     }
 }

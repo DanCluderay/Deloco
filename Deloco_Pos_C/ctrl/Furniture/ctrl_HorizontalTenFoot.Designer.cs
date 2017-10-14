@@ -147,6 +147,9 @@
             this.Controls.Add(this.button1);
             this.Name = "ctrl_HorizontalTenFoot";
             this.Size = new System.Drawing.Size(120, 43);
+            this.Load += new System.EventHandler(this.ctrl_HorizontalTenFoot_Load);
+            this.Click += new System.EventHandler(this.ctrl_HorizontalTenFoot_Click);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ctrl_HorizontalTenFoot_MouseMove);
             this.ResumeLayout(false);
 
         }

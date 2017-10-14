@@ -147,6 +147,9 @@
             this.Name = "ctrl_VerticalTenFoot";
             this.Size = new System.Drawing.Size(54, 121);
             this.Load += new System.EventHandler(this.ctrl_VerticalTenFoot_Load);
+            this.Click += new System.EventHandler(this.ctrl_VerticalTenFoot_Click);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ctrl_VerticalTenFoot_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ctrl_VerticalTenFoot_MouseMove);
             this.ResumeLayout(false);
 
         }
