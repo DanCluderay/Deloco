@@ -72,7 +72,7 @@ namespace Deloco_Pos_C.views
         }
         private void HideTabs()
         {
-            tabControl1.TabPages.Remove( tabBuilding);
+            //tabControl1.TabPages.Remove( tabBuilding);
             tabControl1.TabPages.Remove(tabBusiness);
             tabControl1.TabPages.Remove(tabZone);
             tabControl1.TabPages.Remove(tabLocations);
@@ -114,7 +114,7 @@ namespace Deloco_Pos_C.views
                     }
                     else if (LocationType == 2)
                     {
-                        tabControl1.TabPages.Add(tabBuilding);
+                        //tabControl1.TabPages.Add(tabBuilding);
                         //Draw the layout of the shop
                         //get the ShopID
                        

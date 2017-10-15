@@ -40,6 +40,16 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="store_control_type" msprop:Generator_TableClassName="store_control_typeDataTable" msprop:Generator_TableVarName="tablestore_control_type" msprop:Generator_TablePropName="store_control_type" msprop:Generator_RowDeletingName="store_control_typeRowDeleting" msprop:Generator_RowChangingName="store_control_typeRowChanging" msprop:Generator_RowEvHandlerName="store_control_typeRowChangeEventHandler" msprop:Generator_RowDeletedName="store_control_typeRowDeleted" msprop:Generator_UserTableName="store_control_type" msprop:Generator_RowChangedName="store_control_typeRowChanged" msprop:Generator_RowEvArgName="store_control_typeRowChangeEvent" msprop:Generator_RowClassName="store_control_typeRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="store_control_type_id" msprop:Generator_ColumnVarNameInTable="columnstore_control_type_id" msprop:Generator_ColumnPropNameInRow="store_control_type_id" msprop:Generator_ColumnPropNameInTable="store_control_type_idColumn" msprop:Generator_UserColumnName="store_control_type_id" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="store_control_name" msprop:Generator_ColumnVarNameInTable="columnstore_control_name" msprop:Generator_ColumnPropNameInRow="store_control_name" msprop:Generator_ColumnPropNameInTable="store_control_nameColumn" msprop:Generator_UserColumnName="store_control_name" type="xs:string" default="" minOccurs="0" />
+              <xs:element name="store_control_name_desc" msprop:Generator_ColumnVarNameInTable="columnstore_control_name_desc" msprop:Generator_ColumnPropNameInRow="store_control_name_desc" msprop:Generator_ColumnPropNameInTable="store_control_name_descColumn" msprop:Generator_UserColumnName="store_control_name_desc" type="xs:string" default="" minOccurs="0" />
+              <xs:element name="store_control_subtype" msprop:Generator_ColumnVarNameInTable="columnstore_control_subtype" msprop:Generator_ColumnPropNameInRow="store_control_subtype" msprop:Generator_ColumnPropNameInTable="store_control_subtypeColumn" msprop:Generator_UserColumnName="store_control_subtype" type="xs:int" default="0" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Location_GridKey1" msdata:PrimaryKey="true">

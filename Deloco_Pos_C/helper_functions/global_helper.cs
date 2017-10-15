@@ -514,6 +514,25 @@ namespace Deloco_Pos_C.helper_functions
                 }
                 ReturnDS = LocDS;
             }
+            else if (functionName == "get_location_Store_Zone_Funiture")
+            {
+                //SELECT store_control_type.store_control_type_id, store_control_type.store_control_name, store_control_type.store_control_name_desc, store_control_type.store_control_subtype FROM fred.store_control_type store_control_type
+
+                local_datasets.LocationGrid LocDS = new local_datasets.LocationGrid();
+                foreach (DataRow Item in ReturnDataTable.Rows)
+                {
+                    local_datasets.LocationGrid.store_control_typeRow Loc_Row = LocDS.store_control_type.Newstore_control_typeRow();
+
+                    Loc_Row.store_control_type_id = int.Parse(Item["store_control_type_id"].ToString());
+                    Loc_Row.store_control_name = Item["store_control_name"].ToString();
+                    Loc_Row.store_control_name_desc = Item["store_control_name_desc"].ToString();
+                    Loc_Row.store_control_subtype = int.Parse(Item["store_control_subtype"].ToString());
+               
+
+                    LocDS.store_control_type.Addstore_control_typeRow(Loc_Row);
+                }
+                ReturnDS = LocDS;
+            }
             else
             {
                 //just pass a blank table back
@@ -541,15 +560,14 @@ namespace Deloco_Pos_C.helper_functions
             return RetGrid;
         }
 
-        public local_datasets.LocationGrid CreateLocGridItem(string LocName,int LocType,int LocParent,string FullName, string ShortName,int PickOrder)
+        public int CreateLocGridItem(string LocName,int LocType,int LocParent,string FullName, string ShortName,int PickOrder)
         {
-            local_datasets.LocationGrid RetGrid = new local_datasets.LocationGrid();
+            int retvalue = 0;
             string parameters = "{'LocName': '" + LocName + "', 'LocType': '" + LocType.ToString() + "', 'LocParent': '" + LocParent.ToString() + "','FullName': '" + FullName.ToString() + "','ShortName': '" + ShortName.ToString() + "','PickOrder': '" + PickOrder.ToString() + "'}";
             string job = "add_node_to_loc_grid";
             string res = Make_db_call(job, parameters.ToString());
-            RetGrid.Merge(FormatStringToDataTable("get_gridlocations", res));
             On_LocationChanged(this, new EventArgs());
-            return RetGrid;
+            return retvalue;
         }
 
         public local_datasets.LocationGrid EditLocGridItem(string LocName, int LocType, int LocParent, int LocGridID, string FullName, string ShortName, int PickOrder)
@@ -605,6 +623,17 @@ namespace Deloco_Pos_C.helper_functions
             string res = Make_db_call(job, parameters.ToString());
             //RetGrid.Merge(FormatStringToDataTable("get_location_Store_Zone_Layout", res));
             return RetGrid;
+        }
+
+        public local_datasets.LocationGrid GetStoreLayoutDataset()
+        {
+            local_datasets.LocationGrid RetGrid = new local_datasets.LocationGrid();
+            string parameters = "";
+            string job = "get_location_Store_Zone_Funiture";
+            string res = Make_db_call(job, parameters.ToString());
+            RetGrid.Merge(FormatStringToDataTable(job, res));
+            return RetGrid;
+
         }
 
     }

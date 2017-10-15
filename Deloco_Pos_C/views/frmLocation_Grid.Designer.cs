@@ -60,6 +60,7 @@
             this.tabBuilding = new System.Windows.Forms.TabPage();
             this.tabControl3 = new System.Windows.Forms.TabControl();
             this.tabPage15 = new System.Windows.Forms.TabPage();
+            this.ctrl_ShopLayout1 = new Deloco_Pos_C.controls.ctrl_ShopLayout();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
@@ -183,7 +184,6 @@
             this.button41 = new System.Windows.Forms.Button();
             this.button42 = new System.Windows.Forms.Button();
             this.tabPage14 = new System.Windows.Forms.TabPage();
-            this.ctrl_ShopLayout1 = new Deloco_Pos_C.controls.ctrl_ShopLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -232,7 +232,7 @@
             this.LocTree.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LocTree.Location = new System.Drawing.Point(0, 0);
             this.LocTree.Name = "LocTree";
-            this.LocTree.Size = new System.Drawing.Size(329, 616);
+            this.LocTree.Size = new System.Drawing.Size(217, 616);
             this.LocTree.TabIndex = 0;
             this.LocTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.LocTree_AfterSelect);
             this.LocTree.MouseClick += new System.Windows.Forms.MouseEventHandler(this.LocTree_MouseClick);
@@ -272,16 +272,16 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 34);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(329, 616);
+            this.panel2.Size = new System.Drawing.Size(217, 616);
             this.panel2.TabIndex = 3;
             // 
             // panel3
             // 
             this.panel3.Controls.Add(this.tabControl1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(329, 34);
+            this.panel3.Location = new System.Drawing.Point(217, 34);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(770, 616);
+            this.panel3.Size = new System.Drawing.Size(882, 616);
             this.panel3.TabIndex = 4;
             // 
             // tabControl1
@@ -298,7 +298,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(770, 616);
+            this.tabControl1.Size = new System.Drawing.Size(882, 616);
             this.tabControl1.TabIndex = 2;
             // 
             // tabLocations
@@ -306,7 +306,7 @@
             this.tabLocations.Controls.Add(this.label9);
             this.tabLocations.Location = new System.Drawing.Point(4, 22);
             this.tabLocations.Name = "tabLocations";
-            this.tabLocations.Size = new System.Drawing.Size(762, 590);
+            this.tabLocations.Size = new System.Drawing.Size(874, 590);
             this.tabLocations.TabIndex = 3;
             this.tabLocations.Text = "Location Grids";
             this.tabLocations.UseVisualStyleBackColor = true;
@@ -326,7 +326,7 @@
             this.tabBusiness.Location = new System.Drawing.Point(4, 22);
             this.tabBusiness.Name = "tabBusiness";
             this.tabBusiness.Padding = new System.Windows.Forms.Padding(3);
-            this.tabBusiness.Size = new System.Drawing.Size(762, 590);
+            this.tabBusiness.Size = new System.Drawing.Size(874, 590);
             this.tabBusiness.TabIndex = 0;
             this.tabBusiness.Text = "Business";
             this.tabBusiness.UseVisualStyleBackColor = true;
@@ -339,7 +339,7 @@
             this.tabControl2.Location = new System.Drawing.Point(3, 3);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(756, 584);
+            this.tabControl2.Size = new System.Drawing.Size(868, 584);
             this.tabControl2.TabIndex = 6;
             // 
             // tabPage4
@@ -349,7 +349,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(748, 558);
+            this.tabPage4.Size = new System.Drawing.Size(860, 558);
             this.tabPage4.TabIndex = 0;
             this.tabPage4.Text = "Details";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -372,7 +372,7 @@
             this.grp_Business.Enabled = false;
             this.grp_Business.Location = new System.Drawing.Point(3, 45);
             this.grp_Business.Name = "grp_Business";
-            this.grp_Business.Size = new System.Drawing.Size(742, 510);
+            this.grp_Business.Size = new System.Drawing.Size(854, 510);
             this.grp_Business.TabIndex = 4;
             this.grp_Business.TabStop = false;
             this.grp_Business.Text = "Details";
@@ -486,7 +486,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(3, 3);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(742, 42);
+            this.panel4.Size = new System.Drawing.Size(854, 42);
             this.panel4.TabIndex = 7;
             // 
             // button12
@@ -525,7 +525,7 @@
             this.tabBuilding.Location = new System.Drawing.Point(4, 22);
             this.tabBuilding.Name = "tabBuilding";
             this.tabBuilding.Padding = new System.Windows.Forms.Padding(3);
-            this.tabBuilding.Size = new System.Drawing.Size(762, 590);
+            this.tabBuilding.Size = new System.Drawing.Size(874, 590);
             this.tabBuilding.TabIndex = 1;
             this.tabBuilding.Text = "Building";
             this.tabBuilding.UseVisualStyleBackColor = true;
@@ -539,7 +539,7 @@
             this.tabControl3.Location = new System.Drawing.Point(3, 3);
             this.tabControl3.Name = "tabControl3";
             this.tabControl3.SelectedIndex = 0;
-            this.tabControl3.Size = new System.Drawing.Size(756, 584);
+            this.tabControl3.Size = new System.Drawing.Size(868, 584);
             this.tabControl3.TabIndex = 7;
             // 
             // tabPage15
@@ -548,10 +548,19 @@
             this.tabPage15.Location = new System.Drawing.Point(4, 22);
             this.tabPage15.Name = "tabPage15";
             this.tabPage15.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage15.Size = new System.Drawing.Size(748, 558);
+            this.tabPage15.Size = new System.Drawing.Size(860, 558);
             this.tabPage15.TabIndex = 2;
             this.tabPage15.Text = "Layout";
             this.tabPage15.UseVisualStyleBackColor = true;
+            // 
+            // ctrl_ShopLayout1
+            // 
+            this.ctrl_ShopLayout1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrl_ShopLayout1.Location = new System.Drawing.Point(3, 3);
+            this.ctrl_ShopLayout1.Name = "ctrl_ShopLayout1";
+            this.ctrl_ShopLayout1.Size = new System.Drawing.Size(854, 552);
+            this.ctrl_ShopLayout1.TabIndex = 0;
+            this.ctrl_ShopLayout1.Load += new System.EventHandler(this.ctrl_ShopLayout1_Load);
             // 
             // tabPage1
             // 
@@ -1763,15 +1772,6 @@
             this.tabPage14.TabIndex = 1;
             this.tabPage14.Text = "Children Options";
             this.tabPage14.UseVisualStyleBackColor = true;
-            // 
-            // ctrl_ShopLayout1
-            // 
-            this.ctrl_ShopLayout1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrl_ShopLayout1.Location = new System.Drawing.Point(3, 3);
-            this.ctrl_ShopLayout1.Name = "ctrl_ShopLayout1";
-            this.ctrl_ShopLayout1.Size = new System.Drawing.Size(742, 552);
-            this.ctrl_ShopLayout1.TabIndex = 0;
-            this.ctrl_ShopLayout1.Load += new System.EventHandler(this.ctrl_ShopLayout1_Load);
             // 
             // frmLocation_Grid
             // 

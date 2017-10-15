@@ -46,8 +46,16 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtShortName = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.locationGrid = new Deloco_Pos_C.local_datasets.LocationGrid();
+            this.storecontroltypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.locationTypesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.locationTypes)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.locationGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.storecontroltypeBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -71,7 +79,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(264, 175);
+            this.button1.Location = new System.Drawing.Point(230, 179);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 41);
             this.button1.TabIndex = 2;
@@ -194,11 +202,54 @@
             this.label7.TabIndex = 14;
             this.label7.Text = "New Short Name";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Location = new System.Drawing.Point(383, 8);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(290, 152);
+            this.groupBox1.TabIndex = 16;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Store Zone Layout Options";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DataSource = this.storecontroltypeBindingSource;
+            this.comboBox1.DisplayMember = "store_control_name";
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(79, 24);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(127, 21);
+            this.comboBox1.TabIndex = 0;
+            this.comboBox1.ValueMember = "store_control_type_id";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(14, 27);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(59, 13);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Zone Type";
+            // 
+            // locationGrid
+            // 
+            this.locationGrid.DataSetName = "LocationGrid";
+            this.locationGrid.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // storecontroltypeBindingSource
+            // 
+            this.storecontroltypeBindingSource.DataMember = "store_control_type";
+            this.storecontroltypeBindingSource.DataSource = this.locationGrid;
+            // 
             // frmAddLocation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(382, 232);
+            this.ClientSize = new System.Drawing.Size(710, 232);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.txtShortName);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtFullName);
@@ -219,6 +270,10 @@
             this.Load += new System.EventHandler(this.frmAddLocation_Load);
             ((System.ComponentModel.ISupportInitialize)(this.locationTypesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.locationTypes)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.locationGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.storecontroltypeBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -243,5 +298,10 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtShortName;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.BindingSource storecontroltypeBindingSource;
+        private local_datasets.LocationGrid locationGrid;
     }
 }

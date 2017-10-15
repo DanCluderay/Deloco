@@ -82,6 +82,11 @@ namespace Deloco_Pos_C.views
             locationTypes.Merge(LocTypes);
             cmbLocationType.SelectedValue =int.Parse( defaultType.ToString());
             cmbLocationType.Enabled = false;
+            //locationGrid = new local_datasets.LocationGrid();
+            storecontroltypeBindingSource.Filter = "";
+            locationGrid.Merge(logic_global.GetStoreLayoutDataset());
+            this.Refresh();
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -105,6 +110,12 @@ namespace Deloco_Pos_C.views
             }
             
             logic_global.CreateLocGridItem(Locaname, LocationType, PID, txtFullName.Text,txtShortName.Text,int.Parse(txtLocationPickOrder.Text));
+
+            if(LocationType==3)
+            {
+                //We need to add Store Location Layout Data
+                //logic_global.AddNewStoreLayoutRow(_parentID,)
+            }
             this.Close();
             
         }
@@ -138,6 +149,11 @@ namespace Deloco_Pos_C.views
         private void txtLocationName_KeyUp(object sender, KeyEventArgs e)
         {
             CheckFullNames();
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
