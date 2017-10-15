@@ -34,6 +34,42 @@ namespace Deloco_Pos_C.base_classes
                 zoneid = value;
             }
         }
+        private bool haschanged;
+
+        public bool HasChanged
+        {
+            get
+            {
+                return haschanged;
+            }
+            set
+            {
+                haschanged = value;
+            }
+        }
+
+        private int buildingID;
+        
+        public int BuildingID
+        {
+            get
+            {
+                return buildingID;
+            }
+
+            set
+            {
+                buildingID = value;
+            }
+        }
+
+
+        public int id;
+
+        public int ControlType;
+        public int X_Position;
+        public int Y_Position;
+
 
         public BayClass[] Bays { get; private set; }
 

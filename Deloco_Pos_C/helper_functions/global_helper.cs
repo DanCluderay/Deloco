@@ -585,5 +585,27 @@ namespace Deloco_Pos_C.helper_functions
 
 
         }
+
+
+        public local_datasets.LocationGrid AddNewStoreLayoutRow(int BuildingID,int LocGrid_ID,int Control_Type,int Control_Y,int Control_X,int Control_Z)
+        {
+            local_datasets.LocationGrid RetGrid = new local_datasets.LocationGrid();
+            string parameters = "{'BuildingID': '" + BuildingID + "', 'LocGrid_ID': '" + LocGrid_ID.ToString() + "', 'Control_Type': '" + Control_Type.ToString() + "', 'Control_Y': '" + Control_Y.ToString() + "','Control_X': '" + Control_X.ToString() + "','Control_Z': '" + Control_Z.ToString() + "'}";
+            string job = "add_store_layout_row";
+            string res = Make_db_call(job, parameters.ToString());
+            //RetGrid.Merge(FormatStringToDataTable("get_location_Store_Zone_Layout", res));
+            return RetGrid;
+        }
+
+        public local_datasets.LocationGrid EditStoreLayoutRow(int BuildingID, int LocGrid_ID, int Control_Type, int Control_Y, int Control_X, int Control_Z, int id)
+        {
+            local_datasets.LocationGrid RetGrid = new local_datasets.LocationGrid();
+            string parameters = "{'BuildingID': '" + BuildingID + "', 'LocGrid_ID': '" + LocGrid_ID.ToString() + "', 'Control_Type': '" + Control_Type.ToString() + "', 'Control_Y': '" + Control_Y.ToString() + "','Control_X': '" + Control_X.ToString() + "','Control_Z': '" + Control_Z.ToString() + "','id': '" + id.ToString() + "'}";
+            string job = "edit_store_layout_row";
+            string res = Make_db_call(job, parameters.ToString());
+            //RetGrid.Merge(FormatStringToDataTable("get_location_Store_Zone_Layout", res));
+            return RetGrid;
+        }
+
     }
 }

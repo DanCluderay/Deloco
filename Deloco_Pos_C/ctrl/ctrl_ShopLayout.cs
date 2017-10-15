@@ -51,11 +51,15 @@ namespace Deloco_Pos_C.controls
                 int ZonePos_X = 0;
                 int ZonePos_Y = 0;
                 int ControlType = 0;
+                int layoutid = 0;
+                int buildingid = 0;
+
                 //loop the contents of the Layout dataset
                 foreach(DataRow Item in Results)
                 {
                     ZoneID = int.Parse(Item["LocGridID"].ToString());
                     ZoneName = Item["LocName"].ToString();
+
                     if (CheckifControlIsAlreadyOnForm(ZoneName) ==false)
                     {
                     //find the data in the layout dataset
@@ -70,7 +74,9 @@ namespace Deloco_Pos_C.controls
                         ZonePos_X = int.Parse(ZoneItem["Control_X"].ToString());
                         ZonePos_Y = int.Parse(ZoneItem["Control_Y"].ToString());
                         ControlType = int.Parse(ZoneItem["Control_Type"].ToString());
-                        if (ControlType==1)
+                        layoutid = int.Parse(ZoneItem["id"].ToString());
+                        buildingid = int.Parse(ZoneItem["buildingid"].ToString());
+                            if (ControlType==1)
                         {
                             //Horizontal 10
                             ctrl_HorizontalTenFoot N1 = new ctrl_HorizontalTenFoot();
@@ -79,6 +85,11 @@ namespace Deloco_Pos_C.controls
                             N1.Zone = new base_classes.ZoneClass();
                             N1.Zone.ZoneName = ZoneName;
                             N1.Name = ZoneName;
+                            N1.Zone.id = layoutid;
+                            N1.Zone.BuildingID = buildingid;
+                            N1.Zone.X_Position = ZonePos_X;
+                            N1.Zone.Y_Position = ZonePos_Y;
+                            N1.Zone.ControlType = ControlType;
                             N1.Zone.ZoneID = ZoneID.ToString();
                             N1.On_ControlMove += N1_On_ControlMove;
                             N1.On_ControlClick += N1_On_ControlClick;
@@ -94,6 +105,11 @@ namespace Deloco_Pos_C.controls
                             N1.Zone = new base_classes.ZoneClass();
                             N1.Zone.ZoneName = ZoneName;
                             N1.Name = ZoneName;
+                            N1.Zone.id = layoutid;
+                            N1.Zone.BuildingID = buildingid;
+                            N1.Zone.X_Position = ZonePos_X;
+                            N1.Zone.Y_Position = ZonePos_Y;
+                            N1.Zone.ControlType = ControlType;
                             N1.Zone.ZoneID = ZoneID.ToString();
                             N1.On_ControlMove += N1_On_ControlMove;
                             N1.On_ControlClick += N1_On_ControlClick;
@@ -159,6 +175,26 @@ namespace Deloco_Pos_C.controls
         private void button2_Click(object sender, EventArgs e)
         {
             //loop all the controls in the shopfloor panel
+            foreach (Control Item in shop_floor.Controls)
+            {
+
+                if (Item.GetType() == typeof(ctrl_VerticalTenFoot))
+                {
+                    ctrl_VerticalTenFoot V10 = Item as ctrl_VerticalTenFoot;
+                    if (V10.Zone.HasChanged==true)
+                    {
+                        logic_global.EditStoreLayoutRow(V10.Zone.BuildingID, int.Parse(V10.Zone.ZoneID), V10.Zone.ControlType, V10.Zone.Y_Position, V10.Zone.X_Position,0,V10.Zone.id);
+                    }
+                }
+                else if (Item.GetType() == typeof(ctrl_HorizontalTenFoot))
+                {
+                    ctrl_HorizontalTenFoot H10 = Item as ctrl_HorizontalTenFoot;
+                    if (H10.Zone.HasChanged == true)
+                    {
+                        logic_global.EditStoreLayoutRow(H10.Zone.BuildingID, int.Parse(H10.Zone.ZoneID), H10.Zone.ControlType, H10.Zone.Y_Position, H10.Zone.X_Position, 0, H10.Zone.id);
+                    }
+                }
+            }
 
             //update the database with each control X and Y
             
@@ -190,13 +226,26 @@ namespace Deloco_Pos_C.controls
 
         private void N1_On_ControlClick(object sender, EventArgs e)
         {
-            //Point p = new Point(Cursor.Position.X, Cursor.Position.Y);//in form coordinates
+            Point p = new Point(Cursor.Position.X, Cursor.Position.Y);//in form coordinates
 
-            //Point y = shop_floor.PointToClient(p);
-            
-            
-            //txtLeft.Text = y.X.ToString();
-            //txtTop.Text = y.Y.ToString();
+            Point y = shop_floor.PointToClient(p);
+
+            if (sender.GetType() == typeof(ctrl_VerticalTenFoot))
+            {
+                ctrl_VerticalTenFoot V10 = sender as ctrl_VerticalTenFoot;
+
+                txtLeft.Text = V10.Left.ToString();
+                txtTop.Text = V10.Top.ToString();
+
+
+
+            }
+            else if (sender.GetType() == typeof(ctrl_HorizontalTenFoot))
+            {
+                ctrl_HorizontalTenFoot H10 = sender as ctrl_HorizontalTenFoot;
+                txtLeft.Text = H10.Left.ToString();
+                txtTop.Text = H10.Top.ToString();
+            }
         }
 
         private void N1_On_ControlMove(object sender, EventArgs e)
@@ -208,25 +257,35 @@ namespace Deloco_Pos_C.controls
 
             if(sender.GetType() == typeof(ctrl_VerticalTenFoot))
             {
-                ctrl_VerticalTenFoot k = sender as ctrl_VerticalTenFoot;
-                k.Left = y.X;
-                k.Top = y.Y;
-                k.Refresh();
-                txtLeft.Text = k.Left.ToString();
-                txtTop.Text = k.Top.ToString();
-                txtZone.Text = k.Zone.ZoneName.ToString();
+                ctrl_VerticalTenFoot V10 = sender as ctrl_VerticalTenFoot;
+                V10.Left = y.X;
+                V10.Top = y.Y;
+
+                V10.Zone.HasChanged = true;
+                V10.Refresh();
+                txtLeft.Text = V10.Left.ToString();
+                txtTop.Text = V10.Top.ToString();
+                txtZone.Text = V10.Zone.ZoneName.ToString();
                 this.Refresh();
+                V10.Zone.X_Position = V10.Left;
+                V10.Zone.Y_Position = V10.Top;
             }
             else if (sender.GetType() == typeof(ctrl_HorizontalTenFoot))
             {
-                ctrl_HorizontalTenFoot H = sender as ctrl_HorizontalTenFoot;
-                H.Left = y.X;
-                H.Top = y.Y;
-                H.Refresh();
-                txtLeft.Text = H.Left.ToString();
-                txtTop.Text = H.Top.ToString();
-                txtZone.Text = H.Zone.ZoneName.ToString();
+                ctrl_HorizontalTenFoot H10 = sender as ctrl_HorizontalTenFoot;
+                H10.Left = y.X;
+                H10.Top = y.Y;
+                H10.Zone.X_Position = y.X;
+                H10.Zone.Y_Position = y.X;
+                H10.Zone.HasChanged = true;
+                H10.Refresh();
+                txtLeft.Text = H10.Left.ToString();
+                txtTop.Text = H10.Top.ToString();
+                txtZone.Text = H10.Zone.ZoneName.ToString();
                 this.Refresh();
+                H10.Zone.X_Position = H10.Left;
+                H10.Zone.Y_Position = H10.Top;
+
             }
 
 
