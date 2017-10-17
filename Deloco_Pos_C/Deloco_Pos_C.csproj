@@ -96,6 +96,18 @@
     <Compile Include="ctrl\ctrl_ShopLayout.Designer.cs">
       <DependentUpon>ctrl_ShopLayout.cs</DependentUpon>
     </Compile>
+    <Compile Include="ctrl\Furniture\ctrl_LocationPosition.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctrl\Furniture\ctrl_LocationPosition.Designer.cs">
+      <DependentUpon>ctrl_LocationPosition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ctrl\Furniture\ctrl_VerticalMultiBay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctrl\Furniture\ctrl_VerticalMultiBay.Designer.cs">
+      <DependentUpon>ctrl_VerticalMultiBay.cs</DependentUpon>
+    </Compile>
     <Compile Include="ctrl\Furniture\ctrl_VerticalTenFootUnit.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -271,6 +283,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ctrl\ctrl_ShopLayout.resx">
       <DependentUpon>ctrl_ShopLayout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctrl\Furniture\ctrl_LocationPosition.resx">
+      <DependentUpon>ctrl_LocationPosition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctrl\Furniture\ctrl_VerticalMultiBay.resx">
+      <DependentUpon>ctrl_VerticalMultiBay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ctrl\Furniture\ctrl_VerticalTenFootUnit.resx">
       <DependentUpon>ctrl_VerticalTenFootUnit.cs</DependentUpon>

@@ -47,7 +47,7 @@
             this.txtShortName = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbZoneLayoutType = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.locationGrid = new Deloco_Pos_C.local_datasets.LocationGrid();
             this.storecontroltypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -205,7 +205,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.cmbZoneLayoutType);
             this.groupBox1.Location = new System.Drawing.Point(383, 8);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(290, 152);
@@ -214,16 +214,16 @@
             this.groupBox1.Text = "Store Zone Layout Options";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // comboBox1
+            // cmbZoneLayoutType
             // 
-            this.comboBox1.DataSource = this.storecontroltypeBindingSource;
-            this.comboBox1.DisplayMember = "store_control_name";
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(79, 24);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(127, 21);
-            this.comboBox1.TabIndex = 0;
-            this.comboBox1.ValueMember = "store_control_type_id";
+            this.cmbZoneLayoutType.DataSource = this.storecontroltypeBindingSource;
+            this.cmbZoneLayoutType.DisplayMember = "store_control_name";
+            this.cmbZoneLayoutType.FormattingEnabled = true;
+            this.cmbZoneLayoutType.Location = new System.Drawing.Point(79, 24);
+            this.cmbZoneLayoutType.Name = "cmbZoneLayoutType";
+            this.cmbZoneLayoutType.Size = new System.Drawing.Size(127, 21);
+            this.cmbZoneLayoutType.TabIndex = 0;
+            this.cmbZoneLayoutType.ValueMember = "store_control_type_id";
             // 
             // label5
             // 
@@ -300,7 +300,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbZoneLayoutType;
         private System.Windows.Forms.BindingSource storecontroltypeBindingSource;
         private local_datasets.LocationGrid locationGrid;
     }

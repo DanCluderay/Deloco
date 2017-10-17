@@ -566,6 +566,10 @@ namespace Deloco_Pos_C.helper_functions
             string parameters = "{'LocName': '" + LocName + "', 'LocType': '" + LocType.ToString() + "', 'LocParent': '" + LocParent.ToString() + "','FullName': '" + FullName.ToString() + "','ShortName': '" + ShortName.ToString() + "','PickOrder': '" + PickOrder.ToString() + "'}";
             string job = "add_node_to_loc_grid";
             string res = Make_db_call(job, parameters.ToString());
+            DataTable ReturnDataTable;
+            ReturnDataTable = (DataTable)JsonConvert.DeserializeObject(res, (typeof(DataTable)));
+           
+            retvalue = int.Parse(ReturnDataTable.Rows[0][0].ToString());
             On_LocationChanged(this, new EventArgs());
             return retvalue;
         }

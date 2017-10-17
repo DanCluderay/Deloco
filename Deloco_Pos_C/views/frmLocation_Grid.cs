@@ -15,6 +15,9 @@ namespace Deloco_Pos_C.views
         helper_functions.globalHelper logic_global = helper_functions.globalHelper.Instance;
         local_datasets.LocationGrid LocGrid;
         bool loadingmode;
+        int SelectedShopID;
+        views.frmAddLocation AddLoc;
+        TreeNode CurerntSelectedTreeNode;
         public frmLocation_Grid()
         {
             InitializeComponent();
@@ -89,6 +92,7 @@ namespace Deloco_Pos_C.views
             {
                 int NodeID = 0;
                 NodeID=int.Parse( LocTree.SelectedNode.Tag.ToString());
+                CurerntSelectedTreeNode = LocTree.SelectedNode;
                 DataRow[] gridrows;
                 string expression = "LocGridID = " + NodeID.ToString();
                 // Use the Select method to find all rows matching the filter.
@@ -117,7 +121,8 @@ namespace Deloco_Pos_C.views
                         //tabControl1.TabPages.Add(tabBuilding);
                         //Draw the layout of the shop
                         //get the ShopID
-                       
+                        ctrl_ShopLayout1.ClearAllFurniture();
+                        SelectedShopID = NodeID;
                         ctrl_ShopLayout1.DisplayShopLayout(NodeID);
                     }
                     else if (LocationType == 3)
@@ -326,10 +331,19 @@ namespace Deloco_Pos_C.views
         }
         private void CreateChild()
         {
-            views.frmAddLocation AddLoc = new views.frmAddLocation(get_LocType_type(true).ToString(), get_parent_to_be_ID(false), LocGrid, get_next_pick_orderID(false));
+            AddLoc = new views.frmAddLocation(get_LocType_type(true).ToString(), get_parent_to_be_ID(false), LocGrid, get_next_pick_orderID(false));
             AddLoc.MdiParent = this.MdiParent;
+            AddLoc.On_NewLayOutAdded += AddLoc_On_NewLayOutAdded;
             AddLoc.Show();
         }
+        
+        private void AddLoc_On_NewLayOutAdded(object sender, EventArgs e)
+        {
+            LocTree.SelectedNode = CurerntSelectedTreeNode;
+            tabBuilding_Layout.Show();
+            ctrl_ShopLayout1.DisplayShopLayout(SelectedShopID);
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             CreateSibling();
@@ -435,6 +449,11 @@ namespace Deloco_Pos_C.views
         private void ctrl_ShopLayout1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button40_Click(object sender, EventArgs e)
+        {
+            ctrl_ShopLayout1.ClearAllFurniture();
         }
     }
 }

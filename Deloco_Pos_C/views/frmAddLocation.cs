@@ -18,6 +18,7 @@ namespace Deloco_Pos_C.views
         string defaultType;
         local_datasets.LocationGrid LocDS;
         int _parentID;
+        public event EventHandler On_NewLayOutAdded = delegate { };
         public frmAddLocation()
         {
             InitializeComponent();
@@ -109,13 +110,17 @@ namespace Deloco_Pos_C.views
                 PID = 0;
             }
             
-            logic_global.CreateLocGridItem(Locaname, LocationType, PID, txtFullName.Text,txtShortName.Text,int.Parse(txtLocationPickOrder.Text));
+            int newLocationID = logic_global.CreateLocGridItem(Locaname, LocationType, PID, txtFullName.Text,txtShortName.Text,int.Parse(txtLocationPickOrder.Text));
 
             if(LocationType==3)
             {
                 //We need to add Store Location Layout Data
-                //logic_global.AddNewStoreLayoutRow(_parentID,)
+                int ZoneLayoutType = 0;
+                ZoneLayoutType = int.Parse(cmbZoneLayoutType.SelectedValue.ToString());
+                logic_global.AddNewStoreLayoutRow(_parentID, newLocationID, ZoneLayoutType, 0, 0, 0);
+                On_NewLayOutAdded(this, new EventArgs());
             }
+            this.WindowState = FormWindowState.Normal;
             this.Close();
             
         }

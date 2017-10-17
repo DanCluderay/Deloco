@@ -36,8 +36,8 @@ namespace Deloco_Pos_C.controls
             DataRow[] Results;
             string expres = "LocParent=" + ShopID.ToString();
             Results = GridDS.Location_Grid.Select(expres);
-
-
+            textBox1.Text = "0";
+            GridDS.storelayout.Clear();
             GridDS.Merge(logic_global.Get_Location_Zone_Layout(ShopID));
 
             if (GridDS.storelayout.Rows.Count==0)
@@ -115,6 +115,11 @@ namespace Deloco_Pos_C.controls
                             N1.On_ControlClick += N1_On_ControlClick;
                             shop_floor.Controls.Add(N1);
                         }
+                            if(textBox1.Text=="")
+                            {
+                                textBox1.Text = "0";
+                            }
+                            textBox1.Text = (int.Parse(textBox1.Text) + 1).ToString();
                     }
                     }
                     
@@ -122,7 +127,7 @@ namespace Deloco_Pos_C.controls
 
 
             }
-
+            txtlblControlCount.Text = shop_floor.Controls.Count.ToString();
 
         }
 
@@ -288,13 +293,50 @@ namespace Deloco_Pos_C.controls
 
             }
 
+            txtlblControlCount.Text = shop_floor.Controls.Count.ToString();
 
-           
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             logic_global.Get_Location_Zone_Layout(4);
+        }
+
+        private void shop_floor_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+        public void ClearAllFurniture()
+        {
+            if(shop_floor.Controls.Count > 0)
+            {
+                 do
+                            {
+                                  if (shop_floor.Controls[0].GetType() == typeof(ctrl_VerticalTenFoot))
+                                {
+                                    ctrl_VerticalTenFoot V10 = shop_floor.Controls[0] as ctrl_VerticalTenFoot;
+                                    V10.On_ControlClick -= new System.EventHandler(this.ONBayClicked);
+                                    shop_floor.Controls.Remove(V10);
+                                    V10.Dispose();
+                                }
+                                else if (shop_floor.Controls[0].GetType() == typeof(ctrl_HorizontalTenFoot))
+                                {
+                                    ctrl_HorizontalTenFoot H10 = shop_floor.Controls[0] as ctrl_HorizontalTenFoot;
+                                    H10.On_ControlClick-= new System.EventHandler(this.ONBayClicked);
+                                    shop_floor.Controls.Remove(H10);
+                                    H10.Dispose();
+                                }
+                            } while (shop_floor.Controls.Count >0);
+            }
+           
+
+            //foreach (Control Item in shop_floor.Controls)
+            //{
+
+              
+            //}
+            this.Refresh();
+            txtlblControlCount.Text = shop_floor.Controls.Count.ToString();
         }
     }
 }
