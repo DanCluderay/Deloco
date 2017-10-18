@@ -94,7 +94,9 @@ namespace Deloco_Pos_C.base_classes
     public class BayClass
     {
         private string bayname;
-
+        public int BayControlType;
+        public int BayX_Position;
+        public int BayY_Position;
         public string BayName
         {
             get

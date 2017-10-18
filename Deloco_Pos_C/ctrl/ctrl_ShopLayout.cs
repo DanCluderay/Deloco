@@ -29,7 +29,113 @@ namespace Deloco_Pos_C.controls
             GridDS = new local_datasets.LocationGrid();
             GridDS.Merge(DS);
         }
+        public void DisplayShopLayout_ByBay(int ShopID)
+        {
+            //get all the rows whos parent is this shopid
+            DataRow[] Results;
+            string expres = "LocParent=" + ShopID.ToString();
+            Results = GridDS.Location_Grid.Select(expres);
+            textBox1.Text = "0";
+            GridDS.storelayout.Clear();
+            GridDS.Merge(logic_global.Get_Location_Zone_Layout(ShopID));
 
+            if (GridDS.storelayout.Rows.Count == 0)
+            {
+                //there is no layout file dont bother carrying on!
+            }
+            else
+            {
+                string ZoneName = "";
+                int ZoneID = 0;
+                int ZonePos_X = 0;
+                int ZonePos_Y = 0;
+                int ControlType = 0;
+                int layoutid = 0;
+                int buildingid = 0;
+
+                //loop the contents of the Layout dataset
+                foreach (DataRow Item in Results)
+                {
+                    ZoneID = int.Parse(Item["LocGridID"].ToString());
+                    ZoneName = Item["LocName"].ToString();
+                    //PUT A CHILD LOOP IN TO BAY
+                    DataRow[] BayResults;
+                    //string exp = "LocGrid_ID=" & ;
+                    BayResults = GridDS.storelayout.Select("");
+                    foreach (DataRow Bay in BayResults)
+                    {
+
+                    }
+                    if (CheckifControlIsAlreadyOnForm(ZoneName) == false)
+                    {
+                        //find the data in the layout dataset
+                        DataRow[] LayoutRows;
+                        string layoutquery = "LocGrid_ID=" + ZoneID.ToString();
+                        //Get a list of all the layout ZOnes
+                        LayoutRows = GridDS.storelayout.Select(layoutquery);
+                        //itereate over them
+                        foreach (DataRow ZoneItem in LayoutRows)
+                        {
+                            //get the X,Y and Z
+                            ZonePos_X = int.Parse(ZoneItem["Control_X"].ToString());
+                            ZonePos_Y = int.Parse(ZoneItem["Control_Y"].ToString());
+                            ControlType = int.Parse(ZoneItem["Control_Type"].ToString());
+                            layoutid = int.Parse(ZoneItem["id"].ToString());
+                            buildingid = int.Parse(ZoneItem["buildingid"].ToString());
+                            if (ControlType == 1)
+                            {
+                                //Horizontal 10
+                                ctrl_HorizontalTenFoot N1 = new ctrl_HorizontalTenFoot();
+                                N1.Left = ZonePos_X;
+                                N1.Top = ZonePos_Y;
+                                N1.Zone = new base_classes.ZoneClass();
+                                N1.Zone.ZoneName = ZoneName;
+                                N1.Name = ZoneName;
+                                N1.Zone.id = layoutid;
+                                N1.Zone.BuildingID = buildingid;
+                                N1.Zone.X_Position = ZonePos_X;
+                                N1.Zone.Y_Position = ZonePos_Y;
+                                N1.Zone.ControlType = ControlType;
+                                N1.Zone.ZoneID = ZoneID.ToString();
+                                N1.On_ControlMove += N1_On_ControlMove;
+                                N1.On_ControlClick += N1_On_ControlClick;
+
+                                shop_floor.Controls.Add(N1);
+                            }
+                            else if (ControlType == 2)
+                            {
+                                //Vertical 10
+                                ctrl_VerticalTenFoot N1 = new ctrl_VerticalTenFoot();
+                                N1.Left = ZonePos_X;
+                                N1.Top = ZonePos_Y;
+                                N1.Zone = new base_classes.ZoneClass();
+                                N1.Zone.ZoneName = ZoneName;
+                                N1.Name = ZoneName;
+                                N1.Zone.id = layoutid;
+                                N1.Zone.BuildingID = buildingid;
+                                N1.Zone.X_Position = ZonePos_X;
+                                N1.Zone.Y_Position = ZonePos_Y;
+                                N1.Zone.ControlType = ControlType;
+                                N1.Zone.ZoneID = ZoneID.ToString();
+                                N1.On_ControlMove += N1_On_ControlMove;
+                                N1.On_ControlClick += N1_On_ControlClick;
+                                shop_floor.Controls.Add(N1);
+                            }
+                            if (textBox1.Text == "")
+                            {
+                                textBox1.Text = "0";
+                            }
+                            textBox1.Text = (int.Parse(textBox1.Text) + 1).ToString();
+                        }
+                    }
+
+                }
+
+
+            }
+            txtlblControlCount.Text = shop_floor.Controls.Count.ToString();
+
+        }
         public void DisplayShopLayout(int ShopID)
         {
             //get all the rows whos parent is this shopid
