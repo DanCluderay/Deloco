@@ -8,6 +8,8 @@ namespace Deloco_Pos_C.base_classes
 {
     public class ZoneClass
     {
+        public event EventHandler On_ZoneHighLighted = delegate { };
+        
         private string zonename;
         public string ZoneName
         {
@@ -63,25 +65,31 @@ namespace Deloco_Pos_C.base_classes
             }
         }
 
-
+        public void HighlightZone(System.Drawing.Color thecolour)
+        {
+            On_ZoneHighLighted(this, new EventArgs());
+        }
         public int id;
 
-        public int ControlType;
-        public int X_Position;
-        public int Y_Position;
+        //public int ControlType;
+        //public int X_Position;
+        //public int Y_Position;
+        //private BayClass[] bays;
 
+        //public BayClass GetBay(int BayID)
+        //{
+        //    return bays[BayID];
+        //}
 
-        public BayClass[] Bays { get; private set; }
+        //public void AddBay(BayClass the_bay)
+        //{
+        //    bays[bays.Length] = the_bay;
+        //}
 
-        public void AddBay(string BayName, string BayID)
-        {
-
-        }
-
-        public bool IsBayInClass(string BayID)
-        {
-            return true;
-        }
+        //public bool IsBayInClass(string BayID)
+        //{
+        //    return true;
+        //}
 
         public BayClass GetBays()
         {
@@ -93,6 +101,7 @@ namespace Deloco_Pos_C.base_classes
 
     public class BayClass
     {
+        public event EventHandler On_Bay_Clicked = delegate { };
         private string bayname;
         public int BayControlType;
         public int BayX_Position;
@@ -109,9 +118,9 @@ namespace Deloco_Pos_C.base_classes
                 bayname = value;
             }
         }
-
-        private string bayid;
-        public string BayID
+        public bool HasChanged { get; set; }
+        private int bayid;
+        public int BayID
         {
             get
             {
@@ -123,6 +132,11 @@ namespace Deloco_Pos_C.base_classes
 
                 bayid = value;
             }
+        }
+
+        public void  HighLightBay(System.Drawing.Color Col)
+        {
+            On_Bay_Clicked(this, new EventArgs());
         }
 
         public void AddShelf(string ShelfID,string ShelfName)

@@ -18,12 +18,25 @@ namespace Deloco_Pos_C.views
         int SelectedShopID;
         views.frmAddLocation AddLoc;
         TreeNode CurerntSelectedTreeNode;
+        bool setuptreemode;
         public frmLocation_Grid()
         {
             InitializeComponent();
             helper_functions.globalHelper logic_global = helper_functions.globalHelper.Instance;
             LocGrid = new local_datasets.LocationGrid();
             logic_global.On_LocationChanged += Logic_global_On_LocationChanged;
+            ctrl_ShopLayout1.On_AddChild += Ctrl_ShopLayout1_On_AddChild;
+            ctrl_ShopLayout1.On_AddSibling += Ctrl_ShopLayout1_On_AddSibling;
+        }
+
+        private void Ctrl_ShopLayout1_On_AddSibling(object sender, EventArgs e)
+        {
+            CreateSibling();
+        }
+
+        private void Ctrl_ShopLayout1_On_AddChild(object sender, EventArgs e)
+        {
+            CreateChild();
         }
 
         private void Logic_global_On_LocationChanged(object sender, EventArgs e)
@@ -46,7 +59,7 @@ namespace Deloco_Pos_C.views
 
         private void GetLocations()
         {
-            
+            setuptreemode = true;
             LocTree.Nodes.Clear();
             LocGrid.Clear();
             LocGrid=logic_global.GetLocationGrid(0);
@@ -66,7 +79,8 @@ namespace Deloco_Pos_C.views
                     addchildrentoTree(LocTree, Item.LocGridID.ToString());
                 }
             }
-            LocTree.CollapseAll();
+            //LocTree.CollapseAll();
+            setuptreemode = false;
         }
 
         private void LocTree_AfterSelect(object sender, TreeViewEventArgs e)
@@ -92,7 +106,7 @@ namespace Deloco_Pos_C.views
             {
                 int NodeID = 0;
                 NodeID=int.Parse( LocTree.SelectedNode.Tag.ToString());
-                CurerntSelectedTreeNode = LocTree.SelectedNode;
+                //CurerntSelectedTreeNode = LocTree.SelectedNode;
                 DataRow[] gridrows;
                 string expression = "LocGridID = " + NodeID.ToString();
                 // Use the Select method to find all rows matching the filter.
@@ -122,19 +136,25 @@ namespace Deloco_Pos_C.views
                         //Draw the layout of the shop
                         //get the ShopID
                         ctrl_ShopLayout1.ClearAllFurniture();
-                        SelectedShopID = NodeID;
-                        ctrl_ShopLayout1.DisplayShopLayout(NodeID);
+                        if(setuptreemode!=true)
+                        {
+                                SelectedShopID = NodeID;
+                        }
+                       
+                        ctrl_ShopLayout1.DisplayShopLayout_ByBay(NodeID);
+                        
                     }
                     else if (LocationType == 3)
                     {
                         //tabControl1.TabPages.Add(tabZone);
                         //get the zone ID
-
-                        //Find the Zon
+                        ctrl_ShopLayout1.HighLighZone(NodeID);
+                        
                     }
                     else if (LocationType == 4)
                     {
                         //tabControl1.TabPages.Add(tabBay);
+                        ctrl_ShopLayout1.HighlightBay(NodeID);
                     }
                     else if (LocationType == 5)
                     {
@@ -322,16 +342,78 @@ namespace Deloco_Pos_C.views
             return ret;
         }
 
+        private int FindBuildingIDofSelectedNode()
+        {
+            int ret=0;
+            int currentid = 0;
+            currentid =int.Parse( LocTree.SelectedNode.Tag.ToString());
+
+            DataRow[] res;
+            string express = "LocParent=" + currentid.ToString();
+            res = LocGrid.Location_Grid.Select(express);
+
+            if(res.Length>0)
+            {
+                int _type = 0;
+                foreach (DataRow Item in res)
+                {
+                    _type = int.Parse(Item["LocType"].ToString());
+                    if (_type>2) //we are deep in th enode
+                    {
+                        ret = recursiveFindParent(int.Parse(Item["LocParent"].ToString()));
+                    }
+                    else if(_type==2)
+                    {
+                        ret= int.Parse(Item["LocGridID"].ToString());
+                    }
+                }
+
+            }
+
+            return ret;
+        }
+        private int recursiveFindParent(int currentLocationID)
+        {
+            int ret=0;
+            DataRow[] res;
+            string express = "LocGridID=" + currentLocationID.ToString();
+            res = LocGrid.Location_Grid.Select(express);
+
+            if (res.Length > 0)
+            {
+                int _type = 0;
+                foreach (DataRow Item in res)
+                {
+                    _type = int.Parse(Item["LocType"].ToString());
+                    if (_type > 2) //we are deep in th enode
+                    {
+                        ret = recursiveFindParent(int.Parse(Item["LocParent"].ToString()));
+                    }
+                    else if (_type == 2)
+                    {
+                        ret = int.Parse(Item["LocGridID"].ToString());
+                    }
+                }
+
+            }
+            return ret;
+        }
         private void CreateSibling()
         {
+            CurerntSelectedTreeNode = LocTree.SelectedNode;
             int _LocType = get_LocType_type(false);
-            views.frmAddLocation AddLoc =new views.frmAddLocation(_LocType.ToString(), get_parent_to_be_ID(true),LocGrid, get_next_pick_orderID(true));
+            int sh = FindBuildingIDofSelectedNode();
+            SelectedShopID = sh;
+            views.frmAddLocation AddLoc =new views.frmAddLocation(sh,_LocType.ToString(), get_parent_to_be_ID(true),LocGrid, get_next_pick_orderID(true));
             AddLoc.MdiParent = this.MdiParent;
             AddLoc.Show();
         }
         private void CreateChild()
         {
-            AddLoc = new views.frmAddLocation(get_LocType_type(true).ToString(), get_parent_to_be_ID(false), LocGrid, get_next_pick_orderID(false));
+            CurerntSelectedTreeNode = LocTree.SelectedNode;
+            int sh = FindBuildingIDofSelectedNode();
+            SelectedShopID = sh;
+            AddLoc = new views.frmAddLocation(sh,get_LocType_type(true).ToString(), get_parent_to_be_ID(false), LocGrid, get_next_pick_orderID(false));
             AddLoc.MdiParent = this.MdiParent;
             AddLoc.On_NewLayOutAdded += AddLoc_On_NewLayOutAdded;
             AddLoc.Show();
@@ -342,6 +424,7 @@ namespace Deloco_Pos_C.views
             LocTree.SelectedNode = CurerntSelectedTreeNode;
             tabBuilding_Layout.Show();
             ctrl_ShopLayout1.DisplayShopLayout(SelectedShopID);
+            LocTree.SelectedNode = CurerntSelectedTreeNode;
         }
 
         private void button1_Click(object sender, EventArgs e)

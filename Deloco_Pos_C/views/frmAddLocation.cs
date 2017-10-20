@@ -18,13 +18,14 @@ namespace Deloco_Pos_C.views
         string defaultType;
         local_datasets.LocationGrid LocDS;
         int _parentID;
+        int _building;
         public event EventHandler On_NewLayOutAdded = delegate { };
         public frmAddLocation()
         {
             InitializeComponent();
             helper_functions.globalHelper logic_global = helper_functions.globalHelper.Instance;
         }
-        public frmAddLocation(string LocationType,int ParentID, local_datasets.LocationGrid DS,int Ord)
+        public frmAddLocation(int building, string LocationType,int ParentID, local_datasets.LocationGrid DS,int Ord)
         {
             InitializeComponent();
             helper_functions.globalHelper logic_global = helper_functions.globalHelper.Instance;
@@ -33,7 +34,7 @@ namespace Deloco_Pos_C.views
             LocDS.Merge(DS);
             _parentID = ParentID;
             txtLocationPickOrder.Text = Ord.ToString();
-
+            _building = building;
             if (LocationType=="1")
             {
                 this.Text = "Add new business";
@@ -112,12 +113,12 @@ namespace Deloco_Pos_C.views
             
             int newLocationID = logic_global.CreateLocGridItem(Locaname, LocationType, PID, txtFullName.Text,txtShortName.Text,int.Parse(txtLocationPickOrder.Text));
 
-            if(LocationType==3)
+            if(LocationType==4)
             {
                 //We need to add Store Location Layout Data
-                int ZoneLayoutType = 0;
-                ZoneLayoutType = int.Parse(cmbZoneLayoutType.SelectedValue.ToString());
-                logic_global.AddNewStoreLayoutRow(_parentID, newLocationID, ZoneLayoutType, 0, 0, 0);
+                int BayLayoutType = 0;
+                BayLayoutType = int.Parse(cmbZoneLayoutType.SelectedValue.ToString());
+                logic_global.AddNewStoreLayoutRow(_building, newLocationID, BayLayoutType, 0, 0, 0);
                 On_NewLayOutAdded(this, new EventArgs());
             }
             this.WindowState = FormWindowState.Normal;

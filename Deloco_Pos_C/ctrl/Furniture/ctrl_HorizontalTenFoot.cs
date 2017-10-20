@@ -26,6 +26,7 @@ namespace Deloco_Pos_C.controls
                 zone = value;
             }
         }
+        public base_classes.BayClass Bay { get; set; }
 
         public ctrl_HorizontalTenFoot()
         {
@@ -48,6 +49,11 @@ namespace Deloco_Pos_C.controls
         private void ctrl_HorizontalTenFoot_Click(object sender, EventArgs e)
         {
             On_ControlClick(this, new EventArgs());
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
