@@ -106,6 +106,7 @@
             this.cmbLocationType.Size = new System.Drawing.Size(165, 21);
             this.cmbLocationType.TabIndex = 4;
             this.cmbLocationType.ValueMember = "LocationTypeID";
+            this.cmbLocationType.SelectedIndexChanged += new System.EventHandler(this.cmbLocationType_SelectedIndexChanged);
             // 
             // locationTypesBindingSource
             // 

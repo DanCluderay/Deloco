@@ -22,7 +22,9 @@ namespace Deloco_Pos_C.base_classes
                 zonename = value;
             }
         }
-
+        public int ZoneParentID;
+        public string ParentFullName;
+        public string ParentShortlName;
         private string zoneid;
         public string ZoneID
         {
@@ -37,6 +39,7 @@ namespace Deloco_Pos_C.base_classes
             }
         }
         private bool haschanged;
+        public int ZoneOrder;
 
         public bool HasChanged
         {
@@ -103,6 +106,8 @@ namespace Deloco_Pos_C.base_classes
     {
         public event EventHandler On_Bay_Clicked = delegate { };
         private string bayname;
+        public string ParentFullName;
+        public string ParentShortlName;
         public int BayControlType;
         public int BayX_Position;
         public int BayY_Position;
@@ -118,6 +123,9 @@ namespace Deloco_Pos_C.base_classes
                 bayname = value;
             }
         }
+        public int BayOrder;
+        public int BayParentID;
+        public bool IsHighlighted;
         public bool HasChanged { get; set; }
         private int bayid;
         public int BayID

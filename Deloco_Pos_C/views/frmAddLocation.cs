@@ -88,7 +88,14 @@ namespace Deloco_Pos_C.views
             storecontroltypeBindingSource.Filter = "";
             locationGrid.Merge(logic_global.GetStoreLayoutDataset());
             this.Refresh();
-
+            if( int.Parse( defaultType) == 4)
+            {
+                groupBox1.Visible = true;
+            }
+            else
+            {
+                groupBox1.Visible = false;
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -158,6 +165,11 @@ namespace Deloco_Pos_C.views
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbLocationType_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

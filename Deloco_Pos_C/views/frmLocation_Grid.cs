@@ -27,6 +27,13 @@ namespace Deloco_Pos_C.views
             logic_global.On_LocationChanged += Logic_global_On_LocationChanged;
             ctrl_ShopLayout1.On_AddChild += Ctrl_ShopLayout1_On_AddChild;
             ctrl_ShopLayout1.On_AddSibling += Ctrl_ShopLayout1_On_AddSibling;
+            ctrl_ShopLayout1.Request_Screen_Refresh += Ctrl_ShopLayout1_Request_Screen_Refresh;
+            ctrl_ShopLayout1.HighlightColour = Color.DeepSkyBlue;
+        }
+
+        private void Ctrl_ShopLayout1_Request_Screen_Refresh(object sender, EventArgs e)
+        {
+            DisplayDetails();
         }
 
         private void Ctrl_ShopLayout1_On_AddSibling(object sender, EventArgs e)
@@ -100,12 +107,30 @@ namespace Deloco_Pos_C.views
             tabControl1.TabPages.Remove(tabHole);
 
         }
+
+        private void SetUpShop(int ShopID)
+        {
+            ctrl_ShopLayout1.ClearAllFurniture();
+            if (setuptreemode != true)
+            {
+                SelectedShopID = ShopID;
+            }
+
+            ctrl_ShopLayout1.DisplayShopLayout_ByBay(ShopID);
+        }
         private void DisplayDetails()
         {
             if (loadingmode==false)
             {
                 int NodeID = 0;
                 NodeID=int.Parse( LocTree.SelectedNode.Tag.ToString());
+                int sh = FindBuildingIDofSelectedNode();
+
+                ctrl_ShopLayout1.ShowShopName(sh);
+                if (ctrl_ShopLayout1.DISPLAYED_SHOPID != sh)
+                {
+                    SetUpShop(sh);
+                }
                 //CurerntSelectedTreeNode = LocTree.SelectedNode;
                 DataRow[] gridrows;
                 string expression = "LocGridID = " + NodeID.ToString();
@@ -135,13 +160,7 @@ namespace Deloco_Pos_C.views
                         //tabControl1.TabPages.Add(tabBuilding);
                         //Draw the layout of the shop
                         //get the ShopID
-                        ctrl_ShopLayout1.ClearAllFurniture();
-                        if(setuptreemode!=true)
-                        {
-                                SelectedShopID = NodeID;
-                        }
-                       
-                        ctrl_ShopLayout1.DisplayShopLayout_ByBay(NodeID);
+                        SetUpShop(sh);
                         
                     }
                     else if (LocationType == 3)
@@ -349,7 +368,7 @@ namespace Deloco_Pos_C.views
             currentid =int.Parse( LocTree.SelectedNode.Tag.ToString());
 
             DataRow[] res;
-            string express = "LocParent=" + currentid.ToString();
+            string express = "LocGridID=" + currentid.ToString();
             res = LocGrid.Location_Grid.Select(express);
 
             if(res.Length>0)

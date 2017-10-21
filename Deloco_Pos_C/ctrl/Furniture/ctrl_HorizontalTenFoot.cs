@@ -55,5 +55,14 @@ namespace Deloco_Pos_C.controls
         {
 
         }
+        private void ChangeColour()
+        {
+            this.BackColor = Color.DeepSkyBlue;
+        }
+        public void DisplayItemDetails()
+        {
+            On_ControlClick(this, new EventArgs());
+            ChangeColour();
+        }
     }
 }

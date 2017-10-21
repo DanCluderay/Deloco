@@ -55,7 +55,7 @@ namespace Deloco_Pos_C.controls.Furniture
         }
         private void ChangeColour()
         {
-            this.BackColor =SystemColors.Highlight;
+            this.BackColor = Color.DeepSkyBlue;
         }
         private void ctrl_VerticalTenFoot_Load(object sender, EventArgs e)
         {
@@ -80,6 +80,11 @@ namespace Deloco_Pos_C.controls.Furniture
             {
                 On_ControlMove(this, new EventArgs());
             }
+        }
+        public void DisplayItemDetails()
+        {
+            On_ControlClick(this, new EventArgs());
+            ChangeColour();
         }
     }
 }
