@@ -105,7 +105,9 @@ namespace Deloco_Pos_C.base_classes
     public class BayClass
     {
         public event EventHandler On_Bay_Clicked = delegate { };
+        
         private string bayname;
+        public int BayLayoutID;
         public string ParentFullName;
         public string ParentShortlName;
         public int BayControlType;

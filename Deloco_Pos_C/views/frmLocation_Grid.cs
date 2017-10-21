@@ -55,6 +55,7 @@ namespace Deloco_Pos_C.views
 
         private void frmLocation_Grid_Load(object sender, EventArgs e)
         {
+            this.WindowState = FormWindowState.Maximized;
             loadingmode = true;
             LocGrid.Merge(logic_global.GetLocationGrid(1));
             HideTabs();

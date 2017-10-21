@@ -70,6 +70,7 @@ namespace Deloco_Pos_C
             //logic_global.Mqtt_Subscribe("users_change");
             DisplayLogin();
             this.Text = "Ask the milkman";
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private void mQTTToolStripMenuItem_Click(object sender, EventArgs e)

@@ -25,6 +25,8 @@ namespace Deloco_Pos_C.controls
         helper_functions.globalHelper logic_global = helper_functions.globalHelper.Instance;
         local_datasets.LocationTypes LocTypes = new local_datasets.LocationTypes();
         local_datasets.LocationGrid GridDS;
+        private base_classes.BayClass SelectedBay;
+        private base_classes.ZoneClass SelectedZone;
         public ctrl_ShopLayout()
         {
             InitializeComponent();
@@ -141,10 +143,10 @@ namespace Deloco_Pos_C.controls
                                     N1.Zone.ParentFullName = fullname;
                                     N1.Zone.ParentShortlName = shortname;
                                     
-                                    N1.Zone.id = layoutid;
+                                   
                                     N1.Zone.BuildingID = buildingid;
                                     N1.Bay = new base_classes.BayClass();
-
+                                    N1.Bay.BayLayoutID = layoutid;
                                     N1.Bay.BayOrder = bayOrder;
                                     N1.Zone.ZoneOrder = zoneOrder;
                                     N1.Zone.ZoneParentID = 0;
@@ -184,10 +186,10 @@ namespace Deloco_Pos_C.controls
                                     N1.Zone.ParentShortlName = shortname;
 
 
-                                    N1.Zone.id = layoutid;
+                                    
                                     N1.Zone.BuildingID = buildingid;
                                     N1.Bay = new base_classes.BayClass();
-
+                                    N1.Bay.BayLayoutID = layoutid;
                                     N1.Bay.BayOrder = bayOrder;
                                     N1.Zone.ZoneOrder = zoneOrder;
                                     N1.Zone.ZoneParentID = 0;
@@ -407,7 +409,7 @@ namespace Deloco_Pos_C.controls
                     ctrl_VerticalTenFoot V10 = Item as ctrl_VerticalTenFoot;
                     if (V10.Bay.HasChanged==true)
                     {
-                        logic_global.EditStoreLayoutRow(V10.Zone.BuildingID, V10.Bay.BayID, V10.Bay.BayControlType, V10.Bay.BayY_Position, V10.Bay.BayX_Position,0,V10.Zone.id);
+                        logic_global.EditStoreLayoutRow(V10.Zone.BuildingID, V10.Bay.BayID, V10.Bay.BayControlType, V10.Bay.BayY_Position, V10.Bay.BayX_Position,0,V10.Bay.BayLayoutID);
                     }
                 }
                 else if (Item.GetType() == typeof(ctrl_HorizontalTenFoot))
@@ -415,7 +417,7 @@ namespace Deloco_Pos_C.controls
                     ctrl_HorizontalTenFoot H10 = Item as ctrl_HorizontalTenFoot;
                     if (H10.Bay.HasChanged == true)
                     {
-                        logic_global.EditStoreLayoutRow(H10.Zone.BuildingID, H10.Bay.BayID, H10.Bay.BayControlType, H10.Bay.BayY_Position, H10.Bay.BayX_Position, 0, H10.Zone.id);
+                        logic_global.EditStoreLayoutRow(H10.Zone.BuildingID, H10.Bay.BayID, H10.Bay.BayControlType, H10.Bay.BayY_Position, H10.Bay.BayX_Position, 0, H10.Bay.BayLayoutID);
                     }
                 }
             }
@@ -503,6 +505,8 @@ namespace Deloco_Pos_C.controls
             cmbEditParentZone.SelectedValue = Zone_inst.ZoneParentID;
             txtEditFullName.Text = Bay_inst.ParentFullName;
             txtEditShortName.Text = Bay_inst.ParentShortlName;
+            SelectedBay = Bay_inst;
+            SelectedZone = Zone_inst;
         }
 
         private void N1_On_ControlMove(object sender, EventArgs e)
@@ -747,8 +751,10 @@ namespace Deloco_Pos_C.controls
             //if (PickOrder == 0) { return; }
 
             //every child under this zone needs to be renamed
+            logic_global.EditStoreLayoutRow(SelectedZone.BuildingID, SelectedBay.BayID, LocType, SelectedBay.BayY_Position, SelectedBay.BayX_Position, 0, SelectedBay.BayLayoutID);
             logic_global.EditLocGridItem(NewBayName, 4, LocParent, LocGridID, FullName, ShortName, PickOrder);
             Request_Screen_Refresh(this, new EventArgs());
+
         }
     }
 }
