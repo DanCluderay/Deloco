@@ -86,5 +86,37 @@ namespace Deloco_Pos_C.controls.Furniture
             On_ControlClick(this, new EventArgs());
             ChangeColour();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+        public void SetSize(int Size)
+        {
+            if (Size == 1)
+            {
+                this.Height = 25;
+            }
+            else if (Size == 2)
+            {
+                this.Height = 50;
+            }
+            else if (Size == 3)
+            {
+                this.Height = 75;
+            }
+            else if (Size == 4)
+            {
+                this.Height = 100;
+            }
+            else if (Size == 5)
+            {
+                this.Height = 125;
+            }
+            else
+            {
+                this.Height = 125;
+            }
+        }
     }
 }

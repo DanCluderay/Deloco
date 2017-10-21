@@ -125,7 +125,7 @@ namespace Deloco_Pos_C.views
                 //We need to add Store Location Layout Data
                 int BayLayoutType = 0;
                 BayLayoutType = int.Parse(cmbZoneLayoutType.SelectedValue.ToString());
-                logic_global.AddNewStoreLayoutRow(_building, newLocationID, BayLayoutType, 0, 0, 0);
+                logic_global.AddNewStoreLayoutRow(_building, newLocationID, BayLayoutType, 0, 0, 0,0);
                 On_NewLayOutAdded(this, new EventArgs());
             }
             this.WindowState = FormWindowState.Normal;

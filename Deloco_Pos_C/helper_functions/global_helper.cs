@@ -508,7 +508,7 @@ namespace Deloco_Pos_C.helper_functions
                     Loc_Row.Control_Type = int.Parse(Item["Control_Type"].ToString());
                     Loc_Row.Control_X = int.Parse(Item["Control_X"].ToString());
                     Loc_Row.Control_Y = int.Parse(Item["Control_Y"].ToString());
-                    //Loc_Row.Control_Z = int.Parse(Item["Control_Z"].ToString());
+                    Loc_Row.Control_Size = int.Parse(Item["Control_Size"].ToString());
 
                     LocDS.storelayout.AddstorelayoutRow(Loc_Row);
                 }
@@ -609,20 +609,20 @@ namespace Deloco_Pos_C.helper_functions
         }
 
 
-        public local_datasets.LocationGrid AddNewStoreLayoutRow(int BuildingID,int LocGrid_ID,int Control_Type,int Control_Y,int Control_X,int Control_Z)
+        public local_datasets.LocationGrid AddNewStoreLayoutRow(int BuildingID,int LocGrid_ID,int Control_Type,int Control_Y,int Control_X,int Control_Z,int Control_Size)
         {
             local_datasets.LocationGrid RetGrid = new local_datasets.LocationGrid();
-            string parameters = "{'BuildingID': '" + BuildingID + "', 'LocGrid_ID': '" + LocGrid_ID.ToString() + "', 'Control_Type': '" + Control_Type.ToString() + "', 'Control_Y': '" + Control_Y.ToString() + "','Control_X': '" + Control_X.ToString() + "','Control_Z': '" + Control_Z.ToString() + "'}";
+            string parameters = "{'BuildingID': '" + BuildingID + "', 'LocGrid_ID': '" + LocGrid_ID.ToString() + "', 'Control_Type': '" + Control_Type.ToString() + "', 'Control_Y': '" + Control_Y.ToString() + "','Control_X': '" + Control_X.ToString() + "','Control_Z': '" + Control_Z.ToString() + ",'Control_Size': '" + Control_Size.ToString() + "'}";
             string job = "add_store_layout_row";
             string res = Make_db_call(job, parameters.ToString());
             //RetGrid.Merge(FormatStringToDataTable("get_location_Store_Zone_Layout", res));
             return RetGrid;
         }
 
-        public local_datasets.LocationGrid EditStoreLayoutRow(int BuildingID, int LocGrid_ID, int Control_Type, int Control_Y, int Control_X, int Control_Z, int id)
+        public local_datasets.LocationGrid EditStoreLayoutRow(int BuildingID, int LocGrid_ID, int Control_Type, int Control_Y, int Control_X, int Control_Z, int id,int Control_Size)
         {
             local_datasets.LocationGrid RetGrid = new local_datasets.LocationGrid();
-            string parameters = "{'BuildingID': '" + BuildingID + "', 'LocGrid_ID': '" + LocGrid_ID.ToString() + "', 'Control_Type': '" + Control_Type.ToString() + "', 'Control_Y': '" + Control_Y.ToString() + "','Control_X': '" + Control_X.ToString() + "','Control_Z': '" + Control_Z.ToString() + "','id': '" + id.ToString() + "'}";
+            string parameters = "{'BuildingID': '" + BuildingID + "', 'LocGrid_ID': '" + LocGrid_ID.ToString() + "', 'Control_Type': '" + Control_Type.ToString() + "', 'Control_Y': '" + Control_Y.ToString() + "','Control_X': '" + Control_X.ToString() + "','Control_Z': '" + Control_Z.ToString() + "','id': '" + id.ToString() + "','Control_Size': '" + Control_Size.ToString() + "'}";
             string job = "edit_store_layout_row";
             string res = Make_db_call(job, parameters.ToString());
             //RetGrid.Merge(FormatStringToDataTable("get_location_Store_Zone_Layout", res));

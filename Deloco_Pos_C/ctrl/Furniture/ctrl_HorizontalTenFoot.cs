@@ -33,6 +33,33 @@ namespace Deloco_Pos_C.controls
             InitializeComponent();
         }
 
+        public void SetSize(int Size)
+        {
+            if(Size==1)
+            {
+                this.Width = 25;
+            }
+            else if(Size==2)
+            {
+                this.Width = 50;
+            }
+            else if (Size == 3)
+            {
+                this.Width = 75;
+            }
+            else if (Size == 4)
+            {
+                this.Width = 100;
+            }
+            else if (Size == 5)
+            {
+                this.Width = 125;
+            }
+            else
+            {
+                this.Width = 125;
+            }
+        }
         private void ctrl_HorizontalTenFoot_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
@@ -63,6 +90,51 @@ namespace Deloco_Pos_C.controls
         {
             On_ControlClick(this, new EventArgs());
             ChangeColour();
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -113,6 +113,7 @@ namespace Deloco_Pos_C.base_classes
         public int BayControlType;
         public int BayX_Position;
         public int BayY_Position;
+        public int Bay_Size;
         public string BayName
         {
             get
@@ -159,25 +160,17 @@ namespace Deloco_Pos_C.base_classes
 
     public class ShelfClass
     {
-        private string shelfid;
-
-        public string ShelfID
-        {
-            get
-            {
-                return shelfid;
-            }
-
-            set
-            {
-                shelfid = value;
-            }
-        }
-
-        public void AddShelf(string ShelfID, string ShelfName)
-        {
-
-        }
+        public int ShelfID;
+        public String ShelfName;
+        public int ShelfPosition_X;
+        public int ShelfPosition_Y;
+        public int ShelfPosition_Size;
+        public int Shelf_LayoutID;
+        public int Shelf_Order;
+        public string FullName;
+        public string ShortName;
+        public int Shelf_ParentID;
+        
     }
 
 

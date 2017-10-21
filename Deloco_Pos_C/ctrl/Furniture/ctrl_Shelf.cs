@@ -10,21 +10,16 @@ using System.Windows.Forms;
 
 namespace Deloco_Pos_C.ctrl.Furniture
 {
-    public partial class ctrl_VerticalMultiBay : UserControl
+    public partial class ctrl_Shelf : UserControl
     {
-        public ctrl_VerticalMultiBay()
+        public ctrl_Shelf()
         {
             InitializeComponent();
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        public base_classes.ZoneClass thezone;
+        private void ctrl_Shelf_Load(object sender, EventArgs e)
         {
 
-        }
-
-        private void button22_Click(object sender, EventArgs e)
-        {
-         
         }
     }
 }

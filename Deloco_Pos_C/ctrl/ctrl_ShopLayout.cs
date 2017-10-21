@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Deloco_Pos_C.controls.Furniture;
 using System.Diagnostics;
-using System.Drawing;
+
 
 namespace Deloco_Pos_C.controls
 {
@@ -53,6 +53,50 @@ namespace Deloco_Pos_C.controls
                 lblTheShopName.Text = ShopName.ToString().ToUpper();
             }
         }
+
+        public void Display_Shelf(int BayID)
+        {
+            DataRow[] Results;
+            string expres = "LocParent=" + BayID.ToString();
+            Results = GridDS.Location_Grid.Select(expres);
+            if (Results.Length == 0)
+            {
+                //there is no layout file dont bother carrying on!
+            }
+            else
+            {
+                //loop the Shelfs
+                foreach (DataRow ShelfItem in Results)
+                {
+                
+                    int ShelfID = int.Parse(ShelfItem[""].ToString());
+                    // add a shelf on the bay view screen
+                    
+                    DataRow[] ShelfResults;
+                    string ShelfQuery = "LocParent=" + ShelfID.ToString();
+
+                    ShelfResults = GridDS.Location_Grid.Select(ShelfQuery);
+                    if (ShelfResults.Length == 0)
+                    {
+                        //there is no layout file dont bother carrying on!
+                        
+                    }
+                    else
+                    {
+                        //Loop the Pick Faces
+                        foreach (DataRow PickItem in ShelfResults)
+                        {
+
+                        }
+
+
+                    }
+
+
+
+                }
+            }
+        }
         public void DisplayShopLayout_ByBay(int ShopID)
         {
             DISPLAYED_SHOPID = ShopID;
@@ -83,7 +127,7 @@ namespace Deloco_Pos_C.controls
                 int zoneOrder = 0;
                 string fullname = "";
                 string shortname = "";
-                
+                int baysize = 0;
 
                 //loop the contents of the Layout dataset
                 foreach (DataRow Item in Results)
@@ -110,7 +154,8 @@ namespace Deloco_Pos_C.controls
                         string BayName;
                         int BayID;
                         BayName= Bay["LocName"].ToString();
-                        BayID= int.Parse(Bay["LocGridID"].ToString());
+                        
+                        BayID = int.Parse(Bay["LocGridID"].ToString());
                         if (CheckifControlIsAlreadyOnForm(BayName) == false)
                             {
                             //find the data in the layout dataset
@@ -128,7 +173,7 @@ namespace Deloco_Pos_C.controls
                                 ControlType = int.Parse(BayItem["Control_Type"].ToString());
                                 layoutid = int.Parse(BayItem["id"].ToString());
                                 buildingid = int.Parse(BayItem["buildingid"].ToString());
-                                
+                                baysize = int.Parse(BayItem["Control_Size"].ToString());
                                 if (ControlType == 1)
                                 {
                                     //Horizontal 10
@@ -142,8 +187,6 @@ namespace Deloco_Pos_C.controls
                                     N1.Name = ZoneName;
                                     N1.Zone.ParentFullName = fullname;
                                     N1.Zone.ParentShortlName = shortname;
-                                    
-                                   
                                     N1.Zone.BuildingID = buildingid;
                                     N1.Bay = new base_classes.BayClass();
                                     N1.Bay.BayLayoutID = layoutid;
@@ -151,7 +194,6 @@ namespace Deloco_Pos_C.controls
                                     N1.Zone.ZoneOrder = zoneOrder;
                                     N1.Zone.ZoneParentID = 0;
                                     N1.Bay.BayParentID = ZoneID;
-
                                     N1.Bay.BayID = BayID;
                                     N1.Bay.BayName = BayName;
                                     N1.Bay.BayX_Position = BayPos_X;
@@ -159,12 +201,8 @@ namespace Deloco_Pos_C.controls
                                     N1.Bay.BayControlType = ControlType;
                                     N1.Bay.ParentFullName = fullname;
                                     N1.Bay.ParentShortlName = shortname;
-
-
-
-                                    //N1.Zone.X_Position = BayPos_X;
-                                    //N1.Zone.Y_Position = BayPos_Y;
-                                    //N1.Zone.ControlType = ControlType;
+                                    N1.Bay.Bay_Size = baysize;
+                                    N1.SetSize(N1.Bay.Bay_Size);
                                     N1.Zone.ZoneID = ZoneID.ToString();
                                     
 
@@ -202,10 +240,8 @@ namespace Deloco_Pos_C.controls
                                     N1.Bay.BayControlType = ControlType;
                                     N1.Bay.ParentFullName = fullname;
                                     N1.Bay.ParentShortlName = shortname;
-
-                                    //N1.Zone.X_Position = BayPos_X;
-                                    //N1.Zone.Y_Position = BayPos_Y;
-                                    //N1.Zone.ControlType = ControlType;
+                                    N1.Bay.Bay_Size = baysize;
+                                    N1.SetSize(N1.Bay.Bay_Size);
                                     N1.Zone.ZoneID = ZoneID.ToString();
                                     N1.On_ControlMove += N1_On_ControlMove;
                                     N1.On_ControlClick += N1_On_ControlClick;
@@ -228,130 +264,7 @@ namespace Deloco_Pos_C.controls
             txtlblControlCount.Text = shop_floor.Controls.Count.ToString();
 
         }
-        public void DisplayShopLayout(int ShopID)
-        {
-            //get all the rows whos parent is this shopid
-            DataRow[] Results;
-            string expres = "LocParent=" + ShopID.ToString();
-            Results = GridDS.Location_Grid.Select(expres);
-            textBox1.Text = "0";
-            GridDS.storelayout.Clear();
-            GridDS.Merge(logic_global.Get_Location_Zone_Layout(ShopID));
-
-            if (GridDS.storelayout.Rows.Count==0)
-            {
-                //there is no layout file dont bother carrying on!
-            }
-            else
-            {
-                string ZoneName="";
-                int ZoneID = 0;
-                int ZonePos_X = 0;
-                int ZonePos_Y = 0;
-                int ControlType = 0;
-                int layoutid = 0;
-                int buildingid = 0;
-
-                //loop the contents of the Layout dataset
-                foreach(DataRow Item in Results)
-                {
-                    ZoneID = int.Parse(Item["LocGridID"].ToString());
-                    ZoneName = Item["LocName"].ToString();
-
-                    if (CheckifControlIsAlreadyOnForm(ZoneName) ==false)
-                    {
-                    //find the data in the layout dataset
-                    DataRow[] LayoutRows;
-                    string layoutquery = "BuildingID=" + ShopID.ToString();
-                    //Get a list of all the layout ZOnes
-                    LayoutRows = GridDS.storelayout.Select(layoutquery);
-                    //itereate over them
-                    foreach (DataRow ZoneItem in LayoutRows)
-                    {
-                        //get the X,Y and Z
-                        ZonePos_X = int.Parse(ZoneItem["Control_X"].ToString());
-                        ZonePos_Y = int.Parse(ZoneItem["Control_Y"].ToString());
-                        ControlType = int.Parse(ZoneItem["Control_Type"].ToString());
-                        layoutid = int.Parse(ZoneItem["id"].ToString());
-                        buildingid = int.Parse(ZoneItem["buildingid"].ToString());
-                            if (ControlType==1)
-                        {
-                            //Horizontal 10
-                            ctrl_HorizontalTenFoot N1 = new ctrl_HorizontalTenFoot();
-                            N1.Left = ZonePos_X;
-                            N1.Top = ZonePos_Y;
-                            N1.Zone = new base_classes.ZoneClass();
-                            N1.Zone.ZoneName = ZoneName;
-                            N1.Name = ZoneName;
-                            N1.Zone.id = layoutid;
-                            N1.Zone.BuildingID = buildingid;
-                            N1.Bay = new base_classes.BayClass();
-
-                            N1.Bay.BayOrder = 0;
-                            N1.Zone.ZoneOrder = 0;
-                            N1.Zone.ZoneParentID = 0;
-                            N1.Bay.BayParentID = ZoneID;
-
-                                N1.Bay.BayX_Position = ZonePos_X;
-                            N1.Bay.BayY_Position = ZonePos_Y;
-                            N1.Bay.BayControlType = ControlType;
-                            N1.Bay.IsHighlighted = false;
-
-
-                            N1.Zone.ZoneID = ZoneID.ToString();
-                            N1.On_ControlMove += N1_On_ControlMove;
-                            N1.On_ControlClick += N1_On_ControlClick;
-                            
-                            shop_floor.Controls.Add(N1);
-                        }
-                        else if (ControlType==2)
-                        {
-                            //Vertical 10
-                            ctrl_VerticalTenFoot N1 = new ctrl_VerticalTenFoot();
-                            N1.Left = ZonePos_X;
-                            N1.Top = ZonePos_Y;
-                            N1.Zone = new base_classes.ZoneClass();
-                            N1.Zone.ZoneName = ZoneName;
-                            N1.Name = ZoneName;
-                            N1.Zone.id = layoutid;
-                            N1.Zone.BuildingID = buildingid;
-                            
-                            N1.Bay = new base_classes.BayClass();
-
-                            N1.Bay.BayOrder = 0;
-                            N1.Zone.ZoneOrder = 0;
-                            N1.Zone.ZoneParentID = 0;
-                            N1.Bay.BayParentID = ZoneID;
-
-
-                            N1.Bay.BayX_Position = ZonePos_X;
-                            N1.Bay.BayY_Position = ZonePos_Y;
-                            N1.Bay.IsHighlighted = false;
-                            N1.Bay.BayControlType = ControlType;
-                            N1.Zone.ZoneID = ZoneID.ToString();
-                            N1.On_ControlMove += N1_On_ControlMove;
-                            N1.On_ControlClick += N1_On_ControlClick;
-                            shop_floor.Controls.Add(N1);
-                        }
-
-
-
-                            if(textBox1.Text=="")
-                            {
-                                textBox1.Text = "0";
-                            }
-                            textBox1.Text = (int.Parse(textBox1.Text) + 1).ToString();
-                    }
-                    }
-                    
-                }
-
-
-            }
-            txtlblControlCount.Text = shop_floor.Controls.Count.ToString();
-
-        }
-
+       
         private bool CheckifControlIsAlreadyOnForm(string ZoneID)
         {
             //foreach(Control I in this.Controls)
@@ -409,7 +322,7 @@ namespace Deloco_Pos_C.controls
                     ctrl_VerticalTenFoot V10 = Item as ctrl_VerticalTenFoot;
                     if (V10.Bay.HasChanged==true)
                     {
-                        logic_global.EditStoreLayoutRow(V10.Zone.BuildingID, V10.Bay.BayID, V10.Bay.BayControlType, V10.Bay.BayY_Position, V10.Bay.BayX_Position,0,V10.Bay.BayLayoutID);
+                        logic_global.EditStoreLayoutRow(V10.Zone.BuildingID, V10.Bay.BayID, V10.Bay.BayControlType, V10.Bay.BayY_Position, V10.Bay.BayX_Position,0,V10.Bay.BayLayoutID,V10.Bay.Bay_Size);
                     }
                 }
                 else if (Item.GetType() == typeof(ctrl_HorizontalTenFoot))
@@ -417,7 +330,7 @@ namespace Deloco_Pos_C.controls
                     ctrl_HorizontalTenFoot H10 = Item as ctrl_HorizontalTenFoot;
                     if (H10.Bay.HasChanged == true)
                     {
-                        logic_global.EditStoreLayoutRow(H10.Zone.BuildingID, H10.Bay.BayID, H10.Bay.BayControlType, H10.Bay.BayY_Position, H10.Bay.BayX_Position, 0, H10.Bay.BayLayoutID);
+                        logic_global.EditStoreLayoutRow(H10.Zone.BuildingID, H10.Bay.BayID, H10.Bay.BayControlType, H10.Bay.BayY_Position, H10.Bay.BayX_Position, 0, H10.Bay.BayLayoutID, H10.Bay.Bay_Size);
                     }
                 }
             }
@@ -505,6 +418,7 @@ namespace Deloco_Pos_C.controls
             cmbEditParentZone.SelectedValue = Zone_inst.ZoneParentID;
             txtEditFullName.Text = Bay_inst.ParentFullName;
             txtEditShortName.Text = Bay_inst.ParentShortlName;
+            cmbBaySize.Text = Bay_inst.Bay_Size.ToString();
             SelectedBay = Bay_inst;
             SelectedZone = Zone_inst;
         }
@@ -600,7 +514,17 @@ namespace Deloco_Pos_C.controls
 
         private void button5_Click(object sender, EventArgs e)
         {
-
+            if(panel1.Visible==true)
+            {
+                panel1.Visible = false;
+                btnShowMenu.Text = "Show Menu";
+            }
+            else
+            {
+                panel1.Visible = true;
+                btnShowMenu.Text = "Hide Menu";
+            }
+            this.Refresh();
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -743,6 +667,7 @@ namespace Deloco_Pos_C.controls
             string FullName = txtEditFullName.Text.ToString();
             string ShortName = txtEditShortName.Text.ToString();
             int PickOrder = int.Parse(txtEditBayOrder.Text.ToString());
+            int Size = int.Parse(cmbBaySize.Text.ToString());
             if (NewBayName == "") { return; }
             if (LocType == 0) { return; }
             if (LocParent == 0) { return; }
@@ -751,7 +676,7 @@ namespace Deloco_Pos_C.controls
             //if (PickOrder == 0) { return; }
 
             //every child under this zone needs to be renamed
-            logic_global.EditStoreLayoutRow(SelectedZone.BuildingID, SelectedBay.BayID, LocType, SelectedBay.BayY_Position, SelectedBay.BayX_Position, 0, SelectedBay.BayLayoutID);
+            logic_global.EditStoreLayoutRow(SelectedZone.BuildingID, SelectedBay.BayID, LocType, SelectedBay.BayY_Position, SelectedBay.BayX_Position, 0, SelectedBay.BayLayoutID, Size);
             logic_global.EditLocGridItem(NewBayName, 4, LocParent, LocGridID, FullName, ShortName, PickOrder);
             Request_Screen_Refresh(this, new EventArgs());
 

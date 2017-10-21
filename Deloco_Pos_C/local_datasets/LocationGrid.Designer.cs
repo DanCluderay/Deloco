@@ -740,6 +740,8 @@ namespace Deloco_Pos_C.local_datasets {
             
             private global::System.Data.DataColumn columnControl_Z;
             
+            private global::System.Data.DataColumn columnControl_Size;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public storelayoutDataTable() {
@@ -831,6 +833,14 @@ namespace Deloco_Pos_C.local_datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn Control_SizeColumn {
+                get {
+                    return this.columnControl_Size;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -866,7 +876,7 @@ namespace Deloco_Pos_C.local_datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public storelayoutRow AddstorelayoutRow(int id, int BuildingID, int LocGrid_ID, int Control_Type, int Control_X, int Control_Y, int Control_Z) {
+            public storelayoutRow AddstorelayoutRow(int id, int BuildingID, int LocGrid_ID, int Control_Type, int Control_X, int Control_Y, int Control_Z, int Control_Size) {
                 storelayoutRow rowstorelayoutRow = ((storelayoutRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         id,
@@ -875,7 +885,8 @@ namespace Deloco_Pos_C.local_datasets {
                         Control_Type,
                         Control_X,
                         Control_Y,
-                        Control_Z};
+                        Control_Z,
+                        Control_Size};
                 rowstorelayoutRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowstorelayoutRow);
                 return rowstorelayoutRow;
@@ -905,6 +916,7 @@ namespace Deloco_Pos_C.local_datasets {
                 this.columnControl_X = base.Columns["Control_X"];
                 this.columnControl_Y = base.Columns["Control_Y"];
                 this.columnControl_Z = base.Columns["Control_Z"];
+                this.columnControl_Size = base.Columns["Control_Size"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -924,6 +936,8 @@ namespace Deloco_Pos_C.local_datasets {
                 base.Columns.Add(this.columnControl_Y);
                 this.columnControl_Z = new global::System.Data.DataColumn("Control_Z", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnControl_Z);
+                this.columnControl_Size = new global::System.Data.DataColumn("Control_Size", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnControl_Size);
                 this.columnid.DefaultValue = ((int)(0));
                 this.columnBuildingID.DefaultValue = ((int)(0));
                 this.columnLocGrid_ID.DefaultValue = ((int)(0));
@@ -931,6 +945,7 @@ namespace Deloco_Pos_C.local_datasets {
                 this.columnControl_X.DefaultValue = ((int)(0));
                 this.columnControl_Y.DefaultValue = ((int)(0));
                 this.columnControl_Z.DefaultValue = ((int)(0));
+                this.columnControl_Size.DefaultValue = ((int)(0));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1728,6 +1743,22 @@ namespace Deloco_Pos_C.local_datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int Control_Size {
+                get {
+                    try {
+                        return ((int)(this[this.tablestorelayout.Control_SizeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Control_Size\' in table \'storelayout\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablestorelayout.Control_SizeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsidNull() {
                 return this.IsNull(this.tablestorelayout.idColumn);
             }
@@ -1808,6 +1839,18 @@ namespace Deloco_Pos_C.local_datasets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetControl_ZNull() {
                 this[this.tablestorelayout.Control_ZColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsControl_SizeNull() {
+                return this.IsNull(this.tablestorelayout.Control_SizeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetControl_SizeNull() {
+                this[this.tablestorelayout.Control_SizeColumn] = global::System.Convert.DBNull;
             }
         }
         

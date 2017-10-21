@@ -53,56 +53,65 @@
             this.txtLeft = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.txtEditShortName = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.txtEditFullName = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtEditBayOrder = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.txtEditBayID = new System.Windows.Forms.TextBox();
+            this.button6 = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
+            this.button8 = new System.Windows.Forms.Button();
             this.txtEditBayName = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.cmbEditParentZone = new System.Windows.Forms.ComboBox();
             this.cmbEditBayType = new System.Windows.Forms.ComboBox();
+            this.storecontroltypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.locationGrid = new Deloco_Pos_C.local_datasets.LocationGrid();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button7 = new System.Windows.Forms.Button();
             this.txtEditZoneOrder = new System.Windows.Forms.TextBox();
+            this.button4 = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.txtEditZoneID = new System.Windows.Forms.TextBox();
             this.txtEditZoneName = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.button3 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
             this.shop_floor = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnShowMenu = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lblTheShopName = new System.Windows.Forms.Label();
-            this.button7 = new System.Windows.Forms.Button();
-            this.txtEditFullName = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.txtEditShortName = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.locationGrid = new Deloco_Pos_C.local_datasets.LocationGrid();
-            this.storecontroltypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.label9 = new System.Windows.Forms.Label();
+            this.cmbBaySize = new System.Windows.Forms.ComboBox();
+            this.bay_view = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.storecontroltypeBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.locationGrid)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.locationGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.storecontroltypeBindingSource)).BeginInit();
+            this.tabControl2.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            this.tabPage6.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -339,8 +348,44 @@
             this.tabPage4.Text = "Edit";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // txtEditShortName
+            // 
+            this.txtEditShortName.Location = new System.Drawing.Point(16, 71);
+            this.txtEditShortName.Name = "txtEditShortName";
+            this.txtEditShortName.ReadOnly = true;
+            this.txtEditShortName.Size = new System.Drawing.Size(187, 20);
+            this.txtEditShortName.TabIndex = 39;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(11, 55);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(63, 13);
+            this.label19.TabIndex = 38;
+            this.label19.Text = "Short Name";
+            // 
+            // txtEditFullName
+            // 
+            this.txtEditFullName.Location = new System.Drawing.Point(16, 23);
+            this.txtEditFullName.Name = "txtEditFullName";
+            this.txtEditFullName.ReadOnly = true;
+            this.txtEditFullName.Size = new System.Drawing.Size(187, 20);
+            this.txtEditFullName.TabIndex = 37;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(11, 7);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(54, 13);
+            this.label18.TabIndex = 36;
+            this.label18.Text = "Full Name";
+            // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.cmbBaySize);
+            this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.txtEditBayOrder);
             this.groupBox3.Controls.Add(this.label16);
             this.groupBox3.Controls.Add(this.txtEditBayID);
@@ -353,9 +398,9 @@
             this.groupBox3.Controls.Add(this.label17);
             this.groupBox3.Controls.Add(this.cmbEditParentZone);
             this.groupBox3.Controls.Add(this.cmbEditBayType);
-            this.groupBox3.Location = new System.Drawing.Point(0, 281);
+            this.groupBox3.Location = new System.Drawing.Point(0, 233);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(213, 220);
+            this.groupBox3.Size = new System.Drawing.Size(213, 262);
             this.groupBox3.TabIndex = 35;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Bay";
@@ -385,6 +430,16 @@
             this.txtEditBayID.Size = new System.Drawing.Size(50, 20);
             this.txtEditBayID.TabIndex = 21;
             // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(144, 28);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(63, 29);
+            this.button6.TabIndex = 23;
+            this.button6.Text = "Edit Bay";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -393,6 +448,16 @@
             this.label12.Size = new System.Drawing.Size(56, 13);
             this.label12.TabIndex = 21;
             this.label12.Text = "Bay Name";
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(16, 210);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(185, 29);
+            this.button8.TabIndex = 29;
+            this.button8.Text = "Save Changes";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // txtEditBayName
             // 
@@ -450,6 +515,16 @@
             this.cmbEditBayType.TabIndex = 24;
             this.cmbEditBayType.ValueMember = "store_control_type_id";
             // 
+            // storecontroltypeBindingSource
+            // 
+            this.storecontroltypeBindingSource.DataMember = "store_control_type";
+            this.storecontroltypeBindingSource.DataSource = this.locationGrid;
+            // 
+            // locationGrid
+            // 
+            this.locationGrid.DataSetName = "LocationGrid";
+            this.locationGrid.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.button7);
@@ -460,12 +535,22 @@
             this.groupBox2.Controls.Add(this.txtEditZoneName);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Location = new System.Drawing.Point(1, 131);
+            this.groupBox2.Location = new System.Drawing.Point(1, 97);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(212, 144);
             this.groupBox2.TabIndex = 34;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Zone";
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(15, 101);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(185, 29);
+            this.button7.TabIndex = 30;
+            this.button7.Text = "Save Changes";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // txtEditZoneOrder
             // 
@@ -474,6 +559,16 @@
             this.txtEditZoneOrder.ReadOnly = true;
             this.txtEditZoneOrder.Size = new System.Drawing.Size(50, 20);
             this.txtEditZoneOrder.TabIndex = 22;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(134, 18);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(69, 29);
+            this.button4.TabIndex = 20;
+            this.button4.Text = "Edit Zone";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click_1);
             // 
             // label15
             // 
@@ -517,36 +612,6 @@
             this.label10.Size = new System.Drawing.Size(46, 13);
             this.label10.TabIndex = 19;
             this.label10.Text = "Zone ID";
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(134, 18);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(69, 29);
-            this.button4.TabIndex = 20;
-            this.button4.Text = "Edit Zone";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click_1);
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(144, 28);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(63, 29);
-            this.button6.TabIndex = 23;
-            this.button6.Text = "Edit Bay";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // button8
-            // 
-            this.button8.Location = new System.Drawing.Point(17, 178);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(185, 29);
-            this.button8.TabIndex = 29;
-            this.button8.Text = "Save Changes";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // tabPage2
             // 
@@ -592,16 +657,16 @@
             // shop_floor
             // 
             this.shop_floor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.shop_floor.Location = new System.Drawing.Point(223, 65);
+            this.shop_floor.Location = new System.Drawing.Point(3, 3);
             this.shop_floor.Name = "shop_floor";
-            this.shop_floor.Size = new System.Drawing.Size(608, 558);
+            this.shop_floor.Size = new System.Drawing.Size(594, 523);
             this.shop_floor.TabIndex = 2;
             this.shop_floor.Paint += new System.Windows.Forms.PaintEventHandler(this.shop_floor_Paint);
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel2.Controls.Add(this.button5);
+            this.panel2.Controls.Add(this.btnShowMenu);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
@@ -609,15 +674,15 @@
             this.panel2.TabIndex = 3;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
-            // button5
+            // btnShowMenu
             // 
-            this.button5.Location = new System.Drawing.Point(7, 3);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(74, 26);
-            this.button5.TabIndex = 0;
-            this.button5.Text = "Hide Menu";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.btnShowMenu.Location = new System.Drawing.Point(7, 3);
+            this.btnShowMenu.Name = "btnShowMenu";
+            this.btnShowMenu.Size = new System.Drawing.Size(74, 26);
+            this.btnShowMenu.TabIndex = 0;
+            this.btnShowMenu.Text = "Hide Menu";
+            this.btnShowMenu.UseVisualStyleBackColor = true;
+            this.btnShowMenu.Click += new System.EventHandler(this.button5_Click);
             // 
             // panel3
             // 
@@ -637,65 +702,78 @@
             this.lblTheShopName.Size = new System.Drawing.Size(0, 24);
             this.lblTheShopName.TabIndex = 0;
             // 
-            // button7
+            // tabControl2
             // 
-            this.button7.Location = new System.Drawing.Point(15, 101);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(185, 29);
-            this.button7.TabIndex = 30;
-            this.button7.Text = "Save Changes";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.tabControl2.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
+            this.tabControl2.Controls.Add(this.tabPage5);
+            this.tabControl2.Controls.Add(this.tabPage6);
+            this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl2.Location = new System.Drawing.Point(223, 65);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(608, 558);
+            this.tabControl2.TabIndex = 5;
             // 
-            // txtEditFullName
+            // tabPage5
             // 
-            this.txtEditFullName.Location = new System.Drawing.Point(17, 48);
-            this.txtEditFullName.Name = "txtEditFullName";
-            this.txtEditFullName.ReadOnly = true;
-            this.txtEditFullName.Size = new System.Drawing.Size(187, 20);
-            this.txtEditFullName.TabIndex = 37;
+            this.tabPage5.Controls.Add(this.shop_floor);
+            this.tabPage5.Location = new System.Drawing.Point(4, 25);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(600, 529);
+            this.tabPage5.TabIndex = 0;
+            this.tabPage5.Text = "Shop Floor View";
+            this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // label18
+            // tabPage6
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(12, 32);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(54, 13);
-            this.label18.TabIndex = 36;
-            this.label18.Text = "Full Name";
+            this.tabPage6.Controls.Add(this.bay_view);
+            this.tabPage6.Location = new System.Drawing.Point(4, 25);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(600, 529);
+            this.tabPage6.TabIndex = 1;
+            this.tabPage6.Text = "Bay View";
+            this.tabPage6.UseVisualStyleBackColor = true;
             // 
-            // txtEditShortName
+            // label9
             // 
-            this.txtEditShortName.Location = new System.Drawing.Point(17, 96);
-            this.txtEditShortName.Name = "txtEditShortName";
-            this.txtEditShortName.ReadOnly = true;
-            this.txtEditShortName.Size = new System.Drawing.Size(187, 20);
-            this.txtEditShortName.TabIndex = 39;
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(47, 173);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(27, 13);
+            this.label9.TabIndex = 34;
+            this.label9.Text = "Size";
             // 
-            // label19
+            // cmbBaySize
             // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(12, 80);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(63, 13);
-            this.label19.TabIndex = 38;
-            this.label19.Text = "Short Name";
+            this.cmbBaySize.AllowDrop = true;
+            this.cmbBaySize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbBaySize.FormattingEnabled = true;
+            this.cmbBaySize.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"});
+            this.cmbBaySize.Location = new System.Drawing.Point(86, 170);
+            this.cmbBaySize.Name = "cmbBaySize";
+            this.cmbBaySize.Size = new System.Drawing.Size(50, 21);
+            this.cmbBaySize.TabIndex = 0;
             // 
-            // locationGrid
+            // bay_view
             // 
-            this.locationGrid.DataSetName = "LocationGrid";
-            this.locationGrid.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // storecontroltypeBindingSource
-            // 
-            this.storecontroltypeBindingSource.DataMember = "store_control_type";
-            this.storecontroltypeBindingSource.DataSource = this.locationGrid;
+            this.bay_view.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bay_view.Location = new System.Drawing.Point(3, 3);
+            this.bay_view.Name = "bay_view";
+            this.bay_view.Size = new System.Drawing.Size(594, 523);
+            this.bay_view.TabIndex = 0;
             // 
             // ctrl_ShopLayout
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.shop_floor);
+            this.Controls.Add(this.tabControl2);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
@@ -710,6 +788,8 @@
             this.tabPage4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.storecontroltypeBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.locationGrid)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.tabPage2.ResumeLayout(false);
@@ -717,8 +797,9 @@
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.locationGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.storecontroltypeBindingSource)).EndInit();
+            this.tabControl2.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage6.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -747,7 +828,7 @@
         private System.Windows.Forms.TextBox txtZoneName;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnShowMenu;
         private System.Windows.Forms.TextBox txtlblControlCount;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBox1;
@@ -786,5 +867,11 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.BindingSource storecontroltypeBindingSource;
         private local_datasets.LocationGrid locationGrid;
+        private System.Windows.Forms.TabControl tabControl2;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.ComboBox cmbBaySize;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Panel bay_view;
     }
 }

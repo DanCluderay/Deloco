@@ -443,7 +443,7 @@ namespace Deloco_Pos_C.views
         {
             LocTree.SelectedNode = CurerntSelectedTreeNode;
             tabBuilding_Layout.Show();
-            ctrl_ShopLayout1.DisplayShopLayout(SelectedShopID);
+            ctrl_ShopLayout1.DisplayShopLayout_ByBay(SelectedShopID);
             LocTree.SelectedNode = CurerntSelectedTreeNode;
         }
 

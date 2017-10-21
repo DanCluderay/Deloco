@@ -75,6 +75,7 @@
             this.button4.Size = new System.Drawing.Size(19, 18);
             this.button4.TabIndex = 3;
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
@@ -145,7 +146,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Name = "ctrl_VerticalTenFoot";
-            this.Size = new System.Drawing.Size(54, 121);
+            this.Size = new System.Drawing.Size(58, 124);
             this.Load += new System.EventHandler(this.ctrl_VerticalTenFoot_Load);
             this.Click += new System.EventHandler(this.ctrl_VerticalTenFoot_Click);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ctrl_VerticalTenFoot_MouseDown);
