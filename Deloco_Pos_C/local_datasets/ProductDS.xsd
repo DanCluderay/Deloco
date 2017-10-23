@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ProductDS" targetNamespace="http://tempuri.org/ProductDS.xsd" xmlns:mstns="http://tempuri.org/ProductDS.xsd" xmlns="http://tempuri.org/ProductDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="fredConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="fredConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Deloco_Pos_C.Properties.Settings.GlobalReference.Default.fredConnectionString" Provider="MySql.Data.MySqlClient" />
+        </Connections>
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ProductDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ProductDS" msprop:Generator_UserDSName="ProductDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Product_Use_Case" msprop:Generator_TableClassName="Product_Use_CaseDataTable" msprop:Generator_TableVarName="tableProduct_Use_Case" msprop:Generator_TablePropName="Product_Use_Case" msprop:Generator_RowDeletingName="Product_Use_CaseRowDeleting" msprop:Generator_RowChangingName="Product_Use_CaseRowChanging" msprop:Generator_RowEvHandlerName="Product_Use_CaseRowChangeEventHandler" msprop:Generator_RowDeletedName="Product_Use_CaseRowDeleted" msprop:Generator_UserTableName="Product_Use_Case" msprop:Generator_RowChangedName="Product_Use_CaseRowChanged" msprop:Generator_RowEvArgName="Product_Use_CaseRowChangeEvent" msprop:Generator_RowClassName="Product_Use_CaseRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:int" />
+              <xs:element name="Statement" msprop:Generator_ColumnVarNameInTable="columnStatement" msprop:Generator_ColumnPropNameInRow="Statement" msprop:Generator_ColumnPropNameInTable="StatementColumn" msprop:Generator_UserColumnName="Statement" default="" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ParentID" msprop:Generator_ColumnVarNameInTable="columnParentID" msprop:Generator_ColumnPropNameInRow="ParentID" msprop:Generator_ColumnPropNameInTable="ParentIDColumn" msprop:Generator_UserColumnName="ParentID" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="TAG" msprop:Generator_ColumnVarNameInTable="columnTAG" msprop:Generator_ColumnPropNameInRow="TAG" msprop:Generator_ColumnPropNameInTable="TAGColumn" msprop:Generator_UserColumnName="TAG" type="xs:string" default="" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Product_Use_Case" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

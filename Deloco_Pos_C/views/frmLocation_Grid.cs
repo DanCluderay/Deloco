@@ -175,6 +175,7 @@ namespace Deloco_Pos_C.views
                     {
                         //tabControl1.TabPages.Add(tabBay);
                         ctrl_ShopLayout1.HighlightBay(NodeID);
+                        ctrl_ShopLayout1.Display_Shelf(NodeID);
                     }
                     else if (LocationType == 5)
                     {
@@ -451,7 +452,7 @@ namespace Deloco_Pos_C.views
         {
             CreateSibling();
 
-
+            
         }
 
         private void button2_Click(object sender, EventArgs e)

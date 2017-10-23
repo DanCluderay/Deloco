@@ -68,29 +68,50 @@ namespace Deloco_Pos_C.controls
                 //loop the Shelfs
                 foreach (DataRow ShelfItem in Results)
                 {
-                
-                    int ShelfID = int.Parse(ShelfItem[""].ToString());
-                    // add a shelf on the bay view screen
                     
-                    DataRow[] ShelfResults;
-                    string ShelfQuery = "LocParent=" + ShelfID.ToString();
-
-                    ShelfResults = GridDS.Location_Grid.Select(ShelfQuery);
-                    if (ShelfResults.Length == 0)
+                    int ShelfID = int.Parse(ShelfItem["LocGridID"].ToString());
+                    DataRow[] LayoutResults;
+                    string LayoutQueryString = "LocGrid_ID=" + ShelfID.ToString();
+                    //get the layout results
+                    LayoutResults = GridDS.storelayout.Select(LayoutQueryString);// search for the layout file data for this Shelf
+                    if(LayoutResults.Length==0)
                     {
-                        //there is no layout file dont bother carrying on!
-                        
+                        // there is no layout data -  dont do anything else
                     }
                     else
                     {
-                        //Loop the Pick Faces
-                        foreach (DataRow PickItem in ShelfResults)
+                        // add a shelf on the bay view screen 
+                        ctrl.Furniture.ctrl_Shelf NewShelf = new ctrl.Furniture.ctrl_Shelf();
+                        NewShelf.Left =int.Parse( LayoutResults[0]["Control_X"].ToString());
+                        NewShelf.Top = int.Parse(LayoutResults[0]["Control_Y"].ToString());
+                        NewShelf.Name = ShelfID.ToString();
+                        bay_view.Controls.Add(NewShelf);
+                        //********************* Next look for children *****************
+                        DataRow[] ShelfResults;
+                        string ShelfQuery = "LocParent=" + ShelfID.ToString();
+
+                        ShelfResults = GridDS.Location_Grid.Select(ShelfQuery);// search for the 
+                        if (ShelfResults.Length == 0)
                         {
+                            //there is no layout file dont bother carrying on!
+                        
+                        }
+                        else
+                        {
+                            //Loop the Pick Faces
+                            foreach (DataRow PickItem in ShelfResults)
+                            {
+                                ctrl.Furniture.ctrl_LocationPosition NewPick = new ctrl.Furniture.ctrl_LocationPosition();
+                                NewPick.Left = 100;
+                                NewPick.Top = 10;
+                                bay_view.Controls[ShelfID.ToString()].Controls.Add(NewPick);
+                            }
+
 
                         }
 
-
                     }
+                    
 
 
 
@@ -392,6 +413,7 @@ namespace Deloco_Pos_C.controls
             }
             else if (sender.GetType() == typeof(ctrl_HorizontalTenFoot))
             {
+                
                 ctrl_HorizontalTenFoot H10 = sender as ctrl_HorizontalTenFoot;
                 txtLeft.Text = H10.Left.ToString();
                 txtTop.Text = H10.Top.ToString();
@@ -680,6 +702,11 @@ namespace Deloco_Pos_C.controls
             logic_global.EditLocGridItem(NewBayName, 4, LocParent, LocGridID, FullName, ShortName, PickOrder);
             Request_Screen_Refresh(this, new EventArgs());
 
+        }
+
+        private void bay_view_Paint(object sender, PaintEventArgs e)
+        {
+        
         }
     }
 }

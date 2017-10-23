@@ -58,6 +58,8 @@
             this.txtEditFullName = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.cmbBaySize = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.txtEditBayOrder = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.txtEditBayID = new System.Windows.Forms.TextBox();
@@ -93,8 +95,6 @@
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.label9 = new System.Windows.Forms.Label();
-            this.cmbBaySize = new System.Windows.Forms.ComboBox();
             this.bay_view = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -405,6 +405,31 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Bay";
             // 
+            // cmbBaySize
+            // 
+            this.cmbBaySize.AllowDrop = true;
+            this.cmbBaySize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbBaySize.FormattingEnabled = true;
+            this.cmbBaySize.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"});
+            this.cmbBaySize.Location = new System.Drawing.Point(86, 170);
+            this.cmbBaySize.Name = "cmbBaySize";
+            this.cmbBaySize.Size = new System.Drawing.Size(50, 21);
+            this.cmbBaySize.TabIndex = 0;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(47, 173);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(27, 13);
+            this.label9.TabIndex = 34;
+            this.label9.Text = "Size";
+            // 
             // txtEditBayOrder
             // 
             this.txtEditBayOrder.Location = new System.Drawing.Point(86, 59);
@@ -626,7 +651,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(32, 17);
+            this.button3.Location = new System.Drawing.Point(29, 352);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(150, 45);
             this.button3.TabIndex = 0;
@@ -736,31 +761,6 @@
             this.tabPage6.Text = "Bay View";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(47, 173);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(27, 13);
-            this.label9.TabIndex = 34;
-            this.label9.Text = "Size";
-            // 
-            // cmbBaySize
-            // 
-            this.cmbBaySize.AllowDrop = true;
-            this.cmbBaySize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbBaySize.FormattingEnabled = true;
-            this.cmbBaySize.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5"});
-            this.cmbBaySize.Location = new System.Drawing.Point(86, 170);
-            this.cmbBaySize.Name = "cmbBaySize";
-            this.cmbBaySize.Size = new System.Drawing.Size(50, 21);
-            this.cmbBaySize.TabIndex = 0;
-            // 
             // bay_view
             // 
             this.bay_view.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -768,6 +768,7 @@
             this.bay_view.Name = "bay_view";
             this.bay_view.Size = new System.Drawing.Size(594, 523);
             this.bay_view.TabIndex = 0;
+            this.bay_view.Paint += new System.Windows.Forms.PaintEventHandler(this.bay_view_Paint);
             // 
             // ctrl_ShopLayout
             // 

@@ -16,7 +16,7 @@ namespace Deloco_Pos_C.ctrl.Furniture
         {
             InitializeComponent();
         }
-        public base_classes.ZoneClass thezone;
+        //public base_classes.ZoneClass thezone;
         private void ctrl_Shelf_Load(object sender, EventArgs e)
         {
 

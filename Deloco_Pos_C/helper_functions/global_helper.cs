@@ -533,6 +533,24 @@ namespace Deloco_Pos_C.helper_functions
                 }
                 ReturnDS = LocDS;
             }
+            else if (functionName == "get_product_use_cases")
+            {
+                //SELECT store_control_type.store_control_type_id, store_control_type.store_control_name, store_control_type.store_control_name_desc, store_control_type.store_control_subtype FROM fred.store_control_type store_control_type
+
+                local_datasets.ProductDS ProdDS = new local_datasets.ProductDS();
+                foreach (DataRow Item in ReturnDataTable.Rows)
+                {
+                    local_datasets.ProductDS.Product_Use_CaseRow ProdUse_Row = ProdDS.Product_Use_Case.NewProduct_Use_CaseRow();
+
+                    ProdUse_Row.id = int.Parse(Item["id"].ToString());
+                    ProdUse_Row.Statement = Item["Statement"].ToString();
+                    ProdUse_Row.ParentID = int.Parse(Item["ParentID"].ToString());
+                    ProdUse_Row.TAG = Item["TAG"].ToString();
+
+                    ProdDS.Product_Use_Case.AddProduct_Use_CaseRow(ProdUse_Row);
+                }
+                ReturnDS = ProdDS;
+            }
             else
             {
                 //just pass a blank table back
@@ -612,7 +630,7 @@ namespace Deloco_Pos_C.helper_functions
         public local_datasets.LocationGrid AddNewStoreLayoutRow(int BuildingID,int LocGrid_ID,int Control_Type,int Control_Y,int Control_X,int Control_Z,int Control_Size)
         {
             local_datasets.LocationGrid RetGrid = new local_datasets.LocationGrid();
-            string parameters = "{'BuildingID': '" + BuildingID + "', 'LocGrid_ID': '" + LocGrid_ID.ToString() + "', 'Control_Type': '" + Control_Type.ToString() + "', 'Control_Y': '" + Control_Y.ToString() + "','Control_X': '" + Control_X.ToString() + "','Control_Z': '" + Control_Z.ToString() + ",'Control_Size': '" + Control_Size.ToString() + "'}";
+            string parameters = "{'BuildingID': '" + BuildingID + "', 'LocGrid_ID': '" + LocGrid_ID.ToString() + "', 'Control_Type': '" + Control_Type.ToString() + "', 'Control_Y': '" + Control_Y.ToString() + "','Control_X': '" + Control_X.ToString() + "','Control_Z': '" + Control_Z.ToString() + "','Control_Size': '" + Control_Size.ToString() + "'}";
             string job = "add_store_layout_row";
             string res = Make_db_call(job, parameters.ToString());
             //RetGrid.Merge(FormatStringToDataTable("get_location_Store_Zone_Layout", res));
@@ -638,6 +656,16 @@ namespace Deloco_Pos_C.helper_functions
             RetGrid.Merge(FormatStringToDataTable(job, res));
             return RetGrid;
 
+        }
+
+        public local_datasets.ProductDS Get_Product_Use_Cases()
+        {
+            local_datasets.ProductDS ProductDS = new local_datasets.ProductDS();
+            string parameters = "";
+            string job = "get_product_use_cases";
+            string res = Make_db_call(job, parameters.ToString());
+            ProductDS.Merge(FormatStringToDataTable(job, res));
+            return ProductDS;
         }
 
     }
