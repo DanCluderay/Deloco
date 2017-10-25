@@ -184,5 +184,17 @@ namespace Deloco_Pos_C
             ProdUsecases.MdiParent = this;
             ProdUsecases.Show();
         }
+
+        private void productInstanceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void productFlowDevToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            views.frmProductFlowDev FlowDev = new views.frmProductFlowDev();
+            FlowDev.MdiParent = this;
+            FlowDev.Show();
+        }
     }
 }

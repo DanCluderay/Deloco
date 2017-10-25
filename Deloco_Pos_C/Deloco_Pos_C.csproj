@@ -83,6 +83,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="base_classes\zoneclass.cs" />
+    <Compile Include="ctrl\ctrl_edit_prodcut.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctrl\ctrl_edit_prodcut.Designer.cs">
+      <DependentUpon>ctrl_edit_prodcut.cs</DependentUpon>
+    </Compile>
     <Compile Include="ctrl\Furniture\ctrl_checkout.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -260,6 +266,12 @@
     <Compile Include="views\frmProductCollectionTest.Designer.cs">
       <DependentUpon>frmProductCollectionTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="views\frmProductFlowDev.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\frmProductFlowDev.Designer.cs">
+      <DependentUpon>frmProductFlowDev.cs</DependentUpon>
+    </Compile>
     <Compile Include="views\frmProductTags.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -315,6 +327,9 @@
     <Compile Include="views\frmStoreLocations.Designer.cs">
       <DependentUpon>frmStoreLocations.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ctrl\ctrl_edit_prodcut.resx">
+      <DependentUpon>ctrl_edit_prodcut.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ctrl\Furniture\ctrl_checkout.resx">
       <DependentUpon>ctrl_checkout.cs</DependentUpon>
     </EmbeddedResource>
@@ -374,6 +389,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="views\frmProductCollectionTest.resx">
       <DependentUpon>frmProductCollectionTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\frmProductFlowDev.resx">
+      <DependentUpon>frmProductFlowDev.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="views\frmProductTags.resx">
       <DependentUpon>frmProductTags.cs</DependentUpon>
