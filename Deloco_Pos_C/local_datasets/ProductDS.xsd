@@ -14,7 +14,7 @@
   <xs:element name="ProductDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ProductDS" msprop:Generator_UserDSName="ProductDS">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Product_Use_Case" msprop:Generator_TableClassName="Product_Use_CaseDataTable" msprop:Generator_TableVarName="tableProduct_Use_Case" msprop:Generator_RowChangedName="Product_Use_CaseRowChanged" msprop:Generator_TablePropName="Product_Use_Case" msprop:Generator_RowDeletingName="Product_Use_CaseRowDeleting" msprop:Generator_RowChangingName="Product_Use_CaseRowChanging" msprop:Generator_RowEvHandlerName="Product_Use_CaseRowChangeEventHandler" msprop:Generator_RowDeletedName="Product_Use_CaseRowDeleted" msprop:Generator_RowClassName="Product_Use_CaseRow" msprop:Generator_UserTableName="Product_Use_Case" msprop:Generator_RowEvArgName="Product_Use_CaseRowChangeEvent">
+        <xs:element name="Product_Use_Case" msprop:Generator_TableClassName="Product_Use_CaseDataTable" msprop:Generator_TableVarName="tableProduct_Use_Case" msprop:Generator_TablePropName="Product_Use_Case" msprop:Generator_RowDeletingName="Product_Use_CaseRowDeleting" msprop:Generator_RowChangingName="Product_Use_CaseRowChanging" msprop:Generator_RowEvHandlerName="Product_Use_CaseRowChangeEventHandler" msprop:Generator_RowDeletedName="Product_Use_CaseRowDeleted" msprop:Generator_UserTableName="Product_Use_Case" msprop:Generator_RowChangedName="Product_Use_CaseRowChanged" msprop:Generator_RowEvArgName="Product_Use_CaseRowChangeEvent" msprop:Generator_RowClassName="Product_Use_CaseRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:int" />
@@ -30,7 +30,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Products" msprop:Generator_TableClassName="ProductsDataTable" msprop:Generator_TableVarName="tableProducts" msprop:Generator_TablePropName="Products" msprop:Generator_RowDeletingName="ProductsRowDeleting" msprop:Generator_RowChangingName="ProductsRowChanging" msprop:Generator_RowEvHandlerName="ProductsRowChangeEventHandler" msprop:Generator_RowDeletedName="ProductsRowDeleted" msprop:Generator_UserTableName="Products" msprop:Generator_RowChangedName="ProductsRowChanged" msprop:Generator_RowEvArgName="ProductsRowChangeEvent" msprop:Generator_RowClassName="ProductsRow">
+        <xs:element name="Products" msprop:Generator_TableClassName="ProductsDataTable" msprop:Generator_TableVarName="tableProducts" msprop:Generator_RowChangedName="ProductsRowChanged" msprop:Generator_TablePropName="Products" msprop:Generator_RowDeletingName="ProductsRowDeleting" msprop:Generator_RowChangingName="ProductsRowChanging" msprop:Generator_RowEvHandlerName="ProductsRowChangeEventHandler" msprop:Generator_RowDeletedName="ProductsRowDeleted" msprop:Generator_RowClassName="ProductsRow" msprop:Generator_UserTableName="Products" msprop:Generator_RowEvArgName="ProductsRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ProductID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnProductID" msprop:Generator_ColumnPropNameInRow="ProductID" msprop:Generator_ColumnPropNameInTable="ProductIDColumn" msprop:Generator_UserColumnName="ProductID" type="xs:int" />
@@ -108,6 +108,28 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="Brands" msprop:Generator_TableClassName="BrandsDataTable" msprop:Generator_TableVarName="tableBrands" msprop:Generator_TablePropName="Brands" msprop:Generator_RowDeletingName="BrandsRowDeleting" msprop:Generator_RowChangingName="BrandsRowChanging" msprop:Generator_RowEvHandlerName="BrandsRowChangeEventHandler" msprop:Generator_RowDeletedName="BrandsRowDeleted" msprop:Generator_UserTableName="Brands" msprop:Generator_RowChangedName="BrandsRowChanged" msprop:Generator_RowEvArgName="BrandsRowChangeEvent" msprop:Generator_RowClassName="BrandsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="BrandID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnBrandID" msprop:Generator_ColumnPropNameInRow="BrandID" msprop:Generator_ColumnPropNameInTable="BrandIDColumn" msprop:Generator_UserColumnName="BrandID" type="xs:int" />
+              <xs:element name="BrandName" msprop:Generator_ColumnVarNameInTable="columnBrandName" msprop:Generator_ColumnPropNameInRow="BrandName" msprop:Generator_ColumnPropNameInTable="BrandNameColumn" msprop:Generator_UserColumnName="BrandName" default="" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BrandWeight" msprop:Generator_ColumnVarNameInTable="columnBrandWeight" msprop:Generator_ColumnPropNameInRow="BrandWeight" msprop:Generator_ColumnPropNameInTable="BrandWeightColumn" msprop:Generator_UserColumnName="BrandWeight" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="GUID" msprop:Generator_ColumnVarNameInTable="columnGUID" msprop:Generator_ColumnPropNameInRow="GUID" msprop:Generator_ColumnPropNameInTable="GUIDColumn" msprop:Generator_UserColumnName="GUID" default="" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -117,6 +139,10 @@
     <xs:unique name="Products_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:Products" />
       <xs:field xpath="mstns:ProductID" />
+    </xs:unique>
+    <xs:unique name="Brands_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Brands" />
+      <xs:field xpath="mstns:BrandID" />
     </xs:unique>
   </xs:element>
 </xs:schema>

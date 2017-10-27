@@ -551,6 +551,24 @@ namespace Deloco_Pos_C.helper_functions
                 }
                 ReturnDS = ProdDS;
             }
+
+            else if (functionName == "get_all_brands")
+            {
+                //SELECT store_control_type.store_control_type_id, store_control_type.store_control_name, store_control_type.store_control_name_desc, store_control_type.store_control_subtype FROM fred.store_control_type store_control_type
+
+                local_datasets.ProductDS ProdDS = new local_datasets.ProductDS();
+                foreach (DataRow Item in ReturnDataTable.Rows)
+                {
+                    local_datasets.ProductDS.BrandsRow Brand_Row = ProdDS.Brands.NewBrandsRow();
+
+                    Brand_Row.BrandID = int.Parse(Item["BrandID"].ToString());
+                    Brand_Row.BrandName = Item["BrandName"].ToString();
+                    Brand_Row.BrandWeight = int.Parse(Item["BrandWeight"].ToString());
+
+                    ProdDS.Brands.AddBrandsRow(Brand_Row);
+                }
+                ReturnDS = ProdDS;
+            }
             else
             {
                 //just pass a blank table back
@@ -667,6 +685,14 @@ namespace Deloco_Pos_C.helper_functions
             ProductDS.Merge(FormatStringToDataTable(job, res));
             return ProductDS;
         }
-
+        public local_datasets.ProductDS Get_Brands()
+        {
+            local_datasets.ProductDS ProductDS = new local_datasets.ProductDS();
+            string parameters = "";
+            string job = "get_all_brands";
+            string res = Make_db_call(job, parameters.ToString());
+            ProductDS.Merge(FormatStringToDataTable(job, res));
+            return ProductDS;
+        }
     }
 }
