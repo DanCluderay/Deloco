@@ -25,7 +25,7 @@ namespace Deloco_Pos_C.helper_functions
         private static globalHelper instance;
 
         List<mqtt_msg_object> mqtt_list = new List<mqtt_msg_object>();
-       
+
         private globalHelper() { }
         private string _mqttserver = "";
 
@@ -37,7 +37,7 @@ namespace Deloco_Pos_C.helper_functions
 
             return retval;
         }
-        
+
         public string MqttClient_Server
 
         {
@@ -49,9 +49,9 @@ namespace Deloco_Pos_C.helper_functions
             {
                 _mqttserver = value;
             }
-                
+
         }
-       
+
 
         public static globalHelper Instance
 
@@ -63,12 +63,12 @@ namespace Deloco_Pos_C.helper_functions
                     instance = new globalHelper();
                     //when you create a new instance create a new 
 
-                 
+
                 }
                 return instance;
             }
         }
-        
+
         public string connectToMQTTServer(string Topic)
         {
             string returnValue = "";
@@ -77,7 +77,7 @@ namespace Deloco_Pos_C.helper_functions
             returnValue = "Connected to client";
             clientId = Guid.NewGuid().ToString();
             Mqtt_Subscribe(Topic);
-            
+
 
             return returnValue;
         }
@@ -90,7 +90,7 @@ namespace Deloco_Pos_C.helper_functions
             client.MqttMsgPublishReceived += client_MqttMsgPublishReceived;
 
             //Later this will be a shop/userid
-            
+
             client.Connect(clientId);
 
             // subscribe to the topic "/home/temperature" with QoS 2
@@ -99,7 +99,7 @@ namespace Deloco_Pos_C.helper_functions
             Topics[0] = "cluderay";
             Topics[1] = "cluderay1";
             Topics[2] = "cluderay2";
-         
+
 
             //client.Subscribe(new string[] { Topic }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
             client.Subscribe(new string[] { Topic, "cluderay/#" }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
@@ -112,9 +112,9 @@ namespace Deloco_Pos_C.helper_functions
         {
 
             string ReceivedMessage = Encoding.UTF8.GetString(e.Message);
-           
-            
-            
+
+
+
             mqtt_msg_object newItem = new mqtt_msg_object();
             newItem.msg_payload = ReceivedMessage;
             newItem.msg_topic = e.Topic;
@@ -134,7 +134,7 @@ namespace Deloco_Pos_C.helper_functions
                 {
                 }
 
-                
+
             }
             else if (newItem.msg_topic == "cluderay")
             {
@@ -148,7 +148,7 @@ namespace Deloco_Pos_C.helper_functions
 
             //An order has changed - dev mode
 
-            
+
         }
         public local_datasets.mqtt_ds GetMQTT_DataSet()
         {
@@ -194,11 +194,11 @@ namespace Deloco_Pos_C.helper_functions
                 }
             }
 
-            
+
 
         }
 
-        public DataSet FormatStringToDataTable(string functionName,string responcestring)
+        public DataSet FormatStringToDataTable(string functionName, string responcestring)
         {
             DataTable ReturnDataTable;
             DataSet ReturnDS = new DataSet();
@@ -206,9 +206,9 @@ namespace Deloco_Pos_C.helper_functions
             if (functionName == "get_customer_order")
             {
                 //converts the string into a generic datatable
-               
 
-               //declare the tempory local variables used for error catching
+
+                //declare the tempory local variables used for error catching
                 int _order_autoid = 0;
                 int _customerid = 0;
                 double _ordervalue = 0.00;
@@ -233,13 +233,13 @@ namespace Deloco_Pos_C.helper_functions
                 //create the empty returning dataset
                 local_datasets.OrderDetails_ds OrderDS = new local_datasets.OrderDetails_ds();
 
-                 //now loop the table items and convert into a dataset
+                //now loop the table items and convert into a dataset
                 foreach (DataRow Item in ReturnDataTable.Rows)
                 {
 
                     local_datasets.OrderDetails_ds.OrderDetailsRow NewRow = OrderDS.OrderDetails.NewOrderDetailsRow();
 
-                    _order_autoid = Int32.Parse( Item["order_autoid"].ToString());
+                    _order_autoid = Int32.Parse(Item["order_autoid"].ToString());
                     NewRow.order_autoid = _order_autoid;
 
                     _customerid = Int32.Parse(Item["customerid"].ToString());
@@ -277,7 +277,7 @@ namespace Deloco_Pos_C.helper_functions
                     _delivery_address_City = Item["delivery_address_City"].ToString();
                     NewRow.delivery_address_City = _delivery_address_City;
 
-                    _delivery_address_Postcode =Item["delivery_address_Postcode"].ToString();
+                    _delivery_address_Postcode = Item["delivery_address_Postcode"].ToString();
                     NewRow.delivery_address_Postcode = _delivery_address_Postcode;
 
                     _delivery_address_Country = Item["delivery_address_Country"].ToString();
@@ -287,7 +287,7 @@ namespace Deloco_Pos_C.helper_functions
                     NewRow.Customer_First_Name = _Customer_First_Name;
 
                     _CustomerTitle = Item["CustomerTitle"].ToString();
-                    NewRow.CustomerTitle= _CustomerTitle;
+                    NewRow.CustomerTitle = _CustomerTitle;
 
                     _Customer_Second_Name = Item["Customer_Second_Name"].ToString();
                     NewRow.Customer_Second_Name = _Customer_Second_Name;
@@ -409,7 +409,7 @@ namespace Deloco_Pos_C.helper_functions
                 foreach (DataRow Item in ReturnDataTable.Rows)
                 {
                     local_datasets.store_locations.storesRow StoreRow = Stores.stores.NewstoresRow();
-                    shopid=Int32.Parse(Item["store_autoid"].ToString());
+                    shopid = Int32.Parse(Item["store_autoid"].ToString());
                     shopname = Item["store_name"].ToString();
                     shopshortcode = Item["store_shortcode"].ToString();
                     StoreRow.store_autoid = shopid;
@@ -421,7 +421,7 @@ namespace Deloco_Pos_C.helper_functions
 
                 ReturnDS = Stores;
             }
-            else if(functionName== "get_productview_by_prodID")
+            else if (functionName == "get_productview_by_prodID")
             {
 
                 local_datasets.ProductVarientView ProdViewDS = new local_datasets.ProductVarientView();
@@ -434,10 +434,10 @@ namespace Deloco_Pos_C.helper_functions
 
                     ProdViewRow.id = int.Parse(Item["id"].ToString());
                     ProdViewRow.qty = int.Parse(Item["Varient_QTY"].ToString());
-                    ProdViewRow.Reserve = int.Parse(Item["reserve"].ToString()); 
+                    ProdViewRow.Reserve = int.Parse(Item["reserve"].ToString());
                     ProdViewRow.ProductID = int.Parse(Item["ProductTypesautoid"].ToString());
                     ProdViewRow.last_updated = "";// Item["store_autoid"].ToString(); 
-                    ProdViewRow.ProdVarientID = int.Parse(Item["Varient_Instance_ID"].ToString()); 
+                    ProdViewRow.ProdVarientID = int.Parse(Item["Varient_Instance_ID"].ToString());
                     ProdViewRow.ForSale = int.Parse(Item["ForSale"].ToString());
                     ProdViewRow.Inbastet = int.Parse(Item["Inbasket"].ToString());
                     ProdViewRow.ShopID = int.Parse(Item["Varient_Location_ID"].ToString());
@@ -445,7 +445,7 @@ namespace Deloco_Pos_C.helper_functions
                     ProdViewRow.ShopName = Item["store_name"].ToString();
                     ProdViewRow.Sold = int.Parse(Item["sold"].ToString());
                     ProdViewRow.Transit = int.Parse(Item["transit"].ToString());
-                    ProdViewRow.ProductVarientName= Item["pv_Name"].ToString();
+                    ProdViewRow.ProductVarientName = Item["pv_Name"].ToString();
                     // - product Name
 
                     ProdViewDS.ProdVarView.AddProdVarViewRow(ProdViewRow);
@@ -453,7 +453,7 @@ namespace Deloco_Pos_C.helper_functions
                 ReturnDS = ProdViewDS;
 
 
-            
+
             }
             else if (functionName == "get_gridlocations")
             {
@@ -483,9 +483,9 @@ namespace Deloco_Pos_C.helper_functions
             else if (functionName == "get_location_types")
             {
                 local_datasets.LocationTypes LocType = new local_datasets.LocationTypes();
-                foreach(DataRow Item in ReturnDataTable.Rows)
+                foreach (DataRow Item in ReturnDataTable.Rows)
                 {
-                    local_datasets.LocationTypes.LocationTypesRow  Loc_Row = LocType._LocationTypes.NewLocationTypesRow();
+                    local_datasets.LocationTypes.LocationTypesRow Loc_Row = LocType._LocationTypes.NewLocationTypesRow();
 
                     Loc_Row.LocationTypeID = int.Parse(Item["LocationTypeID"].ToString());
                     Loc_Row.LocationName = Item["LocationName"].ToString();
@@ -527,7 +527,7 @@ namespace Deloco_Pos_C.helper_functions
                     Loc_Row.store_control_name = Item["store_control_name"].ToString();
                     Loc_Row.store_control_name_desc = Item["store_control_name_desc"].ToString();
                     Loc_Row.store_control_subtype = int.Parse(Item["store_control_subtype"].ToString());
-               
+
 
                     LocDS.store_control_type.Addstore_control_typeRow(Loc_Row);
                 }
@@ -562,12 +562,45 @@ namespace Deloco_Pos_C.helper_functions
                     local_datasets.ProductDS.BrandsRow Brand_Row = ProdDS.Brands.NewBrandsRow();
 
                     Brand_Row.BrandID = int.Parse(Item["BrandID"].ToString());
-                    Brand_Row.BrandName = Item["BrandName"].ToString();
-                    Brand_Row.BrandWeight = int.Parse(Item["BrandWeight"].ToString());
+                    if (ReturnDataTable.Columns.Contains("BrandName"))
+                    {
+                        Brand_Row.BrandName = Item["BrandName"].ToString();
+                    }
+                    if (ReturnDataTable.Columns.Contains("BrandWeight"))
+                    {
+                        Brand_Row.BrandWeight = int.Parse(Item["BrandWeight"].ToString());
+                    }
+
+                    
 
                     ProdDS.Brands.AddBrandsRow(Brand_Row);
                 }
                 ReturnDS = ProdDS;
+            }
+            else if (functionName == "get_brand_products_by_id")
+            {
+                //SELECT store_control_type.store_control_type_id, store_control_type.store_control_name, store_control_type.store_control_name_desc, store_control_type.store_control_subtype FROM fred.store_control_type store_control_type
+
+                local_datasets.ProductDS DS = new local_datasets.ProductDS();
+                foreach (DataRow Item in ReturnDataTable.Rows)
+                {
+                    local_datasets.ProductDS.Brand_ProductsRow BrandProd_Row = DS.Brand_Products.NewBrand_ProductsRow();
+
+                    BrandProd_Row.BrandProductID= int.Parse(Item["BrandProductID"].ToString());
+                    if(ReturnDataTable.Columns.Contains(""))
+                    {
+                        BrandProd_Row.Brand = int.Parse(Item["Brand"].ToString());
+                    }
+                    
+                    if(ReturnDataTable.Columns.Contains("ProductName"))
+                    {
+                        BrandProd_Row.ProductName = Item["ProductName"].ToString();
+                    }
+                    
+
+                    DS.Brand_Products.AddBrand_ProductsRow(BrandProd_Row);
+                }
+                ReturnDS = DS;
             }
             else
             {
@@ -596,7 +629,7 @@ namespace Deloco_Pos_C.helper_functions
             return RetGrid;
         }
 
-        public int CreateLocGridItem(string LocName,int LocType,int LocParent,string FullName, string ShortName,int PickOrder)
+        public int CreateLocGridItem(string LocName, int LocType, int LocParent, string FullName, string ShortName, int PickOrder)
         {
             int retvalue = 0;
             string parameters = "{'LocName': '" + LocName + "', 'LocType': '" + LocType.ToString() + "', 'LocParent': '" + LocParent.ToString() + "','FullName': '" + FullName.ToString() + "','ShortName': '" + ShortName.ToString() + "','PickOrder': '" + PickOrder.ToString() + "'}";
@@ -604,7 +637,7 @@ namespace Deloco_Pos_C.helper_functions
             string res = Make_db_call(job, parameters.ToString());
             DataTable ReturnDataTable;
             ReturnDataTable = (DataTable)JsonConvert.DeserializeObject(res, (typeof(DataTable)));
-           
+
             retvalue = int.Parse(ReturnDataTable.Rows[0][0].ToString());
             On_LocationChanged(this, new EventArgs());
             return retvalue;
@@ -627,7 +660,7 @@ namespace Deloco_Pos_C.helper_functions
             string job = "get_location_types";
             string res = Make_db_call(job, "");
             LocTypes.Merge(FormatStringToDataTable(job, res));
-            
+
             return LocTypes;
         }
 
@@ -638,14 +671,14 @@ namespace Deloco_Pos_C.helper_functions
             string job = "get_location_Store_Zone_Layout";
             string res = Make_db_call(job, parameters.ToString());
             RetGrid.Merge(FormatStringToDataTable(job, res));
-           
+
             return RetGrid;
 
 
         }
 
 
-        public local_datasets.LocationGrid AddNewStoreLayoutRow(int BuildingID,int LocGrid_ID,int Control_Type,int Control_Y,int Control_X,int Control_Z,int Control_Size)
+        public local_datasets.LocationGrid AddNewStoreLayoutRow(int BuildingID, int LocGrid_ID, int Control_Type, int Control_Y, int Control_X, int Control_Z, int Control_Size)
         {
             local_datasets.LocationGrid RetGrid = new local_datasets.LocationGrid();
             string parameters = "{'BuildingID': '" + BuildingID + "', 'LocGrid_ID': '" + LocGrid_ID.ToString() + "', 'Control_Type': '" + Control_Type.ToString() + "', 'Control_Y': '" + Control_Y.ToString() + "','Control_X': '" + Control_X.ToString() + "','Control_Z': '" + Control_Z.ToString() + "','Control_Size': '" + Control_Size.ToString() + "'}";
@@ -655,7 +688,7 @@ namespace Deloco_Pos_C.helper_functions
             return RetGrid;
         }
 
-        public local_datasets.LocationGrid EditStoreLayoutRow(int BuildingID, int LocGrid_ID, int Control_Type, int Control_Y, int Control_X, int Control_Z, int id,int Control_Size)
+        public local_datasets.LocationGrid EditStoreLayoutRow(int BuildingID, int LocGrid_ID, int Control_Type, int Control_Y, int Control_X, int Control_Z, int id, int Control_Size)
         {
             local_datasets.LocationGrid RetGrid = new local_datasets.LocationGrid();
             string parameters = "{'BuildingID': '" + BuildingID + "', 'LocGrid_ID': '" + LocGrid_ID.ToString() + "', 'Control_Type': '" + Control_Type.ToString() + "', 'Control_Y': '" + Control_Y.ToString() + "','Control_X': '" + Control_X.ToString() + "','Control_Z': '" + Control_Z.ToString() + "','id': '" + id.ToString() + "','Control_Size': '" + Control_Size.ToString() + "'}";
@@ -694,5 +727,36 @@ namespace Deloco_Pos_C.helper_functions
             ProductDS.Merge(FormatStringToDataTable(job, res));
             return ProductDS;
         }
-    }
+
+        public local_datasets.ProductDS add_new_brand(string BrandName,int BrandWeight)
+        {
+            local_datasets.ProductDS ProductDS = new local_datasets.ProductDS();
+            string parameters = "{ 'BrandName': '" + BrandName + "', 'BrandWeight': '" + BrandWeight.ToString() + "'}";
+            string job = "add_new_brand";
+            string res = Make_db_call(job, parameters.ToString());
+            ProductDS.Merge(FormatStringToDataTable("get_all_brands", res));
+            return ProductDS;
+        }
+
+        public local_datasets.ProductDS Get_Brand_Product(int BrandID)
+        {
+            local_datasets.ProductDS DS = new local_datasets.ProductDS();
+            string parameters = "{'BrandID': '" + BrandID.ToString() + "'}";
+            string job = "get_brand_products_by_id";
+            string res = Make_db_call(job, parameters.ToString());
+            DS.Merge(FormatStringToDataTable(job, res));
+            return DS;
+        }
+
+        public local_datasets.ProductDS add_new_brand_products(string productid, int brandid)
+        {
+            local_datasets.ProductDS DS = new local_datasets.ProductDS();
+            string parameters = "{'Brand': '" + brandid.ToString() + "','ProductName':" + productid + "}";
+            string job = "add_new_brand_product";
+            string res = Make_db_call(job, parameters.ToString());
+            DS.Merge(FormatStringToDataTable("get_brand_products_by_id", res));
+            return DS;
+        }
+
+}
 }

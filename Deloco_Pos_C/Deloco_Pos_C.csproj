@@ -89,6 +89,12 @@
     <Compile Include="ctrl\ctrl_edit_prodcut.Designer.cs">
       <DependentUpon>ctrl_edit_prodcut.cs</DependentUpon>
     </Compile>
+    <Compile Include="ctrl\ctrl_NameBuilder.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctrl\ctrl_NameBuilder.Designer.cs">
+      <DependentUpon>ctrl_NameBuilder.cs</DependentUpon>
+    </Compile>
     <Compile Include="ctrl\Furniture\ctrl_checkout.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -329,6 +335,9 @@
     </Compile>
     <EmbeddedResource Include="ctrl\ctrl_edit_prodcut.resx">
       <DependentUpon>ctrl_edit_prodcut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctrl\ctrl_NameBuilder.resx">
+      <DependentUpon>ctrl_NameBuilder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ctrl\Furniture\ctrl_checkout.resx">
       <DependentUpon>ctrl_checkout.cs</DependentUpon>

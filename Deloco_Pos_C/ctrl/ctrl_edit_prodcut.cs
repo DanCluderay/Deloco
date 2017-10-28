@@ -21,7 +21,7 @@ namespace Deloco_Pos_C.ctrl
 
         private void ctrl_edit_prodcut_Load(object sender, EventArgs e)
         {
-            GetBrands();
+           
 
         }
 
@@ -32,13 +32,8 @@ namespace Deloco_Pos_C.ctrl
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            GetBrands();
+          
         }
-        private void GetBrands()
-        {
-            local_datasets.ProductDS DS = new local_datasets.ProductDS();
-            DS.Merge(logic_global.Get_Brands());
-            productDS.Merge(DS);
-        }
+        
     }
 }

@@ -130,6 +130,28 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="Brand_Products" msprop:Generator_TableClassName="Brand_ProductsDataTable" msprop:Generator_TableVarName="tableBrand_Products" msprop:Generator_TablePropName="Brand_Products" msprop:Generator_RowDeletingName="Brand_ProductsRowDeleting" msprop:Generator_RowChangingName="Brand_ProductsRowChanging" msprop:Generator_RowEvHandlerName="Brand_ProductsRowChangeEventHandler" msprop:Generator_RowDeletedName="Brand_ProductsRowDeleted" msprop:Generator_UserTableName="Brand_Products" msprop:Generator_RowChangedName="Brand_ProductsRowChanged" msprop:Generator_RowEvArgName="Brand_ProductsRowChangeEvent" msprop:Generator_RowClassName="Brand_ProductsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="BrandProductID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnBrandProductID" msprop:Generator_ColumnPropNameInRow="BrandProductID" msprop:Generator_ColumnPropNameInTable="BrandProductIDColumn" msprop:Generator_UserColumnName="BrandProductID" type="xs:int" />
+              <xs:element name="Brand" msprop:Generator_ColumnVarNameInTable="columnBrand" msprop:Generator_ColumnPropNameInRow="Brand" msprop:Generator_ColumnPropNameInTable="BrandColumn" msprop:Generator_UserColumnName="Brand" type="xs:int" minOccurs="0" />
+              <xs:element name="ProductName" msprop:Generator_ColumnVarNameInTable="columnProductName" msprop:Generator_ColumnPropNameInRow="ProductName" msprop:Generator_ColumnPropNameInTable="ProductNameColumn" msprop:Generator_UserColumnName="ProductName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="GUID" msprop:Generator_ColumnVarNameInTable="columnGUID" msprop:Generator_ColumnPropNameInRow="GUID" msprop:Generator_ColumnPropNameInTable="GUIDColumn" msprop:Generator_UserColumnName="GUID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -143,6 +165,10 @@
     <xs:unique name="Brands_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:Brands" />
       <xs:field xpath="mstns:BrandID" />
+    </xs:unique>
+    <xs:unique name="Brand_Products_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Brand_Products" />
+      <xs:field xpath="mstns:BrandProductID" />
     </xs:unique>
   </xs:element>
 </xs:schema>
