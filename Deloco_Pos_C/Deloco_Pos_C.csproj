@@ -95,6 +95,12 @@
     <Compile Include="ctrl\ctrl_NameBuilder.Designer.cs">
       <DependentUpon>ctrl_NameBuilder.cs</DependentUpon>
     </Compile>
+    <Compile Include="ctrl\ctrl_ProductPhysicalProperties.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctrl\ctrl_ProductPhysicalProperties.Designer.cs">
+      <DependentUpon>ctrl_ProductPhysicalProperties.cs</DependentUpon>
+    </Compile>
     <Compile Include="ctrl\Furniture\ctrl_checkout.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -338,6 +344,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ctrl\ctrl_NameBuilder.resx">
       <DependentUpon>ctrl_NameBuilder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctrl\ctrl_ProductPhysicalProperties.resx">
+      <DependentUpon>ctrl_ProductPhysicalProperties.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ctrl\Furniture\ctrl_checkout.resx">
       <DependentUpon>ctrl_checkout.cs</DependentUpon>

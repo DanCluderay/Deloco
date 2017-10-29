@@ -13,6 +13,7 @@ namespace Deloco_Pos_C.ctrl
     public partial class ctrl_NameBuilder : UserControl
     {
         helper_functions.globalHelper logic_global = helper_functions.globalHelper.Instance;
+        public event EventHandler On_BrandProductChanged = delegate { };
         public ctrl_NameBuilder()
         {
             InitializeComponent();
@@ -21,17 +22,19 @@ namespace Deloco_Pos_C.ctrl
         public string PreFix;
         public string PostFix;
         public int BrandID;
+        public int BrandProduct;
         public string BrandName;
         public bool BrandInName;
         public string TheSize;
-        public int RelativeSize;
-        public string Product_Name;
+        public int TheUnitSize;
+        public int TheRelativeSize;
+        public string TheProduct_Name;
 
         private void ctrl_NameBuilder_Load(object sender, EventArgs e)
         {
             HideAllTabs();
             GetBrands();
-          
+            GetProductSizes();
         }
         private void GetBrands()
         {
@@ -39,7 +42,12 @@ namespace Deloco_Pos_C.ctrl
             DS.Merge(logic_global.Get_Brands());
             productDS.Merge(DS);
         }
-
+        private void GetProductSizes()
+        {
+            productDS.Product_Size_Units.Clear();
+            productDS.Merge(logic_global.Get_product_sizes(false));
+            
+        }
         private void ShowOptionsTab()
         {
             HideAllTabs();
@@ -79,9 +87,26 @@ namespace Deloco_Pos_C.ctrl
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            txtNewBrandProduct.Text = BrandName;
+            brandProductsBindingSource.Filter = "";
+            txtNewProductName.Text = "";
+            CheckAddBrandProductButtonAllowed();
             ShowProductTypeTab();
         }
-
+        private void CheckAddBrandProductButtonAllowed()
+        {
+            string new_product_name = txtNewProductName.Text.ToString().Trim();
+            if(new_product_name.Length==0 & lstBrandProducts.Items.Count>0)
+            {
+                btnAddNewBrandProduct.Enabled = false;
+                btnAddNewBrandProduct.BackColor = Color.LightSalmon;
+            }
+            else
+            {
+                btnAddNewBrandProduct.Enabled = true;
+                btnAddNewBrandProduct.BackColor = Color.LightGreen;
+            }
+        }
         private void cmbBrand_Click(object sender, EventArgs e)
         {
          
@@ -89,7 +114,7 @@ namespace Deloco_Pos_C.ctrl
 
         private void cmbProductType_Click(object sender, EventArgs e)
         {
-            ShowOptionsTab();
+            //ShowOptionsTab();
         }
 
 
@@ -97,7 +122,16 @@ namespace Deloco_Pos_C.ctrl
         {
             string brand_to_display;
             if(BrandInName==true){ brand_to_display = ""; } else { brand_to_display = BrandName; }
-            txtFullName.Text = PreFix + " " + brand_to_display + " " + Product_Name + " " + TheSize + " " + PostFix;
+
+            string unit_size="";
+            if(cmbUnitSize.Text!="NA")
+            {
+                unit_size = cmbUnitSize.Text;
+            }
+
+
+
+            txtFullName.Text = PreFix + " " + brand_to_display + " " + cmbProductType.Text + " " + TheSize + " " + unit_size + " " + PostFix;
         }
 
         private void txtPrefix_TextChanged(object sender, EventArgs e)
@@ -136,13 +170,12 @@ namespace Deloco_Pos_C.ctrl
 
         private void txtProductName_KeyUp(object sender, KeyEventArgs e)
         {
-            Product_Name = txtProductName.Text.ToString();
-            BuildProductName();
+    
         }
 
         private void cmbBrand_DropDown(object sender, EventArgs e)
         {
-            ShowOptionsTab();
+            //ShowOptionsTab();
         }
 
         private void txtPostFix_KeyUp(object sender, KeyEventArgs e)
@@ -250,7 +283,60 @@ namespace Deloco_Pos_C.ctrl
 
         private void button2_Click(object sender, EventArgs e)
         {
-            logic_global.add_new_brand_products("fred", 12);
+            string new_brand_product_name=txtNewProductName.Text.ToString().Trim();
+            local_datasets.ProductDS retDS = new local_datasets.ProductDS();
+            if(BrandID>0 & new_brand_product_name.Length>0)
+            {
+                retDS.Merge(logic_global.add_new_brand_products(new_brand_product_name, BrandID));
+                int new_brand_product_id;
+                if(retDS.Brand_Products.Rows.Count==1)
+                {
+                    new_brand_product_id =int.Parse( retDS.Brand_Products.Rows[0]["BrandProductID"].ToString());
+                    local_datasets.ProductDS.Brand_ProductsRow newrow = productDS.Brand_Products.NewBrand_ProductsRow();
+                    newrow.BrandProductID = new_brand_product_id;
+                    newrow.ProductName = new_brand_product_name;
+                    newrow.Brand = BrandID;
+                    productDS.Brand_Products.AddBrand_ProductsRow(newrow);
+                    txtNewBrandProduct.Text = "";
+                    txtNewProductName.Text = "";
+                    brandProductsBindingSource.Filter = "";
+                }
+
+                btnAddNewBrandProduct.BackColor = default(Color);
+
+            }
+           
+        }
+
+        private void txtNewProductName_KeyUp(object sender, KeyEventArgs e)
+        {
+            TextBox lol=sender as TextBox;
+            if(lol.Text.ToString().Trim().Length==0)
+            {
+                brandProductsBindingSource.Filter = "";
+            }
+            else
+            {
+                brandProductsBindingSource.Filter = "ProductName like '" + lol.Text.ToString() + "%'";
+            }
+            CheckAddBrandProductButtonAllowed();
+        }
+
+        private void cmbProductType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BrandProduct=int.Parse( cmbProductType.SelectedValue.ToString());
+            BuildProductName();
+            On_BrandProductChanged(this, new EventArgs());
+        }
+
+        private void cmbUnitSize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TheUnitSize =int.Parse(cmbUnitSize.SelectedValue.ToString());
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TheRelativeSize =int.Parse(cmbRelativeSize.SelectedValue.ToString());
         }
     }
 }

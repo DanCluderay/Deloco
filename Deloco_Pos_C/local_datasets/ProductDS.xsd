@@ -14,7 +14,7 @@
   <xs:element name="ProductDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ProductDS" msprop:Generator_UserDSName="ProductDS">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Product_Use_Case" msprop:Generator_TableClassName="Product_Use_CaseDataTable" msprop:Generator_TableVarName="tableProduct_Use_Case" msprop:Generator_TablePropName="Product_Use_Case" msprop:Generator_RowDeletingName="Product_Use_CaseRowDeleting" msprop:Generator_RowChangingName="Product_Use_CaseRowChanging" msprop:Generator_RowEvHandlerName="Product_Use_CaseRowChangeEventHandler" msprop:Generator_RowDeletedName="Product_Use_CaseRowDeleted" msprop:Generator_UserTableName="Product_Use_Case" msprop:Generator_RowChangedName="Product_Use_CaseRowChanged" msprop:Generator_RowEvArgName="Product_Use_CaseRowChangeEvent" msprop:Generator_RowClassName="Product_Use_CaseRow">
+        <xs:element name="Product_Use_Case" msprop:Generator_TableClassName="Product_Use_CaseDataTable" msprop:Generator_TableVarName="tableProduct_Use_Case" msprop:Generator_RowChangedName="Product_Use_CaseRowChanged" msprop:Generator_TablePropName="Product_Use_Case" msprop:Generator_RowDeletingName="Product_Use_CaseRowDeleting" msprop:Generator_RowChangingName="Product_Use_CaseRowChanging" msprop:Generator_RowEvHandlerName="Product_Use_CaseRowChangeEventHandler" msprop:Generator_RowDeletedName="Product_Use_CaseRowDeleted" msprop:Generator_RowClassName="Product_Use_CaseRow" msprop:Generator_UserTableName="Product_Use_Case" msprop:Generator_RowEvArgName="Product_Use_CaseRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:int" />
@@ -30,7 +30,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Products" msprop:Generator_TableClassName="ProductsDataTable" msprop:Generator_TableVarName="tableProducts" msprop:Generator_RowChangedName="ProductsRowChanged" msprop:Generator_TablePropName="Products" msprop:Generator_RowDeletingName="ProductsRowDeleting" msprop:Generator_RowChangingName="ProductsRowChanging" msprop:Generator_RowEvHandlerName="ProductsRowChangeEventHandler" msprop:Generator_RowDeletedName="ProductsRowDeleted" msprop:Generator_RowClassName="ProductsRow" msprop:Generator_UserTableName="Products" msprop:Generator_RowEvArgName="ProductsRowChangeEvent">
+        <xs:element name="Products" msprop:Generator_TableClassName="ProductsDataTable" msprop:Generator_TableVarName="tableProducts" msprop:Generator_TablePropName="Products" msprop:Generator_RowDeletingName="ProductsRowDeleting" msprop:Generator_RowChangingName="ProductsRowChanging" msprop:Generator_RowEvHandlerName="ProductsRowChangeEventHandler" msprop:Generator_RowDeletedName="ProductsRowDeleted" msprop:Generator_UserTableName="Products" msprop:Generator_RowChangedName="ProductsRowChanged" msprop:Generator_RowEvArgName="ProductsRowChangeEvent" msprop:Generator_RowClassName="ProductsRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ProductID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnProductID" msprop:Generator_ColumnPropNameInRow="ProductID" msprop:Generator_ColumnPropNameInTable="ProductIDColumn" msprop:Generator_UserColumnName="ProductID" type="xs:int" />
@@ -108,7 +108,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Brands" msprop:Generator_TableClassName="BrandsDataTable" msprop:Generator_TableVarName="tableBrands" msprop:Generator_TablePropName="Brands" msprop:Generator_RowDeletingName="BrandsRowDeleting" msprop:Generator_RowChangingName="BrandsRowChanging" msprop:Generator_RowEvHandlerName="BrandsRowChangeEventHandler" msprop:Generator_RowDeletedName="BrandsRowDeleted" msprop:Generator_UserTableName="Brands" msprop:Generator_RowChangedName="BrandsRowChanged" msprop:Generator_RowEvArgName="BrandsRowChangeEvent" msprop:Generator_RowClassName="BrandsRow">
+        <xs:element name="Brands" msprop:Generator_TableClassName="BrandsDataTable" msprop:Generator_TableVarName="tableBrands" msprop:Generator_RowChangedName="BrandsRowChanged" msprop:Generator_TablePropName="Brands" msprop:Generator_RowDeletingName="BrandsRowDeleting" msprop:Generator_RowChangingName="BrandsRowChanging" msprop:Generator_RowEvHandlerName="BrandsRowChangeEventHandler" msprop:Generator_RowDeletedName="BrandsRowDeleted" msprop:Generator_RowClassName="BrandsRow" msprop:Generator_UserTableName="Brands" msprop:Generator_RowEvArgName="BrandsRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="BrandID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnBrandID" msprop:Generator_ColumnPropNameInRow="BrandID" msprop:Generator_ColumnPropNameInTable="BrandIDColumn" msprop:Generator_UserColumnName="BrandID" type="xs:int" />
@@ -130,7 +130,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Brand_Products" msprop:Generator_TableClassName="Brand_ProductsDataTable" msprop:Generator_TableVarName="tableBrand_Products" msprop:Generator_TablePropName="Brand_Products" msprop:Generator_RowDeletingName="Brand_ProductsRowDeleting" msprop:Generator_RowChangingName="Brand_ProductsRowChanging" msprop:Generator_RowEvHandlerName="Brand_ProductsRowChangeEventHandler" msprop:Generator_RowDeletedName="Brand_ProductsRowDeleted" msprop:Generator_UserTableName="Brand_Products" msprop:Generator_RowChangedName="Brand_ProductsRowChanged" msprop:Generator_RowEvArgName="Brand_ProductsRowChangeEvent" msprop:Generator_RowClassName="Brand_ProductsRow">
+        <xs:element name="Brand_Products" msprop:Generator_TableClassName="Brand_ProductsDataTable" msprop:Generator_TableVarName="tableBrand_Products" msprop:Generator_RowChangedName="Brand_ProductsRowChanged" msprop:Generator_TablePropName="Brand_Products" msprop:Generator_RowDeletingName="Brand_ProductsRowDeleting" msprop:Generator_RowChangingName="Brand_ProductsRowChanging" msprop:Generator_RowEvHandlerName="Brand_ProductsRowChangeEventHandler" msprop:Generator_RowDeletedName="Brand_ProductsRowDeleted" msprop:Generator_RowClassName="Brand_ProductsRow" msprop:Generator_UserTableName="Brand_Products" msprop:Generator_RowEvArgName="Brand_ProductsRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="BrandProductID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnBrandProductID" msprop:Generator_ColumnPropNameInRow="BrandProductID" msprop:Generator_ColumnPropNameInTable="BrandProductIDColumn" msprop:Generator_UserColumnName="BrandProductID" type="xs:int" />
@@ -152,6 +152,42 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="Product_Size_Units" msprop:Generator_TableClassName="Product_Size_UnitsDataTable" msprop:Generator_TableVarName="tableProduct_Size_Units" msprop:Generator_RowChangedName="Product_Size_UnitsRowChanged" msprop:Generator_TablePropName="Product_Size_Units" msprop:Generator_RowDeletingName="Product_Size_UnitsRowDeleting" msprop:Generator_RowChangingName="Product_Size_UnitsRowChanging" msprop:Generator_RowEvHandlerName="Product_Size_UnitsRowChangeEventHandler" msprop:Generator_RowDeletedName="Product_Size_UnitsRowDeleted" msprop:Generator_RowClassName="Product_Size_UnitsRow" msprop:Generator_UserTableName="Product_Size_Units" msprop:Generator_RowEvArgName="Product_Size_UnitsRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
+              <xs:element name="Unit" msprop:Generator_ColumnVarNameInTable="columnUnit" msprop:Generator_ColumnPropNameInRow="Unit" msprop:Generator_ColumnPropNameInTable="UnitColumn" msprop:Generator_UserColumnName="Unit" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TheOrder" msprop:Generator_ColumnVarNameInTable="columnTheOrder" msprop:Generator_ColumnPropNameInRow="TheOrder" msprop:Generator_ColumnPropNameInTable="TheOrderColumn" msprop:Generator_UserColumnName="TheOrder" type="xs:int" minOccurs="0" />
+              <xs:element name="GroupType" msprop:Generator_ColumnVarNameInTable="columnGroupType" msprop:Generator_ColumnPropNameInRow="GroupType" msprop:Generator_ColumnPropNameInTable="GroupTypeColumn" msprop:Generator_UserColumnName="GroupType" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Product_Barcodes" msprop:Generator_TableClassName="Product_BarcodesDataTable" msprop:Generator_TableVarName="tableProduct_Barcodes" msprop:Generator_TablePropName="Product_Barcodes" msprop:Generator_RowDeletingName="Product_BarcodesRowDeleting" msprop:Generator_RowChangingName="Product_BarcodesRowChanging" msprop:Generator_RowEvHandlerName="Product_BarcodesRowChangeEventHandler" msprop:Generator_RowDeletedName="Product_BarcodesRowDeleted" msprop:Generator_UserTableName="Product_Barcodes" msprop:Generator_RowChangedName="Product_BarcodesRowChanged" msprop:Generator_RowEvArgName="Product_BarcodesRowChangeEvent" msprop:Generator_RowClassName="Product_BarcodesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ProductBarcodeID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnProductBarcodeID" msprop:Generator_ColumnPropNameInRow="ProductBarcodeID" msprop:Generator_ColumnPropNameInTable="ProductBarcodeIDColumn" msprop:Generator_UserColumnName="ProductBarcodeID" type="xs:int" />
+              <xs:element name="BrandProductID" msprop:Generator_ColumnVarNameInTable="columnBrandProductID" msprop:Generator_ColumnPropNameInRow="BrandProductID" msprop:Generator_ColumnPropNameInTable="BrandProductIDColumn" msprop:Generator_UserColumnName="BrandProductID" type="xs:int" minOccurs="0" />
+              <xs:element name="BarcodeType" msprop:Generator_ColumnVarNameInTable="columnBarcodeType" msprop:Generator_ColumnPropNameInRow="BarcodeType" msprop:Generator_ColumnPropNameInTable="BarcodeTypeColumn" msprop:Generator_UserColumnName="BarcodeType" type="xs:int" minOccurs="0" />
+              <xs:element name="Barcode" msprop:Generator_ColumnVarNameInTable="columnBarcode" msprop:Generator_ColumnPropNameInRow="Barcode" msprop:Generator_ColumnPropNameInTable="BarcodeColumn" msprop:Generator_UserColumnName="Barcode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CaseQTY" msprop:Generator_ColumnVarNameInTable="columnCaseQTY" msprop:Generator_ColumnPropNameInRow="CaseQTY" msprop:Generator_ColumnPropNameInTable="CaseQTYColumn" msprop:Generator_UserColumnName="CaseQTY" type="xs:int" minOccurs="0" />
+              <xs:element name="CreatedDateTime" msprop:Generator_ColumnVarNameInTable="columnCreatedDateTime" msprop:Generator_ColumnPropNameInRow="CreatedDateTime" msprop:Generator_ColumnPropNameInTable="CreatedDateTimeColumn" msprop:Generator_UserColumnName="CreatedDateTime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="UpdatedDateTime" msprop:Generator_ColumnVarNameInTable="columnUpdatedDateTime" msprop:Generator_ColumnPropNameInRow="UpdatedDateTime" msprop:Generator_ColumnPropNameInTable="UpdatedDateTimeColumn" msprop:Generator_UserColumnName="UpdatedDateTime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="IsDeleted" msprop:Generator_ColumnVarNameInTable="columnIsDeleted" msprop:Generator_ColumnPropNameInRow="IsDeleted" msprop:Generator_ColumnPropNameInTable="IsDeletedColumn" msprop:Generator_UserColumnName="IsDeleted" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -169,6 +205,14 @@
     <xs:unique name="Brand_Products_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:Brand_Products" />
       <xs:field xpath="mstns:BrandProductID" />
+    </xs:unique>
+    <xs:unique name="Product_Size_Units_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Product_Size_Units" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="Product_Barcodes_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Product_Barcodes" />
+      <xs:field xpath="mstns:ProductBarcodeID" />
     </xs:unique>
   </xs:element>
 </xs:schema>

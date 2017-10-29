@@ -43,47 +43,51 @@
             this.txtPrefix = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbRelativeSize = new System.Windows.Forms.ComboBox();
+            this.productSizeUnitsBindingSource_RELATIVE = new System.Windows.Forms.BindingSource(this.components);
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.cmbProductType = new System.Windows.Forms.ComboBox();
-            this.txtProductName = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.brandProductsBindingSource_combobox = new System.Windows.Forms.BindingSource(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabBrand = new System.Windows.Forms.TabPage();
+            this.lstNewBrandSearch = new System.Windows.Forms.ListBox();
+            this.BrandsSearchBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtAddBrandWeight = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtAddBrandName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnAddNewBrand = new System.Windows.Forms.Button();
             this.tabProductType = new System.Windows.Forms.TabPage();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.txtBrand = new System.Windows.Forms.TextBox();
+            this.lstBrandProducts = new System.Windows.Forms.ListBox();
+            this.brandProductsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.txtNewBrandProduct = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.txtNewProductName = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnAddNewBrandProduct = new System.Windows.Forms.Button();
             this.tabOptions = new System.Windows.Forms.TabPage();
             this.lstOptions = new System.Windows.Forms.ListBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.brandProductsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cmbUnitSize = new System.Windows.Forms.ComboBox();
+            this.productSizeUnitsBindingSource_UNITS = new System.Windows.Forms.BindingSource(this.components);
             this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.linkLabel4 = new System.Windows.Forms.LinkLabel();
-            this.lstNewBrandSearch = new System.Windows.Forms.ListBox();
-            this.BrandsSearchBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.brandsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productSizeUnitsBindingSource_RELATIVE)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.brandProductsBindingSource_combobox)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabBrand.SuspendLayout();
-            this.tabProductType.SuspendLayout();
-            this.tabOptions.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.brandProductsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BrandsSearchBindingSource)).BeginInit();
+            this.tabProductType.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.brandProductsBindingSource)).BeginInit();
+            this.tabOptions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.productSizeUnitsBindingSource_UNITS)).BeginInit();
             this.SuspendLayout();
             // 
             // txtSize
             // 
-            this.txtSize.Location = new System.Drawing.Point(107, 201);
+            this.txtSize.Location = new System.Drawing.Point(107, 146);
             this.txtSize.Name = "txtSize";
             this.txtSize.Size = new System.Drawing.Size(60, 20);
             this.txtSize.TabIndex = 30;
@@ -93,7 +97,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(76, 205);
+            this.label12.Location = new System.Drawing.Point(76, 150);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(27, 13);
             this.label12.TabIndex = 29;
@@ -163,7 +167,7 @@
             // 
             // txtPostFix
             // 
-            this.txtPostFix.Location = new System.Drawing.Point(107, 255);
+            this.txtPostFix.Location = new System.Drawing.Point(107, 200);
             this.txtPostFix.Name = "txtPostFix";
             this.txtPostFix.Size = new System.Drawing.Size(143, 20);
             this.txtPostFix.TabIndex = 20;
@@ -173,7 +177,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(66, 258);
+            this.label8.Location = new System.Drawing.Point(66, 203);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(38, 13);
             this.label8.TabIndex = 19;
@@ -200,19 +204,30 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(98, 231);
+            this.label1.Location = new System.Drawing.Point(98, 176);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 13);
             this.label1.TabIndex = 32;
             this.label1.Text = "Relative Size";
             // 
-            // comboBox1
+            // cmbRelativeSize
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(173, 228);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(77, 21);
-            this.comboBox1.TabIndex = 31;
+            this.cmbRelativeSize.DataSource = this.productSizeUnitsBindingSource_RELATIVE;
+            this.cmbRelativeSize.DisplayMember = "Unit";
+            this.cmbRelativeSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbRelativeSize.FormattingEnabled = true;
+            this.cmbRelativeSize.Location = new System.Drawing.Point(173, 173);
+            this.cmbRelativeSize.Name = "cmbRelativeSize";
+            this.cmbRelativeSize.Size = new System.Drawing.Size(77, 21);
+            this.cmbRelativeSize.TabIndex = 31;
+            this.cmbRelativeSize.ValueMember = "ID";
+            this.cmbRelativeSize.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // productSizeUnitsBindingSource_RELATIVE
+            // 
+            this.productSizeUnitsBindingSource_RELATIVE.DataMember = "Product_Size_Units";
+            this.productSizeUnitsBindingSource_RELATIVE.DataSource = this.productDS;
+            this.productSizeUnitsBindingSource_RELATIVE.Filter = "GroupType=1";
             // 
             // linkLabel1
             // 
@@ -227,32 +242,21 @@
             // 
             // cmbProductType
             // 
-            this.cmbProductType.DisplayMember = "BrandName";
+            this.cmbProductType.DataSource = this.brandProductsBindingSource_combobox;
+            this.cmbProductType.DisplayMember = "ProductName";
             this.cmbProductType.FormattingEnabled = true;
             this.cmbProductType.Location = new System.Drawing.Point(107, 119);
             this.cmbProductType.Name = "cmbProductType";
             this.cmbProductType.Size = new System.Drawing.Size(143, 21);
             this.cmbProductType.TabIndex = 33;
-            this.cmbProductType.ValueMember = "BrandID";
+            this.cmbProductType.ValueMember = "BrandProductID";
+            this.cmbProductType.SelectedIndexChanged += new System.EventHandler(this.cmbProductType_SelectedIndexChanged);
             this.cmbProductType.Click += new System.EventHandler(this.cmbProductType_Click);
             // 
-            // txtProductName
+            // brandProductsBindingSource_combobox
             // 
-            this.txtProductName.Location = new System.Drawing.Point(107, 146);
-            this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(143, 20);
-            this.txtProductName.TabIndex = 37;
-            this.txtProductName.TextChanged += new System.EventHandler(this.txtProductName_TextChanged);
-            this.txtProductName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtProductName_KeyUp);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(28, 149);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(75, 13);
-            this.label3.TabIndex = 36;
-            this.label3.Text = "Product Name";
+            this.brandProductsBindingSource_combobox.DataMember = "Brand_Products";
+            this.brandProductsBindingSource_combobox.DataSource = this.productDS;
             // 
             // tabControl1
             // 
@@ -283,6 +287,22 @@
             this.tabBrand.Size = new System.Drawing.Size(207, 212);
             this.tabBrand.TabIndex = 0;
             this.tabBrand.Text = "Add Brand";
+            // 
+            // lstNewBrandSearch
+            // 
+            this.lstNewBrandSearch.DataSource = this.BrandsSearchBindingSource;
+            this.lstNewBrandSearch.DisplayMember = "BrandName";
+            this.lstNewBrandSearch.FormattingEnabled = true;
+            this.lstNewBrandSearch.Location = new System.Drawing.Point(6, 73);
+            this.lstNewBrandSearch.Name = "lstNewBrandSearch";
+            this.lstNewBrandSearch.Size = new System.Drawing.Size(189, 82);
+            this.lstNewBrandSearch.TabIndex = 23;
+            this.lstNewBrandSearch.ValueMember = "BrandID";
+            // 
+            // BrandsSearchBindingSource
+            // 
+            this.BrandsSearchBindingSource.DataMember = "Brands";
+            this.BrandsSearchBindingSource.DataSource = this.productDS;
             // 
             // txtAddBrandWeight
             // 
@@ -332,12 +352,12 @@
             // 
             // tabProductType
             // 
-            this.tabProductType.Controls.Add(this.listBox1);
-            this.tabProductType.Controls.Add(this.txtBrand);
+            this.tabProductType.Controls.Add(this.lstBrandProducts);
+            this.tabProductType.Controls.Add(this.txtNewBrandProduct);
             this.tabProductType.Controls.Add(this.label6);
-            this.tabProductType.Controls.Add(this.textBox7);
+            this.tabProductType.Controls.Add(this.txtNewProductName);
             this.tabProductType.Controls.Add(this.label10);
-            this.tabProductType.Controls.Add(this.button2);
+            this.tabProductType.Controls.Add(this.btnAddNewBrandProduct);
             this.tabProductType.Location = new System.Drawing.Point(4, 25);
             this.tabProductType.Name = "tabProductType";
             this.tabProductType.Padding = new System.Windows.Forms.Padding(3);
@@ -346,24 +366,29 @@
             this.tabProductType.Text = "Add Product Type";
             this.tabProductType.UseVisualStyleBackColor = true;
             // 
-            // listBox1
+            // lstBrandProducts
             // 
-            this.listBox1.DataSource = this.brandProductsBindingSource;
-            this.listBox1.DisplayMember = "ProductName";
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 85);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(189, 82);
-            this.listBox1.TabIndex = 32;
-            this.listBox1.ValueMember = "BrandProductID";
+            this.lstBrandProducts.DataSource = this.brandProductsBindingSource;
+            this.lstBrandProducts.DisplayMember = "ProductName";
+            this.lstBrandProducts.FormattingEnabled = true;
+            this.lstBrandProducts.Location = new System.Drawing.Point(12, 85);
+            this.lstBrandProducts.Name = "lstBrandProducts";
+            this.lstBrandProducts.Size = new System.Drawing.Size(189, 82);
+            this.lstBrandProducts.TabIndex = 32;
+            this.lstBrandProducts.ValueMember = "BrandProductID";
             // 
-            // txtBrand
+            // brandProductsBindingSource
             // 
-            this.txtBrand.Location = new System.Drawing.Point(89, 15);
-            this.txtBrand.Name = "txtBrand";
-            this.txtBrand.ReadOnly = true;
-            this.txtBrand.Size = new System.Drawing.Size(109, 20);
-            this.txtBrand.TabIndex = 31;
+            this.brandProductsBindingSource.DataMember = "Brand_Products";
+            this.brandProductsBindingSource.DataSource = this.productDS;
+            // 
+            // txtNewBrandProduct
+            // 
+            this.txtNewBrandProduct.Location = new System.Drawing.Point(89, 15);
+            this.txtNewBrandProduct.Name = "txtNewBrandProduct";
+            this.txtNewBrandProduct.ReadOnly = true;
+            this.txtNewBrandProduct.Size = new System.Drawing.Size(109, 20);
+            this.txtNewBrandProduct.TabIndex = 31;
             // 
             // label6
             // 
@@ -374,31 +399,32 @@
             this.label6.TabIndex = 30;
             this.label6.Text = "Brand";
             // 
-            // textBox7
+            // txtNewProductName
             // 
-            this.textBox7.Location = new System.Drawing.Point(89, 42);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(109, 20);
-            this.textBox7.TabIndex = 27;
+            this.txtNewProductName.Location = new System.Drawing.Point(89, 42);
+            this.txtNewProductName.Name = "txtNewProductName";
+            this.txtNewProductName.Size = new System.Drawing.Size(109, 20);
+            this.txtNewProductName.TabIndex = 27;
+            this.txtNewProductName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtNewProductName_KeyUp);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(12, 45);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(71, 13);
+            this.label10.Size = new System.Drawing.Size(75, 13);
             this.label10.TabIndex = 26;
-            this.label10.Text = "Product Type";
+            this.label10.Text = "Product Name";
             // 
-            // button2
+            // btnAddNewBrandProduct
             // 
-            this.button2.Location = new System.Drawing.Point(9, 173);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(189, 24);
-            this.button2.TabIndex = 25;
-            this.button2.Text = "Add New Brand";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnAddNewBrandProduct.Location = new System.Drawing.Point(9, 173);
+            this.btnAddNewBrandProduct.Name = "btnAddNewBrandProduct";
+            this.btnAddNewBrandProduct.Size = new System.Drawing.Size(189, 24);
+            this.btnAddNewBrandProduct.TabIndex = 25;
+            this.btnAddNewBrandProduct.Text = "Add New Brand";
+            this.btnAddNewBrandProduct.UseVisualStyleBackColor = true;
+            this.btnAddNewBrandProduct.Click += new System.EventHandler(this.button2_Click);
             // 
             // tabOptions
             // 
@@ -425,32 +451,30 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(173, 205);
+            this.label9.Location = new System.Drawing.Point(173, 150);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(26, 13);
             this.label9.TabIndex = 40;
             this.label9.Text = "Unit";
             // 
-            // comboBox2
+            // cmbUnitSize
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "",
-            "ml",
-            "Litre",
-            "grams",
-            "KG",
-            "Pound",
-            "Ounce"});
-            this.comboBox2.Location = new System.Drawing.Point(205, 201);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(45, 21);
-            this.comboBox2.TabIndex = 39;
+            this.cmbUnitSize.DataSource = this.productSizeUnitsBindingSource_UNITS;
+            this.cmbUnitSize.DisplayMember = "Unit";
+            this.cmbUnitSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbUnitSize.FormattingEnabled = true;
+            this.cmbUnitSize.Location = new System.Drawing.Point(205, 146);
+            this.cmbUnitSize.Name = "cmbUnitSize";
+            this.cmbUnitSize.Size = new System.Drawing.Size(45, 21);
+            this.cmbUnitSize.TabIndex = 39;
+            this.cmbUnitSize.ValueMember = "ID";
+            this.cmbUnitSize.SelectedIndexChanged += new System.EventHandler(this.cmbUnitSize_SelectedIndexChanged);
             // 
-            // brandProductsBindingSource
+            // productSizeUnitsBindingSource_UNITS
             // 
-            this.brandProductsBindingSource.DataMember = "Brand_Products";
-            this.brandProductsBindingSource.DataSource = this.productDS;
+            this.productSizeUnitsBindingSource_UNITS.DataMember = "Product_Size_Units";
+            this.productSizeUnitsBindingSource_UNITS.DataSource = this.productDS;
+            this.productSizeUnitsBindingSource_UNITS.Filter = "GroupType=0";
             // 
             // linkLabel3
             // 
@@ -472,22 +496,6 @@
             this.linkLabel4.TabStop = true;
             this.linkLabel4.Text = " / ";
             // 
-            // lstNewBrandSearch
-            // 
-            this.lstNewBrandSearch.DataSource = this.BrandsSearchBindingSource;
-            this.lstNewBrandSearch.DisplayMember = "BrandName";
-            this.lstNewBrandSearch.FormattingEnabled = true;
-            this.lstNewBrandSearch.Location = new System.Drawing.Point(6, 73);
-            this.lstNewBrandSearch.Name = "lstNewBrandSearch";
-            this.lstNewBrandSearch.Size = new System.Drawing.Size(189, 82);
-            this.lstNewBrandSearch.TabIndex = 23;
-            this.lstNewBrandSearch.ValueMember = "BrandID";
-            // 
-            // BrandsSearchBindingSource
-            // 
-            this.BrandsSearchBindingSource.DataMember = "Brands";
-            this.BrandsSearchBindingSource.DataSource = this.productDS;
-            // 
             // ctrl_NameBuilder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -495,14 +503,12 @@
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Controls.Add(this.linkLabel3);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.cmbUnitSize);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.txtProductName);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.cmbProductType);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmbRelativeSize);
             this.Controls.Add(this.txtSize);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.chkBrandInName);
@@ -520,14 +526,17 @@
             this.Load += new System.EventHandler(this.ctrl_NameBuilder_Load);
             ((System.ComponentModel.ISupportInitialize)(this.brandsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productSizeUnitsBindingSource_RELATIVE)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.brandProductsBindingSource_combobox)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabBrand.ResumeLayout(false);
             this.tabBrand.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.BrandsSearchBindingSource)).EndInit();
             this.tabProductType.ResumeLayout(false);
             this.tabProductType.PerformLayout();
-            this.tabOptions.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.brandProductsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BrandsSearchBindingSource)).EndInit();
+            this.tabOptions.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.productSizeUnitsBindingSource_UNITS)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -547,11 +556,9 @@
         private System.Windows.Forms.TextBox txtPrefix;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbRelativeSize;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.ComboBox cmbProductType;
-        private System.Windows.Forms.TextBox txtProductName;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.BindingSource brandsBindingSource;
         private local_datasets.ProductDS productDS;
         private System.Windows.Forms.TabControl tabControl1;
@@ -562,20 +569,23 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnAddNewBrand;
         private System.Windows.Forms.TabPage tabProductType;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.TextBox txtBrand;
+        private System.Windows.Forms.ListBox lstBrandProducts;
+        private System.Windows.Forms.TextBox txtNewBrandProduct;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox txtNewProductName;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnAddNewBrandProduct;
         private System.Windows.Forms.TabPage tabOptions;
         private System.Windows.Forms.ListBox lstOptions;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cmbUnitSize;
         private System.Windows.Forms.BindingSource brandProductsBindingSource;
         private System.Windows.Forms.LinkLabel linkLabel3;
         private System.Windows.Forms.LinkLabel linkLabel4;
         private System.Windows.Forms.ListBox lstNewBrandSearch;
         private System.Windows.Forms.BindingSource BrandsSearchBindingSource;
+        private System.Windows.Forms.BindingSource brandProductsBindingSource_combobox;
+        private System.Windows.Forms.BindingSource productSizeUnitsBindingSource_RELATIVE;
+        private System.Windows.Forms.BindingSource productSizeUnitsBindingSource_UNITS;
     }
 }

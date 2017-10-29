@@ -21,6 +21,9 @@ namespace Deloco_Pos_C.helper_functions
         public event EventHandler On_Shop_Location_Update = delegate { };
 
 
+        private local_datasets.ProductDS LocalDS;
+
+
         MqttClient client;
         private static globalHelper instance;
 
@@ -62,7 +65,7 @@ namespace Deloco_Pos_C.helper_functions
                 {
                     instance = new globalHelper();
                     //when you create a new instance create a new 
-
+                    
 
                 }
                 return instance;
@@ -202,6 +205,7 @@ namespace Deloco_Pos_C.helper_functions
         {
             DataTable ReturnDataTable;
             DataSet ReturnDS = new DataSet();
+            responcestring = responcestring.Replace("\\", "");
             ReturnDataTable = (DataTable)JsonConvert.DeserializeObject(responcestring, (typeof(DataTable)));
             if (functionName == "get_customer_order")
             {
@@ -579,15 +583,14 @@ namespace Deloco_Pos_C.helper_functions
             }
             else if (functionName == "get_brand_products_by_id")
             {
-                //SELECT store_control_type.store_control_type_id, store_control_type.store_control_name, store_control_type.store_control_name_desc, store_control_type.store_control_subtype FROM fred.store_control_type store_control_type
-
+              
                 local_datasets.ProductDS DS = new local_datasets.ProductDS();
                 foreach (DataRow Item in ReturnDataTable.Rows)
                 {
                     local_datasets.ProductDS.Brand_ProductsRow BrandProd_Row = DS.Brand_Products.NewBrand_ProductsRow();
 
                     BrandProd_Row.BrandProductID= int.Parse(Item["BrandProductID"].ToString());
-                    if(ReturnDataTable.Columns.Contains(""))
+                    if(ReturnDataTable.Columns.Contains("Brand"))
                     {
                         BrandProd_Row.Brand = int.Parse(Item["Brand"].ToString());
                     }
@@ -599,6 +602,85 @@ namespace Deloco_Pos_C.helper_functions
                     
 
                     DS.Brand_Products.AddBrand_ProductsRow(BrandProd_Row);
+                }
+                ReturnDS = DS;
+            }
+            //get_all_product_sizes
+            else if (functionName == "get_all_product_sizes")
+            {
+
+                local_datasets.ProductDS DS = new local_datasets.ProductDS();
+                foreach (DataRow Item in ReturnDataTable.Rows)
+                {
+                    local_datasets.ProductDS.Product_Size_UnitsRow ProdSize = DS.Product_Size_Units.NewProduct_Size_UnitsRow();
+
+                    ProdSize.ID = int.Parse(Item["ID"].ToString());
+                    if (ReturnDataTable.Columns.Contains("Unit"))
+                    {
+                        ProdSize.Unit = Item["Unit"].ToString();
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("TheOrder"))
+                    {
+                        ProdSize.TheOrder =int.Parse( Item["TheOrder"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("GroupType"))
+                    {
+                        ProdSize.GroupType =int.Parse( Item["GroupType"].ToString());
+                    }
+
+                    DS.Product_Size_Units.AddProduct_Size_UnitsRow(ProdSize);
+                }
+                ReturnDS = DS;
+            }
+            //get_product_barcode_by_brandproduct
+            else if (functionName == "get_product_barcode_by_brandproduct")
+            {
+
+                local_datasets.ProductDS DS = new local_datasets.ProductDS();
+                foreach (DataRow Item in ReturnDataTable.Rows)
+                {
+                    local_datasets.ProductDS.Product_BarcodesRow BarRow = DS.Product_Barcodes.NewProduct_BarcodesRow();
+
+                    BarRow.ProductBarcodeID = int.Parse(Item["ProductBarcodeID"].ToString());
+
+                    if (ReturnDataTable.Columns.Contains("BrandProductID"))
+                    {
+                        BarRow.BrandProductID = int.Parse(Item["BrandProductID"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("BarcodeType"))
+                    {
+                        BarRow.BarcodeType = int.Parse(Item["BarcodeType"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("Barcode"))
+                    {
+                        BarRow.Barcode =Item["Barcode"].ToString();
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("CaseQTY"))
+                    {
+                        BarRow.CaseQTY = int.Parse(Item["CaseQTY"].ToString());
+                    }
+
+                    //if (ReturnDataTable.Columns.Contains("IsDeleted"))
+                    //{
+                    //    BarRow.CreatedDateTime = int.Parse(Item["IsDeleted"].ToString());
+                    //}
+                    //if (ReturnDataTable.Columns.Contains("IsDeleted"))
+                    //{
+                    //    BarRow.UpdatedDateTime = int.Parse(Item["IsDeleted"].ToString());
+                    //}
+
+
+                    if (ReturnDataTable.Columns.Contains("IsDeleted"))
+                    {
+                        BarRow.IsDeleted = int.Parse(Item["IsDeleted"].ToString());
+                    }
+
+                    DS.Product_Barcodes.AddProduct_BarcodesRow(BarRow);
                 }
                 ReturnDS = DS;
             }
@@ -751,12 +833,45 @@ namespace Deloco_Pos_C.helper_functions
         public local_datasets.ProductDS add_new_brand_products(string productid, int brandid)
         {
             local_datasets.ProductDS DS = new local_datasets.ProductDS();
-            string parameters = "{'Brand': '" + brandid.ToString() + "','ProductName':" + productid + "}";
+            string parameters = "{'Brand': '" + brandid.ToString() + "','ProductName':'" + productid + "'}";
             string job = "add_new_brand_product";
             string res = Make_db_call(job, parameters.ToString());
             DS.Merge(FormatStringToDataTable("get_brand_products_by_id", res));
             return DS;
         }
 
+        public local_datasets.ProductDS Get_product_sizes(bool refresh)
+        {
+            bool newds = false;
+            if(LocalDS == null)
+            {
+                LocalDS = new local_datasets.ProductDS();
+                newds = true;
+            }
+            string parameters = "";
+            string job = "get_all_product_sizes";
+            if(refresh==true || newds==true)
+            {
+
+                string res = Make_db_call(job, parameters.ToString());
+                LocalDS.Product_Size_Units.Clear();
+                LocalDS.Merge(FormatStringToDataTable(job, res));
+            }
+           
+            
+
+            return LocalDS;
+        }
+
+
+        public local_datasets.ProductDS Get_BrandProduct_Barcodes(int ProductID)
+        {
+            local_datasets.ProductDS DS = new local_datasets.ProductDS();
+            string parameters = "{'BrandProductID': '" + ProductID.ToString() + "'}";
+            string job = "get_product_barcode_by_brandproduct";
+            string res = Make_db_call(job, parameters.ToString());
+            DS.Merge(FormatStringToDataTable(job, res));
+            return DS;
+        }
 }
 }

@@ -21,8 +21,13 @@ namespace Deloco_Pos_C.ctrl
 
         private void ctrl_edit_prodcut_Load(object sender, EventArgs e)
         {
-           
+            ctrl_NameBuilder1.On_BrandProductChanged += Ctrl_NameBuilder1_On_BrandProductChanged;
 
+        }
+
+        private void Ctrl_NameBuilder1_On_BrandProductChanged(object sender, EventArgs e)
+        {
+            ctrl_ProductPhysicalProperties1.Setup_Barcode_Control(ctrl_NameBuilder1.BrandProduct);
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
