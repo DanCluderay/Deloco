@@ -32,7 +32,13 @@
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.barcodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productBarcodesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productDS = new Deloco_Pos_C.local_datasets.ProductDS();
             this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.btnRemoveItemBarcode = new System.Windows.Forms.Button();
+            this.btnEditItemBarcode = new System.Windows.Forms.Button();
+            this.btnAddNewItemBarcode = new System.Windows.Forms.Button();
             this.txtItemWeight = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtItemVolume = new System.Windows.Forms.TextBox();
@@ -46,7 +52,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabItem = new System.Windows.Forms.TabPage();
             this.label11 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtVolumetricWeight = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -54,16 +60,14 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.tabCase = new System.Windows.Forms.TabPage();
-            this.productDS = new Deloco_Pos_C.local_datasets.ProductDS();
-            this.productBarcodesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.barcodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl2.SuspendLayout();
             this.tabPage7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productBarcodesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productDS)).BeginInit();
+            this.tabPage8.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabItem.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.productDS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productBarcodesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl2
@@ -90,18 +94,43 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.barcodeDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.productBarcodesBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(5, 17);
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(224, 113);
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(219, 154);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // barcodeDataGridViewTextBoxColumn
+            // 
+            this.barcodeDataGridViewTextBoxColumn.DataPropertyName = "Barcode";
+            this.barcodeDataGridViewTextBoxColumn.HeaderText = "Barcode";
+            this.barcodeDataGridViewTextBoxColumn.Name = "barcodeDataGridViewTextBoxColumn";
+            this.barcodeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.barcodeDataGridViewTextBoxColumn.Width = 170;
+            // 
+            // productBarcodesBindingSource
+            // 
+            this.productBarcodesBindingSource.DataMember = "Product_Barcodes";
+            this.productBarcodesBindingSource.DataSource = this.productDS;
+            // 
+            // productDS
+            // 
+            this.productDS.DataSetName = "ProductDS";
+            this.productDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // tabPage8
             // 
+            this.tabPage8.Controls.Add(this.btnRemoveItemBarcode);
+            this.tabPage8.Controls.Add(this.btnEditItemBarcode);
+            this.tabPage8.Controls.Add(this.btnAddNewItemBarcode);
             this.tabPage8.Location = new System.Drawing.Point(4, 22);
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
@@ -109,6 +138,34 @@
             this.tabPage8.TabIndex = 1;
             this.tabPage8.Text = "Add / Edit / Delete";
             this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // btnRemoveItemBarcode
+            // 
+            this.btnRemoveItemBarcode.Location = new System.Drawing.Point(21, 108);
+            this.btnRemoveItemBarcode.Name = "btnRemoveItemBarcode";
+            this.btnRemoveItemBarcode.Size = new System.Drawing.Size(106, 31);
+            this.btnRemoveItemBarcode.TabIndex = 6;
+            this.btnRemoveItemBarcode.Text = "Remove";
+            this.btnRemoveItemBarcode.UseVisualStyleBackColor = true;
+            // 
+            // btnEditItemBarcode
+            // 
+            this.btnEditItemBarcode.Location = new System.Drawing.Point(21, 62);
+            this.btnEditItemBarcode.Name = "btnEditItemBarcode";
+            this.btnEditItemBarcode.Size = new System.Drawing.Size(106, 31);
+            this.btnEditItemBarcode.TabIndex = 5;
+            this.btnEditItemBarcode.Text = "Edit";
+            this.btnEditItemBarcode.UseVisualStyleBackColor = true;
+            // 
+            // btnAddNewItemBarcode
+            // 
+            this.btnAddNewItemBarcode.Location = new System.Drawing.Point(21, 16);
+            this.btnAddNewItemBarcode.Name = "btnAddNewItemBarcode";
+            this.btnAddNewItemBarcode.Size = new System.Drawing.Size(106, 31);
+            this.btnAddNewItemBarcode.TabIndex = 4;
+            this.btnAddNewItemBarcode.Text = "Add New";
+            this.btnAddNewItemBarcode.UseVisualStyleBackColor = true;
+            this.btnAddNewItemBarcode.Click += new System.EventHandler(this.btnAddNewItemBarcode_Click);
             // 
             // txtItemWeight
             // 
@@ -185,6 +242,8 @@
             this.txtItemidth.Size = new System.Drawing.Size(31, 20);
             this.txtItemidth.TabIndex = 15;
             this.txtItemidth.Text = "1";
+            this.txtItemidth.TextChanged += new System.EventHandler(this.txtItemidth_TextChanged);
+            this.txtItemidth.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtItemidth_KeyUp);
             // 
             // label1
             // 
@@ -209,7 +268,7 @@
             // tabItem
             // 
             this.tabItem.Controls.Add(this.label11);
-            this.tabItem.Controls.Add(this.textBox1);
+            this.tabItem.Controls.Add(this.txtVolumetricWeight);
             this.tabItem.Controls.Add(this.label12);
             this.tabItem.Controls.Add(this.label10);
             this.tabItem.Controls.Add(this.label9);
@@ -244,14 +303,14 @@
             this.label11.TabIndex = 34;
             this.label11.Text = "KG";
             // 
-            // textBox1
+            // txtVolumetricWeight
             // 
-            this.textBox1.Location = new System.Drawing.Point(256, 64);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(44, 20);
-            this.textBox1.TabIndex = 33;
-            this.textBox1.Text = "0.0";
+            this.txtVolumetricWeight.Location = new System.Drawing.Point(256, 64);
+            this.txtVolumetricWeight.Name = "txtVolumetricWeight";
+            this.txtVolumetricWeight.ReadOnly = true;
+            this.txtVolumetricWeight.Size = new System.Drawing.Size(44, 20);
+            this.txtVolumetricWeight.TabIndex = 33;
+            this.txtVolumetricWeight.Text = "0.0";
             // 
             // label12
             // 
@@ -317,22 +376,6 @@
             this.tabCase.Text = "Case";
             this.tabCase.UseVisualStyleBackColor = true;
             // 
-            // productDS
-            // 
-            this.productDS.DataSetName = "ProductDS";
-            this.productDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // productBarcodesBindingSource
-            // 
-            this.productBarcodesBindingSource.DataMember = "Product_Barcodes";
-            this.productBarcodesBindingSource.DataSource = this.productDS;
-            // 
-            // barcodeDataGridViewTextBoxColumn
-            // 
-            this.barcodeDataGridViewTextBoxColumn.DataPropertyName = "Barcode";
-            this.barcodeDataGridViewTextBoxColumn.HeaderText = "Barcode";
-            this.barcodeDataGridViewTextBoxColumn.Name = "barcodeDataGridViewTextBoxColumn";
-            // 
             // ctrl_ProductPhysicalProperties
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -344,11 +387,12 @@
             this.tabControl2.ResumeLayout(false);
             this.tabPage7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productBarcodesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productDS)).EndInit();
+            this.tabPage8.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabItem.ResumeLayout(false);
             this.tabItem.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.productDS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productBarcodesBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -372,7 +416,7 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabItem;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtVolumetricWeight;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
@@ -380,8 +424,11 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TabPage tabCase;
-        private System.Windows.Forms.DataGridViewTextBoxColumn barcodeDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource productBarcodesBindingSource;
         private local_datasets.ProductDS productDS;
+        private System.Windows.Forms.DataGridViewTextBoxColumn barcodeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button btnRemoveItemBarcode;
+        private System.Windows.Forms.Button btnEditItemBarcode;
+        private System.Windows.Forms.Button btnAddNewItemBarcode;
     }
 }

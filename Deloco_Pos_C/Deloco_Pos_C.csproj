@@ -82,6 +82,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="base_classes\productclass.cs" />
     <Compile Include="base_classes\zoneclass.cs" />
     <Compile Include="ctrl\ctrl_edit_prodcut.cs">
       <SubType>UserControl</SubType>
@@ -100,6 +101,12 @@
     </Compile>
     <Compile Include="ctrl\ctrl_ProductPhysicalProperties.Designer.cs">
       <DependentUpon>ctrl_ProductPhysicalProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ctrl\ctrl_ProductVerfication.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctrl\ctrl_ProductVerfication.Designer.cs">
+      <DependentUpon>ctrl_ProductVerfication.cs</DependentUpon>
     </Compile>
     <Compile Include="ctrl\Furniture\ctrl_checkout.cs">
       <SubType>UserControl</SubType>
@@ -173,6 +180,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>OrderItems_DS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="local_datasets\ProductDS.cs">
+      <DependentUpon>ProductDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="local_datasets\ProductDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -199,6 +209,12 @@
     </Compile>
     <Compile Include="views\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="views\frmAddEditBarcode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\frmAddEditBarcode.Designer.cs">
+      <DependentUpon>frmAddEditBarcode.cs</DependentUpon>
     </Compile>
     <Compile Include="views\frmAddEditLocations.cs">
       <SubType>Form</SubType>
@@ -348,6 +364,9 @@
     <EmbeddedResource Include="ctrl\ctrl_ProductPhysicalProperties.resx">
       <DependentUpon>ctrl_ProductPhysicalProperties.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ctrl\ctrl_ProductVerfication.resx">
+      <DependentUpon>ctrl_ProductVerfication.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ctrl\Furniture\ctrl_checkout.resx">
       <DependentUpon>ctrl_checkout.cs</DependentUpon>
     </EmbeddedResource>
@@ -368,6 +387,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="views\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\frmAddEditBarcode.resx">
+      <DependentUpon>frmAddEditBarcode.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="views\frmAddEditLocations.resx">
       <DependentUpon>frmAddEditLocations.cs</DependentUpon>

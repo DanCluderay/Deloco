@@ -873,5 +873,41 @@ namespace Deloco_Pos_C.helper_functions
             DS.Merge(FormatStringToDataTable(job, res));
             return DS;
         }
+
+        public local_datasets.ProductDS Create_New_Product(base_classes.productclass Prod)
+        {
+            local_datasets.ProductDS DS = new local_datasets.ProductDS();
+            string parameters = "{" +
+                "'ProductID': '" + Prod.BrandProductID.ToString() + "'" +
+                "'ProductName': '" + Prod.BrandProductName.ToString() + "'" +
+                "'ProductFullName': '" + Prod.FullProductName.ToString() + "'" +
+                "'BrandID': '" + Prod.BrandProductID.ToString() + "'" +
+                "'BrandInName': '" + Prod.BrandInName.ToString() + "'" +
+                "'BrandProduct': '" + Prod.BrandProductID.ToString() + "'" +
+                "'ProductShortDescription': '" + Prod.ProductShortDescription.ToString() + "'" +
+                "'ProductLongDescription': '" + Prod.ProductLongDescription.ToString() + "'" +
+                "'ProductRealWeight': '" + Prod.ItemRealWeight.ToString() + "'" +
+                "'ProductVolumetricWeight': '" + Prod.ItemVolumetricWeight.ToString() + "'" +
+                "'ProductVateCode': '" + Prod.ProductVATCode.ToString() + "'" +
+                "'ProductItemRRP': '" + Prod.ProductRRP.ToString() + "'" +
+                "'ProductItemLenght': '" + Prod.ItemLegnth.ToString() + "'" +
+                "'ProductItemWidth': '" + Prod.ItemWidth.ToString() + "'" +
+                "'ProductItemHeight': '" + Prod.ItemHeight.ToString() + "'" +
+                "'ProductTotalVolume': '" + Prod.ItemVolume.ToString() + "'" +
+                "'SizeString': '" + Prod.SizeString.ToString() + "'" +
+                "'SizeRelative': '" + Prod.ProductRelativeSize.ToString() + "'" +
+                "'SizeUnit': '" + Prod.ProductUnitSize.ToString() + "'" +
+                "'PreFix': '" + Prod.PreFix.ToString() + "'" +
+                "'PostFix': '" + Prod.PostFox.ToString() + "'" +
+                "'ISLocked': '" + Prod.IsLocked.ToString() + "'" +
+                "'IsLockedBy': '" + Prod.IsLockedBy.ToString() + "'" +
+                "'InnerPackQty': '" + Prod.InnerPackQTY.ToString() + "'" +
+                "'IsCasePick': '" + Prod.IsCasePick.ToString() + "'" +
+                "}";
+            string job = "get_product_barcode_by_brandproduct";
+            string res = Make_db_call(job, parameters.ToString());
+            DS.Merge(FormatStringToDataTable(job, res));
+            return DS;
+        }
 }
 }

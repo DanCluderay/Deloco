@@ -16,5 +16,10 @@ namespace Deloco_Pos_C.views
         {
             InitializeComponent();
         }
+
+        private void ctrl_edit_prodcut1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -14,6 +14,10 @@ namespace Deloco_Pos_C.ctrl
     {
         helper_functions.globalHelper logic_global = helper_functions.globalHelper.Instance;
         public event EventHandler On_BrandProductChanged = delegate { };
+       
+        public event EventHandler On_NameChanged = delegate { };
+
+
         public ctrl_NameBuilder()
         {
             InitializeComponent();
@@ -132,6 +136,7 @@ namespace Deloco_Pos_C.ctrl
 
 
             txtFullName.Text = PreFix + " " + brand_to_display + " " + cmbProductType.Text + " " + TheSize + " " + unit_size + " " + PostFix;
+            On_NameChanged(this, new EventArgs());
         }
 
         private void txtPrefix_TextChanged(object sender, EventArgs e)
@@ -161,6 +166,7 @@ namespace Deloco_Pos_C.ctrl
             }
             ShowOptionsTab();
             BuildProductName();
+           
         }
 
         private void txtProductName_TextChanged(object sender, EventArgs e)
@@ -193,6 +199,7 @@ namespace Deloco_Pos_C.ctrl
         {
             BrandInName = chkBrandInName.Checked;
             BuildProductName();
+
         }
 
         private void txtSize_TextChanged(object sender, EventArgs e)
@@ -337,6 +344,7 @@ namespace Deloco_Pos_C.ctrl
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             TheRelativeSize =int.Parse(cmbRelativeSize.SelectedValue.ToString());
+            On_NameChanged(this, new EventArgs());
         }
     }
 }
