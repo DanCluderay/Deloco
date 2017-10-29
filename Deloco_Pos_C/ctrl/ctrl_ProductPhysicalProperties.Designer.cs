@@ -174,6 +174,7 @@
             this.txtItemWeight.Size = new System.Drawing.Size(44, 20);
             this.txtItemWeight.TabIndex = 23;
             this.txtItemWeight.Text = "0.0";
+            this.txtItemWeight.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtItemWeight_KeyUp);
             // 
             // label5
             // 
@@ -208,6 +209,7 @@
             this.txtItemLenght.Size = new System.Drawing.Size(31, 20);
             this.txtItemLenght.TabIndex = 19;
             this.txtItemLenght.Text = "1";
+            this.txtItemLenght.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtItemLenght_KeyUp);
             // 
             // label3
             // 
@@ -225,6 +227,7 @@
             this.txtItemHeight.Size = new System.Drawing.Size(31, 20);
             this.txtItemHeight.TabIndex = 17;
             this.txtItemHeight.Text = "1";
+            this.txtItemHeight.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtItemHeight_KeyUp);
             // 
             // label2
             // 

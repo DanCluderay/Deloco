@@ -32,7 +32,7 @@ namespace Deloco_Pos_C.base_classes
         public double ItemVolumetricWeight { get; set; }
         public string ProductShortDescription { get; set; }
         public string ProductLongDescription { get; set; }
-        public double ProductRRP { get; set; }
+
         public int ProductVATCode { get; set; }
         public int InnerPackQTY { get; set; }
         public bool IsCasePick { get; set; }

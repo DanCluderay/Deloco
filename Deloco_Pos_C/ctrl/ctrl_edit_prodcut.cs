@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Reflection;
 
 namespace Deloco_Pos_C.ctrl
 {
     public partial class ctrl_edit_prodcut : UserControl
     {
+        bool setupmode;
+        local_datasets.ProductDS DS;
         base_classes.productclass ProdClass;
         helper_functions.globalHelper logic_global = helper_functions.globalHelper.Instance;
         public ctrl_edit_prodcut()
@@ -22,10 +25,13 @@ namespace Deloco_Pos_C.ctrl
 
         private void ctrl_edit_prodcut_Load(object sender, EventArgs e)
         {
-            ctrl_NameBuilder1.On_BrandProductChanged += Ctrl_NameBuilder1_On_BrandProductChanged;
-            ctrl_NameBuilder1.On_NameChanged += Ctrl_NameBuilder1_On_NameChanged;
+            setupmode = true;
+            ctrl_NameBuilder2.On_BrandProductChanged += Ctrl_NameBuilder1_On_BrandProductChanged;
+            ctrl_NameBuilder2.On_NameChanged += Ctrl_NameBuilder1_On_NameChanged;
             ctrl_ProductPhysicalProperties1.On_PhysicalPropertiesChanged += Ctrl_ProductPhysicalProperties1_On_PhysicalPropertiesChanged;
             ProdClass = new base_classes.productclass();
+            DS = new local_datasets.ProductDS();
+            setupmode = false;
         }
 
         private void Ctrl_ProductPhysicalProperties1_On_PhysicalPropertiesChanged(object sender, EventArgs e)
@@ -36,7 +42,7 @@ namespace Deloco_Pos_C.ctrl
             ProdClass.ItemVolume = ctrl_ProductPhysicalProperties1.ItemTotalVolume;
             ProdClass.ItemVolumetricWeight = ctrl_ProductPhysicalProperties1.ItemVolumaticWeight;
             ProdClass.ItemRealWeight = ctrl_ProductPhysicalProperties1.ItemWeight;
-            
+            Display_props();
         }
 
         private void Ctrl_NameBuilder1_On_NameChanged(object sender, EventArgs e)
@@ -62,9 +68,33 @@ namespace Deloco_Pos_C.ctrl
             ProdClass.ProductUnitSize = 0;
             ProdClass.ProductVATCode = 0;
             ProdClass.SizeString = "";
-
+            Display_props();
         }
+        private void Display_props()
+        {
+            if (setupmode==false)
+            {
+                Type type = ProdClass.GetType();
+                PropertyInfo[] properties = type.GetProperties();
+                listBox1.Items.Clear();
+                DS.ValuePair.Clear();
+                foreach (PropertyInfo property in properties)
+                {
+                    string Vlau = "Name: " + property.Name + ", Value: " + property.GetValue(ProdClass, null);
+                
+                    listBox1.Items.Add(Vlau);
 
+                    local_datasets.ProductDS.ValuePairRow NewRow = DS.ValuePair.NewValuePairRow();
+                
+                    NewRow.value = property.GetValue(ProdClass, null).ToString();
+                    NewRow.Prop = property.Name.ToString();
+                    DS.ValuePair.AddValuePairRow(NewRow);
+
+                }
+                productDS.Merge(DS);
+            }
+            
+        }
         private void Ctrl_NameBuilder1_On_BrandProductChanged(object sender, EventArgs e)
         {
             ctrl_ProductPhysicalProperties1.Setup_Barcode_Control(ctrl_NameBuilder1.BrandProduct);
@@ -82,7 +112,7 @@ namespace Deloco_Pos_C.ctrl
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            logic_global.Create_New_Product(ProdClass);
         }
     }
 }

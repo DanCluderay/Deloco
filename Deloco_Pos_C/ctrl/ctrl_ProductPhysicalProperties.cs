@@ -66,7 +66,7 @@ namespace Deloco_Pos_C.ctrl
 
         private void txtItemidth_KeyUp(object sender, KeyEventArgs e)
         {
-
+            CalculateVolume();
         }
         private void CalculateVolume()
         {
@@ -78,35 +78,35 @@ namespace Deloco_Pos_C.ctrl
             double dVW;
             bool res;
             res = int.TryParse(txtItemLenght.Text, out iL);
-            if(res==true)
+            if(res==false)
             {
                 MessageBox.Show("Lenght not a number");
                 return;
             }
 
             res = int.TryParse(txtItemHeight.Text, out iH);
-            if (res == true)
+            if (res == false)
             {
                 MessageBox.Show("Height not a number");
                 return;
             }
 
             res = int.TryParse(txtItemidth.Text, out iW);
-            if (res == true)
+            if (res == false)
             {
                 MessageBox.Show("Width not a number");
                 return;
             }
 
             res = double.TryParse(txtItemWeight.Text, out dW);
-            if (res == true)
+            if (res == false)
             {
                 MessageBox.Show("Weight not a number");
                 return;
             }
 
             res = double.TryParse(txtVolumetricWeight.Text, out dVW);
-            if (res == true)
+            if (res == false)
             {
                 MessageBox.Show("Volumetric Weight not a number");
                 return;
@@ -115,12 +115,27 @@ namespace Deloco_Pos_C.ctrl
             ItemWidth = iW;
             ItemHeight = iH;
             ItemLenght = iL;
-            ItemVolumaticWeight =dVW;
+            ItemVolumaticWeight = dW*1.1;
             ItemTotalVolume = iW * iH * iL;
             ItemWeight = dW;
 
             txtItemVolume.Text = ItemTotalVolume.ToString();
             On_PhysicalPropertiesChanged(this, new EventArgs());
+        }
+
+        private void txtItemHeight_KeyUp(object sender, KeyEventArgs e)
+        {
+            CalculateVolume();
+        }
+
+        private void txtItemLenght_KeyUp(object sender, KeyEventArgs e)
+        {
+            CalculateVolume();
+        }
+
+        private void txtItemWeight_KeyUp(object sender, KeyEventArgs e)
+        {
+            CalculateVolume();
         }
     }
 }
