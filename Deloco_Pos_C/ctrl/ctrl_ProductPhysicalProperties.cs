@@ -73,7 +73,6 @@ namespace Deloco_Pos_C.ctrl
             int iL;
             int iH;
             int iW;
-            int iV;
             double dW;
             double dVW;
             bool res;

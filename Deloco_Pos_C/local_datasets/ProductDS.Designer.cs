@@ -3039,6 +3039,8 @@ namespace Deloco_Pos_C.local_datasets {
             
             private global::System.Data.DataColumn columnvalue;
             
+            private global::System.Data.DataColumn columnoriginalValue;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public ValuePairDataTable() {
@@ -3090,6 +3092,14 @@ namespace Deloco_Pos_C.local_datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn originalValueColumn {
+                get {
+                    return this.columnoriginalValue;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -3125,11 +3135,12 @@ namespace Deloco_Pos_C.local_datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public ValuePairRow AddValuePairRow(string Prop, string value) {
+            public ValuePairRow AddValuePairRow(string Prop, string value, string originalValue) {
                 ValuePairRow rowValuePairRow = ((ValuePairRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Prop,
-                        value};
+                        value,
+                        originalValue};
                 rowValuePairRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowValuePairRow);
                 return rowValuePairRow;
@@ -3154,6 +3165,7 @@ namespace Deloco_Pos_C.local_datasets {
             internal void InitVars() {
                 this.columnProp = base.Columns["Prop"];
                 this.columnvalue = base.Columns["value"];
+                this.columnoriginalValue = base.Columns["originalValue"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3163,6 +3175,8 @@ namespace Deloco_Pos_C.local_datasets {
                 base.Columns.Add(this.columnProp);
                 this.columnvalue = new global::System.Data.DataColumn("value", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnvalue);
+                this.columnoriginalValue = new global::System.Data.DataColumn("originalValue", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnoriginalValue);
                 this.columnvalue.DefaultValue = ((string)(""));
             }
             
@@ -4797,6 +4811,22 @@ namespace Deloco_Pos_C.local_datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string originalValue {
+                get {
+                    try {
+                        return ((string)(this[this.tableValuePair.originalValueColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'originalValue\' in table \'ValuePair\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableValuePair.originalValueColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsPropNull() {
                 return this.IsNull(this.tableValuePair.PropColumn);
             }
@@ -4817,6 +4847,18 @@ namespace Deloco_Pos_C.local_datasets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetvalueNull() {
                 this[this.tableValuePair.valueColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsoriginalValueNull() {
+                return this.IsNull(this.tableValuePair.originalValueColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetoriginalValueNull() {
+                this[this.tableValuePair.originalValueColumn] = global::System.Convert.DBNull;
             }
         }
         

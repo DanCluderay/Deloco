@@ -13,7 +13,7 @@
     <Shape ID="DesignTable:Product_Size_Units" ZOrder="4" X="765" Y="285" Height="105" Width="175" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="149" />
     <Shape ID="DesignTable:Product_Barcodes" ZOrder="3" X="151" Y="221" Height="181" Width="169" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="225" />
     <Shape ID="DesignTable:ProductVerification" ZOrder="2" X="123" Y="482" Height="105" Width="179" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="82" />
-    <Shape ID="DesignTable:ValuePair" ZOrder="1" X="369" Y="477" Height="67" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="63" />
+    <Shape ID="DesignTable:ValuePair" ZOrder="1" X="369" Y="477" Height="86" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="82" />
   </Shapes>
   <Connectors />
 </DiagramLayout>

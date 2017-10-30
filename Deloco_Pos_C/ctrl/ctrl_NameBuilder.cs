@@ -23,6 +23,7 @@ namespace Deloco_Pos_C.ctrl
             InitializeComponent();
             helper_functions.globalHelper logic_global = helper_functions.globalHelper.Instance;
         }
+        public string FullProductName;
         public string PreFix;
         public string PostFix;
         public int BrandID;
@@ -135,7 +136,8 @@ namespace Deloco_Pos_C.ctrl
 
 
 
-            txtFullName.Text = PreFix + " " + brand_to_display + " " + cmbProductType.Text + " " + TheSize + " " + unit_size + " " + PostFix;
+            FullProductName = PreFix + " " + brand_to_display + " " + cmbProductType.Text + " " + TheSize + " " + unit_size + " " + PostFix;
+            txtFullName.Text = FullProductName;
             On_NameChanged(this, new EventArgs());
         }
 
@@ -331,20 +333,32 @@ namespace Deloco_Pos_C.ctrl
 
         private void cmbProductType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BrandProduct=int.Parse( cmbProductType.SelectedValue.ToString());
-            BuildProductName();
-            On_BrandProductChanged(this, new EventArgs());
+            if(cmbProductType.SelectedValue!=null)
+            {
+                BrandProduct=int.Parse( cmbProductType.SelectedValue.ToString());
+                BuildProductName();
+                On_BrandProductChanged(this, new EventArgs());
+            }
+
         }
 
         private void cmbUnitSize_SelectedIndexChanged(object sender, EventArgs e)
         {
-            TheUnitSize =int.Parse(cmbUnitSize.SelectedValue.ToString());
+            if(cmbUnitSize.SelectedValue!=null)
+            {
+                TheUnitSize =int.Parse(cmbUnitSize.SelectedValue.ToString());
+            }
+            
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            TheRelativeSize =int.Parse(cmbRelativeSize.SelectedValue.ToString());
-            On_NameChanged(this, new EventArgs());
+            if(cmbRelativeSize.SelectedValue!=null)
+            {
+                TheRelativeSize =int.Parse(cmbRelativeSize.SelectedValue.ToString());
+                On_NameChanged(this, new EventArgs());
+            }
+
         }
     }
 }

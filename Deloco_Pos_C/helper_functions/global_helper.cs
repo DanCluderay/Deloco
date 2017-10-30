@@ -874,13 +874,51 @@ namespace Deloco_Pos_C.helper_functions
             return DS;
         }
 
-        public local_datasets.ProductDS Create_New_Product(base_classes.productclass Prod)
+        public local_datasets.ProductDS Create_New_Product(base_classes.productclass Prod, local_datasets.ProductDS CheckDS)
         {
             local_datasets.ProductDS DS = new local_datasets.ProductDS();
-            string parameters = "{" +
-                "'ProductID': '" + Prod.BrandProductID.ToString() + "'" +
-                "'ProductName': '" + Prod.BrandProductName.ToString() + "'" +
-                "'ProductFullName': '" + Prod.FullProductName.ToString() + "'" +
+
+            string parameters="";
+            if (CheckNewValue(CheckDS, "ProductID") == true) { parameters = parameters + "'ProductID': '" + Prod.BrandProductID.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "ProductName") == true) { parameters = parameters + "'ProductName': '" + Prod.BrandProductName.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "ProductFullName") == true) { parameters = parameters + "'ProductFullName': '" + Prod.FullProductName.ToString() + "'"; }
+
+
+            if (CheckNewValue(CheckDS, "BrandID") == true) { parameters = parameters + "'ProductID': '" + Prod.BrandProductID.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "BrandInName") == true) { parameters = parameters + "'ProductName': '" + Prod.BrandProductName.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "BrandProduct") == true) { parameters = parameters + "'ProductFullName': '" + Prod.FullProductName.ToString() + "'"; }
+
+
+            if (CheckNewValue(CheckDS, "ProductShortDescription") == true) { parameters = parameters + "'ProductID': '" + Prod.BrandProductID.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "ProductLongDescription") == true) { parameters = parameters + "'ProductName': '" + Prod.BrandProductName.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "ProductRealWeight") == true) { parameters = parameters + "'ProductFullName': '" + Prod.FullProductName.ToString() + "'"; }
+
+
+            if (CheckNewValue(CheckDS, "ProductVolumetricWeight") == true) { parameters = parameters + "'ProductID': '" + Prod.BrandProductID.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "ProductVateCode") == true) { parameters = parameters + "'ProductName': '" + Prod.BrandProductName.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "ProductItemRRP") == true) { parameters = parameters + "'ProductFullName': '" + Prod.FullProductName.ToString() + "'"; }
+
+
+
+            if (CheckNewValue(CheckDS, "ProductItemLenght") == true) { parameters = parameters + "'ProductID': '" + Prod.BrandProductID.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "ProductItemWidth") == true) { parameters = parameters + "'ProductName': '" + Prod.BrandProductName.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "ProductItemHeight") == true) { parameters = parameters + "'ProductFullName': '" + Prod.FullProductName.ToString() + "'"; }
+
+            if (CheckNewValue(CheckDS, "ProductTotalVolume") == true) { parameters = parameters + "'ProductID': '" + Prod.BrandProductID.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "SizeRelative") == true) { parameters = parameters + "'ProductName': '" + Prod.BrandProductName.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "SizeUnit") == true) { parameters = parameters + "'ProductFullName': '" + Prod.FullProductName.ToString() + "'"; }
+
+            if (CheckNewValue(CheckDS, "PreFix") == true) { parameters = parameters + "'ProductID': '" + Prod.BrandProductID.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "PostFix") == true) { parameters = parameters + "'ProductName': '" + Prod.BrandProductName.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "ISLocked") == true) { parameters = parameters + "'ProductFullName': '" + Prod.FullProductName.ToString() + "'"; }
+
+            if (CheckNewValue(CheckDS, "IsLockedBy") == true) { parameters = parameters + "'ProductID': '" + Prod.BrandProductID.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "InnerPackQty") == true) { parameters = parameters + "'ProductName': '" + Prod.BrandProductName.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "IsCasePick") == true) { parameters = parameters + "'ProductFullName': '" + Prod.FullProductName.ToString() + "'"; }
+
+            parameters = "{" +
+                 
+                
                 "'BrandID': '" + Prod.BrandProductID.ToString() + "'" +
                 "'BrandInName': '" + Prod.BrandInName.ToString() + "'" +
                 "'BrandProduct': '" + Prod.BrandProductID.ToString() + "'" +
@@ -894,7 +932,6 @@ namespace Deloco_Pos_C.helper_functions
                 "'ProductItemWidth': '" + Prod.ItemWidth.ToString() + "'" +
                 "'ProductItemHeight': '" + Prod.ItemHeight.ToString() + "'" +
                 "'ProductTotalVolume': '" + Prod.ItemVolume.ToString() + "'" +
-                "'SizeString': '" + Prod.SizeString.ToString() + "'" +
                 "'SizeRelative': '" + Prod.ProductRelativeSize.ToString() + "'" +
                 "'SizeUnit': '" + Prod.ProductUnitSize.ToString() + "'" +
                 "'PreFix': '" + Prod.PreFix.ToString() + "'" +
@@ -904,10 +941,39 @@ namespace Deloco_Pos_C.helper_functions
                 "'InnerPackQty': '" + Prod.InnerPackQTY.ToString() + "'" +
                 "'IsCasePick': '" + Prod.IsCasePick.ToString() + "'" +
                 "}";
+
+          
+
             string job = "get_product_barcode_by_brandproduct";
             string res = Make_db_call(job, parameters.ToString());
             DS.Merge(FormatStringToDataTable(job, res));
             return DS;
+        }
+        private bool CheckNewValue(local_datasets.ProductDS CheckDS,string Key)
+        {
+            bool ret=false;
+            DataRow[] result;
+            //search for the value pair
+            result = CheckDS.ValuePair.Select("Prop='" + Key + "'");
+            if (result.Length==1)
+            {
+                // the the original value changed?
+                if(result[0]["value"]!= result[0]["originalValue"])
+                {
+                    //there has been a change
+                    ret = true;
+                }
+                else
+                {
+                    ret = false;
+                }
+            }
+            else
+            {
+                ret = false;
+            }
+
+                return ret;
         }
 }
 }

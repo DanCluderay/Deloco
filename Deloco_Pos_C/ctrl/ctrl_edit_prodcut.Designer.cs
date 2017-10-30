@@ -39,6 +39,7 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.ctrl_NameBuilder2 = new Deloco_Pos_C.ctrl.ctrl_NameBuilder();
             this.ctrl_ProductPhysicalProperties1 = new Deloco_Pos_C.ctrl.ctrl_ProductPhysicalProperties();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -48,7 +49,6 @@
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.brandsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.ctrl_NameBuilder2 = new Deloco_Pos_C.ctrl.ctrl_NameBuilder();
             this.tabControl1.SuspendLayout();
             this.tabPage7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -86,6 +86,7 @@
             this.tabPage7.TabIndex = 7;
             this.tabPage7.Text = "Summery";
             this.tabPage7.UseVisualStyleBackColor = true;
+            this.tabPage7.Click += new System.EventHandler(this.tabPage7_Click);
             // 
             // dataGridView1
             // 
@@ -158,6 +159,14 @@
             this.tabPage1.Text = "Main Info";
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // ctrl_NameBuilder2
+            // 
+            this.ctrl_NameBuilder2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ctrl_NameBuilder2.Location = new System.Drawing.Point(16, 23);
+            this.ctrl_NameBuilder2.Name = "ctrl_NameBuilder2";
+            this.ctrl_NameBuilder2.Size = new System.Drawing.Size(489, 293);
+            this.ctrl_NameBuilder2.TabIndex = 6;
             // 
             // ctrl_ProductPhysicalProperties1
             // 
@@ -241,14 +250,6 @@
             this.brandsBindingSource.DataMember = "Brands";
             this.brandsBindingSource.DataSource = this.productDS;
             // 
-            // ctrl_NameBuilder2
-            // 
-            this.ctrl_NameBuilder2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ctrl_NameBuilder2.Location = new System.Drawing.Point(16, 23);
-            this.ctrl_NameBuilder2.Name = "ctrl_NameBuilder2";
-            this.ctrl_NameBuilder2.Size = new System.Drawing.Size(489, 293);
-            this.ctrl_NameBuilder2.TabIndex = 6;
-            // 
             // ctrl_edit_prodcut
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -283,7 +284,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TabPage tabPage7;
         private ctrl_ProductPhysicalProperties ctrl_ProductPhysicalProperties1;
-        private ctrl_NameBuilder ctrl_NameBuilder1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.DataGridView dataGridView1;

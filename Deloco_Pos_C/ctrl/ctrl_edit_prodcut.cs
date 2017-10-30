@@ -47,27 +47,30 @@ namespace Deloco_Pos_C.ctrl
 
         private void Ctrl_NameBuilder1_On_NameChanged(object sender, EventArgs e)
         {
-            ProdClass.BrandID = ctrl_NameBuilder1.BrandID;
-            ProdClass.BrandInName = ctrl_NameBuilder1.BrandInName;
-            ProdClass.BrandName = ctrl_NameBuilder1.BrandName;
-            ProdClass.BrandProductID = ctrl_NameBuilder1.BrandProduct;
-            ProdClass.BrandProductName = ctrl_NameBuilder1.ProductName;
-            ProdClass.BrandProductSize = ctrl_NameBuilder1.TheSize;
-            //ProdClass.FullProductName= ctrl_NameBuilder1.
+            ctrl_NameBuilder NameControl = sender as ctrl_NameBuilder;
+            ProdClass.BrandID = NameControl.BrandID;
+            ProdClass.BrandInName = NameControl.BrandInName;
+            ProdClass.BrandName = NameControl.BrandName;
+            ProdClass.BrandProductID = NameControl.BrandProduct;
+            ProdClass.BrandProductName = NameControl.ProductName;
+            ProdClass.BrandProductSize = NameControl.TheSize;
+            ProdClass.FullProductName = NameControl.FullProductName;
             ProdClass.InnerPackQTY = 0;
             ProdClass.IsCasePick = false;
             ProdClass.IsLocked = false;
             ProdClass.IsLockedBy = 0;
             
-            ProdClass.PostFox = ctrl_NameBuilder1.PostFix;
-            ProdClass.PreFix = ctrl_NameBuilder1.PreFix;
+            ProdClass.PostFox = NameControl.PostFix;
+            ProdClass.PreFix = NameControl.PreFix;
             ProdClass.ProductLongDescription = "";
             ProdClass.ProductRelativeSize = 0;
             ProdClass.ProductRRP = 0;
             ProdClass.ProductShortDescription = "";
             ProdClass.ProductUnitSize = 0;
             ProdClass.ProductVATCode = 0;
-            ProdClass.SizeString = "";
+            ProdClass.ProductUnitSize = NameControl.TheUnitSize;
+            ProdClass.ProductRelativeSize = NameControl.TheRelativeSize;
+            
             Display_props();
         }
         private void Display_props()
@@ -85,19 +88,54 @@ namespace Deloco_Pos_C.ctrl
                     listBox1.Items.Add(Vlau);
 
                     local_datasets.ProductDS.ValuePairRow NewRow = DS.ValuePair.NewValuePairRow();
-                
-                    NewRow.value = property.GetValue(ProdClass, null).ToString();
-                    NewRow.Prop = property.Name.ToString();
+                    if(property.GetValue(ProdClass, null) != null)
+                    {
+                        NewRow.value = property.GetValue(ProdClass, null).ToString();
+                    }
+                    else
+                    {
+                        NewRow.value = "";
+                    }
+                    if (property.Name.ToString() != null)
+                    {
+                        NewRow.Prop = property.Name.ToString();
+                    }
+                    else
+                    {
+                        NewRow.Prop = "";
+                    }
+
                     DS.ValuePair.AddValuePairRow(NewRow);
 
                 }
+                productDS.ValuePair.Clear();
                 productDS.Merge(DS);
+
+               foreach( DataGridViewRow Row in dataGridView1.Rows)
+                {
+                    if(Row.Cells[1].Value.ToString() == null)
+                    {
+                        Row.Cells[1].Style.BackColor = Color.Red;
+                    }
+                    else if(Row.Cells[1].Value.ToString()=="")
+                    {
+                        Row.Cells[1].Style.BackColor = Color.Red;
+                    }
+                    else if (Row.Cells[1].Value.ToString() == "0")
+                    {
+                        Row.Cells[1].Style.BackColor = Color.Red;
+                    }
+                    else
+                    {
+                        Row.Cells[1].Style.BackColor = Color.Green;
+                    }
+                }
             }
             
         }
         private void Ctrl_NameBuilder1_On_BrandProductChanged(object sender, EventArgs e)
         {
-            ctrl_ProductPhysicalProperties1.Setup_Barcode_Control(ctrl_NameBuilder1.BrandProduct);
+            ctrl_ProductPhysicalProperties1.Setup_Barcode_Control(ctrl_NameBuilder2.BrandProduct);
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
@@ -113,6 +151,11 @@ namespace Deloco_Pos_C.ctrl
         private void button1_Click(object sender, EventArgs e)
         {
             logic_global.Create_New_Product(ProdClass);
+        }
+
+        private void tabPage7_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
