@@ -8,10 +8,11 @@ namespace Deloco_Pos_C.base_classes
 {
     public class productclass
     {
-        public int BrandProductID { get; set; }
-        public string FullProductName { get; set; }
+        public int BrandProduct { get; set; }
+        public string ProductName { get; set; }
+        public string ProductFullName { get; set; }
         public string PreFix { get; set; }
-        public string PostFox { get; set; }
+        public string PostFix { get; set; }
         public int BrandID { get; set; }
         public string BrandName { get; set; }
         public bool BrandInName { get; set; }
@@ -20,23 +21,25 @@ namespace Deloco_Pos_C.base_classes
         
         public double ProductRRP { get; set; }
 
-        public int ProductUnitSize { get; set; }
-        public int ProductRelativeSize { get; set; }
-        public int ItemWidth { get; set; }
-        public int ItemLegnth { get; set; }
-        public int ItemHeight { get; set; }
-        public int ItemVolume { get; set; }
-        public double ItemRealWeight { get; set; }
-        public double ItemVolumetricWeight { get; set; }
+        public int SizeUnit { get; set; }
+        public int SizeRelative { get; set; }
+        public int ProductItemWidth { get; set; }
+        public int ProductItemLenght { get; set; }
+        public int ProductItemHeight { get; set; }
+        public int ProductTotalVolume { get; set; }
+        public double ProductRealWeight { get; set; }
+        public double ProductVolumetricWeight { get; set; }
         public string ProductShortDescription { get; set; }
         public string ProductLongDescription { get; set; }
 
-        public int ProductVATCode { get; set; }
+        public int ProductVateCode { get; set; }
         public int InnerPackQTY { get; set; }
         public bool IsCasePick { get; set; }
 
-        public bool IsLocked { get; set; }
-        public int IsLockedBy { get; set; }
+        public double ProductItemRRP { get; set; }
 
+        public bool ISLocked { get; set; }
+        public int IsLockedBy { get; set; }
+        
     }
 }

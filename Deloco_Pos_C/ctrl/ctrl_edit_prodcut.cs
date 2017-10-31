@@ -36,12 +36,12 @@ namespace Deloco_Pos_C.ctrl
 
         private void Ctrl_ProductPhysicalProperties1_On_PhysicalPropertiesChanged(object sender, EventArgs e)
         {
-            ProdClass.ItemHeight = ctrl_ProductPhysicalProperties1.ItemHeight;
-            ProdClass.ItemLegnth = ctrl_ProductPhysicalProperties1.ItemLenght ;
-            ProdClass.ItemWidth = ctrl_ProductPhysicalProperties1.ItemWidth;
-            ProdClass.ItemVolume = ctrl_ProductPhysicalProperties1.ItemTotalVolume;
-            ProdClass.ItemVolumetricWeight = ctrl_ProductPhysicalProperties1.ItemVolumaticWeight;
-            ProdClass.ItemRealWeight = ctrl_ProductPhysicalProperties1.ItemWeight;
+            ProdClass.ProductItemHeight = ctrl_ProductPhysicalProperties1.ItemHeight;
+            ProdClass.ProductItemLenght = ctrl_ProductPhysicalProperties1.ItemLenght ;
+            ProdClass.ProductItemWidth = ctrl_ProductPhysicalProperties1.ItemWidth;
+            ProdClass.ProductTotalVolume = ctrl_ProductPhysicalProperties1.ItemTotalVolume;
+            ProdClass.ProductVolumetricWeight = ctrl_ProductPhysicalProperties1.ItemVolumaticWeight;
+            ProdClass.ProductRealWeight = ctrl_ProductPhysicalProperties1.ItemWeight;
             Display_props();
         }
 
@@ -51,25 +51,25 @@ namespace Deloco_Pos_C.ctrl
             ProdClass.BrandID = NameControl.BrandID;
             ProdClass.BrandInName = NameControl.BrandInName;
             ProdClass.BrandName = NameControl.BrandName;
-            ProdClass.BrandProductID = NameControl.BrandProduct;
+            ProdClass.BrandProduct = NameControl.BrandProduct;
             ProdClass.BrandProductName = NameControl.ProductName;
             ProdClass.BrandProductSize = NameControl.TheSize;
-            ProdClass.FullProductName = NameControl.FullProductName;
-            ProdClass.InnerPackQTY = 0;
+            ProdClass.ProductFullName = NameControl.FullProductName;
+            ProdClass.InnerPackQty = 0;
             ProdClass.IsCasePick = false;
-            ProdClass.IsLocked = false;
+            ProdClass.ISLocked = false;
             ProdClass.IsLockedBy = 0;
             
-            ProdClass.PostFox = NameControl.PostFix;
+            ProdClass.PostFix = NameControl.PostFix;
             ProdClass.PreFix = NameControl.PreFix;
             ProdClass.ProductLongDescription = "";
-            ProdClass.ProductRelativeSize = 0;
+            ProdClass.SizeRelative = 0;
             ProdClass.ProductRRP = 0;
             ProdClass.ProductShortDescription = "";
-            ProdClass.ProductUnitSize = 0;
-            ProdClass.ProductVATCode = 0;
-            ProdClass.ProductUnitSize = NameControl.TheUnitSize;
-            ProdClass.ProductRelativeSize = NameControl.TheRelativeSize;
+            ProdClass.SizeUnit = 0;
+            ProdClass.ProductVateCode = 0;
+            ProdClass.SizeUnit = NameControl.TheUnitSize;
+            ProdClass.SizeRelative = NameControl.TheRelativeSize;
             
             Display_props();
         }
@@ -150,7 +150,7 @@ namespace Deloco_Pos_C.ctrl
 
         private void button1_Click(object sender, EventArgs e)
         {
-            logic_global.Create_New_Product(ProdClass);
+            logic_global.Update_Product(ProdClass,productDS);
         }
 
         private void tabPage7_Click(object sender, EventArgs e)
