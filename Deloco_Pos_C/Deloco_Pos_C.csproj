@@ -196,6 +196,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ProductVarientView.xsd</DependentUpon>
     </Compile>
+    <Compile Include="local_datasets\StockControlDS.cs">
+      <DependentUpon>StockControlDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="local_datasets\StockControlDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StockControlDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="local_datasets\store_locations.cs">
       <DependentUpon>store_locations.xsd</DependentUpon>
     </Compile>
@@ -553,6 +561,17 @@
     </None>
     <None Include="local_datasets\ProductVarientView.xss">
       <DependentUpon>ProductVarientView.xsd</DependentUpon>
+    </None>
+    <None Include="local_datasets\StockControlDS.xsc">
+      <DependentUpon>StockControlDS.xsd</DependentUpon>
+    </None>
+    <None Include="local_datasets\StockControlDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StockControlDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="local_datasets\StockControlDS.xss">
+      <DependentUpon>StockControlDS.xsd</DependentUpon>
     </None>
     <None Include="local_datasets\store_locations.xsc">
       <DependentUpon>store_locations.xsd</DependentUpon>

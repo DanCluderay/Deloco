@@ -167,6 +167,7 @@
             this.ctrl_NameBuilder2.Name = "ctrl_NameBuilder2";
             this.ctrl_NameBuilder2.Size = new System.Drawing.Size(489, 293);
             this.ctrl_NameBuilder2.TabIndex = 6;
+            this.ctrl_NameBuilder2.Load += new System.EventHandler(this.ctrl_NameBuilder2_Load);
             // 
             // ctrl_ProductPhysicalProperties1
             // 

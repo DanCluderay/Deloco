@@ -121,6 +121,7 @@
             this.txtFullName.ReadOnly = true;
             this.txtFullName.Size = new System.Drawing.Size(364, 20);
             this.txtFullName.TabIndex = 27;
+            this.txtFullName.TextChanged += new System.EventHandler(this.txtFullName_TextChanged);
             // 
             // label11
             // 

@@ -336,6 +336,7 @@ namespace Deloco_Pos_C.ctrl
             if(cmbProductType.SelectedValue!=null)
             {
                 BrandProduct=int.Parse( cmbProductType.SelectedValue.ToString());
+                TheProduct_Name = cmbProductType.Text;
                 BuildProductName();
                 On_BrandProductChanged(this, new EventArgs());
             }
@@ -359,6 +360,12 @@ namespace Deloco_Pos_C.ctrl
                 On_NameChanged(this, new EventArgs());
             }
 
+        }
+
+        private void txtFullName_TextChanged(object sender, EventArgs e)
+        {
+            
+            
         }
     }
 }

@@ -684,6 +684,43 @@ namespace Deloco_Pos_C.helper_functions
                 }
                 ReturnDS = DS;
             }
+
+            //get_product_stock
+            else if (functionName == "get_product_stock")
+            {
+
+                local_datasets.StockControlDS DS = new local_datasets.StockControlDS();
+                foreach (DataRow Item in ReturnDataTable.Rows)
+                {
+                    local_datasets.StockControlDS.StockControlRow StockRow = DS.StockControl.NewStockControlRow();
+
+                    StockRow.ProductID = int.Parse(Item["ProductID"].ToString());
+
+                    if (ReturnDataTable.Columns.Contains("ProductFullName"))
+                    {
+                        StockRow.ProductName = Item["ProductFullName"].ToString();
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("StockForSale"))
+                    {
+                        StockRow.StockForSale = int.Parse(Item["StockForSale"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("StockReserve"))
+                    {
+                        StockRow.StockReserve = int.Parse(Item["StockReserve"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("StockSoldNotPicked"))
+                    {
+                        StockRow.StockSoldNotPicked = int.Parse(Item["StockSoldNotPicked"].ToString());
+                    }
+
+                    
+                    DS.StockControl.AddStockControlRow(StockRow);
+                }
+                ReturnDS = DS;
+            }
             else
             {
                 //just pass a blank table back
@@ -967,6 +1004,17 @@ namespace Deloco_Pos_C.helper_functions
             }
 
                 return ret;
+        }
+        public local_datasets.StockControlDS GetAllStock()
+        {
+            local_datasets.StockControlDS ret =new local_datasets.StockControlDS();
+
+            string parameters = "{'job':'get_all'}";
+            string job = "get_product_stock";
+            string res = Make_db_call(job, parameters.ToString());
+            ret.Merge(FormatStringToDataTable(job, res));
+
+            return ret;
         }
 }
 }

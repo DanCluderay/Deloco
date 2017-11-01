@@ -52,7 +52,7 @@ namespace Deloco_Pos_C.ctrl
             ProdClass.BrandInName = NameControl.BrandInName;
             ProdClass.BrandName = NameControl.BrandName;
             ProdClass.BrandProduct = NameControl.BrandProduct;
-            ProdClass.BrandProductName = NameControl.ProductName;
+            ProdClass.BrandProductName = NameControl.TheProduct_Name;
             ProdClass.BrandProductSize = NameControl.TheSize;
             ProdClass.ProductFullName = NameControl.FullProductName;
             ProdClass.InnerPackQty = 0;
@@ -154,6 +154,11 @@ namespace Deloco_Pos_C.ctrl
         }
 
         private void tabPage7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ctrl_NameBuilder2_Load(object sender, EventArgs e)
         {
 
         }
