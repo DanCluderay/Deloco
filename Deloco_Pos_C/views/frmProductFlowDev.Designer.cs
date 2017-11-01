@@ -48,6 +48,7 @@
             this.Controls.Add(this.ctrl_edit_prodcut1);
             this.Name = "frmProductFlowDev";
             this.Text = "Product Flow Dev";
+            this.Load += new System.EventHandler(this.frmProductFlowDev_Load);
             this.ResumeLayout(false);
 
         }

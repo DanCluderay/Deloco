@@ -22,7 +22,10 @@ namespace Deloco_Pos_C.ctrl
             InitializeComponent();
             helper_functions.globalHelper logic_global = helper_functions.globalHelper.Instance;
         }
-
+        public void LoadProductDetails(int ProductID)
+        {
+            logic_global.Get_Product_Details_From_ProductID(ProductID);
+        }
         private void ctrl_edit_prodcut_Load(object sender, EventArgs e)
         {
             setupmode = true;

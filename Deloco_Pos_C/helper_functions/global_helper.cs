@@ -721,6 +721,135 @@ namespace Deloco_Pos_C.helper_functions
                 }
                 ReturnDS = DS;
             }
+
+            //
+            else if (functionName == "get_product_from_product_id")
+            {
+
+                local_datasets.ProductDS DS = new local_datasets.ProductDS();
+                foreach (DataRow Item in ReturnDataTable.Rows)
+                {
+                    local_datasets.ProductDS.ProductsRow ProdRow = DS.Products.NewProductsRow();
+
+                    ProdRow.ProductID = int.Parse(Item["ProductID"].ToString());
+
+                    if (ReturnDataTable.Columns.Contains("BrandID"))
+                    {
+                        ProdRow.BrandID = int.Parse(Item["BrandID"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("BrandInName"))
+                    {
+                        ProdRow.BrandInName = int.Parse(Item["BrandInName"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("IsCasePick"))
+                    {
+                        ProdRow.IsCasePick = int.Parse(Item["IsCasePick"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("ISLocked"))
+                    {
+                        ProdRow.ISLocked = int.Parse(Item["ISLocked"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("IsLockedBy"))
+                    {
+                        ProdRow.IsLockedBy = int.Parse(Item["IsLockedBy"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("PostFix"))
+                    {
+                        ProdRow.PostFix =Item["PostFix"].ToString();
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("PreFix"))
+                    {
+                        ProdRow.PreFix = Item["PreFix"].ToString();
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("ProductFullName"))
+                    {
+                        ProdRow.ProductFullName = Item["ProductFullName"].ToString();
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("ProductHeight"))
+                    {
+                        ProdRow.ProductHeight = int.Parse(Item["ProductHeight"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("ProductImageURL"))
+                    {
+                        ProdRow.ProductImageURL = Item["ProductImageURL"].ToString();
+                    }
+
+
+                    if (ReturnDataTable.Columns.Contains("ProductLenght"))
+                    {
+                        ProdRow.ProductLenght = int.Parse(Item["ProductLenght"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("ProductLongDescription"))
+                    {
+                        ProdRow.ProductLongDescription = Item["ProductLongDescription"].ToString();
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("ProductName"))
+                    {
+                        ProdRow.ProductName = Item["ProductName"].ToString();
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("ProductRealWeight"))
+                    {
+                        ProdRow.ProductRealWeight = double.Parse(Item["ProductRealWeight"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("ProductRRP"))
+                    {
+                        ProdRow.ProductRRP = double.Parse(Item["ProductRRP"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("ProductShortDescription"))
+                    {
+                        ProdRow.ProductShortDescription =Item["ProductShortDescription"].ToString();
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("ProductTotalVolume"))
+                    {
+                        ProdRow.ProductTotalVolume = int.Parse(Item["ProductTotalVolume"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("ProductType"))
+                    {
+                        ProdRow.ProductType = int.Parse(Item["ProductType"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("ProductVateCode"))
+                    {
+                        ProdRow.ProductVateCode = int.Parse(Item["ProductVateCode"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("ProductVolumetricWeight"))
+                    {
+                        ProdRow.ProductVolumetricWeight = double.Parse(Item["ProductVolumetricWeight"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("ProductWidth"))
+                    {
+                        ProdRow.ProductWidth = int.Parse(Item["ProductWidth"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("SizeID"))
+                    {
+                        ProdRow.SizeID = int.Parse(Item["SizeID"].ToString());
+                    }
+
+
+                    DS.Products.AddProductsRow(ProdRow);
+                }
+                ReturnDS = DS;
+            }
+
             else
             {
                 //just pass a blank table back
@@ -1014,6 +1143,15 @@ namespace Deloco_Pos_C.helper_functions
             string res = Make_db_call(job, parameters.ToString());
             ret.Merge(FormatStringToDataTable(job, res));
 
+            return ret;
+        }
+        public local_datasets.ProductDS Get_Product_Details_From_ProductID(int ProductID)
+        {   
+            local_datasets.ProductDS ret = new local_datasets.ProductDS();
+            string parameters = "{'productid':'" + ProductID.ToString() + "'}";
+            string job = "get_product_from_product_id";
+            string res = Make_db_call(job, parameters.ToString());
+            ret.Merge(FormatStringToDataTable(job, res));
             return ret;
         }
 }

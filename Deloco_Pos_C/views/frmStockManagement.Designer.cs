@@ -283,6 +283,7 @@
             this.DG_ProductView.TabIndex = 0;
             this.DG_ProductView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
             this.DG_ProductView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
+            this.DG_ProductView.DoubleClick += new System.EventHandler(this.DG_ProductView_DoubleClick);
             // 
             // button2
             // 
@@ -361,7 +362,7 @@
             // 
             // btnSeeMoreLess
             // 
-            this.btnSeeMoreLess.Location = new System.Drawing.Point(288, 6);
+            this.btnSeeMoreLess.Location = new System.Drawing.Point(338, 6);
             this.btnSeeMoreLess.Name = "btnSeeMoreLess";
             this.btnSeeMoreLess.Size = new System.Drawing.Size(40, 23);
             this.btnSeeMoreLess.TabIndex = 0;

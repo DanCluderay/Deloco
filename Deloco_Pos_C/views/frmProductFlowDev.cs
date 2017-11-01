@@ -17,7 +17,17 @@ namespace Deloco_Pos_C.views
             InitializeComponent();
         }
 
+        public frmProductFlowDev(int ProductID)
+        {
+            InitializeComponent();
+            ctrl_edit_prodcut1.LoadProductDetails(ProductID);
+        }
         private void ctrl_edit_prodcut1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmProductFlowDev_Load(object sender, EventArgs e)
         {
 
         }
