@@ -877,10 +877,10 @@ namespace Deloco_Pos_C.helper_functions
         public local_datasets.ProductDS Update_Product(base_classes.productclass Prod, local_datasets.ProductDS CheckDS)
         {
             local_datasets.ProductDS DS = new local_datasets.ProductDS();
-
+            Prod.ProductID = 0;//fudge factor 10
             string parameters="";
             //If productID is empty then its an INSERT statement
-            if (CheckNewValue(CheckDS, "ProductID") == true) { parameters = AC(parameters) + "'ProductID': '" + Prod.BrandProduct.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "ProductID") == true) { parameters = AC(parameters) + "'ProductID': '" + Prod.ProductID.ToString() + "'"; }
             if (CheckNewValue(CheckDS, "ProductName") == true) { parameters = AC(parameters) + "'ProductName': '" + Prod.BrandProductName.ToString() + "'"; }
             if (CheckNewValue(CheckDS, "ProductFullName") == true) { parameters = AC(parameters) + "'ProductFullName': '" + Prod.ProductFullName.ToString() + "'"; }
 
@@ -905,47 +905,25 @@ namespace Deloco_Pos_C.helper_functions
             if (CheckNewValue(CheckDS, "ProductItemWidth") == true) { parameters = AC(parameters) + "'ProductItemWidth': '" + Prod.ProductItemWidth.ToString() + "'"; }
             if (CheckNewValue(CheckDS, "ProductItemHeight") == true) { parameters = AC(parameters) + "'ProductItemHeight': '" + Prod.ProductItemHeight.ToString() + "'"; }
 
-            if (CheckNewValue(CheckDS, "ProductTotalVolume") == true) { parameters = AC(parameters) + "'ProductID': '" + Prod.BrandProduct.ToString() + "'"; }
-            if (CheckNewValue(CheckDS, "SizeRelative") == true) { parameters = AC(parameters) + "'ProductName': '" + Prod.BrandProductName.ToString() + "'"; }
-            if (CheckNewValue(CheckDS, "SizeUnit") == true) { parameters = AC(parameters) + "'ProductFullName': '" + Prod.ProductFullName.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "ProductTotalVolume") == true) { parameters = AC(parameters) + "'ProductTotalVolume': '" + Prod.ProductTotalVolume.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "SizeRelative") == true) { parameters = AC(parameters) + "'SizeRelative': '" + Prod.SizeRelative.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "SizeUnit") == true) { parameters = AC(parameters) + "'SizeUnit': '" + Prod.SizeUnit.ToString() + "'"; }
 
-            if (CheckNewValue(CheckDS, "PreFix") == true) { parameters = AC(parameters) + "'ProductID': '" + Prod.BrandProduct.ToString() + "'"; }
-            if (CheckNewValue(CheckDS, "PostFix") == true) { parameters = AC(parameters) + "'ProductName': '" + Prod.BrandProductName.ToString() + "'"; }
-            if (CheckNewValue(CheckDS, "ISLocked") == true) { parameters = AC(parameters) + "'ProductFullName': '" + Prod.ProductFullName.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "PreFix") == true) { parameters = AC(parameters) + "'PreFix': '" + Prod.PreFix.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "PostFix") == true) { parameters = AC(parameters) + "'PostFix': '" + Prod.PostFix.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "ISLocked") == true) { parameters = AC(parameters) + "'ISLocked': '" + Prod.ISLocked.ToString() + "'"; }
 
-            if (CheckNewValue(CheckDS, "IsLockedBy") == true) { parameters = AC(parameters) + "'ProductID': '" + Prod.BrandProduct.ToString() + "'"; }
-            if (CheckNewValue(CheckDS, "InnerPackQty") == true) { parameters = AC(parameters) + "'ProductName': '" + Prod.BrandProductName.ToString() + "'"; }
-            if (CheckNewValue(CheckDS, "IsCasePick") == true) { parameters = AC(parameters) + "'ProductFullName': '" + Prod.ProductFullName.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "IsLockedBy") == true) { parameters = AC(parameters) + "'IsLockedBy': '" + Prod.IsLockedBy.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "InnerPackQty") == true) { parameters = AC(parameters) + "'InnerPackQty': '" + Prod.InnerPackQty.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "IsCasePick") == true) { parameters = AC(parameters) + "'IsCasePick': '" + Prod.IsCasePick.ToString() + "'"; }
 
-            parameters = "{" +
-                 
-                
-                "'BrandID': '" + Prod.BrandProduct.ToString() + "'" +
-                "'BrandInName': '" + Prod.BrandInName.ToString() + "'" +
-                "'BrandProduct': '" + Prod.BrandProduct.ToString() + "'" +
-                "'ProductShortDescription': '" + Prod.ProductShortDescription.ToString() + "'" +
-                "'ProductLongDescription': '" + Prod.ProductLongDescription.ToString() + "'" +
-                "'ProductRealWeight': '" + Prod.ProductRealWeight.ToString() + "'" +
-                "'ProductVolumetricWeight': '" + Prod.ProductVolumetricWeight.ToString() + "'" +
-                "'ProductVateCode': '" + Prod.ProductVateCode.ToString() + "'" +
-                "'ProductItemRRP': '" + Prod.ProductRRP.ToString() + "'" +
-                "'ProductItemLenght': '" + Prod.ProductItemLenght.ToString() + "'" +
-                "'ProductItemWidth': '" + Prod.ProductItemWidth.ToString() + "'" +
-                "'ProductItemHeight': '" + Prod.ProductItemHeight.ToString() + "'" +
-                "'ProductTotalVolume': '" + Prod.ItemVolume.ToString() + "'" +
-                "'SizeRelative': '" + Prod.ProductRelativeSize.ToString() + "'" +
-                "'SizeUnit': '" + Prod.ProductUnitSize.ToString() + "'" +
-                "'PreFix': '" + Prod.PreFix.ToString() + "'" +
-                "'PostFix': '" + Prod.PostFox.ToString() + "'" +
-                "'ISLocked': '" + Prod.IsLocked.ToString() + "'" +
-                "'IsLockedBy': '" + Prod.IsLockedBy.ToString() + "'" +
-                "'InnerPackQty': '" + Prod.InnerPackQTY.ToString() + "'" +
-                "'IsCasePick': '" + Prod.IsCasePick.ToString() + "'" +
-                "}";
+            
+            string q_params = ",'TableName':'Products','Pk':'ProductID','UpDateWhere':'" + Prod.ProductID.ToString() + "'";
+            parameters = "{" + parameters + q_params + "}";
 
           
 
-            string job = "get_product_barcode_by_brandproduct";
+            string job = "update_product_dataset";
             string res = Make_db_call(job, parameters.ToString());
             DS.Merge(FormatStringToDataTable(job, res));
             return DS;

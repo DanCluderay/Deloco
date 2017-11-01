@@ -8,6 +8,7 @@ namespace Deloco_Pos_C.base_classes
 {
     public class productclass
     {
+        public int ProductID { get; set; }
         public int BrandProduct { get; set; }
         public string ProductName { get; set; }
         public string ProductFullName { get; set; }
@@ -33,7 +34,7 @@ namespace Deloco_Pos_C.base_classes
         public string ProductLongDescription { get; set; }
 
         public int ProductVateCode { get; set; }
-        public int InnerPackQTY { get; set; }
+        public int InnerPackQty { get; set; }
         public bool IsCasePick { get; set; }
 
         public double ProductItemRRP { get; set; }
