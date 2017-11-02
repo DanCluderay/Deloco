@@ -33,6 +33,19 @@ namespace Deloco_Pos_C.ctrl
            // BarcodeForm.On_BarcodeNew += BarcodeForm_On_BarcodeNew;
         }
 
+        public void SetupProduct(local_datasets.ProductDS ProdDS)
+        {
+            local_datasets.ProductDS.ProductsRow ProdRow = (local_datasets.ProductDS.ProductsRow)ProdDS.Products.Rows[0];
+            txtItemHeight.Text = ProdRow.ProductHeight.ToString();
+            txtItemLenght.Text = ProdRow.ProductLenght.ToString();
+            txtItemidth.Text = ProdRow.ProductWidth.ToString();
+
+            txtItemWeight.Text = ProdRow.ProductRealWeight.ToString();
+            txtVolumetricWeight.Text = ProdRow.ProductTotalVolume.ToString();
+            Setup_Barcode_Control(ProdRow.BrandProduct);
+            CalculateVolume();
+
+        }
         private void BarcodeForm_On_BarcodeNew(object sender, EventArgs e)
         {
             
@@ -135,6 +148,11 @@ namespace Deloco_Pos_C.ctrl
         private void txtItemWeight_KeyUp(object sender, KeyEventArgs e)
         {
             CalculateVolume();
+        }
+
+        private void tabItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

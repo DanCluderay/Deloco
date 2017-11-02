@@ -17,11 +17,14 @@ namespace Deloco_Pos_C.ctrl
        
         public event EventHandler On_NameChanged = delegate { };
 
-
+        
         public ctrl_NameBuilder()
         {
             InitializeComponent();
             helper_functions.globalHelper logic_global = helper_functions.globalHelper.Instance;
+            HideAllTabs();
+            GetBrands();
+            GetProductSizes();
         }
         public string FullProductName;
         public string PreFix;
@@ -34,12 +37,43 @@ namespace Deloco_Pos_C.ctrl
         public int TheUnitSize;
         public int TheRelativeSize;
         public string TheProduct_Name;
+        public bool InSetUpMode;
 
         private void ctrl_NameBuilder_Load(object sender, EventArgs e)
         {
-            HideAllTabs();
-            GetBrands();
-            GetProductSizes();
+
+        }
+
+        public void SetupProduct(local_datasets.ProductDS ProdDS)
+        {
+            local_datasets.ProductDS.ProductsRow ProdRow =(local_datasets.ProductDS.ProductsRow)ProdDS.Products.Rows[0];
+            InSetUpMode = true;
+            //prefix
+            txtPrefix.Text = ProdRow.PreFix;
+            PreFix = ProdRow.PreFix;
+            //brand
+            cmbBrand.SelectedValue = ProdRow.BrandID;
+            BrandID = ProdRow.BrandID;
+            //brandinname
+            chkBrandInName.Checked = Convert.ToBoolean(ProdRow.BrandInName);
+            BrandInName = Convert.ToBoolean(ProdRow.BrandInName);
+            //product
+            cmbProductType.SelectedValue = ProdRow.BrandProduct;
+            BrandProduct = ProdRow.BrandProduct;
+            //Size
+            txtSize.Text = ProdRow.SizeString;
+            TheSize = ProdRow.SizeString;
+            //Unit
+            cmbUnitSize.SelectedValue = ProdRow.SizeUnit;
+            TheUnitSize= ProdRow.SizeUnit;
+            //realative size
+            cmbRelativeSize.SelectedValue = ProdRow.SizeRelative;
+            TheRelativeSize = ProdRow.SizeRelative;
+            //postfix
+            txtPostFix.Text = ProdRow.PostFix;
+            PostFix = ProdRow.PostFix;
+            InSetUpMode = false;
+            BuildProductName();
         }
         private void GetBrands()
         {
@@ -126,19 +160,24 @@ namespace Deloco_Pos_C.ctrl
         private void BuildProductName()
         {
             string brand_to_display;
-            if(BrandInName==true){ brand_to_display = ""; } else { brand_to_display = BrandName; }
-
-            string unit_size="";
-            if(cmbUnitSize.Text!="NA")
+            if(InSetUpMode == false)
             {
-                unit_size = cmbUnitSize.Text;
+                if (BrandInName==true){ brand_to_display = ""; } else { brand_to_display = BrandName; }
+
+                string unit_size="";
+                if(cmbUnitSize.Text!="NA")
+                {
+                    unit_size = cmbUnitSize.Text;
+                }
+
+
+
+                FullProductName = PreFix + " " + brand_to_display + " " + cmbProductType.Text + " " + TheSize + " " + unit_size + " " + PostFix;
+                txtFullName.Text = FullProductName;
+                On_NameChanged(this, new EventArgs());
+
             }
-
-
-
-            FullProductName = PreFix + " " + brand_to_display + " " + cmbProductType.Text + " " + TheSize + " " + unit_size + " " + PostFix;
-            txtFullName.Text = FullProductName;
-            On_NameChanged(this, new EventArgs());
+            
         }
 
         private void txtPrefix_TextChanged(object sender, EventArgs e)

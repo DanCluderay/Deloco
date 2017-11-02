@@ -15,19 +15,13 @@ namespace Deloco_Pos_C.ctrl
     {
         bool setupmode;
         local_datasets.ProductDS DS;
+       
         base_classes.productclass ProdClass;
         helper_functions.globalHelper logic_global = helper_functions.globalHelper.Instance;
         public ctrl_edit_prodcut()
         {
             InitializeComponent();
             helper_functions.globalHelper logic_global = helper_functions.globalHelper.Instance;
-        }
-        public void LoadProductDetails(int ProductID)
-        {
-            logic_global.Get_Product_Details_From_ProductID(ProductID);
-        }
-        private void ctrl_edit_prodcut_Load(object sender, EventArgs e)
-        {
             setupmode = true;
             ctrl_NameBuilder2.On_BrandProductChanged += Ctrl_NameBuilder1_On_BrandProductChanged;
             ctrl_NameBuilder2.On_NameChanged += Ctrl_NameBuilder1_On_NameChanged;
@@ -35,6 +29,24 @@ namespace Deloco_Pos_C.ctrl
             ProdClass = new base_classes.productclass();
             DS = new local_datasets.ProductDS();
             setupmode = false;
+        }
+        public void LoadProductDetails(int ProductID)
+        {
+            DS = new local_datasets.ProductDS();
+            DS.Merge(logic_global.Get_Product_Details_From_ProductID(ProductID));
+            ProdClass.ProductID = ProductID;
+            ctrl_NameBuilder2.SetupProduct(DS);
+            ctrl_ProductPhysicalProperties1.SetupProduct(DS);
+            
+        }
+        private void DisplayProduct()
+        {
+
+        }
+        
+        private void ctrl_edit_prodcut_Load(object sender, EventArgs e)
+        {
+            
         }
 
         private void Ctrl_ProductPhysicalProperties1_On_PhysicalPropertiesChanged(object sender, EventArgs e)

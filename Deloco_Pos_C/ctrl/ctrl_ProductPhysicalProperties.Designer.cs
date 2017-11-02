@@ -296,6 +296,7 @@
             this.tabItem.TabIndex = 0;
             this.tabItem.Text = "Item";
             this.tabItem.UseVisualStyleBackColor = true;
+            this.tabItem.Click += new System.EventHandler(this.tabItem_Click);
             // 
             // label11
             // 

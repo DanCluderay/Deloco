@@ -879,6 +879,14 @@ namespace Deloco_Pos_C.local_datasets {
             
             private global::System.Data.DataColumn columnGUID;
             
+            private global::System.Data.DataColumn columnSizeString;
+            
+            private global::System.Data.DataColumn columnBrandProduct;
+            
+            private global::System.Data.DataColumn columnSizeRelative;
+            
+            private global::System.Data.DataColumn columnSizeUnit;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public ProductsDataTable() {
@@ -1106,6 +1114,38 @@ namespace Deloco_Pos_C.local_datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn SizeStringColumn {
+                get {
+                    return this.columnSizeString;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn BrandProductColumn {
+                get {
+                    return this.columnBrandProduct;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn SizeRelativeColumn {
+                get {
+                    return this.columnSizeRelative;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn SizeUnitColumn {
+                get {
+                    return this.columnSizeUnit;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1164,7 +1204,11 @@ namespace Deloco_Pos_C.local_datasets {
                         int ISLocked, 
                         int IsLockedBy, 
                         string ProductImageURL, 
-                        string GUID) {
+                        string GUID, 
+                        string SizeString, 
+                        int BrandProduct, 
+                        int SizeRelative, 
+                        int SizeUnit) {
                 ProductsRow rowProductsRow = ((ProductsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1190,7 +1234,11 @@ namespace Deloco_Pos_C.local_datasets {
                         ISLocked,
                         IsLockedBy,
                         ProductImageURL,
-                        GUID};
+                        GUID,
+                        SizeString,
+                        BrandProduct,
+                        SizeRelative,
+                        SizeUnit};
                 rowProductsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowProductsRow);
                 return rowProductsRow;
@@ -1244,6 +1292,10 @@ namespace Deloco_Pos_C.local_datasets {
                 this.columnIsLockedBy = base.Columns["IsLockedBy"];
                 this.columnProductImageURL = base.Columns["ProductImageURL"];
                 this.columnGUID = base.Columns["GUID"];
+                this.columnSizeString = base.Columns["SizeString"];
+                this.columnBrandProduct = base.Columns["BrandProduct"];
+                this.columnSizeRelative = base.Columns["SizeRelative"];
+                this.columnSizeUnit = base.Columns["SizeUnit"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1297,6 +1349,14 @@ namespace Deloco_Pos_C.local_datasets {
                 base.Columns.Add(this.columnProductImageURL);
                 this.columnGUID = new global::System.Data.DataColumn("GUID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnGUID);
+                this.columnSizeString = new global::System.Data.DataColumn("SizeString", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSizeString);
+                this.columnBrandProduct = new global::System.Data.DataColumn("BrandProduct", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBrandProduct);
+                this.columnSizeRelative = new global::System.Data.DataColumn("SizeRelative", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSizeRelative);
+                this.columnSizeUnit = new global::System.Data.DataColumn("SizeUnit", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSizeUnit);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnProductID}, true));
                 this.columnProductID.AutoIncrement = true;
@@ -1332,6 +1392,10 @@ namespace Deloco_Pos_C.local_datasets {
                 this.columnIsLockedBy.DefaultValue = ((int)(0));
                 this.columnProductImageURL.MaxLength = 255;
                 this.columnGUID.MaxLength = 100;
+                this.columnSizeString.DefaultValue = ((string)(""));
+                this.columnBrandProduct.DefaultValue = ((int)(0));
+                this.columnSizeRelative.DefaultValue = ((int)(0));
+                this.columnSizeUnit.DefaultValue = ((int)(0));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3809,6 +3873,70 @@ namespace Deloco_Pos_C.local_datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string SizeString {
+                get {
+                    try {
+                        return ((string)(this[this.tableProducts.SizeStringColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SizeString\' in table \'Products\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableProducts.SizeStringColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int BrandProduct {
+                get {
+                    try {
+                        return ((int)(this[this.tableProducts.BrandProductColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'BrandProduct\' in table \'Products\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableProducts.BrandProductColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int SizeRelative {
+                get {
+                    try {
+                        return ((int)(this[this.tableProducts.SizeRelativeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SizeRelative\' in table \'Products\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableProducts.SizeRelativeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int SizeUnit {
+                get {
+                    try {
+                        return ((int)(this[this.tableProducts.SizeUnitColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SizeUnit\' in table \'Products\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableProducts.SizeUnitColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsProductNameNull() {
                 return this.IsNull(this.tableProducts.ProductNameColumn);
             }
@@ -4081,6 +4209,54 @@ namespace Deloco_Pos_C.local_datasets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetGUIDNull() {
                 this[this.tableProducts.GUIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsSizeStringNull() {
+                return this.IsNull(this.tableProducts.SizeStringColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetSizeStringNull() {
+                this[this.tableProducts.SizeStringColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsBrandProductNull() {
+                return this.IsNull(this.tableProducts.BrandProductColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetBrandProductNull() {
+                this[this.tableProducts.BrandProductColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsSizeRelativeNull() {
+                return this.IsNull(this.tableProducts.SizeRelativeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetSizeRelativeNull() {
+                this[this.tableProducts.SizeRelativeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsSizeUnitNull() {
+                return this.IsNull(this.tableProducts.SizeUnitColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetSizeUnitNull() {
+                this[this.tableProducts.SizeUnitColumn] = global::System.Convert.DBNull;
             }
         }
         

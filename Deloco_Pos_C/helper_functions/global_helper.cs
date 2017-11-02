@@ -75,11 +75,18 @@ namespace Deloco_Pos_C.helper_functions
         public string connectToMQTTServer(string Topic)
         {
             string returnValue = "";
-            mqtt_list = new List<mqtt_msg_object>();
-            client = new MqttClient(MqttClient_Server);
-            returnValue = "Connected to client";
-            clientId = Guid.NewGuid().ToString();
-            Mqtt_Subscribe(Topic);
+            try
+            {
+                mqtt_list = new List<mqtt_msg_object>();
+                client = new MqttClient(MqttClient_Server);
+                returnValue = "Connected to client";
+                clientId = Guid.NewGuid().ToString();
+                Mqtt_Subscribe(Topic);
+            }
+            catch
+            {
+                //cannot connect to MQTT server
+            }
 
 
             return returnValue;
@@ -174,29 +181,37 @@ namespace Deloco_Pos_C.helper_functions
 
         public string Make_db_call(string func, string val)
         {
-
-            string url = "https://00t1ug5s49.execute-api.eu-west-1.amazonaws.com/prod/apex-deepretail_deppcore?func=" + func + "&val=" + val;
-
-            using (HttpClient client = new HttpClient())
+            string newstring="";
+            try
             {
-                using (HttpResponseMessage responce = client.GetAsync(url).Result)
-                {
-                    using (HttpContent content = responce.Content)
-                    {
-                        string mycontent = content.ReadAsStringAsync().Result;
+             string url = "https://00t1ug5s49.execute-api.eu-west-1.amazonaws.com/prod/apex-deepretail_deppcore?func=" + func + "&val=" + val;
 
-                        string newstring = mycontent.Replace("\"", "'");
+                        using (HttpClient client = new HttpClient())
+                        {
+                
+                            using (HttpResponseMessage responce = client.GetAsync(url).Result)
+                            {
+                                using (HttpContent content = responce.Content)
+                                {
+                                    string mycontent = content.ReadAsStringAsync().Result;
 
-                        return newstring;
+                                    newstring = mycontent.Replace("\"", "'");
 
-                        //DataSet tester = (DataSet)JsonConvert.DeserializeObject(newstring, (typeof(DataSet)));
-                        //DataTable tester = (DataTable)JsonConvert.DeserializeObject(newstring, (typeof(DataTable)));
+                                    
+
+                                    //DataSet tester = (DataSet)JsonConvert.DeserializeObject(newstring, (typeof(DataSet)));
+                                    //DataTable tester = (DataTable)JsonConvert.DeserializeObject(newstring, (typeof(DataTable)));
 
 
-                    }
-                }
+                                }
+                            }
+                        }
             }
-
+            catch (Exception e)
+            {
+                Console.WriteLine("An error occurred: '{0}'", e);
+            }
+            return newstring;
 
 
         }
@@ -205,7 +220,9 @@ namespace Deloco_Pos_C.helper_functions
         {
             DataTable ReturnDataTable;
             DataSet ReturnDS = new DataSet();
+            
             responcestring = responcestring.Replace("\\", "");
+            
             ReturnDataTable = (DataTable)JsonConvert.DeserializeObject(responcestring, (typeof(DataTable)));
             if (functionName == "get_customer_order")
             {
@@ -773,9 +790,9 @@ namespace Deloco_Pos_C.helper_functions
                         ProdRow.ProductFullName = Item["ProductFullName"].ToString();
                     }
 
-                    if (ReturnDataTable.Columns.Contains("ProductHeight"))
+                    if (ReturnDataTable.Columns.Contains("ProductItemHeight"))
                     {
-                        ProdRow.ProductHeight = int.Parse(Item["ProductHeight"].ToString());
+                        ProdRow.ProductHeight = int.Parse(Item["ProductItemHeight"].ToString());
                     }
 
                     if (ReturnDataTable.Columns.Contains("ProductImageURL"))
@@ -784,9 +801,9 @@ namespace Deloco_Pos_C.helper_functions
                     }
 
 
-                    if (ReturnDataTable.Columns.Contains("ProductLenght"))
+                    if (ReturnDataTable.Columns.Contains("ProductItemLenght"))
                     {
-                        ProdRow.ProductLenght = int.Parse(Item["ProductLenght"].ToString());
+                        ProdRow.ProductLenght = int.Parse(Item["ProductItemLenght"].ToString());
                     }
 
                     if (ReturnDataTable.Columns.Contains("ProductLongDescription"))
@@ -834,16 +851,29 @@ namespace Deloco_Pos_C.helper_functions
                         ProdRow.ProductVolumetricWeight = double.Parse(Item["ProductVolumetricWeight"].ToString());
                     }
 
-                    if (ReturnDataTable.Columns.Contains("ProductWidth"))
+                    if (ReturnDataTable.Columns.Contains("ProductItemWidth"))
                     {
-                        ProdRow.ProductWidth = int.Parse(Item["ProductWidth"].ToString());
+                        ProdRow.ProductWidth = int.Parse(Item["ProductItemWidth"].ToString());
                     }
 
-                    if (ReturnDataTable.Columns.Contains("SizeID"))
+                    if (ReturnDataTable.Columns.Contains("SizeUnit"))
                     {
-                        ProdRow.SizeID = int.Parse(Item["SizeID"].ToString());
+                        ProdRow.SizeID = int.Parse(Item["SizeUnit"].ToString());
                     }
 
+                    if (ReturnDataTable.Columns.Contains("SizeString"))
+                    {
+                        ProdRow.SizeString = Item["SizeString"].ToString();
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("BrandProduct"))
+                    {
+                        ProdRow.BrandProduct = int.Parse(Item["BrandProduct"].ToString());
+                    }
+                    if (ReturnDataTable.Columns.Contains("SizeRelative"))
+                    {
+                        ProdRow.SizeRelative = int.Parse(Item["SizeRelative"].ToString());
+                    }
 
                     DS.Products.AddProductsRow(ProdRow);
                 }
@@ -873,7 +903,15 @@ namespace Deloco_Pos_C.helper_functions
             local_datasets.LocationGrid RetGrid = new local_datasets.LocationGrid();
             string job = "get_gridlocations";
             string res = Make_db_call(job, LocationRef.ToString());
-            RetGrid.Merge(FormatStringToDataTable(job, res));
+            if (res.Trim().Length != 0)
+            {
+               RetGrid.Merge(FormatStringToDataTable(job, res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+            
             return RetGrid;
         }
 
@@ -883,11 +921,19 @@ namespace Deloco_Pos_C.helper_functions
             string parameters = "{'LocName': '" + LocName + "', 'LocType': '" + LocType.ToString() + "', 'LocParent': '" + LocParent.ToString() + "','FullName': '" + FullName.ToString() + "','ShortName': '" + ShortName.ToString() + "','PickOrder': '" + PickOrder.ToString() + "'}";
             string job = "add_node_to_loc_grid";
             string res = Make_db_call(job, parameters.ToString());
-            DataTable ReturnDataTable;
-            ReturnDataTable = (DataTable)JsonConvert.DeserializeObject(res, (typeof(DataTable)));
+            if (res.Trim().Length != 0)
+            {
+                DataTable ReturnDataTable;
+                ReturnDataTable = (DataTable)JsonConvert.DeserializeObject(res, (typeof(DataTable)));
 
-            retvalue = int.Parse(ReturnDataTable.Rows[0][0].ToString());
-            On_LocationChanged(this, new EventArgs());
+                retvalue = int.Parse(ReturnDataTable.Rows[0][0].ToString());
+                On_LocationChanged(this, new EventArgs());
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+            
             return retvalue;
         }
 
@@ -897,8 +943,16 @@ namespace Deloco_Pos_C.helper_functions
             string parameters = "{'LocName': '" + LocName + "', 'LocType': '" + LocType.ToString() + "', 'LocParent': '" + LocParent.ToString() + "', 'LocGridID': '" + LocGridID.ToString() + "','FullName': '" + FullName.ToString() + "','ShortName': '" + ShortName.ToString() + "','PickOrder': '" + PickOrder.ToString() + "'}";
             string job = "edit_node_to_loc_grid";
             string res = Make_db_call(job, parameters.ToString());
-            RetGrid.Merge(FormatStringToDataTable("get_gridlocations", res));
-            On_LocationChanged(this, new EventArgs());
+            if (res.Trim().Length != 0)
+            {
+                RetGrid.Merge(FormatStringToDataTable("get_gridlocations", res));
+                On_LocationChanged(this, new EventArgs());
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
             return RetGrid;
         }
         //get_location_types
@@ -907,7 +961,15 @@ namespace Deloco_Pos_C.helper_functions
             local_datasets.LocationTypes LocTypes = new local_datasets.LocationTypes();
             string job = "get_location_types";
             string res = Make_db_call(job, "");
-            LocTypes.Merge(FormatStringToDataTable(job, res));
+            if (res.Trim().Length != 0)
+            {
+                LocTypes.Merge(FormatStringToDataTable(job, res));     
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
 
             return LocTypes;
         }
@@ -918,7 +980,15 @@ namespace Deloco_Pos_C.helper_functions
             string parameters = shopid.ToString();
             string job = "get_location_Store_Zone_Layout";
             string res = Make_db_call(job, parameters.ToString());
-            RetGrid.Merge(FormatStringToDataTable(job, res));
+            if (res.Trim().Length != 0)
+            {
+                RetGrid.Merge(FormatStringToDataTable(job, res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+            
 
             return RetGrid;
 
@@ -932,6 +1002,14 @@ namespace Deloco_Pos_C.helper_functions
             string parameters = "{'BuildingID': '" + BuildingID + "', 'LocGrid_ID': '" + LocGrid_ID.ToString() + "', 'Control_Type': '" + Control_Type.ToString() + "', 'Control_Y': '" + Control_Y.ToString() + "','Control_X': '" + Control_X.ToString() + "','Control_Z': '" + Control_Z.ToString() + "','Control_Size': '" + Control_Size.ToString() + "'}";
             string job = "add_store_layout_row";
             string res = Make_db_call(job, parameters.ToString());
+            if (res.Trim().Length != 0)
+            {
+               
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
             //RetGrid.Merge(FormatStringToDataTable("get_location_Store_Zone_Layout", res));
             return RetGrid;
         }
@@ -942,6 +1020,14 @@ namespace Deloco_Pos_C.helper_functions
             string parameters = "{'BuildingID': '" + BuildingID + "', 'LocGrid_ID': '" + LocGrid_ID.ToString() + "', 'Control_Type': '" + Control_Type.ToString() + "', 'Control_Y': '" + Control_Y.ToString() + "','Control_X': '" + Control_X.ToString() + "','Control_Z': '" + Control_Z.ToString() + "','id': '" + id.ToString() + "','Control_Size': '" + Control_Size.ToString() + "'}";
             string job = "edit_store_layout_row";
             string res = Make_db_call(job, parameters.ToString());
+            if (res.Trim().Length != 0)
+            {
+                
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
             //RetGrid.Merge(FormatStringToDataTable("get_location_Store_Zone_Layout", res));
             return RetGrid;
         }
@@ -952,7 +1038,15 @@ namespace Deloco_Pos_C.helper_functions
             string parameters = "";
             string job = "get_location_Store_Zone_Funiture";
             string res = Make_db_call(job, parameters.ToString());
-            RetGrid.Merge(FormatStringToDataTable(job, res));
+            if (res.Trim().Length != 0)
+            {
+                RetGrid.Merge(FormatStringToDataTable(job, res));             
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
             return RetGrid;
 
         }
@@ -963,7 +1057,15 @@ namespace Deloco_Pos_C.helper_functions
             string parameters = "";
             string job = "get_product_use_cases";
             string res = Make_db_call(job, parameters.ToString());
-            ProductDS.Merge(FormatStringToDataTable(job, res));
+            if (res.Trim().Length != 0)
+            {
+                ProductDS.Merge(FormatStringToDataTable(job, res));            
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
             return ProductDS;
         }
         public local_datasets.ProductDS Get_Brands()
@@ -972,7 +1074,14 @@ namespace Deloco_Pos_C.helper_functions
             string parameters = "";
             string job = "get_all_brands";
             string res = Make_db_call(job, parameters.ToString());
-            ProductDS.Merge(FormatStringToDataTable(job, res));
+            if (res.Trim().Length!=0)
+            {
+                ProductDS.Merge(FormatStringToDataTable(job, res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
             return ProductDS;
         }
 
@@ -982,7 +1091,15 @@ namespace Deloco_Pos_C.helper_functions
             string parameters = "{ 'BrandName': '" + BrandName + "', 'BrandWeight': '" + BrandWeight.ToString() + "'}";
             string job = "add_new_brand";
             string res = Make_db_call(job, parameters.ToString());
-            ProductDS.Merge(FormatStringToDataTable("get_all_brands", res));
+            if (res.Trim().Length != 0)
+            {
+                ProductDS.Merge(FormatStringToDataTable("get_all_brands", res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
             return ProductDS;
         }
 
@@ -992,7 +1109,15 @@ namespace Deloco_Pos_C.helper_functions
             string parameters = "{'BrandID': '" + BrandID.ToString() + "'}";
             string job = "get_brand_products_by_id";
             string res = Make_db_call(job, parameters.ToString());
-            DS.Merge(FormatStringToDataTable(job, res));
+            if (res.Trim().Length != 0)
+            {
+                DS.Merge(FormatStringToDataTable(job, res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
             return DS;
         }
 
@@ -1002,7 +1127,15 @@ namespace Deloco_Pos_C.helper_functions
             string parameters = "{'Brand': '" + brandid.ToString() + "','ProductName':'" + productid + "'}";
             string job = "add_new_brand_product";
             string res = Make_db_call(job, parameters.ToString());
-            DS.Merge(FormatStringToDataTable("get_brand_products_by_id", res));
+            if (res.Trim().Length != 0)
+            {
+                DS.Merge(FormatStringToDataTable("get_brand_products_by_id", res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
             return DS;
         }
 
@@ -1020,6 +1153,14 @@ namespace Deloco_Pos_C.helper_functions
             {
 
                 string res = Make_db_call(job, parameters.ToString());
+                if (res.Trim().Length != 0)
+                {
+
+                }
+                else
+                {
+                    FailedWebReseponce("");
+                }
                 LocalDS.Product_Size_Units.Clear();
                 LocalDS.Merge(FormatStringToDataTable(job, res));
             }
@@ -1036,14 +1177,22 @@ namespace Deloco_Pos_C.helper_functions
             string parameters = "{'BrandProductID': '" + ProductID.ToString() + "'}";
             string job = "get_product_barcode_by_brandproduct";
             string res = Make_db_call(job, parameters.ToString());
-            DS.Merge(FormatStringToDataTable(job, res));
+            if (res.Trim().Length != 0)
+            {
+                DS.Merge(FormatStringToDataTable(job, res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
             return DS;
         }
 
         public local_datasets.ProductDS Update_Product(base_classes.productclass Prod, local_datasets.ProductDS CheckDS)
         {
             local_datasets.ProductDS DS = new local_datasets.ProductDS();
-            Prod.ProductID = 0;//fudge factor 10
+            //Prod.ProductID = 0;//fudge factor 10
             string parameters="";
             //If productID is empty then its an INSERT statement
             if (CheckNewValue(CheckDS, "ProductID") == true) { parameters = AC(parameters) + "'ProductID': '" + Prod.ProductID.ToString() + "'"; }
@@ -1085,13 +1234,35 @@ namespace Deloco_Pos_C.helper_functions
 
             
             string q_params = ",'TableName':'Products','Pk':'ProductID','UpDateWhere':'" + Prod.ProductID.ToString() + "'";
-            parameters = "{" + parameters + q_params + "}";
+
+            if(parameters=="")
+            {
+                //nothing to update
+                return DS;
+            }
+            else
+            {
+                parameters = "{" + parameters + q_params + "}";
+            }
+            
 
           
 
             string job = "update_product_dataset";
             string res = Make_db_call(job, parameters.ToString());
-            DS.Merge(FormatStringToDataTable(job, res));
+            if (res.Trim().Length != 0)
+            {
+                if(res=="1")
+                {
+                    //its worked
+                }
+                //DS.Merge(FormatStringToDataTable(job, res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
             return DS;
         }
         private string AC(string Param)
@@ -1141,7 +1312,15 @@ namespace Deloco_Pos_C.helper_functions
             string parameters = "{'job':'get_all'}";
             string job = "get_product_stock";
             string res = Make_db_call(job, parameters.ToString());
-            ret.Merge(FormatStringToDataTable(job, res));
+            if (res.Trim().Length != 0)
+            {
+                ret.Merge(FormatStringToDataTable(job, res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
 
             return ret;
         }
@@ -1151,8 +1330,20 @@ namespace Deloco_Pos_C.helper_functions
             string parameters = "{'productid':'" + ProductID.ToString() + "'}";
             string job = "get_product_from_product_id";
             string res = Make_db_call(job, parameters.ToString());
-            ret.Merge(FormatStringToDataTable(job, res));
+            if (res.Trim().Length != 0)
+            {
+                ret.Merge(FormatStringToDataTable(job, res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
             return ret;
+        }
+        private void FailedWebReseponce(string E)
+        {
+
         }
 }
 }
