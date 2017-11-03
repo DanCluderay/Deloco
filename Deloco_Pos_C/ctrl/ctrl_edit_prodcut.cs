@@ -18,6 +18,7 @@ namespace Deloco_Pos_C.ctrl
        
         base_classes.productclass ProdClass;
         helper_functions.globalHelper logic_global = helper_functions.globalHelper.Instance;
+        public event EventHandler Request_Close = delegate { };
         public ctrl_edit_prodcut()
         {
             InitializeComponent();
@@ -26,6 +27,7 @@ namespace Deloco_Pos_C.ctrl
             ctrl_NameBuilder2.On_BrandProductChanged += Ctrl_NameBuilder1_On_BrandProductChanged;
             ctrl_NameBuilder2.On_NameChanged += Ctrl_NameBuilder1_On_NameChanged;
             ctrl_ProductPhysicalProperties1.On_PhysicalPropertiesChanged += Ctrl_ProductPhysicalProperties1_On_PhysicalPropertiesChanged;
+            
             ProdClass = new base_classes.productclass();
             DS = new local_datasets.ProductDS();
             setupmode = false;
@@ -81,11 +83,11 @@ namespace Deloco_Pos_C.ctrl
             ProdClass.SizeRelative = 0;
             ProdClass.ProductRRP = 0;
             ProdClass.ProductShortDescription = "";
-            ProdClass.SizeUnit = 0;
+            ProdClass.SizeString = NameControl.TheSize;
             ProdClass.ProductVateCode = 0;
             ProdClass.SizeUnit = NameControl.TheUnitSize;
             ProdClass.SizeRelative = NameControl.TheRelativeSize;
-            
+            lblBigProductName.Text = NameControl.FullProductName;
             Display_props();
         }
         private void Display_props()
@@ -166,6 +168,7 @@ namespace Deloco_Pos_C.ctrl
         private void button1_Click(object sender, EventArgs e)
         {
             logic_global.Update_Product(ProdClass,productDS);
+            Request_Close(this, new EventArgs());
         }
 
         private void tabPage7_Click(object sender, EventArgs e)

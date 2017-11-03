@@ -42,53 +42,53 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnFetchProduct = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.DG_ProductView = new System.Windows.Forms.DataGridView();
-            this.button2 = new System.Windows.Forms.Button();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.dataGrid1 = new System.Windows.Forms.DataGrid();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.btnSeeMoreLess = new System.Windows.Forms.Button();
-            this.productIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stockForSaleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stockSoldNotPickedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.stockReserveDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.stockControlBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.stockControlDS = new Deloco_Pos_C.local_datasets.StockControlDS();
-            this.storeStockBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.storeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.storeNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.freeStockDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.soldStockDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.reserveStockDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalStockDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.storeStockBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.btnSeeMoreLess = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.dataGrid1 = new System.Windows.Forms.DataGrid();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.button2 = new System.Windows.Forms.Button();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.productIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stockForSaleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stockSoldNotPickedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stockReserveDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.prodVarViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productVarientView)).BeginInit();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DG_ProductView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGrid1)).BeginInit();
-            this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
-            this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.stockControlBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stockControlDS)).BeginInit();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.storeStockBindingSource)).BeginInit();
+            this.panel4.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGrid1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -193,20 +193,6 @@
             this.tabControl1.Size = new System.Drawing.Size(951, 595);
             this.tabControl1.TabIndex = 4;
             // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.btnFetchProduct);
-            this.tabPage1.Controls.Add(this.dataGridView1);
-            this.tabPage1.Controls.Add(this.comboBox1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(943, 569);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "old";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.panel2);
@@ -220,15 +206,6 @@
             this.tabPage2.Text = "Stock Control";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(3, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(937, 41);
-            this.panel1.TabIndex = 0;
-            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.DG_ProductView);
@@ -236,30 +213,8 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 44);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(554, 522);
+            this.panel2.Size = new System.Drawing.Size(623, 522);
             this.panel2.TabIndex = 1;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(14, 13);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(134, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Get All Stock";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.dataGrid1);
-            this.tabPage3.Controls.Add(this.dataGridView2);
-            this.tabPage3.Controls.Add(this.button2);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(943, 569);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Add Stock";
-            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // DG_ProductView
             // 
@@ -279,47 +234,38 @@
             this.DG_ProductView.Location = new System.Drawing.Point(0, 36);
             this.DG_ProductView.Name = "DG_ProductView";
             this.DG_ProductView.ReadOnly = true;
-            this.DG_ProductView.Size = new System.Drawing.Size(554, 486);
+            this.DG_ProductView.Size = new System.Drawing.Size(623, 486);
             this.DG_ProductView.TabIndex = 0;
             this.DG_ProductView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
             this.DG_ProductView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             this.DG_ProductView.DoubleClick += new System.EventHandler(this.DG_ProductView_DoubleClick);
             // 
-            // button2
+            // stockControlBindingSource
             // 
-            this.button2.Location = new System.Drawing.Point(622, 30);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(157, 47);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.stockControlBindingSource.DataMember = "StockControl";
+            this.stockControlBindingSource.DataSource = this.stockControlDS;
             // 
-            // dataGridView2
+            // stockControlDS
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(74, 70);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(240, 150);
-            this.dataGridView2.TabIndex = 1;
+            this.stockControlDS.DataSetName = "StockControlDS";
+            this.stockControlDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // dataGrid1
+            // panel5
             // 
-            this.dataGrid1.DataMember = "";
-            this.dataGrid1.HeaderForeColor = System.Drawing.SystemColors.ControlText;
-            this.dataGrid1.Location = new System.Drawing.Point(395, 83);
-            this.dataGrid1.Name = "dataGrid1";
-            this.dataGrid1.Size = new System.Drawing.Size(384, 204);
-            this.dataGrid1.TabIndex = 2;
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(623, 36);
+            this.panel5.TabIndex = 2;
             // 
             // panel3
             // 
             this.panel3.Controls.Add(this.dataGridView3);
             this.panel3.Controls.Add(this.panel4);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(557, 44);
+            this.panel3.Location = new System.Drawing.Point(626, 44);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(383, 522);
+            this.panel3.Size = new System.Drawing.Size(314, 522);
             this.panel3.TabIndex = 2;
             // 
             // dataGridView3
@@ -340,84 +286,8 @@
             this.dataGridView3.Location = new System.Drawing.Point(0, 36);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.ReadOnly = true;
-            this.dataGridView3.Size = new System.Drawing.Size(383, 486);
+            this.dataGridView3.Size = new System.Drawing.Size(314, 486);
             this.dataGridView3.TabIndex = 0;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.btnSeeMoreLess);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(383, 36);
-            this.panel4.TabIndex = 1;
-            // 
-            // panel5
-            // 
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(0, 0);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(554, 36);
-            this.panel5.TabIndex = 2;
-            // 
-            // btnSeeMoreLess
-            // 
-            this.btnSeeMoreLess.Location = new System.Drawing.Point(338, 6);
-            this.btnSeeMoreLess.Name = "btnSeeMoreLess";
-            this.btnSeeMoreLess.Size = new System.Drawing.Size(40, 23);
-            this.btnSeeMoreLess.TabIndex = 0;
-            this.btnSeeMoreLess.Text = ">";
-            this.btnSeeMoreLess.UseVisualStyleBackColor = true;
-            // 
-            // productIDDataGridViewTextBoxColumn1
-            // 
-            this.productIDDataGridViewTextBoxColumn1.DataPropertyName = "ProductID";
-            this.productIDDataGridViewTextBoxColumn1.HeaderText = "ProductID";
-            this.productIDDataGridViewTextBoxColumn1.Name = "productIDDataGridViewTextBoxColumn1";
-            this.productIDDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // productNameDataGridViewTextBoxColumn
-            // 
-            this.productNameDataGridViewTextBoxColumn.DataPropertyName = "ProductName";
-            this.productNameDataGridViewTextBoxColumn.HeaderText = "ProductName";
-            this.productNameDataGridViewTextBoxColumn.Name = "productNameDataGridViewTextBoxColumn";
-            this.productNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // stockForSaleDataGridViewTextBoxColumn
-            // 
-            this.stockForSaleDataGridViewTextBoxColumn.DataPropertyName = "StockForSale";
-            this.stockForSaleDataGridViewTextBoxColumn.HeaderText = "StockForSale";
-            this.stockForSaleDataGridViewTextBoxColumn.Name = "stockForSaleDataGridViewTextBoxColumn";
-            this.stockForSaleDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // stockSoldNotPickedDataGridViewTextBoxColumn
-            // 
-            this.stockSoldNotPickedDataGridViewTextBoxColumn.DataPropertyName = "StockSoldNotPicked";
-            this.stockSoldNotPickedDataGridViewTextBoxColumn.HeaderText = "StockSoldNotPicked";
-            this.stockSoldNotPickedDataGridViewTextBoxColumn.Name = "stockSoldNotPickedDataGridViewTextBoxColumn";
-            this.stockSoldNotPickedDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // stockReserveDataGridViewTextBoxColumn
-            // 
-            this.stockReserveDataGridViewTextBoxColumn.DataPropertyName = "StockReserve";
-            this.stockReserveDataGridViewTextBoxColumn.HeaderText = "StockReserve";
-            this.stockReserveDataGridViewTextBoxColumn.Name = "stockReserveDataGridViewTextBoxColumn";
-            this.stockReserveDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // stockControlBindingSource
-            // 
-            this.stockControlBindingSource.DataMember = "StockControl";
-            this.stockControlBindingSource.DataSource = this.stockControlDS;
-            // 
-            // stockControlDS
-            // 
-            this.stockControlDS.DataSetName = "StockControlDS";
-            this.stockControlDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // storeStockBindingSource
-            // 
-            this.storeStockBindingSource.DataMember = "Store_Stock";
-            this.storeStockBindingSource.DataSource = this.stockControlDS;
             // 
             // storeIDDataGridViewTextBoxColumn
             // 
@@ -466,6 +336,141 @@
             this.totalStockDataGridViewTextBoxColumn.ReadOnly = true;
             this.totalStockDataGridViewTextBoxColumn.Width = 60;
             // 
+            // storeStockBindingSource
+            // 
+            this.storeStockBindingSource.DataMember = "Store_Stock";
+            this.storeStockBindingSource.DataSource = this.stockControlDS;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.btnSeeMoreLess);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(314, 36);
+            this.panel4.TabIndex = 1;
+            // 
+            // btnSeeMoreLess
+            // 
+            this.btnSeeMoreLess.Location = new System.Drawing.Point(338, 6);
+            this.btnSeeMoreLess.Name = "btnSeeMoreLess";
+            this.btnSeeMoreLess.Size = new System.Drawing.Size(40, 23);
+            this.btnSeeMoreLess.TabIndex = 0;
+            this.btnSeeMoreLess.Text = ">";
+            this.btnSeeMoreLess.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(937, 41);
+            this.panel1.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(14, 13);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(134, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Get All Stock";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.dataGrid1);
+            this.tabPage3.Controls.Add(this.dataGridView2);
+            this.tabPage3.Controls.Add(this.button2);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(943, 569);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Add Stock";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // dataGrid1
+            // 
+            this.dataGrid1.DataMember = "";
+            this.dataGrid1.HeaderForeColor = System.Drawing.SystemColors.ControlText;
+            this.dataGrid1.Location = new System.Drawing.Point(395, 83);
+            this.dataGrid1.Name = "dataGrid1";
+            this.dataGrid1.Size = new System.Drawing.Size(384, 204);
+            this.dataGrid1.TabIndex = 2;
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(74, 70);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(240, 150);
+            this.dataGridView2.TabIndex = 1;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(622, 30);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(157, 47);
+            this.button2.TabIndex = 0;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.btnFetchProduct);
+            this.tabPage1.Controls.Add(this.dataGridView1);
+            this.tabPage1.Controls.Add(this.comboBox1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(943, 569);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "old";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // productIDDataGridViewTextBoxColumn1
+            // 
+            this.productIDDataGridViewTextBoxColumn1.DataPropertyName = "ProductID";
+            this.productIDDataGridViewTextBoxColumn1.HeaderText = "ProductID";
+            this.productIDDataGridViewTextBoxColumn1.Name = "productIDDataGridViewTextBoxColumn1";
+            this.productIDDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.productIDDataGridViewTextBoxColumn1.Width = 70;
+            // 
+            // productNameDataGridViewTextBoxColumn
+            // 
+            this.productNameDataGridViewTextBoxColumn.DataPropertyName = "ProductName";
+            this.productNameDataGridViewTextBoxColumn.HeaderText = "Product Name";
+            this.productNameDataGridViewTextBoxColumn.Name = "productNameDataGridViewTextBoxColumn";
+            this.productNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.productNameDataGridViewTextBoxColumn.Width = 300;
+            // 
+            // stockForSaleDataGridViewTextBoxColumn
+            // 
+            this.stockForSaleDataGridViewTextBoxColumn.DataPropertyName = "StockForSale";
+            this.stockForSaleDataGridViewTextBoxColumn.HeaderText = "Free Stock";
+            this.stockForSaleDataGridViewTextBoxColumn.Name = "stockForSaleDataGridViewTextBoxColumn";
+            this.stockForSaleDataGridViewTextBoxColumn.ReadOnly = true;
+            this.stockForSaleDataGridViewTextBoxColumn.Width = 60;
+            // 
+            // stockSoldNotPickedDataGridViewTextBoxColumn
+            // 
+            this.stockSoldNotPickedDataGridViewTextBoxColumn.DataPropertyName = "StockSoldNotPicked";
+            this.stockSoldNotPickedDataGridViewTextBoxColumn.HeaderText = "SNP";
+            this.stockSoldNotPickedDataGridViewTextBoxColumn.Name = "stockSoldNotPickedDataGridViewTextBoxColumn";
+            this.stockSoldNotPickedDataGridViewTextBoxColumn.ReadOnly = true;
+            this.stockSoldNotPickedDataGridViewTextBoxColumn.Width = 60;
+            // 
+            // stockReserveDataGridViewTextBoxColumn
+            // 
+            this.stockReserveDataGridViewTextBoxColumn.DataPropertyName = "StockReserve";
+            this.stockReserveDataGridViewTextBoxColumn.HeaderText = "Reserved ";
+            this.stockReserveDataGridViewTextBoxColumn.Name = "stockReserveDataGridViewTextBoxColumn";
+            this.stockReserveDataGridViewTextBoxColumn.ReadOnly = true;
+            this.stockReserveDataGridViewTextBoxColumn.Width = 60;
+            // 
             // frmStockManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -478,21 +483,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.prodVarViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productVarientView)).EndInit();
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DG_ProductView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGrid1)).EndInit();
-            this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
-            this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.stockControlBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.stockControlDS)).EndInit();
+            this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.storeStockBindingSource)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGrid1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -519,11 +524,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn productIDDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn productNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stockForSaleDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stockSoldNotPickedDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn stockReserveDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource stockControlBindingSource;
         private local_datasets.StockControlDS stockControlDS;
         private System.Windows.Forms.Button button2;
@@ -541,5 +541,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn reserveStockDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn totalStockDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource storeStockBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn productIDDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn productNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stockForSaleDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stockSoldNotPickedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stockReserveDataGridViewTextBoxColumn;
     }
 }

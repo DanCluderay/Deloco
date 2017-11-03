@@ -170,9 +170,78 @@ namespace Deloco_Pos_C.ctrl
                     unit_size = cmbUnitSize.Text;
                 }
 
+                string BuildTest;
+                FullProductName = "";
+                if (PreFix.Trim().Length!=0)
+                {
+                    FullProductName = PreFix.Trim();
+                }
+           
+                if(brand_to_display.Trim().Length!=0)
+                {
+                    if(FullProductName.Length==0)
+                    {
+                        FullProductName =  brand_to_display.Trim();
+                    }
+                    else
+                    {
+                        FullProductName = FullProductName + " " + brand_to_display.Trim();
+                    }
+                    
+                }
 
+                if (cmbProductType.Text.Trim().Length != 0)
+                {
+                    if (FullProductName.Length == 0)
+                    {
+                        FullProductName = cmbProductType.Text.Trim();
+                    }
+                    else
+                    {
+                        FullProductName = FullProductName + " " + cmbProductType.Text.Trim();
+                    }
 
-                FullProductName = PreFix + " " + brand_to_display + " " + cmbProductType.Text + " " + TheSize + " " + unit_size + " " + PostFix;
+                }
+
+                if (TheSize.Trim().Length != 0)
+                {
+                    if (FullProductName.Length == 0)
+                    {
+                        FullProductName =  TheSize.Trim();
+                    }
+                    else
+                    {
+                        FullProductName = FullProductName + " " + TheSize.Trim();
+                    }
+                    
+                }
+
+                if (unit_size.Trim().Length != 0)
+                {
+                    if (FullProductName.Length == 0)
+                    {
+                        FullProductName = unit_size.Trim();
+                    }
+                    else
+                    {
+                        FullProductName = FullProductName + " " + unit_size.Trim();
+                    }
+
+                }
+
+                if (PostFix.Trim().Length != 0)
+                {
+                    if (FullProductName.Length == 0)
+                    {
+                        FullProductName =  PostFix.Trim();
+                    }
+                    else
+                    {
+                        FullProductName = FullProductName + " " + PostFix.Trim();
+                    }
+
+                }
+
                 txtFullName.Text = FullProductName;
                 On_NameChanged(this, new EventArgs());
 
@@ -387,6 +456,8 @@ namespace Deloco_Pos_C.ctrl
             if(cmbUnitSize.SelectedValue!=null)
             {
                 TheUnitSize =int.Parse(cmbUnitSize.SelectedValue.ToString());
+                BuildProductName();
+                On_BrandProductChanged(this, new EventArgs());
             }
             
         }

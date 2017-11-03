@@ -19,9 +19,9 @@ namespace Deloco_Pos_C.base_classes
         public bool BrandInName { get; set; }
         public string BrandProductName { get; set; }
         public string BrandProductSize { get; set; }
-        
-        public double ProductRRP { get; set; }
 
+        public double ProductRRP { get; set; }
+        public string SizeString {get;set;}
         public int SizeUnit { get; set; }
         public int SizeRelative { get; set; }
         public int ProductItemWidth { get; set; }

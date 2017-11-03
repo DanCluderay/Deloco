@@ -49,6 +49,8 @@
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.brandsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblBigProductName = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -56,6 +58,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.productDS)).BeginInit();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.brandsBindingSource)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -68,8 +71,7 @@
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Controls.Add(this.tabPage9);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Location = new System.Drawing.Point(13, 78);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(950, 591);
@@ -79,7 +81,6 @@
             // 
             this.tabPage7.Controls.Add(this.dataGridView1);
             this.tabPage7.Controls.Add(this.listBox1);
-            this.tabPage7.Controls.Add(this.button1);
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Size = new System.Drawing.Size(942, 565);
@@ -138,11 +139,11 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(26, 35);
+            this.button1.Location = new System.Drawing.Point(816, 16);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(108, 38);
             this.button1.TabIndex = 0;
-            this.button1.Text = "Save";
+            this.button1.Text = "Save and Close";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -251,11 +252,32 @@
             this.brandsBindingSource.DataMember = "Brands";
             this.brandsBindingSource.DataSource = this.productDS;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lblBigProductName);
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(950, 62);
+            this.panel1.TabIndex = 1;
+            // 
+            // lblBigProductName
+            // 
+            this.lblBigProductName.AutoSize = true;
+            this.lblBigProductName.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBigProductName.Location = new System.Drawing.Point(31, 16);
+            this.lblBigProductName.Name = "lblBigProductName";
+            this.lblBigProductName.Size = new System.Drawing.Size(187, 31);
+            this.lblBigProductName.TabIndex = 1;
+            this.lblBigProductName.Text = "Product Name";
+            // 
             // ctrl_edit_prodcut
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.panel1);
             this.Name = "ctrl_edit_prodcut";
             this.Size = new System.Drawing.Size(950, 591);
             this.Load += new System.EventHandler(this.ctrl_edit_prodcut_Load);
@@ -266,6 +288,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.productDS)).EndInit();
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.brandsBindingSource)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -292,5 +316,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn valueDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource valuePairBindingSource;
         private ctrl_NameBuilder ctrl_NameBuilder2;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lblBigProductName;
     }
 }

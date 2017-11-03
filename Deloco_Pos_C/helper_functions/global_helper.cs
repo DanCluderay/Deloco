@@ -858,7 +858,7 @@ namespace Deloco_Pos_C.helper_functions
 
                     if (ReturnDataTable.Columns.Contains("SizeUnit"))
                     {
-                        ProdRow.SizeID = int.Parse(Item["SizeUnit"].ToString());
+                        ProdRow.SizeUnit = int.Parse(Item["SizeUnit"].ToString());
                     }
 
                     if (ReturnDataTable.Columns.Contains("SizeString"))
@@ -1223,6 +1223,7 @@ namespace Deloco_Pos_C.helper_functions
             if (CheckNewValue(CheckDS, "ProductTotalVolume") == true) { parameters = AC(parameters) + "'ProductTotalVolume': '" + Prod.ProductTotalVolume.ToString() + "'"; }
             if (CheckNewValue(CheckDS, "SizeRelative") == true) { parameters = AC(parameters) + "'SizeRelative': '" + Prod.SizeRelative.ToString() + "'"; }
             if (CheckNewValue(CheckDS, "SizeUnit") == true) { parameters = AC(parameters) + "'SizeUnit': '" + Prod.SizeUnit.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "SizeString") == true) { parameters = AC(parameters) + "'SizeString': '" + Prod.SizeString.ToString() + "'"; }
 
             if (CheckNewValue(CheckDS, "PreFix") == true) { parameters = AC(parameters) + "'PreFix': '" + Prod.PreFix.ToString() + "'"; }
             if (CheckNewValue(CheckDS, "PostFix") == true) { parameters = AC(parameters) + "'PostFix': '" + Prod.PostFix.ToString() + "'"; }
@@ -1295,7 +1296,15 @@ namespace Deloco_Pos_C.helper_functions
                 }
                 else
                 {
-                    ret = false;
+                    if(result[0]["value"].ToString()=="")
+                    {
+                        ret = true;
+                    }
+                    else
+                    {
+                        ret = false;
+                    }
+                    
                 }
             }
             else
