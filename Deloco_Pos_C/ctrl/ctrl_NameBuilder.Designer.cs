@@ -168,6 +168,7 @@
             // 
             // txtPostFix
             // 
+            this.txtPostFix.BackColor = System.Drawing.Color.Pink;
             this.txtPostFix.Location = new System.Drawing.Point(107, 200);
             this.txtPostFix.Name = "txtPostFix";
             this.txtPostFix.Size = new System.Drawing.Size(143, 20);
@@ -186,6 +187,7 @@
             // 
             // txtPrefix
             // 
+            this.txtPrefix.BackColor = System.Drawing.Color.Pink;
             this.txtPrefix.Location = new System.Drawing.Point(107, 39);
             this.txtPrefix.Name = "txtPrefix";
             this.txtPrefix.Size = new System.Drawing.Size(143, 20);

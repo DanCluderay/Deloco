@@ -60,6 +60,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.tabCase = new System.Windows.Forms.TabPage();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.tabControl2.SuspendLayout();
             this.tabPage7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -75,10 +77,10 @@
             this.tabControl2.Controls.Add(this.tabPage7);
             this.tabControl2.Controls.Add(this.tabPage8);
             this.tabControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tabControl2.Location = new System.Drawing.Point(3, 106);
+            this.tabControl2.Location = new System.Drawing.Point(3, 117);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(348, 186);
+            this.tabControl2.Size = new System.Drawing.Size(348, 175);
             this.tabControl2.TabIndex = 26;
             // 
             // tabPage7
@@ -87,7 +89,7 @@
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(340, 160);
+            this.tabPage7.Size = new System.Drawing.Size(340, 149);
             this.tabPage7.TabIndex = 0;
             this.tabPage7.Text = "Barcodes";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -105,7 +107,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(3, 3);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(219, 154);
+            this.dataGridView1.Size = new System.Drawing.Size(219, 143);
             this.dataGridView1.TabIndex = 0;
             // 
             // barcodeDataGridViewTextBoxColumn
@@ -270,6 +272,8 @@
             // 
             // tabItem
             // 
+            this.tabItem.Controls.Add(this.label13);
+            this.tabItem.Controls.Add(this.comboBox1);
             this.tabItem.Controls.Add(this.label11);
             this.tabItem.Controls.Add(this.txtVolumetricWeight);
             this.tabItem.Controls.Add(this.label12);
@@ -380,6 +384,29 @@
             this.tabCase.Text = "Case";
             this.tabCase.UseVisualStyleBackColor = true;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.BackColor = System.Drawing.Color.Pink;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "No Date",
+            "Best Before Date",
+            "Used By Date",
+            "Expiry Date"});
+            this.comboBox1.Location = new System.Drawing.Point(256, 90);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(44, 21);
+            this.comboBox1.TabIndex = 35;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(163, 93);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(88, 13);
+            this.label13.TabIndex = 36;
+            this.label13.Text = "Expiry Date Type";
+            // 
             // ctrl_ProductPhysicalProperties
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -434,5 +461,7 @@
         private System.Windows.Forms.Button btnRemoveItemBarcode;
         private System.Windows.Forms.Button btnEditItemBarcode;
         private System.Windows.Forms.Button btnAddNewItemBarcode;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
