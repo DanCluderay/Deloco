@@ -879,7 +879,45 @@ namespace Deloco_Pos_C.helper_functions
                 }
                 ReturnDS = DS;
             }
+            else if (functionName == "get_caseconfig")
+            {
 
+                local_datasets.ProductDS DS = new local_datasets.ProductDS();
+                foreach (DataRow Item in ReturnDataTable.Rows)
+                {
+                    local_datasets.ProductDS.ProductCaseConfigRow CaseRow = DS.ProductCaseConfig.NewProductCaseConfigRow();
+
+                    CaseRow.CaseConfigID = int.Parse(Item["CaseConfigID"].ToString());
+
+                    if (ReturnDataTable.Columns.Contains("ProductID"))
+                    {
+                        CaseRow.ProductID = int.Parse(Item["ProductID"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("CaseDescription"))
+                    {
+                        CaseRow.CaseDescription = Item["CaseDescription"].ToString();
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("CaseQty"))
+                    {
+                        CaseRow.CaseQty = int.Parse(Item["CaseQty"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("CaseBarcode"))
+                    {
+                        CaseRow.CaseBarcode = Item["CaseBarcode"].ToString();
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("Deleted"))
+                    {
+                        CaseRow.Deleted = int.Parse(Item["Deleted"].ToString());
+                    }
+
+                    DS.ProductCaseConfig.AddProductCaseConfigRow(CaseRow);
+                }
+                ReturnDS = DS;
+            }
             else
             {
                 //just pass a blank table back
@@ -1350,7 +1388,111 @@ namespace Deloco_Pos_C.helper_functions
 
             return ret;
         }
-        private void FailedWebReseponce(string E)
+
+
+
+        public local_datasets.ProductDS Get_Product_Case_Configeration(int ProductID)
+        {
+            local_datasets.ProductDS ret = new local_datasets.ProductDS();
+            string parameters = "{'productid':'" + ProductID.ToString() + "'}";
+            string job = "get_caseconfig";
+            string res = Make_db_call(job, parameters.ToString());
+            if (res.Trim().Length != 0)
+            {
+                ret.Merge(FormatStringToDataTable(job, res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+            return ret;
+
+        }
+
+        public int Add_New_Case_Config(string CaseDesc, int caseQTY, string barcode,int productid)
+        {
+            int newCaseID=0;
+            string job = "update_case_config_dataset";
+            string jsonstring = "{'TableName':'ProductCaseConfig','Pk':'CaseConfigID','CaseConfigID':'0','ProductID':'" + productid.ToString() + "','CaseDescription':'" + CaseDesc + "','CaseQty':'" + caseQTY.ToString() + "','CaseBarcode':'" + barcode + "','Deleted':'0'}";
+            string res = Make_db_call(job, jsonstring.ToString());
+            if (res.Trim().Length != 0)
+            {
+                //res="{'dan':'p'}";
+                string newg = res.Replace("[", "");
+                newg = newg.Replace("]", "");
+                var a = new { CaseConfigID = ""};
+                var c = new JsonSerializer();
+                dynamic jsonObject = c.Deserialize(new System.IO.StringReader(newg), a.GetType());
+                int tf;
+                tf=int.Parse(jsonObject.CaseConfigID.ToString());
+                newCaseID = tf;
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+
+            return newCaseID;
+        }
+
+
+        public int Edit_Case_Config(string CaseDesc, int caseQTY, string barcode, int productid, int CaseConfigID, int Del)
+        {
+            int newCaseID = 0;
+            string job = "update_case_config_dataset";
+            string jsonstring = "{'TableName':'ProductCaseConfig','Pk':'CaseConfigID','CaseConfigID':'" + CaseConfigID.ToString() + "','ProductID':'" + productid.ToString() + "','CaseDescription':'" + CaseDesc + "','CaseQty':'" + caseQTY.ToString() + "','CaseBarcode':'" + barcode + "','Deleted':'" + Del + "','UpDateWhere':'" + CaseConfigID.ToString() + "'}";
+            string res = Make_db_call(job, jsonstring.ToString());
+            if (res.Trim().Length != 0)
+            {
+              
+                string newg = res.Replace("[", "");
+                newg = newg.Replace("]", "");
+                var a = new { result = "" };
+                var c = new JsonSerializer();
+                dynamic jsonObject = c.Deserialize(new System.IO.StringReader(newg), a.GetType());
+                int tf;
+                tf = int.Parse(jsonObject.result.ToString());
+                newCaseID = tf;
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+
+            return newCaseID;
+        }
+
+
+        public int Add_ProductInstance(int ProductID, double cost_price,int invoice)
+        {
+            int newCaseID = 0;
+            string job = "";
+            string extra = "'TableName':'Product_Instance','Pk':'pv_autoID'";
+            string jsonstring = "{" + extra + ",'pv_autoID':'0','productID':'" + ProductID.ToString() + "','Item_costprice':'" + cost_price.ToString() + "','InvoiceID':'" + invoice.ToString() + "'}";
+            string res = Make_db_call(job, jsonstring.ToString());
+            if (res.Trim().Length != 0)
+            {
+
+                string newg = res.Replace("[", "");
+                newg = newg.Replace("]", "");
+                var a = new { result = "" };
+                var c = new JsonSerializer();
+                dynamic jsonObject = c.Deserialize(new System.IO.StringReader(newg), a.GetType());
+                int tf;
+                tf = int.Parse(jsonObject.result.ToString());
+                newCaseID = tf;
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+            return newCaseID;
+        }
+            private void FailedWebReseponce(string E)
         {
 
         }

@@ -170,7 +170,7 @@ namespace Deloco_Pos_C.ctrl
                     unit_size = cmbUnitSize.Text;
                 }
 
-                string BuildTest;
+               
                 FullProductName = "";
                 if (PreFix.Trim().Length!=0)
                 {

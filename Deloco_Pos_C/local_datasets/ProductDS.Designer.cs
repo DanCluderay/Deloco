@@ -42,7 +42,7 @@ namespace Deloco_Pos_C.local_datasets {
         
         private Product_InstanceDataTable tableProduct_Instance;
         
-        private ProductInstanceLocationsDataTable tableProductInstanceLocations;
+        private ProductCaseConfigDataTable tableProductCaseConfig;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -99,8 +99,8 @@ namespace Deloco_Pos_C.local_datasets {
                 if ((ds.Tables["Product_Instance"] != null)) {
                     base.Tables.Add(new Product_InstanceDataTable(ds.Tables["Product_Instance"]));
                 }
-                if ((ds.Tables["ProductInstanceLocations"] != null)) {
-                    base.Tables.Add(new ProductInstanceLocationsDataTable(ds.Tables["ProductInstanceLocations"]));
+                if ((ds.Tables["ProductCaseConfig"] != null)) {
+                    base.Tables.Add(new ProductCaseConfigDataTable(ds.Tables["ProductCaseConfig"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -214,9 +214,9 @@ namespace Deloco_Pos_C.local_datasets {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public ProductInstanceLocationsDataTable ProductInstanceLocations {
+        public ProductCaseConfigDataTable ProductCaseConfig {
             get {
-                return this.tableProductInstanceLocations;
+                return this.tableProductCaseConfig;
             }
         }
         
@@ -314,8 +314,8 @@ namespace Deloco_Pos_C.local_datasets {
                 if ((ds.Tables["Product_Instance"] != null)) {
                     base.Tables.Add(new Product_InstanceDataTable(ds.Tables["Product_Instance"]));
                 }
-                if ((ds.Tables["ProductInstanceLocations"] != null)) {
-                    base.Tables.Add(new ProductInstanceLocationsDataTable(ds.Tables["ProductInstanceLocations"]));
+                if ((ds.Tables["ProductCaseConfig"] != null)) {
+                    base.Tables.Add(new ProductCaseConfigDataTable(ds.Tables["ProductCaseConfig"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -404,10 +404,10 @@ namespace Deloco_Pos_C.local_datasets {
                     this.tableProduct_Instance.InitVars();
                 }
             }
-            this.tableProductInstanceLocations = ((ProductInstanceLocationsDataTable)(base.Tables["ProductInstanceLocations"]));
+            this.tableProductCaseConfig = ((ProductCaseConfigDataTable)(base.Tables["ProductCaseConfig"]));
             if ((initTable == true)) {
-                if ((this.tableProductInstanceLocations != null)) {
-                    this.tableProductInstanceLocations.InitVars();
+                if ((this.tableProductCaseConfig != null)) {
+                    this.tableProductCaseConfig.InitVars();
                 }
             }
         }
@@ -438,8 +438,8 @@ namespace Deloco_Pos_C.local_datasets {
             base.Tables.Add(this.tableValuePair);
             this.tableProduct_Instance = new Product_InstanceDataTable();
             base.Tables.Add(this.tableProduct_Instance);
-            this.tableProductInstanceLocations = new ProductInstanceLocationsDataTable();
-            base.Tables.Add(this.tableProductInstanceLocations);
+            this.tableProductCaseConfig = new ProductCaseConfigDataTable();
+            base.Tables.Add(this.tableProductCaseConfig);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -498,7 +498,7 @@ namespace Deloco_Pos_C.local_datasets {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializeProductInstanceLocations() {
+        private bool ShouldSerializeProductCaseConfig() {
             return false;
         }
         
@@ -585,7 +585,7 @@ namespace Deloco_Pos_C.local_datasets {
         public delegate void Product_InstanceRowChangeEventHandler(object sender, Product_InstanceRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void ProductInstanceLocationsRowChangeEventHandler(object sender, ProductInstanceLocationsRowChangeEvent e);
+        public delegate void ProductCaseConfigRowChangeEventHandler(object sender, ProductCaseConfigRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -3459,6 +3459,10 @@ namespace Deloco_Pos_C.local_datasets {
             
             private global::System.Data.DataColumn columnSupplierName;
             
+            private global::System.Data.DataColumn columnVarienceID;
+            
+            private global::System.Data.DataColumn columnQTY;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public Product_InstanceDataTable() {
@@ -3550,6 +3554,22 @@ namespace Deloco_Pos_C.local_datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn VarienceIDColumn {
+                get {
+                    return this.columnVarienceID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn QTYColumn {
+                get {
+                    return this.columnQTY;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -3585,7 +3605,7 @@ namespace Deloco_Pos_C.local_datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public Product_InstanceRow AddProduct_InstanceRow(int productID, double Item_costprice, string Item_expirydate, string ProductName, int InvoiceID, string SupplierName) {
+            public Product_InstanceRow AddProduct_InstanceRow(int productID, double Item_costprice, string Item_expirydate, string ProductName, int InvoiceID, string SupplierName, int VarienceID, int QTY) {
                 Product_InstanceRow rowProduct_InstanceRow = ((Product_InstanceRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -3594,7 +3614,9 @@ namespace Deloco_Pos_C.local_datasets {
                         Item_expirydate,
                         ProductName,
                         InvoiceID,
-                        SupplierName};
+                        SupplierName,
+                        VarienceID,
+                        QTY};
                 rowProduct_InstanceRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowProduct_InstanceRow);
                 return rowProduct_InstanceRow;
@@ -3631,6 +3653,8 @@ namespace Deloco_Pos_C.local_datasets {
                 this.columnProductName = base.Columns["ProductName"];
                 this.columnInvoiceID = base.Columns["InvoiceID"];
                 this.columnSupplierName = base.Columns["SupplierName"];
+                this.columnVarienceID = base.Columns["VarienceID"];
+                this.columnQTY = base.Columns["QTY"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3650,6 +3674,10 @@ namespace Deloco_Pos_C.local_datasets {
                 base.Columns.Add(this.columnInvoiceID);
                 this.columnSupplierName = new global::System.Data.DataColumn("SupplierName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSupplierName);
+                this.columnVarienceID = new global::System.Data.DataColumn("VarienceID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVarienceID);
+                this.columnQTY = new global::System.Data.DataColumn("QTY", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnQTY);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnpv_autoID}, true));
                 this.columnpv_autoID.AutoIncrement = true;
@@ -3662,6 +3690,8 @@ namespace Deloco_Pos_C.local_datasets {
                 this.columnProductName.DefaultValue = ((string)(""));
                 this.columnInvoiceID.DefaultValue = ((int)(0));
                 this.columnSupplierName.DefaultValue = ((string)(""));
+                this.columnVarienceID.DefaultValue = ((int)(0));
+                this.columnQTY.DefaultValue = ((int)(0));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3793,12 +3823,26 @@ namespace Deloco_Pos_C.local_datasets {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class ProductInstanceLocationsDataTable : global::System.Data.TypedTableBase<ProductInstanceLocationsRow> {
+        public partial class ProductCaseConfigDataTable : global::System.Data.TypedTableBase<ProductCaseConfigRow> {
+            
+            private global::System.Data.DataColumn columnCaseConfigID;
+            
+            private global::System.Data.DataColumn columnProductID;
+            
+            private global::System.Data.DataColumn columnCaseDescription;
+            
+            private global::System.Data.DataColumn columnCaseQty;
+            
+            private global::System.Data.DataColumn columnCaseBarcode;
+            
+            private global::System.Data.DataColumn columnDeleted;
+            
+            private global::System.Data.DataColumn columnGUID;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public ProductInstanceLocationsDataTable() {
-                this.TableName = "ProductInstanceLocations";
+            public ProductCaseConfigDataTable() {
+                this.TableName = "ProductCaseConfig";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -3806,7 +3850,7 @@ namespace Deloco_Pos_C.local_datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal ProductInstanceLocationsDataTable(global::System.Data.DataTable table) {
+            internal ProductCaseConfigDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -3823,9 +3867,65 @@ namespace Deloco_Pos_C.local_datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected ProductInstanceLocationsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected ProductCaseConfigDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CaseConfigIDColumn {
+                get {
+                    return this.columnCaseConfigID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ProductIDColumn {
+                get {
+                    return this.columnProductID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CaseDescriptionColumn {
+                get {
+                    return this.columnCaseDescription;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CaseQtyColumn {
+                get {
+                    return this.columnCaseQty;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn CaseBarcodeColumn {
+                get {
+                    return this.columnCaseBarcode;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn DeletedColumn {
+                get {
+                    return this.columnDeleted;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn GUIDColumn {
+                get {
+                    return this.columnGUID;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3839,44 +3939,58 @@ namespace Deloco_Pos_C.local_datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public ProductInstanceLocationsRow this[int index] {
+            public ProductCaseConfigRow this[int index] {
                 get {
-                    return ((ProductInstanceLocationsRow)(this.Rows[index]));
+                    return ((ProductCaseConfigRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event ProductInstanceLocationsRowChangeEventHandler ProductInstanceLocationsRowChanging;
+            public event ProductCaseConfigRowChangeEventHandler ProductCaseConfigRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event ProductInstanceLocationsRowChangeEventHandler ProductInstanceLocationsRowChanged;
+            public event ProductCaseConfigRowChangeEventHandler ProductCaseConfigRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event ProductInstanceLocationsRowChangeEventHandler ProductInstanceLocationsRowDeleting;
+            public event ProductCaseConfigRowChangeEventHandler ProductCaseConfigRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event ProductInstanceLocationsRowChangeEventHandler ProductInstanceLocationsRowDeleted;
+            public event ProductCaseConfigRowChangeEventHandler ProductCaseConfigRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddProductInstanceLocationsRow(ProductInstanceLocationsRow row) {
+            public void AddProductCaseConfigRow(ProductCaseConfigRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public ProductInstanceLocationsRow AddProductInstanceLocationsRow() {
-                ProductInstanceLocationsRow rowProductInstanceLocationsRow = ((ProductInstanceLocationsRow)(this.NewRow()));
-                object[] columnValuesArray = new object[0];
-                rowProductInstanceLocationsRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowProductInstanceLocationsRow);
-                return rowProductInstanceLocationsRow;
+            public ProductCaseConfigRow AddProductCaseConfigRow(int ProductID, string CaseDescription, int CaseQty, string CaseBarcode, int Deleted, int GUID) {
+                ProductCaseConfigRow rowProductCaseConfigRow = ((ProductCaseConfigRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        ProductID,
+                        CaseDescription,
+                        CaseQty,
+                        CaseBarcode,
+                        Deleted,
+                        GUID};
+                rowProductCaseConfigRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowProductCaseConfigRow);
+                return rowProductCaseConfigRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public ProductCaseConfigRow FindByCaseConfigID(int CaseConfigID) {
+                return ((ProductCaseConfigRow)(this.Rows.Find(new object[] {
+                            CaseConfigID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                ProductInstanceLocationsDataTable cln = ((ProductInstanceLocationsDataTable)(base.Clone()));
+                ProductCaseConfigDataTable cln = ((ProductCaseConfigDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -3884,43 +3998,73 @@ namespace Deloco_Pos_C.local_datasets {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new ProductInstanceLocationsDataTable();
+                return new ProductCaseConfigDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
+                this.columnCaseConfigID = base.Columns["CaseConfigID"];
+                this.columnProductID = base.Columns["ProductID"];
+                this.columnCaseDescription = base.Columns["CaseDescription"];
+                this.columnCaseQty = base.Columns["CaseQty"];
+                this.columnCaseBarcode = base.Columns["CaseBarcode"];
+                this.columnDeleted = base.Columns["Deleted"];
+                this.columnGUID = base.Columns["GUID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             private void InitClass() {
+                this.columnCaseConfigID = new global::System.Data.DataColumn("CaseConfigID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCaseConfigID);
+                this.columnProductID = new global::System.Data.DataColumn("ProductID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProductID);
+                this.columnCaseDescription = new global::System.Data.DataColumn("CaseDescription", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCaseDescription);
+                this.columnCaseQty = new global::System.Data.DataColumn("CaseQty", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCaseQty);
+                this.columnCaseBarcode = new global::System.Data.DataColumn("CaseBarcode", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCaseBarcode);
+                this.columnDeleted = new global::System.Data.DataColumn("Deleted", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDeleted);
+                this.columnGUID = new global::System.Data.DataColumn("GUID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGUID);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnCaseConfigID}, true));
+                this.columnCaseConfigID.AutoIncrement = true;
+                this.columnCaseConfigID.AutoIncrementSeed = -1;
+                this.columnCaseConfigID.AutoIncrementStep = -1;
+                this.columnCaseConfigID.AllowDBNull = false;
+                this.columnCaseConfigID.Unique = true;
+                this.columnCaseDescription.MaxLength = 100;
+                this.columnCaseBarcode.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public ProductInstanceLocationsRow NewProductInstanceLocationsRow() {
-                return ((ProductInstanceLocationsRow)(this.NewRow()));
+            public ProductCaseConfigRow NewProductCaseConfigRow() {
+                return ((ProductCaseConfigRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new ProductInstanceLocationsRow(builder);
+                return new ProductCaseConfigRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(ProductInstanceLocationsRow);
+                return typeof(ProductCaseConfigRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.ProductInstanceLocationsRowChanged != null)) {
-                    this.ProductInstanceLocationsRowChanged(this, new ProductInstanceLocationsRowChangeEvent(((ProductInstanceLocationsRow)(e.Row)), e.Action));
+                if ((this.ProductCaseConfigRowChanged != null)) {
+                    this.ProductCaseConfigRowChanged(this, new ProductCaseConfigRowChangeEvent(((ProductCaseConfigRow)(e.Row)), e.Action));
                 }
             }
             
@@ -3928,8 +4072,8 @@ namespace Deloco_Pos_C.local_datasets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.ProductInstanceLocationsRowChanging != null)) {
-                    this.ProductInstanceLocationsRowChanging(this, new ProductInstanceLocationsRowChangeEvent(((ProductInstanceLocationsRow)(e.Row)), e.Action));
+                if ((this.ProductCaseConfigRowChanging != null)) {
+                    this.ProductCaseConfigRowChanging(this, new ProductCaseConfigRowChangeEvent(((ProductCaseConfigRow)(e.Row)), e.Action));
                 }
             }
             
@@ -3937,8 +4081,8 @@ namespace Deloco_Pos_C.local_datasets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.ProductInstanceLocationsRowDeleted != null)) {
-                    this.ProductInstanceLocationsRowDeleted(this, new ProductInstanceLocationsRowChangeEvent(((ProductInstanceLocationsRow)(e.Row)), e.Action));
+                if ((this.ProductCaseConfigRowDeleted != null)) {
+                    this.ProductCaseConfigRowDeleted(this, new ProductCaseConfigRowChangeEvent(((ProductCaseConfigRow)(e.Row)), e.Action));
                 }
             }
             
@@ -3946,14 +4090,14 @@ namespace Deloco_Pos_C.local_datasets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.ProductInstanceLocationsRowDeleting != null)) {
-                    this.ProductInstanceLocationsRowDeleting(this, new ProductInstanceLocationsRowChangeEvent(((ProductInstanceLocationsRow)(e.Row)), e.Action));
+                if ((this.ProductCaseConfigRowDeleting != null)) {
+                    this.ProductCaseConfigRowDeleting(this, new ProductCaseConfigRowChangeEvent(((ProductCaseConfigRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemoveProductInstanceLocationsRow(ProductInstanceLocationsRow row) {
+            public void RemoveProductCaseConfigRow(ProductCaseConfigRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -3980,7 +4124,7 @@ namespace Deloco_Pos_C.local_datasets {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "ProductInstanceLocationsDataTable";
+                attribute2.FixedValue = "ProductCaseConfigDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -5814,6 +5958,38 @@ namespace Deloco_Pos_C.local_datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int VarienceID {
+                get {
+                    try {
+                        return ((int)(this[this.tableProduct_Instance.VarienceIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'VarienceID\' in table \'Product_Instance\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableProduct_Instance.VarienceIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int QTY {
+                get {
+                    try {
+                        return ((int)(this[this.tableProduct_Instance.QTYColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'QTY\' in table \'Product_Instance\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableProduct_Instance.QTYColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsproductIDNull() {
                 return this.IsNull(this.tableProduct_Instance.productIDColumn);
             }
@@ -5883,20 +6059,223 @@ namespace Deloco_Pos_C.local_datasets {
             public void SetSupplierNameNull() {
                 this[this.tableProduct_Instance.SupplierNameColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsVarienceIDNull() {
+                return this.IsNull(this.tableProduct_Instance.VarienceIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetVarienceIDNull() {
+                this[this.tableProduct_Instance.VarienceIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsQTYNull() {
+                return this.IsNull(this.tableProduct_Instance.QTYColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetQTYNull() {
+                this[this.tableProduct_Instance.QTYColumn] = global::System.Convert.DBNull;
+            }
         }
         
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class ProductInstanceLocationsRow : global::System.Data.DataRow {
+        public partial class ProductCaseConfigRow : global::System.Data.DataRow {
             
-            private ProductInstanceLocationsDataTable tableProductInstanceLocations;
+            private ProductCaseConfigDataTable tableProductCaseConfig;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal ProductInstanceLocationsRow(global::System.Data.DataRowBuilder rb) : 
+            internal ProductCaseConfigRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableProductInstanceLocations = ((ProductInstanceLocationsDataTable)(this.Table));
+                this.tableProductCaseConfig = ((ProductCaseConfigDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int CaseConfigID {
+                get {
+                    return ((int)(this[this.tableProductCaseConfig.CaseConfigIDColumn]));
+                }
+                set {
+                    this[this.tableProductCaseConfig.CaseConfigIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int ProductID {
+                get {
+                    try {
+                        return ((int)(this[this.tableProductCaseConfig.ProductIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ProductID\' in table \'ProductCaseConfig\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableProductCaseConfig.ProductIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string CaseDescription {
+                get {
+                    try {
+                        return ((string)(this[this.tableProductCaseConfig.CaseDescriptionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CaseDescription\' in table \'ProductCaseConfig\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableProductCaseConfig.CaseDescriptionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int CaseQty {
+                get {
+                    try {
+                        return ((int)(this[this.tableProductCaseConfig.CaseQtyColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CaseQty\' in table \'ProductCaseConfig\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableProductCaseConfig.CaseQtyColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string CaseBarcode {
+                get {
+                    try {
+                        return ((string)(this[this.tableProductCaseConfig.CaseBarcodeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CaseBarcode\' in table \'ProductCaseConfig\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableProductCaseConfig.CaseBarcodeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int Deleted {
+                get {
+                    try {
+                        return ((int)(this[this.tableProductCaseConfig.DeletedColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Deleted\' in table \'ProductCaseConfig\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableProductCaseConfig.DeletedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int GUID {
+                get {
+                    try {
+                        return ((int)(this[this.tableProductCaseConfig.GUIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'GUID\' in table \'ProductCaseConfig\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableProductCaseConfig.GUIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsProductIDNull() {
+                return this.IsNull(this.tableProductCaseConfig.ProductIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetProductIDNull() {
+                this[this.tableProductCaseConfig.ProductIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCaseDescriptionNull() {
+                return this.IsNull(this.tableProductCaseConfig.CaseDescriptionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCaseDescriptionNull() {
+                this[this.tableProductCaseConfig.CaseDescriptionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCaseQtyNull() {
+                return this.IsNull(this.tableProductCaseConfig.CaseQtyColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCaseQtyNull() {
+                this[this.tableProductCaseConfig.CaseQtyColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsCaseBarcodeNull() {
+                return this.IsNull(this.tableProductCaseConfig.CaseBarcodeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetCaseBarcodeNull() {
+                this[this.tableProductCaseConfig.CaseBarcodeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsDeletedNull() {
+                return this.IsNull(this.tableProductCaseConfig.DeletedColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetDeletedNull() {
+                this[this.tableProductCaseConfig.DeletedColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsGUIDNull() {
+                return this.IsNull(this.tableProductCaseConfig.GUIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetGUIDNull() {
+                this[this.tableProductCaseConfig.GUIDColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -6210,22 +6589,22 @@ namespace Deloco_Pos_C.local_datasets {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class ProductInstanceLocationsRowChangeEvent : global::System.EventArgs {
+        public class ProductCaseConfigRowChangeEvent : global::System.EventArgs {
             
-            private ProductInstanceLocationsRow eventRow;
+            private ProductCaseConfigRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public ProductInstanceLocationsRowChangeEvent(ProductInstanceLocationsRow row, global::System.Data.DataRowAction action) {
+            public ProductCaseConfigRowChangeEvent(ProductCaseConfigRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public ProductInstanceLocationsRow Row {
+            public ProductCaseConfigRow Row {
                 get {
                     return this.eventRow;
                 }

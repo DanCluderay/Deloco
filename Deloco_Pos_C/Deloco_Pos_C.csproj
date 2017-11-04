@@ -96,6 +96,12 @@
     <Compile Include="ctrl\ctrl_NameBuilder.Designer.cs">
       <DependentUpon>ctrl_NameBuilder.cs</DependentUpon>
     </Compile>
+    <Compile Include="ctrl\ctrl_ProductInstance.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctrl\ctrl_ProductInstance.Designer.cs">
+      <DependentUpon>ctrl_ProductInstance.cs</DependentUpon>
+    </Compile>
     <Compile Include="ctrl\ctrl_ProductPhysicalProperties.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -242,6 +248,12 @@
     <Compile Include="views\frmAddProduct.Designer.cs">
       <DependentUpon>frmAddProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="views\frmAddProductInstance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\frmAddProductInstance.Designer.cs">
+      <DependentUpon>frmAddProductInstance.cs</DependentUpon>
+    </Compile>
     <Compile Include="views\frmAllCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -369,6 +381,9 @@
     <EmbeddedResource Include="ctrl\ctrl_NameBuilder.resx">
       <DependentUpon>ctrl_NameBuilder.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ctrl\ctrl_ProductInstance.resx">
+      <DependentUpon>ctrl_ProductInstance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ctrl\ctrl_ProductPhysicalProperties.resx">
       <DependentUpon>ctrl_ProductPhysicalProperties.cs</DependentUpon>
     </EmbeddedResource>
@@ -407,6 +422,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="views\frmAddProduct.resx">
       <DependentUpon>frmAddProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\frmAddProductInstance.resx">
+      <DependentUpon>frmAddProductInstance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="views\frmAllCustomer.resx">
       <DependentUpon>frmAllCustomer.cs</DependentUpon>

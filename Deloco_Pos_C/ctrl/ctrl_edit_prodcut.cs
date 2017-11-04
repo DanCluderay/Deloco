@@ -24,8 +24,8 @@ namespace Deloco_Pos_C.ctrl
             InitializeComponent();
             helper_functions.globalHelper logic_global = helper_functions.globalHelper.Instance;
             setupmode = true;
-            ctrl_NameBuilder2.On_BrandProductChanged += Ctrl_NameBuilder1_On_BrandProductChanged;
-            ctrl_NameBuilder2.On_NameChanged += Ctrl_NameBuilder1_On_NameChanged;
+            ctrl_NameBuilder1.On_BrandProductChanged += Ctrl_NameBuilder1_On_BrandProductChanged;
+            ctrl_NameBuilder1.On_NameChanged += Ctrl_NameBuilder1_On_NameChanged;
             ctrl_ProductPhysicalProperties1.On_PhysicalPropertiesChanged += Ctrl_ProductPhysicalProperties1_On_PhysicalPropertiesChanged;
             
             ProdClass = new base_classes.productclass();
@@ -37,9 +37,9 @@ namespace Deloco_Pos_C.ctrl
             DS = new local_datasets.ProductDS();
             DS.Merge(logic_global.Get_Product_Details_From_ProductID(ProductID));
             ProdClass.ProductID = ProductID;
-            ctrl_NameBuilder2.SetupProduct(DS);
+            ctrl_NameBuilder1.SetupProduct(DS);
             ctrl_ProductPhysicalProperties1.SetupProduct(DS);
-            
+            ctrl_ProductInstance1.SetUpProduct(ProductID);
         }
         private void DisplayProduct()
         {
@@ -152,7 +152,7 @@ namespace Deloco_Pos_C.ctrl
         }
         private void Ctrl_NameBuilder1_On_BrandProductChanged(object sender, EventArgs e)
         {
-            ctrl_ProductPhysicalProperties1.Setup_Barcode_Control(ctrl_NameBuilder2.BrandProduct);
+            ctrl_ProductPhysicalProperties1.Setup_Barcode_Control(ctrl_NameBuilder1.BrandProduct);
         }
 
         private void tabPage1_Click(object sender, EventArgs e)

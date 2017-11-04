@@ -17,6 +17,7 @@ namespace Deloco_Pos_C.views
         {
             InitializeComponent();
             helper_functions.globalHelper logic_global = helper_functions.globalHelper.Instance;
+            DisplayStockList();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -31,10 +32,13 @@ namespace Deloco_Pos_C.views
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            DisplayStockList();
+        }
+        private void DisplayStockList()
+        {
             stockControlDS.StockControl.Clear();
             stockControlDS.Merge(logic_global.GetAllStock());
         }
-
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -59,6 +63,7 @@ namespace Deloco_Pos_C.views
                 views.frmProductFlowDev ProdDetails = new views.frmProductFlowDev(ProductID);
                 ProdDetails.MdiParent = this.MdiParent;
                 ProdDetails.Show();
+                ProdDetails.WindowState=FormWindowState.Maximized;
             }
             
         }

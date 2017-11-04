@@ -28,6 +28,7 @@ namespace Deloco_Pos_C.views
             InitializeComponent();
             ctrl_edit_prodcut1.Request_Close += Ctrl_edit_prodcut1_Request_Close;
             ctrl_edit_prodcut1.LoadProductDetails(ProductID);
+            
         }
         private void ctrl_edit_prodcut1_Load(object sender, EventArgs e)
         {

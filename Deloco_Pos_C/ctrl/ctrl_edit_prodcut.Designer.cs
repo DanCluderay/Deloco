@@ -38,22 +38,24 @@
             this.productDS = new Deloco_Pos_C.local_datasets.ProductDS();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.ctrl_NameBuilder2 = new Deloco_Pos_C.ctrl.ctrl_NameBuilder();
             this.ctrl_ProductPhysicalProperties1 = new Deloco_Pos_C.ctrl.ctrl_ProductPhysicalProperties();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.ctrl_ProductInstance1 = new Deloco_Pos_C.ctrl.ctrl_ProductInstance();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.button1 = new System.Windows.Forms.Button();
             this.brandsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblBigProductName = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.ctrl_NameBuilder1 = new Deloco_Pos_C.ctrl.ctrl_NameBuilder();
             this.tabControl1.SuspendLayout();
             this.tabPage7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -61,10 +63,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.productDS)).BeginInit();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.brandsBindingSource)).BeginInit();
-            this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.brandsBindingSource)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -76,6 +79,7 @@
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage6);
+            this.tabControl1.Controls.Add(this.tabPage8);
             this.tabControl1.Controls.Add(this.tabPage9);
             this.tabControl1.Location = new System.Drawing.Point(13, 78);
             this.tabControl1.Name = "tabControl1";
@@ -145,7 +149,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.ctrl_NameBuilder2);
+            this.tabPage1.Controls.Add(this.ctrl_NameBuilder1);
             this.tabPage1.Controls.Add(this.ctrl_ProductPhysicalProperties1);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
@@ -156,15 +160,6 @@
             this.tabPage1.Text = "Main Info";
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
-            // 
-            // ctrl_NameBuilder2
-            // 
-            this.ctrl_NameBuilder2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ctrl_NameBuilder2.Location = new System.Drawing.Point(16, 23);
-            this.ctrl_NameBuilder2.Name = "ctrl_NameBuilder2";
-            this.ctrl_NameBuilder2.Size = new System.Drawing.Size(489, 293);
-            this.ctrl_NameBuilder2.TabIndex = 6;
-            this.ctrl_NameBuilder2.Load += new System.EventHandler(this.ctrl_NameBuilder2_Load);
             // 
             // ctrl_ProductPhysicalProperties1
             // 
@@ -198,6 +193,34 @@
             this.tabPage3.Text = "Product Type";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.dataGridView2);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Location = new System.Drawing.Point(47, 43);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(385, 390);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Synonymous";
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(30, 68);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(304, 280);
+            this.dataGridView2.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(27, 31);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(273, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Search phrases - use on site and voice natural language";
+            // 
             // tabPage2
             // 
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -210,12 +233,21 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.ctrl_ProductInstance1);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Size = new System.Drawing.Size(942, 565);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Instances";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // ctrl_ProductInstance1
+            // 
+            this.ctrl_ProductInstance1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrl_ProductInstance1.Location = new System.Drawing.Point(0, 0);
+            this.ctrl_ProductInstance1.Name = "ctrl_ProductInstance1";
+            this.ctrl_ProductInstance1.Size = new System.Drawing.Size(942, 565);
+            this.ctrl_ProductInstance1.TabIndex = 0;
             // 
             // tabPage4
             // 
@@ -234,6 +266,15 @@
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Product Stock Locations";
             this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // tabPage8
+            // 
+            this.tabPage8.Location = new System.Drawing.Point(4, 22);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Size = new System.Drawing.Size(942, 565);
+            this.tabPage8.TabIndex = 8;
+            this.tabPage8.Text = "Store Level Marketing";
+            this.tabPage8.UseVisualStyleBackColor = true;
             // 
             // tabPage9
             // 
@@ -279,33 +320,13 @@
             this.lblBigProductName.TabIndex = 1;
             this.lblBigProductName.Text = "Product Name";
             // 
-            // groupBox1
+            // ctrl_NameBuilder1
             // 
-            this.groupBox1.Controls.Add(this.dataGridView2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(47, 43);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(385, 390);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Synonymous";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 31);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(273, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Search phrases - use on site and voice natural language";
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(30, 68);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(304, 280);
-            this.dataGridView2.TabIndex = 1;
+            this.ctrl_NameBuilder1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ctrl_NameBuilder1.Location = new System.Drawing.Point(20, 23);
+            this.ctrl_NameBuilder1.Name = "ctrl_NameBuilder1";
+            this.ctrl_NameBuilder1.Size = new System.Drawing.Size(489, 293);
+            this.ctrl_NameBuilder1.TabIndex = 6;
             // 
             // ctrl_edit_prodcut
             // 
@@ -323,12 +344,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.productDS)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.brandsBindingSource)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.tabPage5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.brandsBindingSource)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -354,11 +376,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn propDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn valueDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource valuePairBindingSource;
-        private ctrl_NameBuilder ctrl_NameBuilder2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblBigProductName;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TabPage tabPage8;
+        private ctrl_ProductInstance ctrl_ProductInstance1;
+        private ctrl_NameBuilder ctrl_NameBuilder1;
     }
 }
