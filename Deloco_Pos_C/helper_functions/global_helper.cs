@@ -1498,18 +1498,18 @@ namespace Deloco_Pos_C.helper_functions
             int newInstance = 0;
             string job = "update_product_varience_dataset";
             string extra = "'TableName':'Product_Varient','Pk':'Product_VarientID'";
-            string jsonstring = "{" + extra + ",'Product_VarientID':'0','ProductInstanceID':'" + instanceID.ToString() + "','BBE':'" + BBE.ToString() + "'}";
+            string jsonstring = "{" + extra + ",'Product_VarientID':'0','ProductInstanceID':'" + instanceID.ToString() + "','ProductBBE':'" + BBE.ToString() + "'}";
             string res = Make_db_call(job, jsonstring.ToString());
             if (res.Trim().Length != 0)
             {
 
                 string newg = res.Replace("[", "");
                 newg = newg.Replace("]", "");
-                var a = new { product_varient_ID = "" };
+                var a = new { Product_VarientID = "" };
                 var c = new JsonSerializer();
                 dynamic jsonObject = c.Deserialize(new System.IO.StringReader(newg), a.GetType());
                 int tf;
-                tf = int.Parse(jsonObject.product_varient_ID.ToString());
+                tf = int.Parse(jsonObject.Product_VarientID.ToString());
                 newInstance = tf;
             }
             else
@@ -1531,11 +1531,11 @@ namespace Deloco_Pos_C.helper_functions
 
                 string newg = res.Replace("[", "");
                 newg = newg.Replace("]", "");
-                var a = new { product_varient_ID = "" };
+                var a = new { product_stock_VID = "" };
                 var c = new JsonSerializer();
                 dynamic jsonObject = c.Deserialize(new System.IO.StringReader(newg), a.GetType());
                 int tf;
-                tf = int.Parse(jsonObject.product_varient_ID.ToString());
+                tf = int.Parse(jsonObject.product_stock_VID.ToString());
                 newInstance = tf;
             }
             else
