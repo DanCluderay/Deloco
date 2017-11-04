@@ -329,7 +329,7 @@ namespace Deloco_Pos_C.views
         private void button1_Click(object sender, EventArgs e)
         {
             //add the Product_Instance of the stock
-            logic_global.Add_ProductInstance(1, 0.9, 2);
+            int prod_inst = logic_global.Add_ProductInstance(1, 0.9, 2);
 
             //now add the Product_Varient_Location_Stock_qty
             foreach (DataGridViewRow dgr in DG_Data.Rows)
@@ -338,66 +338,20 @@ namespace Deloco_Pos_C.views
                 double _qtycase = 0;
 
                 bool res = false;
-                bool res2 = false;
+                bool res3 = false;
                 if (dgr.Cells[0].Value != null)
                 {
-
                     res = int.TryParse(dgr.Cells[0].Value.ToString(), out _qty);
-
-                    res2 = double.TryParse(dgr.Cells[1].Value.ToString(), out _qtycase);
-                    
-                    
-                    if (res == true)
-                    {
-                        if (_qty > 0)
-                        {
-                            dgr.Cells[0].Style.BackColor = Color.LightGreen;
-                        }
-                        else
-                        {
-                          
-    
-                        }
-                   
-                    }
-                    else
-                    {
-                       
-                    }
-
-                    if (res2 == true)
-                    {
-                        if (_qtycase > 0)
-                        {
-                            dgr.Cells[1].Style.BackColor = Color.LightGreen;
-                        }
-                        else
-                        {
-                           
-                        }
-                       
-                    }
-                    else
-                    {
-
-                    }
-
                     string _datestring = dgr.Cells[2].Value.ToString();
                     DateTime DT;
-                    res = DateTime.TryParse(_datestring, out DT);
-                    if (res == true)
+                    res3 = DateTime.TryParse(_datestring, out DT);
+
+                    if (res == true && res3==true)
                     {
-                        dgr.Cells[2].Style.BackColor = Color.LightGreen;
+                        string datebuilder = DT.Year.ToString() + "/" + DT.Month.ToString() + "/" + DT.Day.ToString() + " " + DT.Hour.ToString() + ":" + DT.Minute.ToString() + ":" + DT.Second.ToString();
+                        int varientid=logic_global.Add_Varient(prod_inst,datebuilder);
+                        logic_global.Add_Varient_Stock_Instance(varientid,_qty,1);
                     }
-                    else
-                    {
-                       
-                    }
-
-
-
-
-
                 }
 
             }

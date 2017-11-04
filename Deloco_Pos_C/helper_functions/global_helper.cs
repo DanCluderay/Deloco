@@ -1468,8 +1468,8 @@ namespace Deloco_Pos_C.helper_functions
 
         public int Add_ProductInstance(int ProductID, double cost_price,int invoice)
         {
-            int newCaseID = 0;
-            string job = "";
+            int newInstance = 0;
+            string job = "update_product_instance_dataset";
             string extra = "'TableName':'Product_Instance','Pk':'pv_autoID'";
             string jsonstring = "{" + extra + ",'pv_autoID':'0','productID':'" + ProductID.ToString() + "','Item_costprice':'" + cost_price.ToString() + "','InvoiceID':'" + invoice.ToString() + "'}";
             string res = Make_db_call(job, jsonstring.ToString());
@@ -1478,21 +1478,74 @@ namespace Deloco_Pos_C.helper_functions
 
                 string newg = res.Replace("[", "");
                 newg = newg.Replace("]", "");
-                var a = new { result = "" };
+                var a = new { pv_autoID = "" };
                 var c = new JsonSerializer();
                 dynamic jsonObject = c.Deserialize(new System.IO.StringReader(newg), a.GetType());
                 int tf;
-                tf = int.Parse(jsonObject.result.ToString());
-                newCaseID = tf;
+                tf = int.Parse(jsonObject.pv_autoID.ToString());
+                newInstance = tf;
             }
             else
             {
                 FailedWebReseponce("");
             }
 
-            return newCaseID;
+            return newInstance;
         }
-            private void FailedWebReseponce(string E)
+
+        public int Add_Varient(int instanceID, string BBE)
+        {
+            int newInstance = 0;
+            string job = "update_product_varience_dataset";
+            string extra = "'TableName':'Product_Varient','Pk':'Product_VarientID'";
+            string jsonstring = "{" + extra + ",'Product_VarientID':'0','ProductInstanceID':'" + instanceID.ToString() + "','BBE':'" + BBE.ToString() + "'}";
+            string res = Make_db_call(job, jsonstring.ToString());
+            if (res.Trim().Length != 0)
+            {
+
+                string newg = res.Replace("[", "");
+                newg = newg.Replace("]", "");
+                var a = new { product_varient_ID = "" };
+                var c = new JsonSerializer();
+                dynamic jsonObject = c.Deserialize(new System.IO.StringReader(newg), a.GetType());
+                int tf;
+                tf = int.Parse(jsonObject.product_varient_ID.ToString());
+                newInstance = tf;
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+            return newInstance;
+        }
+        public int Add_Varient_Stock_Instance(int varientID, int qty, int location)
+        {
+            int newInstance = 0;
+            string job = "update_product_stock_varience_dataset";
+            string extra = "'TableName':'Product_Varient_Location_Stock_qty','Pk':'product_stock_VID'";
+            string jsonstring = "{" + extra + ",'product_stock_VID':'0','Product_Instance_ID':'" + varientID.ToString() + "','Varient_QTY':'" + qty.ToString() + "','Varient_Location_ID':'" + location.ToString() + "'}";
+            string res = Make_db_call(job, jsonstring.ToString());
+            if (res.Trim().Length != 0)
+            {
+
+                string newg = res.Replace("[", "");
+                newg = newg.Replace("]", "");
+                var a = new { product_varient_ID = "" };
+                var c = new JsonSerializer();
+                dynamic jsonObject = c.Deserialize(new System.IO.StringReader(newg), a.GetType());
+                int tf;
+                tf = int.Parse(jsonObject.product_varient_ID.ToString());
+                newInstance = tf;
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+            return newInstance;
+        }
+        private void FailedWebReseponce(string E)
         {
 
         }
