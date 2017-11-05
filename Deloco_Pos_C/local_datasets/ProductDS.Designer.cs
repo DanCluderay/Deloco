@@ -4215,6 +4215,10 @@ namespace Deloco_Pos_C.local_datasets {
             
             private global::System.Data.DataColumn columnVarient_QTY;
             
+            private global::System.Data.DataColumn columnProduct_VarientID;
+            
+            private global::System.Data.DataColumn columnProductInstanceID;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public Product_Stock_Location_ViewDataTable() {
@@ -4282,6 +4286,22 @@ namespace Deloco_Pos_C.local_datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn Product_VarientIDColumn {
+                get {
+                    return this.columnProduct_VarientID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ProductInstanceIDColumn {
+                get {
+                    return this.columnProductInstanceID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -4317,23 +4337,18 @@ namespace Deloco_Pos_C.local_datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public Product_Stock_Location_ViewRow AddProduct_Stock_Location_ViewRow(int ProductID, double Item_costprice, System.DateTime ProductBBE, int Varient_QTY) {
+            public Product_Stock_Location_ViewRow AddProduct_Stock_Location_ViewRow(int ProductID, double Item_costprice, System.DateTime ProductBBE, int Varient_QTY, int Product_VarientID, int ProductInstanceID) {
                 Product_Stock_Location_ViewRow rowProduct_Stock_Location_ViewRow = ((Product_Stock_Location_ViewRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ProductID,
                         Item_costprice,
                         ProductBBE,
-                        Varient_QTY};
+                        Varient_QTY,
+                        Product_VarientID,
+                        ProductInstanceID};
                 rowProduct_Stock_Location_ViewRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowProduct_Stock_Location_ViewRow);
                 return rowProduct_Stock_Location_ViewRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public Product_Stock_Location_ViewRow FindByProductID(int ProductID) {
-                return ((Product_Stock_Location_ViewRow)(this.Rows.Find(new object[] {
-                            ProductID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4357,6 +4372,8 @@ namespace Deloco_Pos_C.local_datasets {
                 this.columnItem_costprice = base.Columns["Item_costprice"];
                 this.columnProductBBE = base.Columns["ProductBBE"];
                 this.columnVarient_QTY = base.Columns["Varient_QTY"];
+                this.columnProduct_VarientID = base.Columns["Product_VarientID"];
+                this.columnProductInstanceID = base.Columns["ProductInstanceID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4370,13 +4387,16 @@ namespace Deloco_Pos_C.local_datasets {
                 base.Columns.Add(this.columnProductBBE);
                 this.columnVarient_QTY = new global::System.Data.DataColumn("Varient_QTY", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnVarient_QTY);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Product_Stock_Location_ViewKey1", new global::System.Data.DataColumn[] {
-                                this.columnProductID}, true));
+                this.columnProduct_VarientID = new global::System.Data.DataColumn("Product_VarientID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProduct_VarientID);
+                this.columnProductInstanceID = new global::System.Data.DataColumn("ProductInstanceID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProductInstanceID);
                 this.columnProductID.AllowDBNull = false;
-                this.columnProductID.Unique = true;
                 this.columnProductID.DefaultValue = ((int)(0));
                 this.columnItem_costprice.DefaultValue = ((double)(0D));
                 this.columnVarient_QTY.DefaultValue = ((int)(0));
+                this.columnProduct_VarientID.DefaultValue = ((int)(0));
+                this.columnProductInstanceID.DefaultValue = ((int)(0));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6695,6 +6715,40 @@ namespace Deloco_Pos_C.local_datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int Product_VarientID {
+                get {
+                    try {
+                        return ((int)(this[this.tableProduct_Stock_Location_View.Product_VarientIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Product_VarientID\' in table \'Product_Stock_Location_View\' i" +
+                                "s DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableProduct_Stock_Location_View.Product_VarientIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int ProductInstanceID {
+                get {
+                    try {
+                        return ((int)(this[this.tableProduct_Stock_Location_View.ProductInstanceIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ProductInstanceID\' in table \'Product_Stock_Location_View\' i" +
+                                "s DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableProduct_Stock_Location_View.ProductInstanceIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsItem_costpriceNull() {
                 return this.IsNull(this.tableProduct_Stock_Location_View.Item_costpriceColumn);
             }
@@ -6727,6 +6781,30 @@ namespace Deloco_Pos_C.local_datasets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetVarient_QTYNull() {
                 this[this.tableProduct_Stock_Location_View.Varient_QTYColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsProduct_VarientIDNull() {
+                return this.IsNull(this.tableProduct_Stock_Location_View.Product_VarientIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetProduct_VarientIDNull() {
+                this[this.tableProduct_Stock_Location_View.Product_VarientIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsProductInstanceIDNull() {
+                return this.IsNull(this.tableProduct_Stock_Location_View.ProductInstanceIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetProductInstanceIDNull() {
+                this[this.tableProduct_Stock_Location_View.ProductInstanceIDColumn] = global::System.Convert.DBNull;
             }
         }
         

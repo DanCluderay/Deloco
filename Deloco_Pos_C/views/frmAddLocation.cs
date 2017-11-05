@@ -19,6 +19,7 @@ namespace Deloco_Pos_C.views
         local_datasets.LocationGrid LocDS;
         int _parentID;
         int _building;
+        string StoreName;
         public event EventHandler On_NewLayOutAdded = delegate { };
         public frmAddLocation()
         {
@@ -35,6 +36,18 @@ namespace Deloco_Pos_C.views
             _parentID = ParentID;
             txtLocationPickOrder.Text = Ord.ToString();
             _building = building;
+            DataRow locrow;
+            if (_building==0)
+            {
+
+            }
+            else
+            {
+                locrow = DS.Location_Grid.FindByLocGridID(_building);
+                StoreName = locrow["LocName"].ToString();
+            }
+
+            this.Text = this.Text + " - " + StoreName;
             if (LocationType=="1")
             {
                 this.Text = "Add new business";
@@ -104,8 +117,15 @@ namespace Deloco_Pos_C.views
         }
         private void AddLocation()
         {
+            //location Store name
+            
             //get loc name
             string Locaname = txtLocationName.Text.ToString();
+
+            if(_building==0)
+            {
+                StoreName = Locaname;
+            }
             //get loc type
             int LocationType = int.Parse( cmbLocationType.SelectedValue.ToString());
             //get loc order
@@ -118,7 +138,7 @@ namespace Deloco_Pos_C.views
                 PID = 0;
             }
             
-            int newLocationID = logic_global.CreateLocGridItem(Locaname, LocationType, PID, txtFullName.Text,txtShortName.Text,int.Parse(txtLocationPickOrder.Text));
+            int newLocationID = logic_global.CreateLocGridItem2(Locaname, LocationType, PID, txtFullName.Text,txtShortName.Text,int.Parse(txtLocationPickOrder.Text), StoreName);
 
             if(LocationType==4)
             {

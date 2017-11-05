@@ -29,14 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblProductName = new System.Windows.Forms.Label();
             this.btnAddInstance = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.DG_Data = new System.Windows.Forms.DataGridView();
+            this.QTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cases_QTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.itemexpirydateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productInstanceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productDS = new Deloco_Pos_C.local_datasets.ProductDS();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
@@ -51,14 +54,17 @@
             this.linkEditCaseConfig = new System.Windows.Forms.LinkLabel();
             this.tabCase = new System.Windows.Forms.TabControl();
             this.tabAddCase = new System.Windows.Forms.TabPage();
-            this.tabEdit = new System.Windows.Forms.TabPage();
-            this.txtNewCaseQTY = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtNewCaseName = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.txtNewCaseBC = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.txtNewCaseName = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtNewCaseQTY = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tabEdit = new System.Windows.Forms.TabPage();
+            this.chkDelete = new System.Windows.Forms.CheckBox();
+            this.txtEditCaseID = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.btnEditSave = new System.Windows.Forms.Button();
             this.txtEditCaseBC = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -66,18 +72,14 @@
             this.label10 = new System.Windows.Forms.Label();
             this.txtEditCaseQTY = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.txtEditCaseID = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.chkDelete = new System.Windows.Forms.CheckBox();
             this.txtUnasignedStock = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.txtTotalItems = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.txtCaseCount = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.QTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cases_QTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.itemexpirydateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DG_Data)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productInstanceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productDS)).BeginInit();
@@ -101,9 +103,9 @@
             // btnAddInstance
             // 
             this.btnAddInstance.Enabled = false;
-            this.btnAddInstance.Location = new System.Drawing.Point(174, 393);
+            this.btnAddInstance.Location = new System.Drawing.Point(174, 417);
             this.btnAddInstance.Name = "btnAddInstance";
-            this.btnAddInstance.Size = new System.Drawing.Size(147, 58);
+            this.btnAddInstance.Size = new System.Drawing.Size(147, 34);
             this.btnAddInstance.TabIndex = 7;
             this.btnAddInstance.Text = "Add Product";
             this.btnAddInstance.UseVisualStyleBackColor = true;
@@ -111,7 +113,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(116, 62);
+            this.textBox3.Location = new System.Drawing.Point(117, 59);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(82, 20);
@@ -121,7 +123,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(62, 65);
+            this.label4.Location = new System.Drawing.Point(63, 62);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(48, 13);
             this.label4.TabIndex = 8;
@@ -130,7 +132,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(204, 65);
+            this.label5.Location = new System.Drawing.Point(205, 62);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(117, 13);
             this.label5.TabIndex = 10;
@@ -145,11 +147,37 @@
             this.Cases_QTY,
             this.itemexpirydateDataGridViewTextBoxColumn});
             this.DG_Data.DataSource = this.productInstanceBindingSource;
-            this.DG_Data.Location = new System.Drawing.Point(20, 224);
+            this.DG_Data.Location = new System.Drawing.Point(19, 245);
             this.DG_Data.Name = "DG_Data";
             this.DG_Data.Size = new System.Drawing.Size(302, 132);
             this.DG_Data.TabIndex = 13;
             this.DG_Data.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
+            // 
+            // QTY
+            // 
+            this.QTY.DataPropertyName = "QTY";
+            dataGridViewCellStyle1.Format = "N0";
+            dataGridViewCellStyle1.NullValue = "0";
+            this.QTY.DefaultCellStyle = dataGridViewCellStyle1;
+            this.QTY.HeaderText = "Item QTY";
+            this.QTY.Name = "QTY";
+            this.QTY.Width = 50;
+            // 
+            // Cases_QTY
+            // 
+            this.Cases_QTY.HeaderText = "Case QTY";
+            this.Cases_QTY.Name = "Cases_QTY";
+            this.Cases_QTY.Width = 50;
+            // 
+            // itemexpirydateDataGridViewTextBoxColumn
+            // 
+            this.itemexpirydateDataGridViewTextBoxColumn.DataPropertyName = "Item_expirydate";
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
+            this.itemexpirydateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.itemexpirydateDataGridViewTextBoxColumn.HeaderText = "Expiry Date";
+            this.itemexpirydateDataGridViewTextBoxColumn.Name = "itemexpirydateDataGridViewTextBoxColumn";
+            this.itemexpirydateDataGridViewTextBoxColumn.Width = 150;
             // 
             // productInstanceBindingSource
             // 
@@ -163,7 +191,7 @@
             // 
             // txtCasePrice
             // 
-            this.txtCasePrice.Location = new System.Drawing.Point(117, 88);
+            this.txtCasePrice.Location = new System.Drawing.Point(116, 109);
             this.txtCasePrice.Name = "txtCasePrice";
             this.txtCasePrice.Size = new System.Drawing.Size(82, 20);
             this.txtCasePrice.TabIndex = 15;
@@ -174,7 +202,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(53, 91);
+            this.label1.Location = new System.Drawing.Point(52, 112);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 13);
             this.label1.TabIndex = 14;
@@ -183,7 +211,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 117);
+            this.label2.Location = new System.Drawing.Point(15, 138);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(95, 13);
             this.label2.TabIndex = 16;
@@ -191,7 +219,7 @@
             // 
             // txtItemCostPrice
             // 
-            this.txtItemCostPrice.Location = new System.Drawing.Point(117, 165);
+            this.txtItemCostPrice.Location = new System.Drawing.Point(116, 186);
             this.txtItemCostPrice.Name = "txtItemCostPrice";
             this.txtItemCostPrice.ReadOnly = true;
             this.txtItemCostPrice.Size = new System.Drawing.Size(82, 20);
@@ -201,7 +229,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(60, 168);
+            this.label3.Location = new System.Drawing.Point(59, 189);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(51, 13);
             this.label3.TabIndex = 18;
@@ -212,7 +240,7 @@
             this.cmbCaseConfig.DataSource = this.productCaseConfigBindingSource;
             this.cmbCaseConfig.DisplayMember = "CaseDescription";
             this.cmbCaseConfig.FormattingEnabled = true;
-            this.cmbCaseConfig.Location = new System.Drawing.Point(117, 114);
+            this.cmbCaseConfig.Location = new System.Drawing.Point(116, 135);
             this.cmbCaseConfig.Name = "cmbCaseConfig";
             this.cmbCaseConfig.Size = new System.Drawing.Size(121, 21);
             this.cmbCaseConfig.TabIndex = 20;
@@ -228,7 +256,7 @@
             // linkAddNewCaseConfig
             // 
             this.linkAddNewCaseConfig.AutoSize = true;
-            this.linkAddNewCaseConfig.Location = new System.Drawing.Point(244, 117);
+            this.linkAddNewCaseConfig.Location = new System.Drawing.Point(243, 138);
             this.linkAddNewCaseConfig.Name = "linkAddNewCaseConfig";
             this.linkAddNewCaseConfig.Size = new System.Drawing.Size(49, 13);
             this.linkAddNewCaseConfig.TabIndex = 21;
@@ -239,7 +267,7 @@
             // linkEditCaseConfig
             // 
             this.linkEditCaseConfig.AutoSize = true;
-            this.linkEditCaseConfig.Location = new System.Drawing.Point(297, 117);
+            this.linkEditCaseConfig.Location = new System.Drawing.Point(287, 139);
             this.linkEditCaseConfig.Name = "linkEditCaseConfig";
             this.linkEditCaseConfig.Size = new System.Drawing.Size(25, 13);
             this.linkEditCaseConfig.TabIndex = 22;
@@ -274,6 +302,65 @@
             this.tabAddCase.Text = "Add New Case Configeration";
             this.tabAddCase.UseVisualStyleBackColor = true;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(121, 121);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(129, 31);
+            this.button2.TabIndex = 34;
+            this.button2.Text = "Add Case Config";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // txtNewCaseBC
+            // 
+            this.txtNewCaseBC.Location = new System.Drawing.Point(121, 84);
+            this.txtNewCaseBC.Name = "txtNewCaseBC";
+            this.txtNewCaseBC.Size = new System.Drawing.Size(130, 20);
+            this.txtNewCaseBC.TabIndex = 33;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(68, 87);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(47, 13);
+            this.label8.TabIndex = 32;
+            this.label8.Text = "Barcode";
+            // 
+            // txtNewCaseName
+            // 
+            this.txtNewCaseName.Location = new System.Drawing.Point(121, 26);
+            this.txtNewCaseName.Name = "txtNewCaseName";
+            this.txtNewCaseName.Size = new System.Drawing.Size(130, 20);
+            this.txtNewCaseName.TabIndex = 31;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(28, 29);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(87, 13);
+            this.label7.TabIndex = 30;
+            this.label7.Text = "Case Description";
+            // 
+            // txtNewCaseQTY
+            // 
+            this.txtNewCaseQTY.Location = new System.Drawing.Point(121, 52);
+            this.txtNewCaseQTY.Name = "txtNewCaseQTY";
+            this.txtNewCaseQTY.Size = new System.Drawing.Size(82, 20);
+            this.txtNewCaseQTY.TabIndex = 29;
+            this.txtNewCaseQTY.Text = "0";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(59, 55);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(56, 13);
+            this.label6.TabIndex = 28;
+            this.label6.Text = "Case QTY";
+            // 
             // tabEdit
             // 
             this.tabEdit.Controls.Add(this.chkDelete);
@@ -294,64 +381,34 @@
             this.tabEdit.Text = "Edit Case Configeration";
             this.tabEdit.UseVisualStyleBackColor = true;
             // 
-            // txtNewCaseQTY
+            // chkDelete
             // 
-            this.txtNewCaseQTY.Location = new System.Drawing.Point(121, 52);
-            this.txtNewCaseQTY.Name = "txtNewCaseQTY";
-            this.txtNewCaseQTY.Size = new System.Drawing.Size(82, 20);
-            this.txtNewCaseQTY.TabIndex = 29;
-            this.txtNewCaseQTY.Text = "0";
+            this.chkDelete.AutoSize = true;
+            this.chkDelete.Location = new System.Drawing.Point(75, 155);
+            this.chkDelete.Name = "chkDelete";
+            this.chkDelete.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chkDelete.Size = new System.Drawing.Size(57, 17);
+            this.chkDelete.TabIndex = 44;
+            this.chkDelete.Text = "Delete";
+            this.chkDelete.UseVisualStyleBackColor = true;
             // 
-            // label6
+            // txtEditCaseID
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(59, 55);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 13);
-            this.label6.TabIndex = 28;
-            this.label6.Text = "Case QTY";
+            this.txtEditCaseID.Location = new System.Drawing.Point(115, 26);
+            this.txtEditCaseID.Name = "txtEditCaseID";
+            this.txtEditCaseID.ReadOnly = true;
+            this.txtEditCaseID.Size = new System.Drawing.Size(82, 20);
+            this.txtEditCaseID.TabIndex = 43;
+            this.txtEditCaseID.Text = "0";
             // 
-            // txtNewCaseName
+            // label12
             // 
-            this.txtNewCaseName.Location = new System.Drawing.Point(121, 26);
-            this.txtNewCaseName.Name = "txtNewCaseName";
-            this.txtNewCaseName.Size = new System.Drawing.Size(130, 20);
-            this.txtNewCaseName.TabIndex = 31;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(28, 29);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(87, 13);
-            this.label7.TabIndex = 30;
-            this.label7.Text = "Case Description";
-            // 
-            // txtNewCaseBC
-            // 
-            this.txtNewCaseBC.Location = new System.Drawing.Point(121, 84);
-            this.txtNewCaseBC.Name = "txtNewCaseBC";
-            this.txtNewCaseBC.Size = new System.Drawing.Size(130, 20);
-            this.txtNewCaseBC.TabIndex = 33;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(68, 87);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(47, 13);
-            this.label8.TabIndex = 32;
-            this.label8.Text = "Barcode";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(121, 121);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(129, 31);
-            this.button2.TabIndex = 34;
-            this.button2.Text = "Add Case Config";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(53, 29);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(45, 13);
+            this.label12.TabIndex = 42;
+            this.label12.Text = "Case ID";
             // 
             // btnEditSave
             // 
@@ -412,38 +469,9 @@
             this.label11.TabIndex = 35;
             this.label11.Text = "Case QTY";
             // 
-            // txtEditCaseID
-            // 
-            this.txtEditCaseID.Location = new System.Drawing.Point(115, 26);
-            this.txtEditCaseID.Name = "txtEditCaseID";
-            this.txtEditCaseID.ReadOnly = true;
-            this.txtEditCaseID.Size = new System.Drawing.Size(82, 20);
-            this.txtEditCaseID.TabIndex = 43;
-            this.txtEditCaseID.Text = "0";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(53, 29);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(45, 13);
-            this.label12.TabIndex = 42;
-            this.label12.Text = "Case ID";
-            // 
-            // chkDelete
-            // 
-            this.chkDelete.AutoSize = true;
-            this.chkDelete.Location = new System.Drawing.Point(75, 155);
-            this.chkDelete.Name = "chkDelete";
-            this.chkDelete.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkDelete.Size = new System.Drawing.Size(57, 17);
-            this.chkDelete.TabIndex = 44;
-            this.chkDelete.Text = "Delete";
-            this.chkDelete.UseVisualStyleBackColor = true;
-            // 
             // txtUnasignedStock
             // 
-            this.txtUnasignedStock.Location = new System.Drawing.Point(116, 362);
+            this.txtUnasignedStock.Location = new System.Drawing.Point(115, 383);
             this.txtUnasignedStock.Name = "txtUnasignedStock";
             this.txtUnasignedStock.Size = new System.Drawing.Size(54, 20);
             this.txtUnasignedStock.TabIndex = 40;
@@ -451,7 +479,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(22, 365);
+            this.label13.Location = new System.Drawing.Point(21, 386);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(89, 13);
             this.label13.TabIndex = 39;
@@ -459,7 +487,7 @@
             // 
             // txtTotalItems
             // 
-            this.txtTotalItems.Location = new System.Drawing.Point(116, 191);
+            this.txtTotalItems.Location = new System.Drawing.Point(115, 212);
             this.txtTotalItems.Name = "txtTotalItems";
             this.txtTotalItems.ReadOnly = true;
             this.txtTotalItems.Size = new System.Drawing.Size(82, 20);
@@ -469,7 +497,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(52, 194);
+            this.label14.Location = new System.Drawing.Point(51, 215);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(59, 13);
             this.label14.TabIndex = 41;
@@ -477,7 +505,7 @@
             // 
             // txtCaseCount
             // 
-            this.txtCaseCount.Location = new System.Drawing.Point(117, 140);
+            this.txtCaseCount.Location = new System.Drawing.Point(116, 161);
             this.txtCaseCount.Name = "txtCaseCount";
             this.txtCaseCount.Size = new System.Drawing.Size(82, 20);
             this.txtCaseCount.TabIndex = 44;
@@ -488,43 +516,38 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(48, 143);
+            this.label15.Location = new System.Drawing.Point(47, 164);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(62, 13);
             this.label15.TabIndex = 43;
             this.label15.Text = "Case Count";
             // 
-            // QTY
+            // comboBox1
             // 
-            this.QTY.DataPropertyName = "QTY";
-            dataGridViewCellStyle7.Format = "N0";
-            dataGridViewCellStyle7.NullValue = "0";
-            this.QTY.DefaultCellStyle = dataGridViewCellStyle7;
-            this.QTY.HeaderText = "Item QTY";
-            this.QTY.Name = "QTY";
-            this.QTY.Width = 50;
+            this.comboBox1.BackColor = System.Drawing.Color.Pink;
+            this.comboBox1.Enabled = false;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(115, 84);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 46;
             // 
-            // Cases_QTY
+            // label16
             // 
-            this.Cases_QTY.HeaderText = "Case QTY";
-            this.Cases_QTY.Name = "Cases_QTY";
-            this.Cases_QTY.Width = 50;
-            // 
-            // itemexpirydateDataGridViewTextBoxColumn
-            // 
-            this.itemexpirydateDataGridViewTextBoxColumn.DataPropertyName = "Item_expirydate";
-            dataGridViewCellStyle8.Format = "d";
-            dataGridViewCellStyle8.NullValue = null;
-            this.itemexpirydateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
-            this.itemexpirydateDataGridViewTextBoxColumn.HeaderText = "Expiry Date";
-            this.itemexpirydateDataGridViewTextBoxColumn.Name = "itemexpirydateDataGridViewTextBoxColumn";
-            this.itemexpirydateDataGridViewTextBoxColumn.Width = 150;
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(68, 87);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(42, 13);
+            this.label16.TabIndex = 45;
+            this.label16.Text = "Invoice";
             // 
             // frmAddProductInstance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(704, 481);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.label16);
             this.Controls.Add(this.txtCaseCount);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.txtTotalItems);
@@ -613,5 +636,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn itemexpirydateDataGridViewTextBoxColumn;
         private System.Windows.Forms.TextBox txtCaseCount;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label16;
     }
 }

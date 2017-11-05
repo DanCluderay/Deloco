@@ -264,6 +264,8 @@
               <xs:element name="Item_costprice" msprop:Generator_ColumnVarNameInTable="columnItem_costprice" msprop:Generator_ColumnPropNameInRow="Item_costprice" msprop:Generator_ColumnPropNameInTable="Item_costpriceColumn" msprop:Generator_UserColumnName="Item_costprice" type="xs:double" default="0" minOccurs="0" />
               <xs:element name="ProductBBE" msprop:Generator_ColumnVarNameInTable="columnProductBBE" msprop:Generator_ColumnPropNameInRow="ProductBBE" msprop:Generator_ColumnPropNameInTable="ProductBBEColumn" msprop:Generator_UserColumnName="ProductBBE" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Varient_QTY" msprop:Generator_ColumnVarNameInTable="columnVarient_QTY" msprop:Generator_ColumnPropNameInRow="Varient_QTY" msprop:Generator_ColumnPropNameInTable="Varient_QTYColumn" msprop:Generator_UserColumnName="Varient_QTY" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="Product_VarientID" msprop:Generator_ColumnVarNameInTable="columnProduct_VarientID" msprop:Generator_ColumnPropNameInRow="Product_VarientID" msprop:Generator_ColumnPropNameInTable="Product_VarientIDColumn" msprop:Generator_UserColumnName="Product_VarientID" type="xs:int" default="0" minOccurs="0" />
+              <xs:element name="ProductInstanceID" msprop:Generator_ColumnVarNameInTable="columnProductInstanceID" msprop:Generator_ColumnPropNameInRow="ProductInstanceID" msprop:Generator_ColumnPropNameInTable="ProductInstanceIDColumn" msprop:Generator_UserColumnName="ProductInstanceID" type="xs:int" default="0" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -300,10 +302,6 @@
     <xs:unique name="ProductCaseConfig_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:ProductCaseConfig" />
       <xs:field xpath="mstns:CaseConfigID" />
-    </xs:unique>
-    <xs:unique name="Product_Stock_Location_ViewKey1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:Product_Stock_Location_View" />
-      <xs:field xpath="mstns:ProductID" />
     </xs:unique>
   </xs:element>
 </xs:schema>

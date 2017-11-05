@@ -18,13 +18,16 @@ namespace Deloco_Pos_C.views
         int _productID;
         double _itemprice;
         int selecetedItemCaseqty;
+        int ListingMode;
+        int _instanceid;
         public frmAddProductInstance()
         {
             InitializeComponent();
             helper_functions.globalHelper logic_global = helper_functions.globalHelper.Instance;
-            
+            ListingMode = 0;
+
         }
-        public frmAddProductInstance(int ProductID)
+        public frmAddProductInstance(int ProductID, int InstanceID)
         {
             InitializeComponent();
             helper_functions.globalHelper logic_global = helper_functions.globalHelper.Instance;
@@ -33,6 +36,17 @@ namespace Deloco_Pos_C.views
             productDS.ProductCaseConfig.Clear();
             productDS.Merge(ProdDS);
             _productID = ProductID;
+            _instanceid = InstanceID;
+            if (_instanceid == 0)
+            {
+                //this is a new product we are setting up
+                ListingMode = 0;
+            }
+            else
+            {
+                //We are adding a new date at an existing cost
+                ListingMode = 1;
+            }
         }
         private void frmAddProductInstance_Load(object sender, EventArgs e)
         {
@@ -352,8 +366,14 @@ namespace Deloco_Pos_C.views
                     if (res == true && res3==true)
                     {
                         string datebuilder = DT.Year.ToString() + "/" + DT.Month.ToString() + "/" + DT.Day.ToString() + " " + DT.Hour.ToString() + ":" + DT.Minute.ToString() + ":" + DT.Second.ToString();
-                        int varientid=logic_global.Add_Varient(prod_inst,datebuilder);
-                        logic_global.Add_Varient_Stock_Instance(varientid,_qty,1);
+
+                        if(ListingMode==0)
+                        {
+                            _instanceid = logic_global.Add_Varient(prod_inst,datebuilder);
+                        }
+                        
+                        int New_Goods_Listing_ID = 152;
+                        logic_global.Add_Varient_Stock_Instance(_instanceid, _qty, New_Goods_Listing_ID);
                     }
                 }
 
