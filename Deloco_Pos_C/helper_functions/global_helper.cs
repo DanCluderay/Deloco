@@ -918,6 +918,38 @@ namespace Deloco_Pos_C.helper_functions
                 }
                 ReturnDS = DS;
             }
+
+            else if (functionName == "get_product_location_qty")
+            {
+
+                local_datasets.ProductDS DS = new local_datasets.ProductDS();
+                foreach (DataRow Item in ReturnDataTable.Rows)
+                {
+                    local_datasets.ProductDS.Product_Stock_Location_ViewRow StockRow = DS.Product_Stock_Location_View.NewProduct_Stock_Location_ViewRow();
+
+                    StockRow.ProductID = int.Parse(Item["productID"].ToString());
+
+                    if (ReturnDataTable.Columns.Contains("Item_costprice"))
+                    {
+                        StockRow.Item_costprice = double.Parse(Item["Item_costprice"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("ProductBBE"))
+                    {
+                        StockRow.ProductBBE =Convert.ToDateTime(Item["ProductBBE"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("Varient_QTY"))
+                    {
+                        StockRow.Varient_QTY = Convert.ToInt32(Item["Varient_QTY"]);
+                    }
+
+                    DS.Product_Stock_Location_View.AddProduct_Stock_Location_ViewRow(StockRow);
+                }
+                ReturnDS = DS;
+            }
+
+
             else
             {
                 //just pass a blank table back
@@ -1544,6 +1576,43 @@ namespace Deloco_Pos_C.helper_functions
             }
 
             return newInstance;
+        }
+
+        public local_datasets.ProductDS Get_Product_Stock_Locations(int ProductID)
+        {
+            local_datasets.ProductDS ret = new local_datasets.ProductDS();
+            string parameters = "{'productid':'" + ProductID.ToString() + "'}";
+            string job = "get_product_location_qty";
+            string res = Make_db_call(job, parameters.ToString());
+            if (res.Trim().Length != 0)
+            {
+                ret.Merge(FormatStringToDataTable(job, res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+            return ret;
+
+        }
+        public local_datasets.ProductDS Get_Product_Stock_Locations_historical(int ProductID)
+        {
+            local_datasets.ProductDS ret = new local_datasets.ProductDS();
+            string parameters = "{'productid':'" + ProductID.ToString() + "'}";
+            string job = "get_product_instance_history";
+            string res = Make_db_call("get_product_location_qty", parameters.ToString());
+            if (res.Trim().Length != 0)
+            {
+                ret.Merge(FormatStringToDataTable(job, res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+            return ret;
+
         }
         private void FailedWebReseponce(string E)
         {

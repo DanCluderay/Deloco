@@ -12,9 +12,11 @@ namespace Deloco_Pos_C.views
 {
     public partial class frmAddProductInstance : Form
     {
+        public event EventHandler On_NewProductAdded = delegate { };
         helper_functions.globalHelper logic_global = helper_functions.globalHelper.Instance;
         local_datasets.ProductDS ProdDS;
         int _productID;
+        double _itemprice;
         int selecetedItemCaseqty;
         public frmAddProductInstance()
         {
@@ -200,6 +202,7 @@ namespace Deloco_Pos_C.views
             {
                 itemprice = 0;
             }
+            _itemprice = itemprice;
             txtItemCostPrice.Text = String.Format("{0:C}", itemprice);
             txtTotalItems.Text = (caseqty * totalcaseqty).ToString();
         }
@@ -328,8 +331,8 @@ namespace Deloco_Pos_C.views
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //add the Product_Instance of the stock
-            int prod_inst = logic_global.Add_ProductInstance(1, 0.9, 2);
+            //add the Product_Instance of the stock - needs doing
+            int prod_inst = logic_global.Add_ProductInstance(_productID, _itemprice, 2);
 
             //now add the Product_Varient_Location_Stock_qty
             foreach (DataGridViewRow dgr in DG_Data.Rows)
@@ -355,6 +358,7 @@ namespace Deloco_Pos_C.views
                 }
 
             }
+            On_NewProductAdded(this, new EventArgs());
         }
 
         private void txtCaseCount_TextChanged(object sender, EventArgs e)

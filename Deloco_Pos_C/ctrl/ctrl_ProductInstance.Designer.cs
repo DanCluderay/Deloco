@@ -29,16 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.chkShowHistorical = new System.Windows.Forms.CheckBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.pvautoIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.itemcostpriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.itemexpirydateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productInstanceBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.productDS = new Deloco_Pos_C.local_datasets.ProductDS();
             this.label2 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.button1 = new System.Windows.Forms.Button();
@@ -49,13 +45,19 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.productDS = new Deloco_Pos_C.local_datasets.ProductDS();
+            this.productStockLocationViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.itemcostpriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productBBEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.varientQTYDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productInstanceBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productDS)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productDS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productStockLocationViewBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -83,55 +85,25 @@
             this.chkShowHistorical.TabIndex = 2;
             this.chkShowHistorical.Text = "Show Historical";
             this.chkShowHistorical.UseVisualStyleBackColor = true;
+            this.chkShowHistorical.CheckedChanged += new System.EventHandler(this.chkShowHistorical_CheckedChanged);
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.pvautoIDDataGridViewTextBoxColumn,
             this.productIDDataGridViewTextBoxColumn,
             this.itemcostpriceDataGridViewTextBoxColumn,
-            this.itemexpirydateDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.productInstanceBindingSource;
+            this.productBBEDataGridViewTextBoxColumn,
+            this.varientQTYDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.productStockLocationViewBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(12, 39);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(545, 376);
             this.dataGridView1.TabIndex = 3;
-            // 
-            // pvautoIDDataGridViewTextBoxColumn
-            // 
-            this.pvautoIDDataGridViewTextBoxColumn.DataPropertyName = "pv_autoID";
-            this.pvautoIDDataGridViewTextBoxColumn.HeaderText = "pv_autoID";
-            this.pvautoIDDataGridViewTextBoxColumn.Name = "pvautoIDDataGridViewTextBoxColumn";
-            // 
-            // productIDDataGridViewTextBoxColumn
-            // 
-            this.productIDDataGridViewTextBoxColumn.DataPropertyName = "productID";
-            this.productIDDataGridViewTextBoxColumn.HeaderText = "productID";
-            this.productIDDataGridViewTextBoxColumn.Name = "productIDDataGridViewTextBoxColumn";
-            // 
-            // itemcostpriceDataGridViewTextBoxColumn
-            // 
-            this.itemcostpriceDataGridViewTextBoxColumn.DataPropertyName = "Item_costprice";
-            this.itemcostpriceDataGridViewTextBoxColumn.HeaderText = "Item_costprice";
-            this.itemcostpriceDataGridViewTextBoxColumn.Name = "itemcostpriceDataGridViewTextBoxColumn";
-            // 
-            // itemexpirydateDataGridViewTextBoxColumn
-            // 
-            this.itemexpirydateDataGridViewTextBoxColumn.DataPropertyName = "Item_expirydate";
-            this.itemexpirydateDataGridViewTextBoxColumn.HeaderText = "Item_expirydate";
-            this.itemexpirydateDataGridViewTextBoxColumn.Name = "itemexpirydateDataGridViewTextBoxColumn";
-            // 
-            // productInstanceBindingSource
-            // 
-            this.productInstanceBindingSource.DataMember = "Product_Instance";
-            this.productInstanceBindingSource.DataSource = this.productDS;
-            // 
-            // productDS
-            // 
-            this.productDS.DataSetName = "ProductDS";
-            this.productDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label2
             // 
@@ -236,6 +208,49 @@
             this.dataGridView2.Size = new System.Drawing.Size(498, 344);
             this.dataGridView2.TabIndex = 0;
             // 
+            // productDS
+            // 
+            this.productDS.DataSetName = "ProductDS";
+            this.productDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // productStockLocationViewBindingSource
+            // 
+            this.productStockLocationViewBindingSource.DataMember = "Product_Stock_Location_View";
+            this.productStockLocationViewBindingSource.DataSource = this.productDS;
+            // 
+            // productIDDataGridViewTextBoxColumn
+            // 
+            this.productIDDataGridViewTextBoxColumn.DataPropertyName = "ProductID";
+            this.productIDDataGridViewTextBoxColumn.HeaderText = "ProductID";
+            this.productIDDataGridViewTextBoxColumn.Name = "productIDDataGridViewTextBoxColumn";
+            this.productIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // itemcostpriceDataGridViewTextBoxColumn
+            // 
+            this.itemcostpriceDataGridViewTextBoxColumn.DataPropertyName = "Item_costprice";
+            dataGridViewCellStyle3.Format = "C2";
+            this.itemcostpriceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.itemcostpriceDataGridViewTextBoxColumn.HeaderText = "Cost price";
+            this.itemcostpriceDataGridViewTextBoxColumn.Name = "itemcostpriceDataGridViewTextBoxColumn";
+            this.itemcostpriceDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // productBBEDataGridViewTextBoxColumn
+            // 
+            this.productBBEDataGridViewTextBoxColumn.DataPropertyName = "ProductBBE";
+            dataGridViewCellStyle4.Format = "d";
+            dataGridViewCellStyle4.NullValue = null;
+            this.productBBEDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            this.productBBEDataGridViewTextBoxColumn.HeaderText = "Expiry Date";
+            this.productBBEDataGridViewTextBoxColumn.Name = "productBBEDataGridViewTextBoxColumn";
+            this.productBBEDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // varientQTYDataGridViewTextBoxColumn
+            // 
+            this.varientQTYDataGridViewTextBoxColumn.DataPropertyName = "Varient_QTY";
+            this.varientQTYDataGridViewTextBoxColumn.HeaderText = "Quantity";
+            this.varientQTYDataGridViewTextBoxColumn.Name = "varientQTYDataGridViewTextBoxColumn";
+            this.varientQTYDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // ctrl_ProductInstance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -244,14 +259,14 @@
             this.Name = "ctrl_ProductInstance";
             this.Size = new System.Drawing.Size(890, 535);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productInstanceBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productDS)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productDS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productStockLocationViewBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -267,16 +282,16 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pvautoIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn productIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn itemcostpriceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn itemexpirydateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource productInstanceBindingSource;
-        private local_datasets.ProductDS productDS;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn productIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn itemcostpriceDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn productBBEDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn varientQTYDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource productStockLocationViewBindingSource;
+        private local_datasets.ProductDS productDS;
     }
 }
