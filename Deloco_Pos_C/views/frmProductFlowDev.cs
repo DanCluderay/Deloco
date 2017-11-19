@@ -20,6 +20,8 @@ namespace Deloco_Pos_C.views
 
         private void Ctrl_edit_prodcut1_Request_Close(object sender, EventArgs e)
         {
+            //this.Select();
+            ctrl_edit_prodcut1.Dispose();
             this.Close();
         }
 

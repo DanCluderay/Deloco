@@ -487,12 +487,37 @@ namespace Deloco_Pos_C.helper_functions
 
                     local_datasets.LocationGrid.Location_GridRow LocRow = locationGridDS.Location_Grid.NewLocation_GridRow();
                     LocRow.LocGridID = int.Parse(Item["LocGridID"].ToString());
-                    LocRow.LocName = Item["LocName"].ToString();
-                    LocRow.LocType = int.Parse(Item["LocType"].ToString());
-                    LocRow.LocParent = int.Parse(Item["LocParent"].ToString());
-                    LocRow.PickOrder = int.Parse(Item["PickOrder"].ToString());
-                    LocRow.ShortName = Item["ShortName"].ToString();
-                    LocRow.FullName = Item["FullName"].ToString();
+                    if (ReturnDataTable.Columns.Contains("LocName"))
+                    {
+                        LocRow.LocName = Item["LocName"].ToString();
+                    }
+                    
+                   
+                    if (ReturnDataTable.Columns.Contains("LocType"))
+                    {
+                        LocRow.LocType = int.Parse(Item["LocType"].ToString());
+                    }
+
+                    
+                    if (ReturnDataTable.Columns.Contains("LocParent"))
+                    {
+                        LocRow.LocParent = int.Parse(Item["LocParent"].ToString());
+                    }
+                    
+                    if (ReturnDataTable.Columns.Contains("PickOrder"))
+                    {
+                        LocRow.PickOrder = int.Parse(Item["PickOrder"].ToString());
+                    }
+                    
+                    if (ReturnDataTable.Columns.Contains("ShortName"))
+                    {
+                        LocRow.ShortName = Item["ShortName"].ToString();
+                    }
+                    
+                    if (ReturnDataTable.Columns.Contains("FullName"))
+                    {
+                        LocRow.FullName = Item["FullName"].ToString();
+                    }
 
                     locationGridDS.Location_Grid.AddLocation_GridRow(LocRow);
                 }
@@ -875,6 +900,11 @@ namespace Deloco_Pos_C.helper_functions
                         ProdRow.SizeRelative = int.Parse(Item["SizeRelative"].ToString());
                     }
 
+                    if (ReturnDataTable.Columns.Contains("ProductDateType"))
+                    {
+                        ProdRow.ProductDateType = int.Parse(Item["ProductDateType"].ToString());
+                    }
+
                     DS.Products.AddProductsRow(ProdRow);
                 }
                 ReturnDS = DS;
@@ -980,13 +1010,79 @@ namespace Deloco_Pos_C.helper_functions
                         StockRow.TotalQTY = Convert.ToInt32(Item["Varient_QTY"].ToString());
                     }
 
-                  
+                    if (ReturnDataTable.Columns.Contains("TotalValue"))
+                    {
+                        StockRow.TotalValue = Convert.ToDouble(Item["TotalValue"].ToString());
+                    }
 
                     DS.Store_Location_View.AddStore_Location_ViewRow(StockRow);
                 }
                 ReturnDS = DS;
             }
+            //
+            else if (functionName == "get_product_instance_instanceid")
+            {
 
+                local_datasets.ProductDS DS = new local_datasets.ProductDS();
+                foreach (DataRow Item in ReturnDataTable.Rows)
+                {
+                    local_datasets.ProductDS.Product_InstanceRow ProdInst = DS.Product_Instance.NewProduct_InstanceRow();
+
+                    ProdInst.pv_autoID = Convert.ToInt32(Item["pv_autoID"]);
+
+                    if (ReturnDataTable.Columns.Contains("productID"))
+                    {
+                        ProdInst.productID = Convert.ToInt32(Item["productID"]);
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("Item_costprice"))
+                    {
+                        ProdInst.Item_costprice = Convert.ToDouble(Item["Item_costprice"]);
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("InvoiceID"))
+                    {
+                        ProdInst.InvoiceID = Convert.ToInt32(Item["InvoiceID"]);
+                    }
+
+
+                    if (ReturnDataTable.Columns.Contains("CaseConfig"))
+                    {
+                        if(Item["CaseConfig"] is null)
+                        {
+                            ProdInst.CaseConfig = 0;
+                        }
+                        else
+                        {
+                            ProdInst.CaseConfig = Convert.ToInt32(Item["CaseConfig"]);
+                        }
+                        
+                    }
+
+
+                    DS.Product_Instance.AddProduct_InstanceRow(ProdInst);
+                }
+                ReturnDS = DS;
+            }
+            else if (functionName == "get_product_expiry_date_types")
+            {
+
+                local_datasets.ProductDS DS = new local_datasets.ProductDS();
+                foreach (DataRow Item in ReturnDataTable.Rows)
+                {
+                    local_datasets.ProductDS.ProductExpiryDateTypeRow Prodex = DS.ProductExpiryDateType.NewProductExpiryDateTypeRow();
+
+                    Prodex.ProductDateTypeID = Convert.ToInt32(Item["ProductDateTypeID"]);
+
+                    if (ReturnDataTable.Columns.Contains("DateTypeName"))
+                    {
+                        Prodex.DateTypeName = Item["DateTypeName"].ToString();
+                    }
+
+                    DS.ProductExpiryDateType.AddProductExpiryDateTypeRow(Prodex);
+                }
+                ReturnDS = DS;
+            }
             else
             {
                 //just pass a blank table back
@@ -1367,8 +1463,9 @@ namespace Deloco_Pos_C.helper_functions
             if (CheckNewValue(CheckDS, "IsLockedBy") == true) { parameters = AC(parameters) + "'IsLockedBy': '" + Prod.IsLockedBy.ToString() + "'"; }
             if (CheckNewValue(CheckDS, "InnerPackQty") == true) { parameters = AC(parameters) + "'InnerPackQty': '" + Prod.InnerPackQty.ToString() + "'"; }
             if (CheckNewValue(CheckDS, "IsCasePick") == true) { parameters = AC(parameters) + "'IsCasePick': '" + Prod.IsCasePick.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "ProductDateType") == true) { parameters = AC(parameters) + "'ProductDateType': '" + Prod.ProductDateType.ToString() + "'"; }
 
-            
+
             string q_params = ",'TableName':'Products','Pk':'ProductID','UpDateWhere':'" + Prod.ProductID.ToString() + "'";
 
             if(parameters=="")
@@ -1563,12 +1660,12 @@ namespace Deloco_Pos_C.helper_functions
         }
 
 
-        public int Add_ProductInstance(int ProductID, double cost_price,int invoice)
+        public int Add_ProductInstance(int ProductID, double cost_price,int invoice,int caseconfig)
         {
             int newInstance = 0;
             string job = "update_product_instance_dataset";
             string extra = "'TableName':'Product_Instance','Pk':'pv_autoID'";
-            string jsonstring = "{" + extra + ",'pv_autoID':'0','productID':'" + ProductID.ToString() + "','Item_costprice':'" + cost_price.ToString() + "','InvoiceID':'" + invoice.ToString() + "'}";
+            string jsonstring = "{" + extra + ",'pv_autoID':'0','productID':'" + ProductID.ToString() + "','Item_costprice':'" + cost_price.ToString() + "','InvoiceID':'" + invoice.ToString() + "','CaseConfig':'" + caseconfig.ToString() + "'}";
             string res = Make_db_call(job, jsonstring.ToString());
             if (res.Trim().Length != 0)
             {
@@ -1737,8 +1834,97 @@ namespace Deloco_Pos_C.helper_functions
 
         }
 
+        public local_datasets.ProductDS Get_Product_Instance_Details(int InstanceID)
+        {
+            local_datasets.ProductDS ret = new local_datasets.ProductDS();
+            string parameters = "{'pv_autoID':'" + InstanceID.ToString() + "'}";
+            string job = "get_product_instance_instanceid";
+            string res = Make_db_call(job, parameters.ToString());
+            if (res.Trim().Length != 0)
+            {
+                ret.Merge(FormatStringToDataTable("get_product_instance_instanceid", res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+            return ret;
+        }
+
+        public local_datasets.ProductDS Get_ExpiryDateType()
+        {
+            local_datasets.ProductDS ret = new local_datasets.ProductDS();
+            string parameters = "{'':''}";
+            string job = "get_product_expiry_date_types";
+            string res = Make_db_call(job, parameters.ToString());
+            if (res.Trim().Length != 0)
+            {
+                ret.Merge(FormatStringToDataTable(job, res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+            return ret;
+        }
+
+        public local_datasets.LocationGrid Get_Bis_Locations(int businessid)
+        {
+            local_datasets.LocationGrid ret = new local_datasets.LocationGrid();
+            string parameters = "{'bisid':'" + businessid + "'}";
+            string job = "get_store_locations_of_bis";
+            string res = Make_db_call(job, parameters.ToString());
+            if (res.Trim().Length != 0)
+            {
+                ret.Merge(FormatStringToDataTable("get_gridlocations", res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+            return ret;
+        }
 
 
+        public local_datasets.LocationGrid Get_Site_Locations(string storename)
+        {
+            local_datasets.LocationGrid ret = new local_datasets.LocationGrid();
+            string parameters = "{'storename':'" + storename + "'}";
+            string job = "get_store_locations_of_store";
+            string res = Make_db_call(job, parameters.ToString());
+            if (res.Trim().Length != 0)
+            {
+                ret.Merge(FormatStringToDataTable("get_gridlocations", res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+            return ret;
+        }
+
+        public void shopify_get_all_products()
+        {
+            string parameters = "{'':''}";
+            string job = "shopify_get_all_products";
+            string res = Make_db_call(job, parameters.ToString());
+        }
+        public void shopify_create_new_product()
+        {
+            string parameters = "{'tags':'langold, milk','vendor':'Big Shaq','title':'Mr Floppy','product_type':'Chocolate Bar','body_html':'some <TAGS>','barcode':'123321','compare_at_price':'1.99','grams':'12','inventory_quantity':'1','price':'12345','sku':'123' ,'taxable':'True','weight':'1.0','weight_unit':'kg','inventory_management':'shopify'}";
+            string job = "shopify_create_new_product";
+            string res = Make_db_call(job, parameters.ToString());
+
+            parameters = "{'tags':'worksop, milk','vendor':'Big Shaq','title':'Mr Floppy','product_type':'Chocolate Bar','body_html':'some <TAGS>','barcode':'123321','compare_at_price':'1.99','grams':'12','inventory_quantity':'1','price':'12345','sku':'123' ,'taxable':'True','weight':'1.0','weight_unit':'kg','inventory_management':'shopify'}";
+            res = Make_db_call(job, parameters.ToString());
+
+            parameters = "{'tags':'tickhill, milk','vendor':'Big Shaq','title':'Mr Floppy','product_type':'Chocolate Bar','body_html':'some <TAGS>','barcode':'123321','compare_at_price':'1.99','grams':'12','inventory_quantity':'1','price':'12345','sku':'123' ,'taxable':'True','weight':'1.0','weight_unit':'kg','inventory_management':'shopify'}";
+            res = Make_db_call(job, parameters.ToString());
+        }
         private void FailedWebReseponce(string E)
         {
 

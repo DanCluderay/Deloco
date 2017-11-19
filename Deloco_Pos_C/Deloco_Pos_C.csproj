@@ -82,6 +82,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="base_classes\Deloco.cs" />
     <Compile Include="base_classes\productclass.cs" />
     <Compile Include="base_classes\zoneclass.cs" />
     <Compile Include="ctrl\ctrl_edit_prodcut.cs">
@@ -89,6 +90,12 @@
     </Compile>
     <Compile Include="ctrl\ctrl_edit_prodcut.Designer.cs">
       <DependentUpon>ctrl_edit_prodcut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ctrl\ctrl_MoveStock.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctrl\ctrl_MoveStock.Designer.cs">
+      <DependentUpon>ctrl_MoveStock.cs</DependentUpon>
     </Compile>
     <Compile Include="ctrl\ctrl_NameBuilder.cs">
       <SubType>UserControl</SubType>
@@ -113,6 +120,12 @@
     </Compile>
     <Compile Include="ctrl\ctrl_ProductVerfication.Designer.cs">
       <DependentUpon>ctrl_ProductVerfication.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ctrl\ctrl_shopifyinsight.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ctrl\ctrl_shopifyinsight.Designer.cs">
+      <DependentUpon>ctrl_shopifyinsight.cs</DependentUpon>
     </Compile>
     <Compile Include="ctrl\Furniture\ctrl_checkout.cs">
       <SubType>UserControl</SubType>
@@ -272,6 +285,12 @@
     <Compile Include="views\frmBrands.Designer.cs">
       <DependentUpon>frmBrands.cs</DependentUpon>
     </Compile>
+    <Compile Include="views\frmGlobalStockView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\frmGlobalStockView.Designer.cs">
+      <DependentUpon>frmGlobalStockView.cs</DependentUpon>
+    </Compile>
     <Compile Include="views\frmLiveDemo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -338,6 +357,12 @@
     <Compile Include="views\frmProductUseCases.Designer.cs">
       <DependentUpon>frmProductUseCases.cs</DependentUpon>
     </Compile>
+    <Compile Include="views\frmShopifyExplorer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\frmShopifyExplorer.Designer.cs">
+      <DependentUpon>frmShopifyExplorer.cs</DependentUpon>
+    </Compile>
     <Compile Include="views\frmShoplocations.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -378,6 +403,9 @@
     <EmbeddedResource Include="ctrl\ctrl_edit_prodcut.resx">
       <DependentUpon>ctrl_edit_prodcut.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ctrl\ctrl_MoveStock.resx">
+      <DependentUpon>ctrl_MoveStock.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ctrl\ctrl_NameBuilder.resx">
       <DependentUpon>ctrl_NameBuilder.cs</DependentUpon>
     </EmbeddedResource>
@@ -389,6 +417,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ctrl\ctrl_ProductVerfication.resx">
       <DependentUpon>ctrl_ProductVerfication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ctrl\ctrl_shopifyinsight.resx">
+      <DependentUpon>ctrl_shopifyinsight.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ctrl\Furniture\ctrl_checkout.resx">
       <DependentUpon>ctrl_checkout.cs</DependentUpon>
@@ -435,6 +466,9 @@
     <EmbeddedResource Include="views\frmBrands.resx">
       <DependentUpon>frmBrands.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="views\frmGlobalStockView.resx">
+      <DependentUpon>frmGlobalStockView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="views\frmLiveDemo.resx">
       <DependentUpon>frmLiveDemo.cs</DependentUpon>
     </EmbeddedResource>
@@ -467,6 +501,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="views\frmProductUseCases.resx">
       <DependentUpon>frmProductUseCases.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\frmShopifyExplorer.resx">
+      <DependentUpon>frmShopifyExplorer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="views\frmShoplocations.resx">
       <DependentUpon>frmShoplocations.cs</DependentUpon>
@@ -603,6 +640,7 @@
       <DependentUpon>store_locations.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Deloco_Pos_C.base_classes.DelocoProduct.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

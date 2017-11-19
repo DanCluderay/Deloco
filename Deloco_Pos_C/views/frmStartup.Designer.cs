@@ -48,9 +48,11 @@
             this.lineOfReasonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.productUseCasesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.productManagmentDevelopmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.productFlowDevToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.productsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.productInstanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.productGridInstanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.shopifyExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ordersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.outstandingOrdersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salesAnalysisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,7 +65,7 @@
             this.configToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.developmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mQTTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.productFlowDevToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newStockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -148,10 +150,12 @@
             // productsToolStripMenuItem
             // 
             this.productsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.stockManagerToolStripMenuItem,
+            this.newStockToolStripMenuItem,
             this.addProductsToolStripMenuItem,
             this.productDevelopmentToolStripMenuItem,
-            this.productManagmentDevelopmentToolStripMenuItem});
+            this.productManagmentDevelopmentToolStripMenuItem,
+            this.stockManagerToolStripMenuItem,
+            this.shopifyExplorerToolStripMenuItem});
             this.productsToolStripMenuItem.Enabled = false;
             this.productsToolStripMenuItem.Name = "productsToolStripMenuItem";
             this.productsToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
@@ -162,7 +166,7 @@
             // 
             this.stockManagerToolStripMenuItem.Name = "stockManagerToolStripMenuItem";
             this.stockManagerToolStripMenuItem.Size = new System.Drawing.Size(258, 22);
-            this.stockManagerToolStripMenuItem.Text = "Stock Manager";
+            this.stockManagerToolStripMenuItem.Text = "old Stock Manager";
             this.stockManagerToolStripMenuItem.Click += new System.EventHandler(this.stockManagerToolStripMenuItem_Click);
             // 
             // addProductsToolStripMenuItem
@@ -227,6 +231,13 @@
             this.productManagmentDevelopmentToolStripMenuItem.Size = new System.Drawing.Size(258, 22);
             this.productManagmentDevelopmentToolStripMenuItem.Text = "Product Managment Development";
             // 
+            // productFlowDevToolStripMenuItem
+            // 
+            this.productFlowDevToolStripMenuItem.Name = "productFlowDevToolStripMenuItem";
+            this.productFlowDevToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
+            this.productFlowDevToolStripMenuItem.Text = "Product Flow Dev";
+            this.productFlowDevToolStripMenuItem.Click += new System.EventHandler(this.productFlowDevToolStripMenuItem_Click);
+            // 
             // productsToolStripMenuItem1
             // 
             this.productsToolStripMenuItem1.Name = "productsToolStripMenuItem1";
@@ -245,6 +256,13 @@
             this.productGridInstanceToolStripMenuItem.Name = "productGridInstanceToolStripMenuItem";
             this.productGridInstanceToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
             this.productGridInstanceToolStripMenuItem.Text = "Product Grid Instance";
+            // 
+            // shopifyExplorerToolStripMenuItem
+            // 
+            this.shopifyExplorerToolStripMenuItem.Name = "shopifyExplorerToolStripMenuItem";
+            this.shopifyExplorerToolStripMenuItem.Size = new System.Drawing.Size(258, 22);
+            this.shopifyExplorerToolStripMenuItem.Text = "Shopify Explorer";
+            this.shopifyExplorerToolStripMenuItem.Click += new System.EventHandler(this.shopifyExplorerToolStripMenuItem_Click);
             // 
             // ordersToolStripMenuItem
             // 
@@ -337,12 +355,12 @@
             this.mQTTToolStripMenuItem.Text = "MQTT";
             this.mQTTToolStripMenuItem.Click += new System.EventHandler(this.mQTTToolStripMenuItem_Click);
             // 
-            // productFlowDevToolStripMenuItem
+            // newStockToolStripMenuItem
             // 
-            this.productFlowDevToolStripMenuItem.Name = "productFlowDevToolStripMenuItem";
-            this.productFlowDevToolStripMenuItem.Size = new System.Drawing.Size(188, 22);
-            this.productFlowDevToolStripMenuItem.Text = "Product Flow Dev";
-            this.productFlowDevToolStripMenuItem.Click += new System.EventHandler(this.productFlowDevToolStripMenuItem_Click);
+            this.newStockToolStripMenuItem.Name = "newStockToolStripMenuItem";
+            this.newStockToolStripMenuItem.Size = new System.Drawing.Size(258, 22);
+            this.newStockToolStripMenuItem.Text = "New Stock";
+            this.newStockToolStripMenuItem.Click += new System.EventHandler(this.newStockToolStripMenuItem_Click);
             // 
             // frmStartup
             // 
@@ -400,5 +418,7 @@
         private System.Windows.Forms.ToolStripMenuItem productInstanceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem productGridInstanceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem productFlowDevToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem shopifyExplorerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newStockToolStripMenuItem;
     }
 }

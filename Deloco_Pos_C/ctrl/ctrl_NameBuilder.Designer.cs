@@ -38,10 +38,6 @@
             this.cmbBrand = new System.Windows.Forms.ComboBox();
             this.brandsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productDS = new Deloco_Pos_C.local_datasets.ProductDS();
-            this.txtPostFix = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtPrefix = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbRelativeSize = new System.Windows.Forms.ComboBox();
             this.productSizeUnitsBindingSource_RELATIVE = new System.Windows.Forms.BindingSource(this.components);
@@ -165,44 +161,6 @@
             // 
             this.productDS.DataSetName = "ProductDS";
             this.productDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // txtPostFix
-            // 
-            this.txtPostFix.BackColor = System.Drawing.Color.Pink;
-            this.txtPostFix.Location = new System.Drawing.Point(107, 200);
-            this.txtPostFix.Name = "txtPostFix";
-            this.txtPostFix.Size = new System.Drawing.Size(143, 20);
-            this.txtPostFix.TabIndex = 20;
-            this.txtPostFix.TextChanged += new System.EventHandler(this.txtPostFix_TextChanged);
-            this.txtPostFix.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPostFix_KeyUp);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(66, 203);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(38, 13);
-            this.label8.TabIndex = 19;
-            this.label8.Text = "Postfix";
-            // 
-            // txtPrefix
-            // 
-            this.txtPrefix.BackColor = System.Drawing.Color.Pink;
-            this.txtPrefix.Location = new System.Drawing.Point(107, 39);
-            this.txtPrefix.Name = "txtPrefix";
-            this.txtPrefix.Size = new System.Drawing.Size(143, 20);
-            this.txtPrefix.TabIndex = 18;
-            this.txtPrefix.TextChanged += new System.EventHandler(this.txtPrefix_TextChanged);
-            this.txtPrefix.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPrefix_KeyUp);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(66, 42);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(33, 13);
-            this.label7.TabIndex = 17;
-            this.label7.Text = "Prefix";
             // 
             // label1
             // 
@@ -517,10 +475,6 @@
             this.Controls.Add(this.chkBrandInName);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.cmbBrand);
-            this.Controls.Add(this.txtPostFix);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.txtPrefix);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.txtFullName);
             this.Controls.Add(this.linkLabel4);
             this.Controls.Add(this.linkLabel2);
@@ -554,10 +508,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.ComboBox cmbBrand;
-        private System.Windows.Forms.TextBox txtPostFix;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtPrefix;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbRelativeSize;
         private System.Windows.Forms.LinkLabel linkLabel1;

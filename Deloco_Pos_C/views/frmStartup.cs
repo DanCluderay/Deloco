@@ -196,5 +196,19 @@ namespace Deloco_Pos_C
             FlowDev.MdiParent = this;
             FlowDev.Show();
         }
+
+        private void shopifyExplorerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            views.frmShopifyExplorer Shop = new views.frmShopifyExplorer();
+            Shop.MdiParent = this;
+            Shop.Show();
+        }
+
+        private void newStockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            views.frmGlobalStockView stock = new views.frmGlobalStockView();
+            stock.MdiParent = this;
+            stock.Show();
+        }
     }
 }

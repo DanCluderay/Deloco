@@ -30,14 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.propDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.valueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.valuePairBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.productDS = new Deloco_Pos_C.local_datasets.ProductDS();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.ctrl_NameBuilder1 = new Deloco_Pos_C.ctrl.ctrl_NameBuilder();
             this.ctrl_ProductPhysicalProperties1 = new Deloco_Pos_C.ctrl.ctrl_ProductPhysicalProperties();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -49,30 +43,37 @@
             this.ctrl_ProductInstance1 = new Deloco_Pos_C.ctrl.ctrl_ProductInstance();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.ctrl_MoveStock1 = new Deloco_Pos_C.ctrl.ctrl_MoveStock();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.propDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.valueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.valuePairBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productDS = new Deloco_Pos_C.local_datasets.ProductDS();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
             this.brandsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblBigProductName = new System.Windows.Forms.Label();
-            this.ctrl_NameBuilder1 = new Deloco_Pos_C.ctrl.ctrl_NameBuilder();
             this.tabControl1.SuspendLayout();
-            this.tabPage7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.valuePairBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productDS)).BeginInit();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.tabPage5.SuspendLayout();
+            this.tabPage6.SuspendLayout();
+            this.tabPage7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.valuePairBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productDS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.brandsBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage7);
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage2);
@@ -81,71 +82,12 @@
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Controls.Add(this.tabPage8);
             this.tabControl1.Controls.Add(this.tabPage9);
+            this.tabControl1.Controls.Add(this.tabPage7);
             this.tabControl1.Location = new System.Drawing.Point(13, 78);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(950, 591);
             this.tabControl1.TabIndex = 0;
-            // 
-            // tabPage7
-            // 
-            this.tabPage7.Controls.Add(this.dataGridView1);
-            this.tabPage7.Controls.Add(this.listBox1);
-            this.tabPage7.Location = new System.Drawing.Point(4, 22);
-            this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(942, 565);
-            this.tabPage7.TabIndex = 7;
-            this.tabPage7.Text = "Summery";
-            this.tabPage7.UseVisualStyleBackColor = true;
-            this.tabPage7.Click += new System.EventHandler(this.tabPage7_Click);
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.propDataGridViewTextBoxColumn,
-            this.valueDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.valuePairBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(339, 81);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(331, 443);
-            this.dataGridView1.TabIndex = 2;
-            // 
-            // propDataGridViewTextBoxColumn
-            // 
-            this.propDataGridViewTextBoxColumn.DataPropertyName = "Prop";
-            this.propDataGridViewTextBoxColumn.HeaderText = "Prop";
-            this.propDataGridViewTextBoxColumn.Name = "propDataGridViewTextBoxColumn";
-            this.propDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // valueDataGridViewTextBoxColumn
-            // 
-            this.valueDataGridViewTextBoxColumn.DataPropertyName = "value";
-            this.valueDataGridViewTextBoxColumn.HeaderText = "value";
-            this.valueDataGridViewTextBoxColumn.Name = "valueDataGridViewTextBoxColumn";
-            this.valueDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // valuePairBindingSource
-            // 
-            this.valuePairBindingSource.DataMember = "ValuePair";
-            this.valuePairBindingSource.DataSource = this.productDS;
-            // 
-            // productDS
-            // 
-            this.productDS.DataSetName = "ProductDS";
-            this.productDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(26, 79);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(282, 446);
-            this.listBox1.TabIndex = 1;
             // 
             // tabPage1
             // 
@@ -161,8 +103,17 @@
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
+            // ctrl_NameBuilder1
+            // 
+            this.ctrl_NameBuilder1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ctrl_NameBuilder1.Location = new System.Drawing.Point(20, 23);
+            this.ctrl_NameBuilder1.Name = "ctrl_NameBuilder1";
+            this.ctrl_NameBuilder1.Size = new System.Drawing.Size(489, 293);
+            this.ctrl_NameBuilder1.TabIndex = 6;
+            // 
             // ctrl_ProductPhysicalProperties1
             // 
+            this.ctrl_ProductPhysicalProperties1.ExpiryDateType = 0;
             this.ctrl_ProductPhysicalProperties1.ItemHeight = 0;
             this.ctrl_ProductPhysicalProperties1.ItemLenght = 0;
             this.ctrl_ProductPhysicalProperties1.ItemTotalVolume = 0;
@@ -178,7 +129,7 @@
             // 
             this.groupBox2.Location = new System.Drawing.Point(171, 338);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(323, 195);
+            this.groupBox2.Size = new System.Drawing.Size(320, 107);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Descriptions";
@@ -260,12 +211,20 @@
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.ctrl_MoveStock1);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Size = new System.Drawing.Size(942, 565);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Product Stock Locations";
             this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // ctrl_MoveStock1
+            // 
+            this.ctrl_MoveStock1.Location = new System.Drawing.Point(33, 27);
+            this.ctrl_MoveStock1.Name = "ctrl_MoveStock1";
+            this.ctrl_MoveStock1.Size = new System.Drawing.Size(842, 435);
+            this.ctrl_MoveStock1.TabIndex = 0;
             // 
             // tabPage8
             // 
@@ -284,6 +243,66 @@
             this.tabPage9.TabIndex = 6;
             this.tabPage9.Text = "Images";
             this.tabPage9.UseVisualStyleBackColor = true;
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.dataGridView1);
+            this.tabPage7.Controls.Add(this.listBox1);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Size = new System.Drawing.Size(942, 565);
+            this.tabPage7.TabIndex = 7;
+            this.tabPage7.Text = "Summery";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            this.tabPage7.Click += new System.EventHandler(this.tabPage7_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.propDataGridViewTextBoxColumn,
+            this.valueDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.valuePairBindingSource;
+            this.dataGridView1.Location = new System.Drawing.Point(339, 81);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(331, 443);
+            this.dataGridView1.TabIndex = 2;
+            // 
+            // propDataGridViewTextBoxColumn
+            // 
+            this.propDataGridViewTextBoxColumn.DataPropertyName = "Prop";
+            this.propDataGridViewTextBoxColumn.HeaderText = "Prop";
+            this.propDataGridViewTextBoxColumn.Name = "propDataGridViewTextBoxColumn";
+            this.propDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // valueDataGridViewTextBoxColumn
+            // 
+            this.valueDataGridViewTextBoxColumn.DataPropertyName = "value";
+            this.valueDataGridViewTextBoxColumn.HeaderText = "value";
+            this.valueDataGridViewTextBoxColumn.Name = "valueDataGridViewTextBoxColumn";
+            this.valueDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // valuePairBindingSource
+            // 
+            this.valuePairBindingSource.DataMember = "ValuePair";
+            this.valuePairBindingSource.DataSource = this.productDS;
+            // 
+            // productDS
+            // 
+            this.productDS.DataSetName = "ProductDS";
+            this.productDS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(26, 79);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(282, 446);
+            this.listBox1.TabIndex = 1;
             // 
             // button1
             // 
@@ -320,14 +339,6 @@
             this.lblBigProductName.TabIndex = 1;
             this.lblBigProductName.Text = "Product Name";
             // 
-            // ctrl_NameBuilder1
-            // 
-            this.ctrl_NameBuilder1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ctrl_NameBuilder1.Location = new System.Drawing.Point(20, 23);
-            this.ctrl_NameBuilder1.Name = "ctrl_NameBuilder1";
-            this.ctrl_NameBuilder1.Size = new System.Drawing.Size(489, 293);
-            this.ctrl_NameBuilder1.TabIndex = 6;
-            // 
             // ctrl_edit_prodcut
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -338,16 +349,17 @@
             this.Size = new System.Drawing.Size(950, 591);
             this.Load += new System.EventHandler(this.ctrl_edit_prodcut_Load);
             this.tabControl1.ResumeLayout(false);
-            this.tabPage7.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.valuePairBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productDS)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.tabPage5.ResumeLayout(false);
+            this.tabPage6.ResumeLayout(false);
+            this.tabPage7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.valuePairBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productDS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.brandsBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -383,6 +395,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabPage tabPage8;
         private ctrl_ProductInstance ctrl_ProductInstance1;
+        private ctrl_MoveStock ctrl_MoveStock1;
         private ctrl_NameBuilder ctrl_NameBuilder1;
     }
 }

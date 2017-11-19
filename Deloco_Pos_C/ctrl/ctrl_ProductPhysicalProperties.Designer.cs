@@ -13,6 +13,10 @@
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
+            if (this.Disposing == true)
+            {
+
+            }
             if (disposing && (components != null))
             {
                 components.Dispose();
@@ -52,7 +56,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabItem = new System.Windows.Forms.TabPage();
             this.label13 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbExpiryDateType = new System.Windows.Forms.ComboBox();
+            this.productExpiryDateTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label11 = new System.Windows.Forms.Label();
             this.txtVolumetricWeight = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -70,6 +75,7 @@
             this.tabPage8.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabItem.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.productExpiryDateTypeBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl2
@@ -211,6 +217,7 @@
             this.txtItemLenght.Size = new System.Drawing.Size(31, 20);
             this.txtItemLenght.TabIndex = 19;
             this.txtItemLenght.Text = "1";
+            this.txtItemLenght.TextChanged += new System.EventHandler(this.txtItemLenght_TextChanged);
             this.txtItemLenght.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtItemLenght_KeyUp);
             // 
             // label3
@@ -273,7 +280,7 @@
             // tabItem
             // 
             this.tabItem.Controls.Add(this.label13);
-            this.tabItem.Controls.Add(this.comboBox1);
+            this.tabItem.Controls.Add(this.cmbExpiryDateType);
             this.tabItem.Controls.Add(this.label11);
             this.tabItem.Controls.Add(this.txtVolumetricWeight);
             this.tabItem.Controls.Add(this.label12);
@@ -311,19 +318,25 @@
             this.label13.TabIndex = 36;
             this.label13.Text = "Expiry Date Type";
             // 
-            // comboBox1
+            // cmbExpiryDateType
             // 
-            this.comboBox1.BackColor = System.Drawing.Color.Pink;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "No Date",
-            "Best Before Date",
-            "Used By Date",
-            "Expiry Date"});
-            this.comboBox1.Location = new System.Drawing.Point(256, 90);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(44, 21);
-            this.comboBox1.TabIndex = 35;
+            this.cmbExpiryDateType.BackColor = System.Drawing.SystemColors.Control;
+            this.cmbExpiryDateType.DataSource = this.productExpiryDateTypeBindingSource;
+            this.cmbExpiryDateType.DisplayMember = "DateTypeName";
+            this.cmbExpiryDateType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbExpiryDateType.DropDownWidth = 100;
+            this.cmbExpiryDateType.FormattingEnabled = true;
+            this.cmbExpiryDateType.Location = new System.Drawing.Point(256, 90);
+            this.cmbExpiryDateType.Name = "cmbExpiryDateType";
+            this.cmbExpiryDateType.Size = new System.Drawing.Size(91, 21);
+            this.cmbExpiryDateType.TabIndex = 35;
+            this.cmbExpiryDateType.ValueMember = "ProductDateTypeID";
+            this.cmbExpiryDateType.SelectedIndexChanged += new System.EventHandler(this.cmbExpiryDateType_SelectedIndexChanged);
+            // 
+            // productExpiryDateTypeBindingSource
+            // 
+            this.productExpiryDateTypeBindingSource.DataMember = "ProductExpiryDateType";
+            this.productExpiryDateTypeBindingSource.DataSource = this.productDS;
             // 
             // label11
             // 
@@ -402,7 +415,7 @@
             this.tabCase.Location = new System.Drawing.Point(4, 22);
             this.tabCase.Name = "tabCase";
             this.tabCase.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCase.Size = new System.Drawing.Size(354, 295);
+            this.tabCase.Size = new System.Drawing.Size(354, 373);
             this.tabCase.TabIndex = 1;
             this.tabCase.Text = "Case";
             this.tabCase.UseVisualStyleBackColor = true;
@@ -424,6 +437,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tabItem.ResumeLayout(false);
             this.tabItem.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.productExpiryDateTypeBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -462,6 +476,7 @@
         private System.Windows.Forms.Button btnEditItemBarcode;
         private System.Windows.Forms.Button btnAddNewItemBarcode;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbExpiryDateType;
+        private System.Windows.Forms.BindingSource productExpiryDateTypeBindingSource;
     }
 }

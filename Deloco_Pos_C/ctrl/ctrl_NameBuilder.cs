@@ -22,9 +22,7 @@ namespace Deloco_Pos_C.ctrl
         {
             InitializeComponent();
             helper_functions.globalHelper logic_global = helper_functions.globalHelper.Instance;
-            HideAllTabs();
-            GetBrands();
-            GetProductSizes();
+
         }
         public string FullProductName;
         public string PreFix;
@@ -46,10 +44,13 @@ namespace Deloco_Pos_C.ctrl
 
         public void SetupProduct(local_datasets.ProductDS ProdDS)
         {
+            HideAllTabs();
+            GetBrands();
+            GetProductSizes();
             local_datasets.ProductDS.ProductsRow ProdRow =(local_datasets.ProductDS.ProductsRow)ProdDS.Products.Rows[0];
             InSetUpMode = true;
             //prefix
-            txtPrefix.Text = ProdRow.PreFix;
+            //txtPrefix.Text = ProdRow.PreFix;
             PreFix = ProdRow.PreFix;
             //brand
             cmbBrand.SelectedValue = ProdRow.BrandID;
@@ -70,7 +71,7 @@ namespace Deloco_Pos_C.ctrl
             cmbRelativeSize.SelectedValue = ProdRow.SizeRelative;
             TheRelativeSize = ProdRow.SizeRelative;
             //postfix
-            txtPostFix.Text = ProdRow.PostFix;
+            //txtPostFix.Text = ProdRow.PostFix;
             PostFix = ProdRow.PostFix;
             InSetUpMode = false;
             BuildProductName();
@@ -90,7 +91,7 @@ namespace Deloco_Pos_C.ctrl
         private void ShowOptionsTab()
         {
             HideAllTabs();
-            tabControl1.Controls.Add(tabOptions);
+            //tabControl1.Controls.Add(tabOptions);
 
         }
         private void ShowBrandTab()
@@ -256,8 +257,8 @@ namespace Deloco_Pos_C.ctrl
 
         private void txtPrefix_KeyUp(object sender, KeyEventArgs e)
         {
-            PreFix = txtPrefix.Text.ToString();
-            BuildProductName();
+            //PreFix = txtPrefix.Text.ToString();
+            //BuildProductName();
         }
 
         private void cmbBrand_SelectedIndexChanged(object sender, EventArgs e)
@@ -296,8 +297,8 @@ namespace Deloco_Pos_C.ctrl
 
         private void txtPostFix_KeyUp(object sender, KeyEventArgs e)
         {
-            PostFix = txtPostFix.Text;
-            BuildProductName();
+            //PostFix = txtPostFix.Text;
+            //BuildProductName();
         }
 
         private void txtPostFix_TextChanged(object sender, EventArgs e)

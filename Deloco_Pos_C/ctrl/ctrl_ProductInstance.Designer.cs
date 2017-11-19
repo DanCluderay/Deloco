@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.chkShowHistorical = new System.Windows.Forms.CheckBox();
@@ -52,14 +54,15 @@
             this.locationNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalQTYDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.storeLocationViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.stockControlDS = new Deloco_Pos_C.local_datasets.StockControlDS();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnAddMoreStock = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productStockLocationViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productDS)).BeginInit();
@@ -133,8 +136,8 @@
             // itemcostpriceDataGridViewTextBoxColumn
             // 
             this.itemcostpriceDataGridViewTextBoxColumn.DataPropertyName = "Item_costprice";
-            dataGridViewCellStyle3.Format = "C2";
-            this.itemcostpriceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Format = "C2";
+            this.itemcostpriceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
             this.itemcostpriceDataGridViewTextBoxColumn.HeaderText = "Cost price";
             this.itemcostpriceDataGridViewTextBoxColumn.Name = "itemcostpriceDataGridViewTextBoxColumn";
             this.itemcostpriceDataGridViewTextBoxColumn.ReadOnly = true;
@@ -143,9 +146,9 @@
             // productBBEDataGridViewTextBoxColumn
             // 
             this.productBBEDataGridViewTextBoxColumn.DataPropertyName = "ProductBBE";
-            dataGridViewCellStyle4.Format = "d";
-            dataGridViewCellStyle4.NullValue = null;
-            this.productBBEDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
+            this.productBBEDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.productBBEDataGridViewTextBoxColumn.HeaderText = "Expiry Date";
             this.productBBEDataGridViewTextBoxColumn.Name = "productBBEDataGridViewTextBoxColumn";
             this.productBBEDataGridViewTextBoxColumn.ReadOnly = true;
@@ -214,7 +217,7 @@
             // radioVarientView
             // 
             this.radioVarientView.AutoSize = true;
-            this.radioVarientView.Location = new System.Drawing.Point(646, 55);
+            this.radioVarientView.Location = new System.Drawing.Point(616, 55);
             this.radioVarientView.Name = "radioVarientView";
             this.radioVarientView.Size = new System.Drawing.Size(84, 17);
             this.radioVarientView.TabIndex = 14;
@@ -224,7 +227,7 @@
             // radioInstanceView
             // 
             this.radioInstanceView.AutoSize = true;
-            this.radioInstanceView.Location = new System.Drawing.Point(646, 34);
+            this.radioInstanceView.Location = new System.Drawing.Point(616, 34);
             this.radioInstanceView.Name = "radioInstanceView";
             this.radioInstanceView.Size = new System.Drawing.Size(92, 17);
             this.radioInstanceView.TabIndex = 13;
@@ -235,7 +238,7 @@
             // 
             this.radioFullView.AutoSize = true;
             this.radioFullView.Checked = true;
-            this.radioFullView.Location = new System.Drawing.Point(646, 11);
+            this.radioFullView.Location = new System.Drawing.Point(616, 11);
             this.radioFullView.Name = "radioFullView";
             this.radioFullView.Size = new System.Drawing.Size(67, 17);
             this.radioFullView.TabIndex = 12;
@@ -261,7 +264,8 @@
             this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.locationNameDataGridViewTextBoxColumn,
             this.totalQTYDataGridViewTextBoxColumn,
-            this.valueDataGridViewTextBoxColumn});
+            this.valueDataGridViewTextBoxColumn,
+            this.TotalValue});
             this.dataGridView3.DataSource = this.storeLocationViewBindingSource;
             this.dataGridView3.Location = new System.Drawing.Point(327, 82);
             this.dataGridView3.Name = "dataGridView3";
@@ -279,16 +283,30 @@
             // totalQTYDataGridViewTextBoxColumn
             // 
             this.totalQTYDataGridViewTextBoxColumn.DataPropertyName = "TotalQTY";
-            this.totalQTYDataGridViewTextBoxColumn.HeaderText = "TotalQTY";
+            this.totalQTYDataGridViewTextBoxColumn.HeaderText = "Total QTY";
             this.totalQTYDataGridViewTextBoxColumn.Name = "totalQTYDataGridViewTextBoxColumn";
             this.totalQTYDataGridViewTextBoxColumn.ReadOnly = true;
+            this.totalQTYDataGridViewTextBoxColumn.Width = 70;
             // 
             // valueDataGridViewTextBoxColumn
             // 
             this.valueDataGridViewTextBoxColumn.DataPropertyName = "Value";
-            this.valueDataGridViewTextBoxColumn.HeaderText = "Value";
+            dataGridViewCellStyle3.NullValue = "C2";
+            this.valueDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.valueDataGridViewTextBoxColumn.HeaderText = "Cost";
             this.valueDataGridViewTextBoxColumn.Name = "valueDataGridViewTextBoxColumn";
             this.valueDataGridViewTextBoxColumn.ReadOnly = true;
+            this.valueDataGridViewTextBoxColumn.Width = 70;
+            // 
+            // TotalValue
+            // 
+            this.TotalValue.DataPropertyName = "TotalValue";
+            dataGridViewCellStyle4.Format = "C2";
+            this.TotalValue.DefaultCellStyle = dataGridViewCellStyle4;
+            this.TotalValue.HeaderText = "Total Value";
+            this.TotalValue.Name = "TotalValue";
+            this.TotalValue.ReadOnly = true;
+            this.TotalValue.Width = 70;
             // 
             // storeLocationViewBindingSource
             // 
@@ -313,13 +331,24 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.btnAddMoreStock);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(118, 503);
             this.panel1.TabIndex = 11;
+            // 
+            // btnAddMoreStock
+            // 
+            this.btnAddMoreStock.Enabled = false;
+            this.btnAddMoreStock.Location = new System.Drawing.Point(10, 135);
+            this.btnAddMoreStock.Name = "btnAddMoreStock";
+            this.btnAddMoreStock.Size = new System.Drawing.Size(102, 38);
+            this.btnAddMoreStock.TabIndex = 8;
+            this.btnAddMoreStock.Text = "Add More Stock with New Date";
+            this.btnAddMoreStock.UseVisualStyleBackColor = true;
+            this.btnAddMoreStock.Click += new System.EventHandler(this.button2_Click);
             // 
             // tabPage2
             // 
@@ -351,16 +380,6 @@
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(498, 344);
             this.dataGridView2.TabIndex = 0;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(10, 135);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(102, 38);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "Add More Stock with New Date";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // ctrl_ProductInstance
             // 
@@ -403,9 +422,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn locationNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn totalQTYDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn valueDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource storeLocationViewBindingSource;
         private local_datasets.StockControlDS stockControlDS;
         private System.Windows.Forms.RadioButton radioVarientView;
@@ -416,6 +432,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn varientQTYDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn itemcostpriceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn productBBEDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnAddMoreStock;
+        private System.Windows.Forms.DataGridViewTextBoxColumn locationNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn totalQTYDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn valueDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalValue;
     }
 }

@@ -20,6 +20,7 @@ namespace Deloco_Pos_C.views
         int selecetedItemCaseqty;
         int ListingMode;
         int _instanceid;
+        int _varientid;
         public frmAddProductInstance()
         {
             InitializeComponent();
@@ -32,8 +33,9 @@ namespace Deloco_Pos_C.views
             InitializeComponent();
             helper_functions.globalHelper logic_global = helper_functions.globalHelper.Instance;
             ProdDS = new local_datasets.ProductDS();
-            ProdDS.Merge(logic_global.Get_Product_Case_Configeration(ProductID));
             productDS.ProductCaseConfig.Clear();
+            ProdDS.Merge(logic_global.Get_Product_Case_Configeration(ProductID));
+
             productDS.Merge(ProdDS);
             _productID = ProductID;
             _instanceid = InstanceID;
@@ -45,6 +47,27 @@ namespace Deloco_Pos_C.views
             else
             {
                 //We are adding a new date at an existing cost
+                productDS.Merge(logic_global.Get_Product_Instance_Details(InstanceID));
+                if(productDS.Product_Instance.Rows.Count==1)
+                {//we have a match
+                    local_datasets.ProductDS.Product_InstanceRow IRow;
+                    IRow=(local_datasets.ProductDS.Product_InstanceRow)productDS.Product_Instance.Rows[0];
+                    cmbCaseConfig.SelectedValue= IRow.CaseConfig;
+                    DataRow[] Caserow;
+                    Caserow = productDS.ProductCaseConfig.Select("CaseConfigID=" + IRow.CaseConfig.ToString());
+                    
+                    if (Caserow.Length==1)
+                    {
+                        local_datasets.ProductDS.ProductCaseConfigRow CC = (local_datasets.ProductDS.ProductCaseConfigRow)Caserow[0];
+                        txtCasePrice.Text = (IRow.Item_costprice * CC.CaseQty).ToString();
+                        txtItemCostPrice.Text = IRow.Item_costprice.ToString();
+                        //lock down the cost and case config so new stock cannot be changed
+                        txtCasePrice.Enabled = false;
+                        txtItemCostPrice.Enabled = false;
+                        cmbCaseConfig.Enabled = false;
+                    }
+
+                }
                 ListingMode = 1;
             }
         }
@@ -241,17 +264,28 @@ namespace Deloco_Pos_C.views
         {
             bool TableCorrect = true;
             int totalAssignedQTY = 0;
+            int rowcount=0;
             foreach(DataGridViewRow dgr in DG_Data.Rows)
             {
                 int _qty = 0;
                 double _qtycase = 0;
-            
+                rowcount = rowcount + 1;
+                if(rowcount==DG_Data.RowCount)
+                {
+                    break;
+                }
                 bool res=false;
                 bool res2=false;
-                if(dgr.Cells[0].Value!=null)
-                {
-
+            
+                    try
+                    {
                     res = int.TryParse(dgr.Cells[0].Value.ToString(), out _qty);
+                    }
+                    catch
+                    {
+
+                    }
+                    
                     try
                     {
                         res2 = double.TryParse(dgr.Cells[1].Value.ToString(),out _qtycase);
@@ -264,13 +298,13 @@ namespace Deloco_Pos_C.views
                     if (col==0)
                     {
                         // the item col has been updated
-                        dgr.Cells[1].Value = Math.Round(Convert.ToDouble(double.Parse(dgr.Cells[0].Value.ToString()) / selecetedItemCaseqty),2);
+                        dgr.Cells[1].Value = Math.Round(Convert.ToDouble(double.Parse(_qty.ToString()) / selecetedItemCaseqty),2);
                     }
 
                     if (col == 1)
                     {
                         // the Case col has been updated
-                        dgr.Cells[0].Value = Convert.ToDouble(int.Parse(dgr.Cells[1].Value.ToString()) * selecetedItemCaseqty);
+                        dgr.Cells[0].Value = Convert.ToDouble(int.Parse(_qtycase.ToString()) * selecetedItemCaseqty);
 
                     }
 
@@ -316,8 +350,16 @@ namespace Deloco_Pos_C.views
                         dgr.Cells[1].Style.BackColor = Color.Orange;
                         TableCorrect = false;
                     }
-
-                    string _datestring = dgr.Cells[2].Value.ToString();
+                    string _datestring;
+                    if (dgr.Cells[2].Value is null)
+                    {
+                         _datestring = "";
+                    }
+                    else
+                    {
+                         _datestring = dgr.Cells[2].Value.ToString();
+                    }
+                    
                     DateTime DT;
                     res = DateTime.TryParse(_datestring, out DT);
                     if (res == true)
@@ -329,7 +371,7 @@ namespace Deloco_Pos_C.views
                         dgr.Cells[2].Style.BackColor = Color.Orange;
                         TableCorrect = false;
                     }
-                    }
+                    
             
             }
             txtUnasignedStock.Text = (int.Parse(txtTotalItems.Text) - totalAssignedQTY).ToString();
@@ -345,9 +387,19 @@ namespace Deloco_Pos_C.views
 
         private void button1_Click(object sender, EventArgs e)
         {
+            int caseconfig=0;
+            caseconfig =Convert.ToInt32( cmbCaseConfig.SelectedValue);
+            if(caseconfig==0)
+            {
+                MessageBox.Show("Select a valid case configeration");
+                return;
+            }
             //add the Product_Instance of the stock - needs doing
-            int prod_inst = logic_global.Add_ProductInstance(_productID, _itemprice, 2);
-
+            if(_instanceid==0)
+            {
+                _instanceid = logic_global.Add_ProductInstance(_productID, _itemprice, 2, caseconfig);
+            }
+            
             //now add the Product_Varient_Location_Stock_qty
             foreach (DataGridViewRow dgr in DG_Data.Rows)
             {
@@ -365,15 +417,15 @@ namespace Deloco_Pos_C.views
 
                     if (res == true && res3==true)
                     {
-                        string datebuilder = DT.Year.ToString() + "/" + DT.Month.ToString() + "/" + DT.Day.ToString() + " " + DT.Hour.ToString() + ":" + DT.Minute.ToString() + ":" + DT.Second.ToString();
+                        string datebuilder = DT.Year.ToString() + "/" + DT.Month.ToString() + "/" + DT.Day.ToString() + " 00:00:00";
 
-                        if(ListingMode==0)
-                        {
-                            _instanceid = logic_global.Add_Varient(prod_inst,datebuilder);
-                        }
+                        _varientid = logic_global.Add_Varient(_instanceid, datebuilder);
+                        
                         
                         int New_Goods_Listing_ID = 152;
-                        logic_global.Add_Varient_Stock_Instance(_instanceid, _qty, New_Goods_Listing_ID);
+                        logic_global.Add_Varient_Stock_Instance(_varientid, _qty, New_Goods_Listing_ID);
+                        // now create / update the shopify Instance
+
                     }
                 }
 

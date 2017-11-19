@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblProductName = new System.Windows.Forms.Label();
             this.btnAddInstance = new System.Windows.Forms.Button();
@@ -37,9 +36,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.DG_Data = new System.Windows.Forms.DataGridView();
-            this.QTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cases_QTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.itemexpirydateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productInstanceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productDS = new Deloco_Pos_C.local_datasets.ProductDS();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
@@ -80,6 +76,9 @@
             this.label15 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
+            this.QTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cases_QTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DG_Data)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productInstanceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productDS)).BeginInit();
@@ -145,39 +144,13 @@
             this.DG_Data.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.QTY,
             this.Cases_QTY,
-            this.itemexpirydateDataGridViewTextBoxColumn});
+            this.ItemDate});
             this.DG_Data.DataSource = this.productInstanceBindingSource;
             this.DG_Data.Location = new System.Drawing.Point(19, 245);
             this.DG_Data.Name = "DG_Data";
             this.DG_Data.Size = new System.Drawing.Size(302, 132);
             this.DG_Data.TabIndex = 13;
             this.DG_Data.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
-            // 
-            // QTY
-            // 
-            this.QTY.DataPropertyName = "QTY";
-            dataGridViewCellStyle1.Format = "N0";
-            dataGridViewCellStyle1.NullValue = "0";
-            this.QTY.DefaultCellStyle = dataGridViewCellStyle1;
-            this.QTY.HeaderText = "Item QTY";
-            this.QTY.Name = "QTY";
-            this.QTY.Width = 50;
-            // 
-            // Cases_QTY
-            // 
-            this.Cases_QTY.HeaderText = "Case QTY";
-            this.Cases_QTY.Name = "Cases_QTY";
-            this.Cases_QTY.Width = 50;
-            // 
-            // itemexpirydateDataGridViewTextBoxColumn
-            // 
-            this.itemexpirydateDataGridViewTextBoxColumn.DataPropertyName = "Item_expirydate";
-            dataGridViewCellStyle2.Format = "d";
-            dataGridViewCellStyle2.NullValue = null;
-            this.itemexpirydateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.itemexpirydateDataGridViewTextBoxColumn.HeaderText = "Expiry Date";
-            this.itemexpirydateDataGridViewTextBoxColumn.Name = "itemexpirydateDataGridViewTextBoxColumn";
-            this.itemexpirydateDataGridViewTextBoxColumn.Width = 150;
             // 
             // productInstanceBindingSource
             // 
@@ -237,6 +210,7 @@
             // 
             // cmbCaseConfig
             // 
+            this.cmbCaseConfig.BackColor = System.Drawing.SystemColors.Control;
             this.cmbCaseConfig.DataSource = this.productCaseConfigBindingSource;
             this.cmbCaseConfig.DisplayMember = "CaseDescription";
             this.cmbCaseConfig.FormattingEnabled = true;
@@ -541,6 +515,27 @@
             this.label16.TabIndex = 45;
             this.label16.Text = "Invoice";
             // 
+            // QTY
+            // 
+            this.QTY.DataPropertyName = "QTY";
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = "0";
+            this.QTY.DefaultCellStyle = dataGridViewCellStyle2;
+            this.QTY.HeaderText = "Item QTY";
+            this.QTY.Name = "QTY";
+            this.QTY.Width = 50;
+            // 
+            // Cases_QTY
+            // 
+            this.Cases_QTY.HeaderText = "Case QTY";
+            this.Cases_QTY.Name = "Cases_QTY";
+            this.Cases_QTY.Width = 50;
+            // 
+            // ItemDate
+            // 
+            this.ItemDate.HeaderText = "Date";
+            this.ItemDate.Name = "ItemDate";
+            // 
             // frmAddProductInstance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -631,12 +626,13 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtTotalItems;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.DataGridViewTextBoxColumn QTY;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cases_QTY;
         private System.Windows.Forms.DataGridViewTextBoxColumn itemexpirydateDataGridViewTextBoxColumn;
         private System.Windows.Forms.TextBox txtCaseCount;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QTY;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cases_QTY;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ItemDate;
     }
 }

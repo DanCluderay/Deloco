@@ -18,10 +18,12 @@ namespace Deloco_Pos_C.ctrl
        
         base_classes.productclass ProdClass;
         helper_functions.globalHelper logic_global = helper_functions.globalHelper.Instance;
+        public bool _shuttingdown;
         public event EventHandler Request_Close = delegate { };
         public ctrl_edit_prodcut()
         {
             InitializeComponent();
+            this.Disposed += Ctrl_edit_prodcut_Disposed;
             helper_functions.globalHelper logic_global = helper_functions.globalHelper.Instance;
             setupmode = true;
             ctrl_NameBuilder1.On_BrandProductChanged += Ctrl_NameBuilder1_On_BrandProductChanged;
@@ -31,7 +33,16 @@ namespace Deloco_Pos_C.ctrl
             ProdClass = new base_classes.productclass();
             DS = new local_datasets.ProductDS();
             setupmode = false;
+            _shuttingdown = false;
         }
+
+        private void Ctrl_edit_prodcut_Disposed(object sender, EventArgs e)
+        {
+            ctrl_MoveStock1.Dispose();
+            ctrl_NameBuilder1.Dispose();
+            ctrl_ProductPhysicalProperties1.Dispose();
+        }
+
         public void LoadProductDetails(int ProductID)
         {
             DS = new local_datasets.ProductDS();
@@ -48,7 +59,7 @@ namespace Deloco_Pos_C.ctrl
         
         private void ctrl_edit_prodcut_Load(object sender, EventArgs e)
         {
-            
+            ctrl_MoveStock1.SetUp(3);
         }
 
         private void Ctrl_ProductPhysicalProperties1_On_PhysicalPropertiesChanged(object sender, EventArgs e)
@@ -59,6 +70,7 @@ namespace Deloco_Pos_C.ctrl
             ProdClass.ProductTotalVolume = ctrl_ProductPhysicalProperties1.ItemTotalVolume;
             ProdClass.ProductVolumetricWeight = ctrl_ProductPhysicalProperties1.ItemVolumaticWeight;
             ProdClass.ProductRealWeight = ctrl_ProductPhysicalProperties1.ItemWeight;
+            ProdClass.ProductDateType = ctrl_ProductPhysicalProperties1.ExpiryDateType;
             Display_props();
         }
 
@@ -130,7 +142,7 @@ namespace Deloco_Pos_C.ctrl
 
                foreach( DataGridViewRow Row in dataGridView1.Rows)
                 {
-                    if(Row.Cells[1].Value.ToString() == null)
+                    if(Row.Cells[1].Value is null)
                     {
                         Row.Cells[1].Style.BackColor = Color.Red;
                     }
@@ -168,6 +180,7 @@ namespace Deloco_Pos_C.ctrl
         private void button1_Click(object sender, EventArgs e)
         {
             logic_global.Update_Product(ProdClass,productDS);
+            _shuttingdown = true;
             Request_Close(this, new EventArgs());
         }
 

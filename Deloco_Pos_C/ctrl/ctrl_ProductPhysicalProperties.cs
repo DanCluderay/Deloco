@@ -23,12 +23,14 @@ namespace Deloco_Pos_C.ctrl
         public int ItemLenght { get; set; }
         public double ItemWeight { get; set; }
         public double ItemVolumaticWeight { get; set; }
+        public int ExpiryDateType { get; set; }
 
         public ctrl_ProductPhysicalProperties()
         {
             InitializeComponent();
             helper_functions.globalHelper logic_global = helper_functions.globalHelper.Instance;
             LocalDS = new local_datasets.ProductDS();
+            productDS.Merge(logic_global.Get_ExpiryDateType());
            // BarcodeForm.On_BarcodeEdited += BarcodeForm_On_BarcodeEdited;
            // BarcodeForm.On_BarcodeNew += BarcodeForm_On_BarcodeNew;
         }
@@ -42,6 +44,7 @@ namespace Deloco_Pos_C.ctrl
 
             txtItemWeight.Text = ProdRow.ProductRealWeight.ToString();
             txtVolumetricWeight.Text = ProdRow.ProductTotalVolume.ToString();
+            cmbExpiryDateType.SelectedValue = ProdRow.ProductDateType;
             Setup_Barcode_Control(ProdRow.BrandProduct);
             CalculateVolume();
 
@@ -92,35 +95,35 @@ namespace Deloco_Pos_C.ctrl
             res = int.TryParse(txtItemLenght.Text, out iL);
             if(res==false)
             {
-                MessageBox.Show("Lenght not a number");
+                //MessageBox.Show("Lenght not a number");
                 return;
             }
 
             res = int.TryParse(txtItemHeight.Text, out iH);
             if (res == false)
             {
-                MessageBox.Show("Height not a number");
+                //MessageBox.Show("Height not a number");
                 return;
             }
 
             res = int.TryParse(txtItemidth.Text, out iW);
             if (res == false)
             {
-                MessageBox.Show("Width not a number");
+                //MessageBox.Show("Width not a number");
                 return;
             }
 
             res = double.TryParse(txtItemWeight.Text, out dW);
             if (res == false)
             {
-                MessageBox.Show("Weight not a number");
+                //MessageBox.Show("Weight not a number");
                 return;
             }
 
             res = double.TryParse(txtVolumetricWeight.Text, out dVW);
             if (res == false)
             {
-                MessageBox.Show("Volumetric Weight not a number");
+                //MessageBox.Show("Volumetric Weight not a number");
                 return;
             }
 
@@ -130,6 +133,7 @@ namespace Deloco_Pos_C.ctrl
             ItemVolumaticWeight = dW*1.1;
             ItemTotalVolume = iW * iH * iL;
             ItemWeight = dW;
+            ExpiryDateType =Convert.ToInt32(cmbExpiryDateType.SelectedValue);
 
             txtItemVolume.Text = ItemTotalVolume.ToString();
             On_PhysicalPropertiesChanged(this, new EventArgs());
@@ -153,6 +157,21 @@ namespace Deloco_Pos_C.ctrl
         private void tabItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtItemLenght_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbExpiryDateType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            if(this.Disposing==true)
+            {
+
+            }
+            CalculateVolume();
         }
     }
 }

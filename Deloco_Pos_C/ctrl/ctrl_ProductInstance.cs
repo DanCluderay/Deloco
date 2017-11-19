@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Deloco_Pos_C.ctrl
 {
-     
+
     public partial class ctrl_ProductInstance : UserControl
     {
         int productid;
@@ -74,25 +67,38 @@ namespace Deloco_Pos_C.ctrl
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.ColumnIndex==2)
+            radioFullView.Text = "Full View";
+            radioInstanceView.Text = "Instance View";
+            radioVarientView.Text = "Varient View";
+
+            if (e.ColumnIndex==2)
             {
                 //group products by all locations
                 radioFullView.Checked = true;
                 DetailDisplayMode = 0;
+            
+                radioFullView.Text = "Full View - " + productid.ToString();
             }
             else if (e.ColumnIndex == 3)
             {
                 //group products by stock Instances
                 radioInstanceView.Checked = true;
                 DetailDisplayMode = 1;
+                int i;
+                i = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value);
+                radioInstanceView.Text = "Instance View - " + i.ToString();
             }
             else if (e.ColumnIndex == 4)
             {
                 //group products by stock varients
                 radioVarientView.Checked = true;
                 DetailDisplayMode = 2;
+                int v;
+                v = Convert.ToInt32(dataGridView1.CurrentRow.Cells[1].Value);
+                radioVarientView.Text = "Varient View - " + v.ToString();
             }
             DisplayDetails();
+            btnAddMoreStock.Enabled = true;
         }
 
         private void DisplayDetails()
@@ -133,6 +139,7 @@ namespace Deloco_Pos_C.ctrl
             if(instanceid==0)
             {
                 //bailout
+                btnAddMoreStock.Enabled = false;
             }
             else
             {

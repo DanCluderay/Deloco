@@ -30,6 +30,8 @@ namespace Deloco_Pos_C.local_datasets {
         
         private Store_Location_ViewDataTable tableStore_Location_View;
         
+        private StockVarientLocations_ViewDataTable tableStockVarientLocations_View;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -66,6 +68,9 @@ namespace Deloco_Pos_C.local_datasets {
                 }
                 if ((ds.Tables["Store_Location_View"] != null)) {
                     base.Tables.Add(new Store_Location_ViewDataTable(ds.Tables["Store_Location_View"]));
+                }
+                if ((ds.Tables["StockVarientLocations_View"] != null)) {
+                    base.Tables.Add(new StockVarientLocations_ViewDataTable(ds.Tables["StockVarientLocations_View"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -112,6 +117,16 @@ namespace Deloco_Pos_C.local_datasets {
         public Store_Location_ViewDataTable Store_Location_View {
             get {
                 return this.tableStore_Location_View;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public StockVarientLocations_ViewDataTable StockVarientLocations_View {
+            get {
+                return this.tableStockVarientLocations_View;
             }
         }
         
@@ -191,6 +206,9 @@ namespace Deloco_Pos_C.local_datasets {
                 if ((ds.Tables["Store_Location_View"] != null)) {
                     base.Tables.Add(new Store_Location_ViewDataTable(ds.Tables["Store_Location_View"]));
                 }
+                if ((ds.Tables["StockVarientLocations_View"] != null)) {
+                    base.Tables.Add(new StockVarientLocations_ViewDataTable(ds.Tables["StockVarientLocations_View"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -242,6 +260,12 @@ namespace Deloco_Pos_C.local_datasets {
                     this.tableStore_Location_View.InitVars();
                 }
             }
+            this.tableStockVarientLocations_View = ((StockVarientLocations_ViewDataTable)(base.Tables["StockVarientLocations_View"]));
+            if ((initTable == true)) {
+                if ((this.tableStockVarientLocations_View != null)) {
+                    this.tableStockVarientLocations_View.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -258,6 +282,8 @@ namespace Deloco_Pos_C.local_datasets {
             base.Tables.Add(this.tableStore_Stock);
             this.tableStore_Location_View = new Store_Location_ViewDataTable();
             base.Tables.Add(this.tableStore_Location_View);
+            this.tableStockVarientLocations_View = new StockVarientLocations_ViewDataTable();
+            base.Tables.Add(this.tableStockVarientLocations_View);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -275,6 +301,12 @@ namespace Deloco_Pos_C.local_datasets {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private bool ShouldSerializeStore_Location_View() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializeStockVarientLocations_View() {
             return false;
         }
         
@@ -341,6 +373,9 @@ namespace Deloco_Pos_C.local_datasets {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void Store_Location_ViewRowChangeEventHandler(object sender, Store_Location_ViewRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void StockVarientLocations_ViewRowChangeEventHandler(object sender, StockVarientLocations_ViewRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -1007,6 +1042,8 @@ namespace Deloco_Pos_C.local_datasets {
             
             private global::System.Data.DataColumn columnValue;
             
+            private global::System.Data.DataColumn columnTotalValue;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public Store_Location_ViewDataTable() {
@@ -1066,6 +1103,14 @@ namespace Deloco_Pos_C.local_datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TotalValueColumn {
+                get {
+                    return this.columnTotalValue;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1101,12 +1146,13 @@ namespace Deloco_Pos_C.local_datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public Store_Location_ViewRow AddStore_Location_ViewRow(string LocationName, int TotalQTY, double Value) {
+            public Store_Location_ViewRow AddStore_Location_ViewRow(string LocationName, int TotalQTY, double Value, double TotalValue) {
                 Store_Location_ViewRow rowStore_Location_ViewRow = ((Store_Location_ViewRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         LocationName,
                         TotalQTY,
-                        Value};
+                        Value,
+                        TotalValue};
                 rowStore_Location_ViewRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowStore_Location_ViewRow);
                 return rowStore_Location_ViewRow;
@@ -1132,6 +1178,7 @@ namespace Deloco_Pos_C.local_datasets {
                 this.columnLocationName = base.Columns["LocationName"];
                 this.columnTotalQTY = base.Columns["TotalQTY"];
                 this.columnValue = base.Columns["Value"];
+                this.columnTotalValue = base.Columns["TotalValue"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1143,9 +1190,12 @@ namespace Deloco_Pos_C.local_datasets {
                 base.Columns.Add(this.columnTotalQTY);
                 this.columnValue = new global::System.Data.DataColumn("Value", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnValue);
+                this.columnTotalValue = new global::System.Data.DataColumn("TotalValue", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalValue);
                 this.columnLocationName.DefaultValue = ((string)(""));
                 this.columnTotalQTY.DefaultValue = ((int)(0));
                 this.columnValue.DefaultValue = ((double)(0D));
+                this.columnTotalValue.DefaultValue = ((double)(0D));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1232,6 +1282,343 @@ namespace Deloco_Pos_C.local_datasets {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "Store_Location_ViewDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class StockVarientLocations_ViewDataTable : global::System.Data.TypedTableBase<StockVarientLocations_ViewRow> {
+            
+            private global::System.Data.DataColumn columnProductID;
+            
+            private global::System.Data.DataColumn columnInstanceID;
+            
+            private global::System.Data.DataColumn columnVarientID;
+            
+            private global::System.Data.DataColumn columnLocationID;
+            
+            private global::System.Data.DataColumn columnLocationName;
+            
+            private global::System.Data.DataColumn columnQTY;
+            
+            private global::System.Data.DataColumn columnBBE;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public StockVarientLocations_ViewDataTable() {
+                this.TableName = "StockVarientLocations_View";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal StockVarientLocations_ViewDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected StockVarientLocations_ViewDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ProductIDColumn {
+                get {
+                    return this.columnProductID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn InstanceIDColumn {
+                get {
+                    return this.columnInstanceID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn VarientIDColumn {
+                get {
+                    return this.columnVarientID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn LocationIDColumn {
+                get {
+                    return this.columnLocationID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn LocationNameColumn {
+                get {
+                    return this.columnLocationName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn QTYColumn {
+                get {
+                    return this.columnQTY;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn BBEColumn {
+                get {
+                    return this.columnBBE;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public StockVarientLocations_ViewRow this[int index] {
+                get {
+                    return ((StockVarientLocations_ViewRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event StockVarientLocations_ViewRowChangeEventHandler StockVarientLocations_ViewRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event StockVarientLocations_ViewRowChangeEventHandler StockVarientLocations_ViewRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event StockVarientLocations_ViewRowChangeEventHandler StockVarientLocations_ViewRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event StockVarientLocations_ViewRowChangeEventHandler StockVarientLocations_ViewRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddStockVarientLocations_ViewRow(StockVarientLocations_ViewRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public StockVarientLocations_ViewRow AddStockVarientLocations_ViewRow(int ProductID, int InstanceID, int VarientID, int LocationID, string LocationName, int QTY, System.DateTime BBE) {
+                StockVarientLocations_ViewRow rowStockVarientLocations_ViewRow = ((StockVarientLocations_ViewRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        ProductID,
+                        InstanceID,
+                        VarientID,
+                        LocationID,
+                        LocationName,
+                        QTY,
+                        BBE};
+                rowStockVarientLocations_ViewRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowStockVarientLocations_ViewRow);
+                return rowStockVarientLocations_ViewRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                StockVarientLocations_ViewDataTable cln = ((StockVarientLocations_ViewDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new StockVarientLocations_ViewDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnProductID = base.Columns["ProductID"];
+                this.columnInstanceID = base.Columns["InstanceID"];
+                this.columnVarientID = base.Columns["VarientID"];
+                this.columnLocationID = base.Columns["LocationID"];
+                this.columnLocationName = base.Columns["LocationName"];
+                this.columnQTY = base.Columns["QTY"];
+                this.columnBBE = base.Columns["BBE"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnProductID = new global::System.Data.DataColumn("ProductID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProductID);
+                this.columnInstanceID = new global::System.Data.DataColumn("InstanceID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnInstanceID);
+                this.columnVarientID = new global::System.Data.DataColumn("VarientID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVarientID);
+                this.columnLocationID = new global::System.Data.DataColumn("LocationID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLocationID);
+                this.columnLocationName = new global::System.Data.DataColumn("LocationName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLocationName);
+                this.columnQTY = new global::System.Data.DataColumn("QTY", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnQTY);
+                this.columnBBE = new global::System.Data.DataColumn("BBE", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBBE);
+                this.columnProductID.DefaultValue = ((int)(0));
+                this.columnInstanceID.DefaultValue = ((int)(0));
+                this.columnVarientID.DefaultValue = ((int)(0));
+                this.columnLocationID.DefaultValue = ((int)(0));
+                this.columnLocationName.DefaultValue = ((string)(""));
+                this.columnQTY.DefaultValue = ((int)(0));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public StockVarientLocations_ViewRow NewStockVarientLocations_ViewRow() {
+                return ((StockVarientLocations_ViewRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new StockVarientLocations_ViewRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(StockVarientLocations_ViewRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.StockVarientLocations_ViewRowChanged != null)) {
+                    this.StockVarientLocations_ViewRowChanged(this, new StockVarientLocations_ViewRowChangeEvent(((StockVarientLocations_ViewRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.StockVarientLocations_ViewRowChanging != null)) {
+                    this.StockVarientLocations_ViewRowChanging(this, new StockVarientLocations_ViewRowChangeEvent(((StockVarientLocations_ViewRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.StockVarientLocations_ViewRowDeleted != null)) {
+                    this.StockVarientLocations_ViewRowDeleted(this, new StockVarientLocations_ViewRowChangeEvent(((StockVarientLocations_ViewRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.StockVarientLocations_ViewRowDeleting != null)) {
+                    this.StockVarientLocations_ViewRowDeleting(this, new StockVarientLocations_ViewRowChangeEvent(((StockVarientLocations_ViewRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemoveStockVarientLocations_ViewRow(StockVarientLocations_ViewRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                StockControlDS ds = new StockControlDS();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "StockVarientLocations_ViewDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -1685,6 +2072,22 @@ namespace Deloco_Pos_C.local_datasets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public double TotalValue {
+                get {
+                    try {
+                        return ((double)(this[this.tableStore_Location_View.TotalValueColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TotalValue\' in table \'Store_Location_View\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableStore_Location_View.TotalValueColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsLocationNameNull() {
                 return this.IsNull(this.tableStore_Location_View.LocationNameColumn);
             }
@@ -1717,6 +2120,234 @@ namespace Deloco_Pos_C.local_datasets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetValueNull() {
                 this[this.tableStore_Location_View.ValueColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTotalValueNull() {
+                return this.IsNull(this.tableStore_Location_View.TotalValueColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTotalValueNull() {
+                this[this.tableStore_Location_View.TotalValueColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class StockVarientLocations_ViewRow : global::System.Data.DataRow {
+            
+            private StockVarientLocations_ViewDataTable tableStockVarientLocations_View;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal StockVarientLocations_ViewRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableStockVarientLocations_View = ((StockVarientLocations_ViewDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int ProductID {
+                get {
+                    try {
+                        return ((int)(this[this.tableStockVarientLocations_View.ProductIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ProductID\' in table \'StockVarientLocations_View\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableStockVarientLocations_View.ProductIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int InstanceID {
+                get {
+                    try {
+                        return ((int)(this[this.tableStockVarientLocations_View.InstanceIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'InstanceID\' in table \'StockVarientLocations_View\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableStockVarientLocations_View.InstanceIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int VarientID {
+                get {
+                    try {
+                        return ((int)(this[this.tableStockVarientLocations_View.VarientIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'VarientID\' in table \'StockVarientLocations_View\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableStockVarientLocations_View.VarientIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int LocationID {
+                get {
+                    try {
+                        return ((int)(this[this.tableStockVarientLocations_View.LocationIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LocationID\' in table \'StockVarientLocations_View\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableStockVarientLocations_View.LocationIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string LocationName {
+                get {
+                    try {
+                        return ((string)(this[this.tableStockVarientLocations_View.LocationNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LocationName\' in table \'StockVarientLocations_View\' is DBNu" +
+                                "ll.", e);
+                    }
+                }
+                set {
+                    this[this.tableStockVarientLocations_View.LocationNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int QTY {
+                get {
+                    try {
+                        return ((int)(this[this.tableStockVarientLocations_View.QTYColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'QTY\' in table \'StockVarientLocations_View\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableStockVarientLocations_View.QTYColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime BBE {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableStockVarientLocations_View.BBEColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'BBE\' in table \'StockVarientLocations_View\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableStockVarientLocations_View.BBEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsProductIDNull() {
+                return this.IsNull(this.tableStockVarientLocations_View.ProductIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetProductIDNull() {
+                this[this.tableStockVarientLocations_View.ProductIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsInstanceIDNull() {
+                return this.IsNull(this.tableStockVarientLocations_View.InstanceIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetInstanceIDNull() {
+                this[this.tableStockVarientLocations_View.InstanceIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsVarientIDNull() {
+                return this.IsNull(this.tableStockVarientLocations_View.VarientIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetVarientIDNull() {
+                this[this.tableStockVarientLocations_View.VarientIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsLocationIDNull() {
+                return this.IsNull(this.tableStockVarientLocations_View.LocationIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetLocationIDNull() {
+                this[this.tableStockVarientLocations_View.LocationIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsLocationNameNull() {
+                return this.IsNull(this.tableStockVarientLocations_View.LocationNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetLocationNameNull() {
+                this[this.tableStockVarientLocations_View.LocationNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsQTYNull() {
+                return this.IsNull(this.tableStockVarientLocations_View.QTYColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetQTYNull() {
+                this[this.tableStockVarientLocations_View.QTYColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsBBENull() {
+                return this.IsNull(this.tableStockVarientLocations_View.BBEColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetBBENull() {
+                this[this.tableStockVarientLocations_View.BBEColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1808,6 +2439,40 @@ namespace Deloco_Pos_C.local_datasets {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public Store_Location_ViewRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class StockVarientLocations_ViewRowChangeEvent : global::System.EventArgs {
+            
+            private StockVarientLocations_ViewRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public StockVarientLocations_ViewRowChangeEvent(StockVarientLocations_ViewRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public StockVarientLocations_ViewRow Row {
                 get {
                     return this.eventRow;
                 }
