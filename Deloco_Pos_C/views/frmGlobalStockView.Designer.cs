@@ -33,6 +33,9 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.DG_ProductView = new System.Windows.Forms.DataGridView();
+            this.FreeStockQTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SNPStockQTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ReservedStockQTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
@@ -45,16 +48,15 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.button2 = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnFetchProduct = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.delocoProductBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.productIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productFullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FreeStockQTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SNPStockQTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ReservedStockQTY = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.delocoProductBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.button8 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -67,7 +69,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.delocoProductBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -126,6 +127,27 @@
             this.DG_ProductView.ReadOnly = true;
             this.DG_ProductView.Size = new System.Drawing.Size(546, 476);
             this.DG_ProductView.TabIndex = 0;
+            // 
+            // FreeStockQTY
+            // 
+            this.FreeStockQTY.DataPropertyName = "FreeStockQTY";
+            this.FreeStockQTY.HeaderText = "FreeStockQTY";
+            this.FreeStockQTY.Name = "FreeStockQTY";
+            this.FreeStockQTY.ReadOnly = true;
+            // 
+            // SNPStockQTY
+            // 
+            this.SNPStockQTY.DataPropertyName = "SNPStockQTY";
+            this.SNPStockQTY.HeaderText = "SNPStockQTY";
+            this.SNPStockQTY.Name = "SNPStockQTY";
+            this.SNPStockQTY.ReadOnly = true;
+            // 
+            // ReservedStockQTY
+            // 
+            this.ReservedStockQTY.DataPropertyName = "ReservedStockQTY";
+            this.ReservedStockQTY.HeaderText = "ReservedStockQTY";
+            this.ReservedStockQTY.Name = "ReservedStockQTY";
+            this.ReservedStockQTY.ReadOnly = true;
             // 
             // panel5
             // 
@@ -233,10 +255,12 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.btnFetchProduct);
-            this.tabPage1.Controls.Add(this.dataGridView1);
-            this.tabPage1.Controls.Add(this.comboBox1);
+            this.tabPage1.Controls.Add(this.button8);
+            this.tabPage1.Controls.Add(this.button7);
+            this.tabPage1.Controls.Add(this.button6);
+            this.tabPage1.Controls.Add(this.button5);
+            this.tabPage1.Controls.Add(this.button4);
+            this.tabPage1.Controls.Add(this.button3);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -245,43 +269,55 @@
             this.tabPage1.Text = "old";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // button4
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(29, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Shop Selector";
+            this.button4.Location = new System.Drawing.Point(218, 32);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(154, 52);
+            this.button4.TabIndex = 5;
+            this.button4.Text = "Create VAT Code";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // btnFetchProduct
+            // button3
             // 
-            this.btnFetchProduct.Location = new System.Drawing.Point(523, 15);
-            this.btnFetchProduct.Name = "btnFetchProduct";
-            this.btnFetchProduct.Size = new System.Drawing.Size(122, 30);
-            this.btnFetchProduct.TabIndex = 3;
-            this.btnFetchProduct.Text = "Get Product Details";
-            this.btnFetchProduct.UseVisualStyleBackColor = true;
+            this.button3.Location = new System.Drawing.Point(28, 32);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(154, 52);
+            this.button3.TabIndex = 4;
+            this.button3.Text = "Create Mars Brand";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // dataGridView1
+            // button5
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(26, 51);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(619, 397);
-            this.dataGridView1.TabIndex = 0;
+            this.button5.Location = new System.Drawing.Point(218, 104);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(154, 52);
+            this.button5.TabIndex = 6;
+            this.button5.Text = "Create product Type";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
-            // comboBox1
+            // button6
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(109, 15);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 1;
+            this.button6.Location = new System.Drawing.Point(218, 183);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(154, 52);
+            this.button6.TabIndex = 7;
+            this.button6.Text = "Create product categories";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
-            // delocoProductBindingSource
+            // button7
             // 
-            this.delocoProductBindingSource.DataSource = typeof(Deloco_Pos_C.base_classes.DelocoProduct);
+            this.button7.Location = new System.Drawing.Point(218, 253);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(154, 52);
+            this.button7.TabIndex = 8;
+            this.button7.Text = "Create product sizes";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // productIDDataGridViewTextBoxColumn
             // 
@@ -297,26 +333,19 @@
             this.productFullNameDataGridViewTextBoxColumn.Name = "productFullNameDataGridViewTextBoxColumn";
             this.productFullNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // FreeStockQTY
+            // delocoProductBindingSource
             // 
-            this.FreeStockQTY.DataPropertyName = "FreeStockQTY";
-            this.FreeStockQTY.HeaderText = "FreeStockQTY";
-            this.FreeStockQTY.Name = "FreeStockQTY";
-            this.FreeStockQTY.ReadOnly = true;
+            this.delocoProductBindingSource.DataSource = typeof(Deloco_Pos_C.base_classes.DelocoProduct);
             // 
-            // SNPStockQTY
+            // button8
             // 
-            this.SNPStockQTY.DataPropertyName = "SNPStockQTY";
-            this.SNPStockQTY.HeaderText = "SNPStockQTY";
-            this.SNPStockQTY.Name = "SNPStockQTY";
-            this.SNPStockQTY.ReadOnly = true;
-            // 
-            // ReservedStockQTY
-            // 
-            this.ReservedStockQTY.DataPropertyName = "ReservedStockQTY";
-            this.ReservedStockQTY.HeaderText = "ReservedStockQTY";
-            this.ReservedStockQTY.Name = "ReservedStockQTY";
-            this.ReservedStockQTY.ReadOnly = true;
+            this.button8.Location = new System.Drawing.Point(218, 325);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(154, 45);
+            this.button8.TabIndex = 9;
+            this.button8.Text = "Select";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // frmGlobalStockView
             // 
@@ -338,8 +367,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.delocoProductBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -363,15 +390,17 @@
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnFetchProduct;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.BindingSource delocoProductBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn productIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn productFullNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn FreeStockQTY;
         private System.Windows.Forms.DataGridViewTextBoxColumn SNPStockQTY;
         private System.Windows.Forms.DataGridViewTextBoxColumn ReservedStockQTY;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button8;
     }
 }
