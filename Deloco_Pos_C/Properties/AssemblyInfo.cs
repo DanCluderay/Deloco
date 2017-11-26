@@ -34,3 +34,7 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: InternalsVisibleTo("Deloco_Pos_C.Tests")]
+[assembly: InternalsVisibleTo("Deloco_Pos_C.Explorables")]
+[assembly: InternalsVisibleTo("Deloco_Pos_C.Tests1")]
+

@@ -27,7 +27,7 @@ namespace Deloco_Pos_C
             this.marketingToolStripMenuItem.Enabled = true;
             this.customersToolStripMenuItem.Enabled = true;
             this.productsToolStripMenuItem.Enabled = true;
-            this.shopLocationsToolStripMenuItem.Enabled = true;
+            this.locationsToolStripMenuItem.Enabled = true;
             this.stockManagerToolStripMenuItem.Enabled = true;
             this.managementToolStripMenuItem.Enabled = true;
             this.areaManagmentToolStripMenuItem.Enabled = true;
@@ -70,6 +70,7 @@ namespace Deloco_Pos_C
             //logic_global.Mqtt_Subscribe("users_change");
             DisplayLogin();
             this.Text = "Ask the milkman";
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private void mQTTToolStripMenuItem_Click(object sender, EventArgs e)
@@ -130,7 +131,7 @@ namespace Deloco_Pos_C
             this.marketingToolStripMenuItem.Enabled = false;
             this.customersToolStripMenuItem.Enabled = false;
             this.productsToolStripMenuItem.Enabled = false;
-            this.shopLocationsToolStripMenuItem.Enabled = false;
+            this.locationsToolStripMenuItem.Enabled = false;
             this.stockManagerToolStripMenuItem.Enabled = false;
             this.managementToolStripMenuItem.Enabled = false;
             this.areaManagmentToolStripMenuItem.Enabled = false;
@@ -147,9 +148,67 @@ namespace Deloco_Pos_C
 
         private void locationGridToolStripMenuItem_Click(object sender, EventArgs e)
         {
+           
+        }
+
+        private void locationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
             views.frmLocation_Grid LocGrid = new views.frmLocation_Grid();
             LocGrid.MdiParent = this;
             LocGrid.Show();
+        }
+
+        private void productTypesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            views.frmProductTypes ProdTypes = new views.frmProductTypes();
+            ProdTypes.MdiParent = this;
+            ProdTypes.Show();
+
+        }
+
+        private void productsTagsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            views.frmProductTags ProdTags = new views.frmProductTags();
+            ProdTags.MdiParent = this;
+            ProdTags.Show();
+        }
+
+        private void productsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void productUseCasesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            views.frmProductUseCases ProdUsecases = new views.frmProductUseCases();
+            ProdUsecases.MdiParent = this;
+            ProdUsecases.Show();
+        }
+
+        private void productInstanceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void productFlowDevToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            views.frmProductFlowDev FlowDev = new views.frmProductFlowDev();
+            FlowDev.MdiParent = this;
+            FlowDev.Show();
+        }
+
+        private void shopifyExplorerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            views.frmShopifyExplorer Shop = new views.frmShopifyExplorer();
+            Shop.MdiParent = this;
+            Shop.Show();
+        }
+
+        private void newStockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            views.frmGlobalStockView stock = new views.frmGlobalStockView();
+            stock.MdiParent = this;
+            stock.Show();
         }
     }
 }

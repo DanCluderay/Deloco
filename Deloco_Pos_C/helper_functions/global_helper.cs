@@ -21,11 +21,14 @@ namespace Deloco_Pos_C.helper_functions
         public event EventHandler On_Shop_Location_Update = delegate { };
 
 
+        private local_datasets.ProductDS LocalDS;
+
+
         MqttClient client;
         private static globalHelper instance;
 
         List<mqtt_msg_object> mqtt_list = new List<mqtt_msg_object>();
-       
+
         private globalHelper() { }
         private string _mqttserver = "";
 
@@ -37,7 +40,7 @@ namespace Deloco_Pos_C.helper_functions
 
             return retval;
         }
-        
+
         public string MqttClient_Server
 
         {
@@ -49,9 +52,9 @@ namespace Deloco_Pos_C.helper_functions
             {
                 _mqttserver = value;
             }
-                
+
         }
-       
+
 
         public static globalHelper Instance
 
@@ -62,22 +65,29 @@ namespace Deloco_Pos_C.helper_functions
                 {
                     instance = new globalHelper();
                     //when you create a new instance create a new 
+                    
 
-                 
                 }
                 return instance;
             }
         }
-        
+
         public string connectToMQTTServer(string Topic)
         {
             string returnValue = "";
-            mqtt_list = new List<mqtt_msg_object>();
-            client = new MqttClient(MqttClient_Server);
-            returnValue = "Connected to client";
-            clientId = Guid.NewGuid().ToString();
-            Mqtt_Subscribe(Topic);
-            
+            try
+            {
+                mqtt_list = new List<mqtt_msg_object>();
+                client = new MqttClient(MqttClient_Server);
+                returnValue = "Connected to client";
+                clientId = Guid.NewGuid().ToString();
+                Mqtt_Subscribe(Topic);
+            }
+            catch
+            {
+                //cannot connect to MQTT server
+            }
+
 
             return returnValue;
         }
@@ -90,7 +100,7 @@ namespace Deloco_Pos_C.helper_functions
             client.MqttMsgPublishReceived += client_MqttMsgPublishReceived;
 
             //Later this will be a shop/userid
-            
+
             client.Connect(clientId);
 
             // subscribe to the topic "/home/temperature" with QoS 2
@@ -99,7 +109,7 @@ namespace Deloco_Pos_C.helper_functions
             Topics[0] = "cluderay";
             Topics[1] = "cluderay1";
             Topics[2] = "cluderay2";
-         
+
 
             //client.Subscribe(new string[] { Topic }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
             client.Subscribe(new string[] { Topic, "cluderay/#" }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
@@ -112,9 +122,9 @@ namespace Deloco_Pos_C.helper_functions
         {
 
             string ReceivedMessage = Encoding.UTF8.GetString(e.Message);
-           
-            
-            
+
+
+
             mqtt_msg_object newItem = new mqtt_msg_object();
             newItem.msg_payload = ReceivedMessage;
             newItem.msg_topic = e.Topic;
@@ -134,7 +144,7 @@ namespace Deloco_Pos_C.helper_functions
                 {
                 }
 
-                
+
             }
             else if (newItem.msg_topic == "cluderay")
             {
@@ -148,7 +158,7 @@ namespace Deloco_Pos_C.helper_functions
 
             //An order has changed - dev mode
 
-            
+
         }
         public local_datasets.mqtt_ds GetMQTT_DataSet()
         {
@@ -171,44 +181,55 @@ namespace Deloco_Pos_C.helper_functions
 
         public string Make_db_call(string func, string val)
         {
-
-            string url = "https://00t1ug5s49.execute-api.eu-west-1.amazonaws.com/prod/apex-deepretail_deppcore?func=" + func + "&val=" + val;
-
-            using (HttpClient client = new HttpClient())
+            string newstring="";
+            try
             {
-                using (HttpResponseMessage responce = client.GetAsync(url).Result)
-                {
-                    using (HttpContent content = responce.Content)
-                    {
-                        string mycontent = content.ReadAsStringAsync().Result;
+             string url = "https://00t1ug5s49.execute-api.eu-west-1.amazonaws.com/prod/apex-deepretail_deppcore?func=" + func + "&val=" + val;
 
-                        string newstring = mycontent.Replace("\"", "'");
+                        using (HttpClient client = new HttpClient())
+                        {
+                
+                            using (HttpResponseMessage responce = client.GetAsync(url).Result)
+                            {
+                                using (HttpContent content = responce.Content)
+                                {
+                                    string mycontent = content.ReadAsStringAsync().Result;
 
-                        return newstring;
+                                    newstring = mycontent.Replace("\"", "'");
 
-                        //DataSet tester = (DataSet)JsonConvert.DeserializeObject(newstring, (typeof(DataSet)));
-                        //DataTable tester = (DataTable)JsonConvert.DeserializeObject(newstring, (typeof(DataTable)));
+                                    
+
+                                    //DataSet tester = (DataSet)JsonConvert.DeserializeObject(newstring, (typeof(DataSet)));
+                                    //DataTable tester = (DataTable)JsonConvert.DeserializeObject(newstring, (typeof(DataTable)));
 
 
-                    }
-                }
+                                }
+                            }
+                        }
             }
+            catch (Exception e)
+            {
+                Console.WriteLine("An error occurred: '{0}'", e);
+            }
+            return newstring;
 
-            
 
         }
 
-        public DataSet FormatStringToDataTable(string functionName,string responcestring)
+        public DataSet FormatStringToDataTable(string functionName, string responcestring)
         {
             DataTable ReturnDataTable;
             DataSet ReturnDS = new DataSet();
+            
+            responcestring = responcestring.Replace("\\", "");
+            
             ReturnDataTable = (DataTable)JsonConvert.DeserializeObject(responcestring, (typeof(DataTable)));
             if (functionName == "get_customer_order")
             {
                 //converts the string into a generic datatable
-               
 
-               //declare the tempory local variables used for error catching
+
+                //declare the tempory local variables used for error catching
                 int _order_autoid = 0;
                 int _customerid = 0;
                 double _ordervalue = 0.00;
@@ -228,18 +249,18 @@ namespace Deloco_Pos_C.helper_functions
                 DateTime _delivery_date;
                 string _ORDERID = "";
                 DateTime _orders_date;
-                DateTime _orders_time;
+                //DateTime _orders_time;
 
                 //create the empty returning dataset
                 local_datasets.OrderDetails_ds OrderDS = new local_datasets.OrderDetails_ds();
 
-                 //now loop the table items and convert into a dataset
+                //now loop the table items and convert into a dataset
                 foreach (DataRow Item in ReturnDataTable.Rows)
                 {
 
                     local_datasets.OrderDetails_ds.OrderDetailsRow NewRow = OrderDS.OrderDetails.NewOrderDetailsRow();
 
-                    _order_autoid = Int32.Parse( Item["order_autoid"].ToString());
+                    _order_autoid = Int32.Parse(Item["order_autoid"].ToString());
                     NewRow.order_autoid = _order_autoid;
 
                     _customerid = Int32.Parse(Item["customerid"].ToString());
@@ -277,7 +298,7 @@ namespace Deloco_Pos_C.helper_functions
                     _delivery_address_City = Item["delivery_address_City"].ToString();
                     NewRow.delivery_address_City = _delivery_address_City;
 
-                    _delivery_address_Postcode =Item["delivery_address_Postcode"].ToString();
+                    _delivery_address_Postcode = Item["delivery_address_Postcode"].ToString();
                     NewRow.delivery_address_Postcode = _delivery_address_Postcode;
 
                     _delivery_address_Country = Item["delivery_address_Country"].ToString();
@@ -287,7 +308,7 @@ namespace Deloco_Pos_C.helper_functions
                     NewRow.Customer_First_Name = _Customer_First_Name;
 
                     _CustomerTitle = Item["CustomerTitle"].ToString();
-                    NewRow.CustomerTitle= _CustomerTitle;
+                    NewRow.CustomerTitle = _CustomerTitle;
 
                     _Customer_Second_Name = Item["Customer_Second_Name"].ToString();
                     NewRow.Customer_Second_Name = _Customer_Second_Name;
@@ -337,8 +358,8 @@ namespace Deloco_Pos_C.helper_functions
                 double _items_cost_ex_vat = 0.00;
                 int _vatcode = 0;
                 int _qty = 0;
-                DateTime _order_date;
-                DateTime _order_time;
+                //DateTime _order_date;
+                //DateTime _order_time;
                 double _DealRetail = 0;
 
                 //create the empty returning dataset
@@ -409,7 +430,7 @@ namespace Deloco_Pos_C.helper_functions
                 foreach (DataRow Item in ReturnDataTable.Rows)
                 {
                     local_datasets.store_locations.storesRow StoreRow = Stores.stores.NewstoresRow();
-                    shopid=Int32.Parse(Item["store_autoid"].ToString());
+                    shopid = Int32.Parse(Item["store_autoid"].ToString());
                     shopname = Item["store_name"].ToString();
                     shopshortcode = Item["store_shortcode"].ToString();
                     StoreRow.store_autoid = shopid;
@@ -421,7 +442,7 @@ namespace Deloco_Pos_C.helper_functions
 
                 ReturnDS = Stores;
             }
-            else if(functionName== "get_productview_by_prodID")
+            else if (functionName == "get_productview_by_prodID")
             {
 
                 local_datasets.ProductVarientView ProdViewDS = new local_datasets.ProductVarientView();
@@ -434,10 +455,10 @@ namespace Deloco_Pos_C.helper_functions
 
                     ProdViewRow.id = int.Parse(Item["id"].ToString());
                     ProdViewRow.qty = int.Parse(Item["Varient_QTY"].ToString());
-                    ProdViewRow.Reserve = int.Parse(Item["reserve"].ToString()); 
+                    ProdViewRow.Reserve = int.Parse(Item["reserve"].ToString());
                     ProdViewRow.ProductID = int.Parse(Item["ProductTypesautoid"].ToString());
                     ProdViewRow.last_updated = "";// Item["store_autoid"].ToString(); 
-                    ProdViewRow.ProdVarientID = int.Parse(Item["Varient_Instance_ID"].ToString()); 
+                    ProdViewRow.ProdVarientID = int.Parse(Item["Varient_Instance_ID"].ToString());
                     ProdViewRow.ForSale = int.Parse(Item["ForSale"].ToString());
                     ProdViewRow.Inbastet = int.Parse(Item["Inbasket"].ToString());
                     ProdViewRow.ShopID = int.Parse(Item["Varient_Location_ID"].ToString());
@@ -445,7 +466,7 @@ namespace Deloco_Pos_C.helper_functions
                     ProdViewRow.ShopName = Item["store_name"].ToString();
                     ProdViewRow.Sold = int.Parse(Item["sold"].ToString());
                     ProdViewRow.Transit = int.Parse(Item["transit"].ToString());
-                    ProdViewRow.ProductVarientName= Item["pv_Name"].ToString();
+                    ProdViewRow.ProductVarientName = Item["pv_Name"].ToString();
                     // - product Name
 
                     ProdViewDS.ProdVarView.AddProdVarViewRow(ProdViewRow);
@@ -453,7 +474,7 @@ namespace Deloco_Pos_C.helper_functions
                 ReturnDS = ProdViewDS;
 
 
-            
+
             }
             else if (functionName == "get_gridlocations")
             {
@@ -466,10 +487,37 @@ namespace Deloco_Pos_C.helper_functions
 
                     local_datasets.LocationGrid.Location_GridRow LocRow = locationGridDS.Location_Grid.NewLocation_GridRow();
                     LocRow.LocGridID = int.Parse(Item["LocGridID"].ToString());
-                    LocRow.LocName = Item["LocName"].ToString();
-                    LocRow.LocType = int.Parse(Item["LocType"].ToString());
-                    LocRow.LocParent = int.Parse(Item["LocParent"].ToString());
+                    if (ReturnDataTable.Columns.Contains("LocName"))
+                    {
+                        LocRow.LocName = Item["LocName"].ToString();
+                    }
                     
+                   
+                    if (ReturnDataTable.Columns.Contains("LocType"))
+                    {
+                        LocRow.LocType = int.Parse(Item["LocType"].ToString());
+                    }
+
+                    
+                    if (ReturnDataTable.Columns.Contains("LocParent"))
+                    {
+                        LocRow.LocParent = int.Parse(Item["LocParent"].ToString());
+                    }
+                    
+                    if (ReturnDataTable.Columns.Contains("PickOrder"))
+                    {
+                        LocRow.PickOrder = int.Parse(Item["PickOrder"].ToString());
+                    }
+                    
+                    if (ReturnDataTable.Columns.Contains("ShortName"))
+                    {
+                        LocRow.ShortName = Item["ShortName"].ToString();
+                    }
+                    
+                    if (ReturnDataTable.Columns.Contains("FullName"))
+                    {
+                        LocRow.FullName = Item["FullName"].ToString();
+                    }
 
                     locationGridDS.Location_Grid.AddLocation_GridRow(LocRow);
                 }
@@ -481,9 +529,9 @@ namespace Deloco_Pos_C.helper_functions
             else if (functionName == "get_location_types")
             {
                 local_datasets.LocationTypes LocType = new local_datasets.LocationTypes();
-                foreach(DataRow Item in ReturnDataTable.Rows)
+                foreach (DataRow Item in ReturnDataTable.Rows)
                 {
-                    local_datasets.LocationTypes.LocationTypesRow  Loc_Row = LocType._LocationTypes.NewLocationTypesRow();
+                    local_datasets.LocationTypes.LocationTypesRow Loc_Row = LocType._LocationTypes.NewLocationTypesRow();
 
                     Loc_Row.LocationTypeID = int.Parse(Item["LocationTypeID"].ToString());
                     Loc_Row.LocationName = Item["LocationName"].ToString();
@@ -491,6 +539,549 @@ namespace Deloco_Pos_C.helper_functions
                     LocType._LocationTypes.AddLocationTypesRow(Loc_Row);
                 }
                 ReturnDS = LocType;
+            }
+            //
+            else if (functionName == "get_location_Store_Zone_Layout")
+            {
+                local_datasets.LocationGrid LocDS = new local_datasets.LocationGrid();
+                foreach (DataRow Item in ReturnDataTable.Rows)
+                {
+                    local_datasets.LocationGrid.storelayoutRow Loc_Row = LocDS.storelayout.NewstorelayoutRow();
+
+                    Loc_Row.id = int.Parse(Item["id"].ToString());
+                    Loc_Row.BuildingID = int.Parse(Item["BuildingID"].ToString());
+                    Loc_Row.LocGrid_ID = int.Parse(Item["LocGrid_ID"].ToString());
+                    Loc_Row.Control_Type = int.Parse(Item["Control_Type"].ToString());
+                    Loc_Row.Control_X = int.Parse(Item["Control_X"].ToString());
+                    Loc_Row.Control_Y = int.Parse(Item["Control_Y"].ToString());
+                    Loc_Row.Control_Size = int.Parse(Item["Control_Size"].ToString());
+
+                    LocDS.storelayout.AddstorelayoutRow(Loc_Row);
+                }
+                ReturnDS = LocDS;
+            }
+            else if (functionName == "get_location_Store_Zone_Funiture")
+            {
+                //SELECT store_control_type.store_control_type_id, store_control_type.store_control_name, store_control_type.store_control_name_desc, store_control_type.store_control_subtype FROM fred.store_control_type store_control_type
+
+                local_datasets.LocationGrid LocDS = new local_datasets.LocationGrid();
+                foreach (DataRow Item in ReturnDataTable.Rows)
+                {
+                    local_datasets.LocationGrid.store_control_typeRow Loc_Row = LocDS.store_control_type.Newstore_control_typeRow();
+
+                    Loc_Row.store_control_type_id = int.Parse(Item["store_control_type_id"].ToString());
+                    Loc_Row.store_control_name = Item["store_control_name"].ToString();
+                    Loc_Row.store_control_name_desc = Item["store_control_name_desc"].ToString();
+                    Loc_Row.store_control_subtype = int.Parse(Item["store_control_subtype"].ToString());
+
+
+                    LocDS.store_control_type.Addstore_control_typeRow(Loc_Row);
+                }
+                ReturnDS = LocDS;
+            }
+            else if (functionName == "get_product_use_cases")
+            {
+                //SELECT store_control_type.store_control_type_id, store_control_type.store_control_name, store_control_type.store_control_name_desc, store_control_type.store_control_subtype FROM fred.store_control_type store_control_type
+
+                local_datasets.ProductDS ProdDS = new local_datasets.ProductDS();
+                foreach (DataRow Item in ReturnDataTable.Rows)
+                {
+                    local_datasets.ProductDS.Product_Use_CaseRow ProdUse_Row = ProdDS.Product_Use_Case.NewProduct_Use_CaseRow();
+
+                    ProdUse_Row.id = int.Parse(Item["id"].ToString());
+                    ProdUse_Row.Statement = Item["Statement"].ToString();
+                    ProdUse_Row.ParentID = int.Parse(Item["ParentID"].ToString());
+                    ProdUse_Row.TAG = Item["TAG"].ToString();
+
+                    ProdDS.Product_Use_Case.AddProduct_Use_CaseRow(ProdUse_Row);
+                }
+                ReturnDS = ProdDS;
+            }
+
+            else if (functionName == "get_all_brands")
+            {
+                //SELECT store_control_type.store_control_type_id, store_control_type.store_control_name, store_control_type.store_control_name_desc, store_control_type.store_control_subtype FROM fred.store_control_type store_control_type
+
+                local_datasets.ProductDS ProdDS = new local_datasets.ProductDS();
+                foreach (DataRow Item in ReturnDataTable.Rows)
+                {
+                    local_datasets.ProductDS.BrandsRow Brand_Row = ProdDS.Brands.NewBrandsRow();
+
+                    Brand_Row.BrandID = int.Parse(Item["BrandID"].ToString());
+                    if (ReturnDataTable.Columns.Contains("BrandName"))
+                    {
+                        Brand_Row.BrandName = Item["BrandName"].ToString();
+                    }
+                    if (ReturnDataTable.Columns.Contains("BrandWeight"))
+                    {
+                        Brand_Row.BrandWeight = int.Parse(Item["BrandWeight"].ToString());
+                    }
+
+                    
+
+                    ProdDS.Brands.AddBrandsRow(Brand_Row);
+                }
+                ReturnDS = ProdDS;
+            }
+            else if (functionName == "get_brand_products_by_id")
+            {
+              
+                local_datasets.ProductDS DS = new local_datasets.ProductDS();
+                foreach (DataRow Item in ReturnDataTable.Rows)
+                {
+                    local_datasets.ProductDS.Brand_ProductsRow BrandProd_Row = DS.Brand_Products.NewBrand_ProductsRow();
+
+                    BrandProd_Row.BrandProductID= int.Parse(Item["BrandProductID"].ToString());
+                    if(ReturnDataTable.Columns.Contains("Brand"))
+                    {
+                        BrandProd_Row.Brand = int.Parse(Item["Brand"].ToString());
+                    }
+                    
+                    if(ReturnDataTable.Columns.Contains("ProductName"))
+                    {
+                        BrandProd_Row.ProductName = Item["ProductName"].ToString();
+                    }
+                    
+
+                    DS.Brand_Products.AddBrand_ProductsRow(BrandProd_Row);
+                }
+                ReturnDS = DS;
+            }
+            //get_all_product_sizes
+            else if (functionName == "get_all_product_sizes")
+            {
+
+                local_datasets.ProductDS DS = new local_datasets.ProductDS();
+                foreach (DataRow Item in ReturnDataTable.Rows)
+                {
+                    local_datasets.ProductDS.Product_Size_UnitsRow ProdSize = DS.Product_Size_Units.NewProduct_Size_UnitsRow();
+
+                    ProdSize.ID = int.Parse(Item["ID"].ToString());
+                    if (ReturnDataTable.Columns.Contains("Unit"))
+                    {
+                        ProdSize.Unit = Item["Unit"].ToString();
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("TheOrder"))
+                    {
+                        ProdSize.TheOrder =int.Parse( Item["TheOrder"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("GroupType"))
+                    {
+                        ProdSize.GroupType =int.Parse( Item["GroupType"].ToString());
+                    }
+
+                    DS.Product_Size_Units.AddProduct_Size_UnitsRow(ProdSize);
+                }
+                ReturnDS = DS;
+            }
+            //get_product_barcode_by_brandproduct
+            else if (functionName == "get_product_barcode_by_brandproduct")
+            {
+
+                local_datasets.ProductDS DS = new local_datasets.ProductDS();
+                foreach (DataRow Item in ReturnDataTable.Rows)
+                {
+                    local_datasets.ProductDS.Product_BarcodesRow BarRow = DS.Product_Barcodes.NewProduct_BarcodesRow();
+
+                    BarRow.ProductBarcodeID = int.Parse(Item["ProductBarcodeID"].ToString());
+
+                    if (ReturnDataTable.Columns.Contains("BrandProductID"))
+                    {
+                        BarRow.BrandProductID = int.Parse(Item["BrandProductID"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("BarcodeType"))
+                    {
+                        BarRow.BarcodeType = int.Parse(Item["BarcodeType"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("Barcode"))
+                    {
+                        BarRow.Barcode =Item["Barcode"].ToString();
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("CaseQTY"))
+                    {
+                        BarRow.CaseQTY = int.Parse(Item["CaseQTY"].ToString());
+                    }
+
+                    //if (ReturnDataTable.Columns.Contains("IsDeleted"))
+                    //{
+                    //    BarRow.CreatedDateTime = int.Parse(Item["IsDeleted"].ToString());
+                    //}
+                    //if (ReturnDataTable.Columns.Contains("IsDeleted"))
+                    //{
+                    //    BarRow.UpdatedDateTime = int.Parse(Item["IsDeleted"].ToString());
+                    //}
+
+
+                    if (ReturnDataTable.Columns.Contains("IsDeleted"))
+                    {
+                        BarRow.IsDeleted = int.Parse(Item["IsDeleted"].ToString());
+                    }
+
+                    DS.Product_Barcodes.AddProduct_BarcodesRow(BarRow);
+                }
+                ReturnDS = DS;
+            }
+
+            //get_product_stock
+            else if (functionName == "get_product_stock")
+            {
+
+                local_datasets.StockControlDS DS = new local_datasets.StockControlDS();
+                foreach (DataRow Item in ReturnDataTable.Rows)
+                {
+                    local_datasets.StockControlDS.StockControlRow StockRow = DS.StockControl.NewStockControlRow();
+
+                    StockRow.ProductID = int.Parse(Item["ProductID"].ToString());
+
+                    if (ReturnDataTable.Columns.Contains("ProductFullName"))
+                    {
+                        StockRow.ProductName = Item["ProductFullName"].ToString();
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("StockForSale"))
+                    {
+                        StockRow.StockForSale = int.Parse(Item["StockForSale"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("StockReserve"))
+                    {
+                        StockRow.StockReserve = int.Parse(Item["StockReserve"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("StockSoldNotPicked"))
+                    {
+                        StockRow.StockSoldNotPicked = int.Parse(Item["StockSoldNotPicked"].ToString());
+                    }
+
+                    
+                    DS.StockControl.AddStockControlRow(StockRow);
+                }
+                ReturnDS = DS;
+            }
+
+            //
+            else if (functionName == "get_product_from_product_id")
+            {
+
+                local_datasets.ProductDS DS = new local_datasets.ProductDS();
+                foreach (DataRow Item in ReturnDataTable.Rows)
+                {
+                    local_datasets.ProductDS.ProductsRow ProdRow = DS.Products.NewProductsRow();
+
+                    ProdRow.ProductID = int.Parse(Item["ProductID"].ToString());
+
+                    if (ReturnDataTable.Columns.Contains("BrandID"))
+                    {
+                        ProdRow.BrandID = int.Parse(Item["BrandID"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("BrandInName"))
+                    {
+                        ProdRow.BrandInName = int.Parse(Item["BrandInName"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("IsCasePick"))
+                    {
+                        ProdRow.IsCasePick = int.Parse(Item["IsCasePick"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("ISLocked"))
+                    {
+                        ProdRow.ISLocked = int.Parse(Item["ISLocked"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("IsLockedBy"))
+                    {
+                        ProdRow.IsLockedBy = int.Parse(Item["IsLockedBy"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("PostFix"))
+                    {
+                        ProdRow.PostFix =Item["PostFix"].ToString();
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("PreFix"))
+                    {
+                        ProdRow.PreFix = Item["PreFix"].ToString();
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("ProductFullName"))
+                    {
+                        ProdRow.ProductFullName = Item["ProductFullName"].ToString();
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("ProductItemHeight"))
+                    {
+                        ProdRow.ProductHeight = int.Parse(Item["ProductItemHeight"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("ProductImageURL"))
+                    {
+                        ProdRow.ProductImageURL = Item["ProductImageURL"].ToString();
+                    }
+
+
+                    if (ReturnDataTable.Columns.Contains("ProductItemLenght"))
+                    {
+                        ProdRow.ProductLenght = int.Parse(Item["ProductItemLenght"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("ProductLongDescription"))
+                    {
+                        ProdRow.ProductLongDescription = Item["ProductLongDescription"].ToString();
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("ProductName"))
+                    {
+                        ProdRow.ProductName = Item["ProductName"].ToString();
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("ProductRealWeight"))
+                    {
+                        ProdRow.ProductRealWeight = double.Parse(Item["ProductRealWeight"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("ProductRRP"))
+                    {
+                        ProdRow.ProductRRP = double.Parse(Item["ProductRRP"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("ProductShortDescription"))
+                    {
+                        ProdRow.ProductShortDescription =Item["ProductShortDescription"].ToString();
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("ProductTotalVolume"))
+                    {
+                        ProdRow.ProductTotalVolume = int.Parse(Item["ProductTotalVolume"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("ProductType"))
+                    {
+                        ProdRow.ProductType = int.Parse(Item["ProductType"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("ProductVateCode"))
+                    {
+                        ProdRow.ProductVateCode = int.Parse(Item["ProductVateCode"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("ProductVolumetricWeight"))
+                    {
+                        ProdRow.ProductVolumetricWeight = double.Parse(Item["ProductVolumetricWeight"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("ProductItemWidth"))
+                    {
+                        ProdRow.ProductWidth = int.Parse(Item["ProductItemWidth"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("SizeUnit"))
+                    {
+                        ProdRow.SizeUnit = int.Parse(Item["SizeUnit"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("SizeString"))
+                    {
+                        ProdRow.SizeString = Item["SizeString"].ToString();
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("BrandProduct"))
+                    {
+                        ProdRow.BrandProduct = int.Parse(Item["BrandProduct"].ToString());
+                    }
+                    if (ReturnDataTable.Columns.Contains("SizeRelative"))
+                    {
+                        ProdRow.SizeRelative = int.Parse(Item["SizeRelative"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("ProductDateType"))
+                    {
+                        ProdRow.ProductDateType = int.Parse(Item["ProductDateType"].ToString());
+                    }
+
+                    DS.Products.AddProductsRow(ProdRow);
+                }
+                ReturnDS = DS;
+            }
+            else if (functionName == "get_caseconfig")
+            {
+
+                local_datasets.ProductDS DS = new local_datasets.ProductDS();
+                foreach (DataRow Item in ReturnDataTable.Rows)
+                {
+                    local_datasets.ProductDS.ProductCaseConfigRow CaseRow = DS.ProductCaseConfig.NewProductCaseConfigRow();
+
+                    CaseRow.CaseConfigID = int.Parse(Item["CaseConfigID"].ToString());
+
+                    if (ReturnDataTable.Columns.Contains("ProductID"))
+                    {
+                        CaseRow.ProductID = int.Parse(Item["ProductID"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("CaseDescription"))
+                    {
+                        CaseRow.CaseDescription = Item["CaseDescription"].ToString();
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("CaseQty"))
+                    {
+                        CaseRow.CaseQty = int.Parse(Item["CaseQty"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("CaseBarcode"))
+                    {
+                        CaseRow.CaseBarcode = Item["CaseBarcode"].ToString();
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("Deleted"))
+                    {
+                        CaseRow.Deleted = int.Parse(Item["Deleted"].ToString());
+                    }
+
+                    DS.ProductCaseConfig.AddProductCaseConfigRow(CaseRow);
+                }
+                ReturnDS = DS;
+            }
+
+            else if (functionName == "get_product_location_qty")
+            {
+
+                local_datasets.ProductDS DS = new local_datasets.ProductDS();
+                foreach (DataRow Item in ReturnDataTable.Rows)
+                {
+                    local_datasets.ProductDS.Product_Stock_Location_ViewRow StockRow = DS.Product_Stock_Location_View.NewProduct_Stock_Location_ViewRow();
+
+                    StockRow.ProductID = int.Parse(Item["productID"].ToString());
+
+                    if (ReturnDataTable.Columns.Contains("Item_costprice"))
+                    {
+                        StockRow.Item_costprice = double.Parse(Item["Item_costprice"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("ProductBBE"))
+                    {
+                        StockRow.ProductBBE =Convert.ToDateTime(Item["ProductBBE"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("Varient_QTY"))
+                    {
+                        StockRow.Varient_QTY = Convert.ToInt32(Item["Varient_QTY"]);
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("ProductInstanceID"))
+                    {
+                        StockRow.ProductInstanceID = Convert.ToInt32(Item["ProductInstanceID"]);
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("Product_VarientID"))
+                    {
+                        StockRow.Product_VarientID = Convert.ToInt32(Item["Product_VarientID"]);
+                    }
+
+                    DS.Product_Stock_Location_View.AddProduct_Stock_Location_ViewRow(StockRow);
+                }
+                ReturnDS = DS;
+            }
+
+
+            else if (functionName == "get_product_store_view")
+            {
+
+                local_datasets.StockControlDS DS = new local_datasets.StockControlDS();
+                foreach (DataRow Item in ReturnDataTable.Rows)
+                {
+                    local_datasets.StockControlDS.Store_Location_ViewRow StockRow = DS.Store_Location_View.NewStore_Location_ViewRow();
+
+                    StockRow.LocationName = Item["StoreName"].ToString();
+
+                    if (ReturnDataTable.Columns.Contains("Item_costprice"))
+                    {
+                        StockRow.Value = double.Parse(Item["Item_costprice"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("Varient_QTY"))
+                    {
+                        StockRow.TotalQTY = Convert.ToInt32(Item["Varient_QTY"].ToString());
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("TotalValue"))
+                    {
+                        StockRow.TotalValue = Convert.ToDouble(Item["TotalValue"].ToString());
+                    }
+
+                    DS.Store_Location_View.AddStore_Location_ViewRow(StockRow);
+                }
+                ReturnDS = DS;
+            }
+            //
+            else if (functionName == "get_product_instance_instanceid")
+            {
+
+                local_datasets.ProductDS DS = new local_datasets.ProductDS();
+                foreach (DataRow Item in ReturnDataTable.Rows)
+                {
+                    local_datasets.ProductDS.Product_InstanceRow ProdInst = DS.Product_Instance.NewProduct_InstanceRow();
+
+                    ProdInst.pv_autoID = Convert.ToInt32(Item["pv_autoID"]);
+
+                    if (ReturnDataTable.Columns.Contains("productID"))
+                    {
+                        ProdInst.productID = Convert.ToInt32(Item["productID"]);
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("Item_costprice"))
+                    {
+                        ProdInst.Item_costprice = Convert.ToDouble(Item["Item_costprice"]);
+                    }
+
+                    if (ReturnDataTable.Columns.Contains("InvoiceID"))
+                    {
+                        ProdInst.InvoiceID = Convert.ToInt32(Item["InvoiceID"]);
+                    }
+
+
+                    if (ReturnDataTable.Columns.Contains("CaseConfig"))
+                    {
+                        if(Item["CaseConfig"] is null)
+                        {
+                            ProdInst.CaseConfig = 0;
+                        }
+                        else
+                        {
+                            ProdInst.CaseConfig = Convert.ToInt32(Item["CaseConfig"]);
+                        }
+                        
+                    }
+
+
+                    DS.Product_Instance.AddProduct_InstanceRow(ProdInst);
+                }
+                ReturnDS = DS;
+            }
+            else if (functionName == "get_product_expiry_date_types")
+            {
+
+                local_datasets.ProductDS DS = new local_datasets.ProductDS();
+                foreach (DataRow Item in ReturnDataTable.Rows)
+                {
+                    local_datasets.ProductDS.ProductExpiryDateTypeRow Prodex = DS.ProductExpiryDateType.NewProductExpiryDateTypeRow();
+
+                    Prodex.ProductDateTypeID = Convert.ToInt32(Item["ProductDateTypeID"]);
+
+                    if (ReturnDataTable.Columns.Contains("DateTypeName"))
+                    {
+                        Prodex.DateTypeName = Item["DateTypeName"].ToString();
+                    }
+
+                    DS.ProductExpiryDateType.AddProductExpiryDateTypeRow(Prodex);
+                }
+                ReturnDS = DS;
             }
             else
             {
@@ -515,29 +1106,84 @@ namespace Deloco_Pos_C.helper_functions
             local_datasets.LocationGrid RetGrid = new local_datasets.LocationGrid();
             string job = "get_gridlocations";
             string res = Make_db_call(job, LocationRef.ToString());
-            RetGrid.Merge(FormatStringToDataTable(job, res));
+            if (res.Trim().Length != 0)
+            {
+               RetGrid.Merge(FormatStringToDataTable(job, res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+            
             return RetGrid;
         }
 
-        public local_datasets.LocationGrid CreateLocGridItem(string LocName,int LocType,int LocParent)
+        public int CreateLocGridItem(string LocName, int LocType, int LocParent, string FullName, string ShortName, int PickOrder)
         {
-            local_datasets.LocationGrid RetGrid = new local_datasets.LocationGrid();
-            string parameters = "{'LocName': '" + LocName + "', 'LocType': '" + LocType.ToString() + "', 'LocParent': '" + LocParent.ToString() + "'}";
+            int retvalue = 0;
+            string parameters = "{'LocName': '" + LocName + "', 'LocType': '" + LocType.ToString() + "', 'LocParent': '" + LocParent.ToString() + "','FullName': '" + FullName.ToString() + "','ShortName': '" + ShortName.ToString() + "','PickOrder': '" + PickOrder.ToString() + "'}";
             string job = "add_node_to_loc_grid";
+           
             string res = Make_db_call(job, parameters.ToString());
-            RetGrid.Merge(FormatStringToDataTable("get_gridlocations", res));
-            On_LocationChanged(this, new EventArgs());
-            return RetGrid;
+            if (res.Trim().Length != 0)
+            {
+                DataTable ReturnDataTable;
+                ReturnDataTable = (DataTable)JsonConvert.DeserializeObject(res, (typeof(DataTable)));
+
+                retvalue = int.Parse(ReturnDataTable.Rows[0][0].ToString());
+                On_LocationChanged(this, new EventArgs());
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+            
+            return retvalue;
+        }
+        public int CreateLocGridItem2(string LocName, int LocType, int LocParent, string FullName, string ShortName, int PickOrder,string storename)
+        {
+            int retvalue = 0;
+            string extra = "'TableName':'Location_Grid','Pk':'LocGridID'";
+            string parameters = "{" + extra + ",'LocGridID':'0','LocName': '" + LocName + "', 'LocType': '" + LocType.ToString() + "', 'LocParent': '" + LocParent.ToString() + "','FullName': '" + FullName.ToString() + "','ShortName': '" + ShortName.ToString() + "','PickOrder': '" + PickOrder.ToString() + "'}";
+            string job = "update_locationgrid_dataset";
+            string res = Make_db_call(job, parameters.ToString());
+            if (res.Trim().Length != 0)
+            {
+                string newg = res.Replace("[", "");
+                newg = newg.Replace("]", "");
+                var a = new { LocGridID = "" };
+                var c = new JsonSerializer();
+                dynamic jsonObject = c.Deserialize(new System.IO.StringReader(newg), a.GetType());
+                int tf;
+                tf = int.Parse(jsonObject.LocGridID.ToString());
+                retvalue = tf;
+                
+                On_LocationChanged(this, new EventArgs());
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+            return retvalue;
         }
 
-        public local_datasets.LocationGrid EditLocGridItem(string LocName, int LocType, int LocParent, int LocGridID)
+        public local_datasets.LocationGrid EditLocGridItem(string LocName, int LocType, int LocParent, int LocGridID, string FullName, string ShortName, int PickOrder)
         {
             local_datasets.LocationGrid RetGrid = new local_datasets.LocationGrid();
-            string parameters = "{'LocName': '" + LocName + "', 'LocType': '" + LocType.ToString() + "', 'LocParent': '" + LocParent.ToString() + "', 'LocGridID': '" + LocGridID.ToString() + "'}";
+            string parameters = "{'LocName': '" + LocName + "', 'LocType': '" + LocType.ToString() + "', 'LocParent': '" + LocParent.ToString() + "', 'LocGridID': '" + LocGridID.ToString() + "','FullName': '" + FullName.ToString() + "','ShortName': '" + ShortName.ToString() + "','PickOrder': '" + PickOrder.ToString() + "'}";
             string job = "edit_node_to_loc_grid";
             string res = Make_db_call(job, parameters.ToString());
-            RetGrid.Merge(FormatStringToDataTable("get_gridlocations", res));
-            On_LocationChanged(this, new EventArgs());
+            if (res.Trim().Length != 0)
+            {
+                RetGrid.Merge(FormatStringToDataTable("get_gridlocations", res));
+                On_LocationChanged(this, new EventArgs());
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
             return RetGrid;
         }
         //get_location_types
@@ -546,9 +1192,742 @@ namespace Deloco_Pos_C.helper_functions
             local_datasets.LocationTypes LocTypes = new local_datasets.LocationTypes();
             string job = "get_location_types";
             string res = Make_db_call(job, "");
-            LocTypes.Merge(FormatStringToDataTable(job, res));
-            
+            if (res.Trim().Length != 0)
+            {
+                LocTypes.Merge(FormatStringToDataTable(job, res));     
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+
             return LocTypes;
         }
-    }
+
+        public local_datasets.LocationGrid Get_Location_Zone_Layout(int shopid)
+        {
+            local_datasets.LocationGrid RetGrid = new local_datasets.LocationGrid();
+            string parameters = shopid.ToString();
+            string job = "get_location_Store_Zone_Layout";
+            string res = Make_db_call(job, parameters.ToString());
+            if (res.Trim().Length != 0)
+            {
+                RetGrid.Merge(FormatStringToDataTable(job, res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+            
+
+            return RetGrid;
+
+
+        }
+
+
+        public local_datasets.LocationGrid AddNewStoreLayoutRow(int BuildingID, int LocGrid_ID, int Control_Type, int Control_Y, int Control_X, int Control_Z, int Control_Size)
+        {
+            local_datasets.LocationGrid RetGrid = new local_datasets.LocationGrid();
+            string parameters = "{'BuildingID': '" + BuildingID + "', 'LocGrid_ID': '" + LocGrid_ID.ToString() + "', 'Control_Type': '" + Control_Type.ToString() + "', 'Control_Y': '" + Control_Y.ToString() + "','Control_X': '" + Control_X.ToString() + "','Control_Z': '" + Control_Z.ToString() + "','Control_Size': '" + Control_Size.ToString() + "'}";
+            string job = "add_store_layout_row";
+            string res = Make_db_call(job, parameters.ToString());
+            if (res.Trim().Length != 0)
+            {
+               
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+            //RetGrid.Merge(FormatStringToDataTable("get_location_Store_Zone_Layout", res));
+            return RetGrid;
+        }
+
+        public local_datasets.LocationGrid EditStoreLayoutRow(int BuildingID, int LocGrid_ID, int Control_Type, int Control_Y, int Control_X, int Control_Z, int id, int Control_Size)
+        {
+            local_datasets.LocationGrid RetGrid = new local_datasets.LocationGrid();
+            string parameters = "{'BuildingID': '" + BuildingID + "', 'LocGrid_ID': '" + LocGrid_ID.ToString() + "', 'Control_Type': '" + Control_Type.ToString() + "', 'Control_Y': '" + Control_Y.ToString() + "','Control_X': '" + Control_X.ToString() + "','Control_Z': '" + Control_Z.ToString() + "','id': '" + id.ToString() + "','Control_Size': '" + Control_Size.ToString() + "'}";
+            string job = "edit_store_layout_row";
+            string res = Make_db_call(job, parameters.ToString());
+            if (res.Trim().Length != 0)
+            {
+                
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+            //RetGrid.Merge(FormatStringToDataTable("get_location_Store_Zone_Layout", res));
+            return RetGrid;
+        }
+
+        public local_datasets.LocationGrid GetStoreLayoutDataset()
+        {
+            local_datasets.LocationGrid RetGrid = new local_datasets.LocationGrid();
+            string parameters = "";
+            string job = "get_location_Store_Zone_Funiture";
+            string res = Make_db_call(job, parameters.ToString());
+            if (res.Trim().Length != 0)
+            {
+                RetGrid.Merge(FormatStringToDataTable(job, res));             
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+            return RetGrid;
+
+        }
+
+        public local_datasets.ProductDS Get_Product_Use_Cases()
+        {
+            local_datasets.ProductDS ProductDS = new local_datasets.ProductDS();
+            string parameters = "";
+            string job = "get_product_use_cases";
+            string res = Make_db_call(job, parameters.ToString());
+            if (res.Trim().Length != 0)
+            {
+                ProductDS.Merge(FormatStringToDataTable(job, res));            
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+            return ProductDS;
+        }
+        public local_datasets.ProductDS Get_Brands()
+        {
+            local_datasets.ProductDS ProductDS = new local_datasets.ProductDS();
+            string parameters = "";
+            string job = "get_all_brands";
+            string res = Make_db_call(job, parameters.ToString());
+            if (res.Trim().Length!=0)
+            {
+                ProductDS.Merge(FormatStringToDataTable(job, res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+            return ProductDS;
+        }
+
+        public local_datasets.ProductDS add_new_brand(string BrandName,int BrandWeight)
+        {
+            local_datasets.ProductDS ProductDS = new local_datasets.ProductDS();
+            string parameters = "{ 'BrandName': '" + BrandName + "', 'BrandWeight': '" + BrandWeight.ToString() + "'}";
+            string job = "add_new_brand";
+            string res = Make_db_call(job, parameters.ToString());
+            if (res.Trim().Length != 0)
+            {
+                ProductDS.Merge(FormatStringToDataTable("get_all_brands", res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+            return ProductDS;
+        }
+
+        public local_datasets.ProductDS Get_Brand_Product(int BrandID)
+        {
+            local_datasets.ProductDS DS = new local_datasets.ProductDS();
+            string parameters = "{'BrandID': '" + BrandID.ToString() + "'}";
+            string job = "get_brand_products_by_id";
+            string res = Make_db_call(job, parameters.ToString());
+            if (res.Trim().Length != 0)
+            {
+                DS.Merge(FormatStringToDataTable(job, res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+            return DS;
+        }
+
+        public local_datasets.ProductDS add_new_brand_products(string productid, int brandid)
+        {
+            local_datasets.ProductDS DS = new local_datasets.ProductDS();
+            string parameters = "{'Brand': '" + brandid.ToString() + "','ProductName':'" + productid + "'}";
+            string job = "add_new_brand_product";
+            string res = Make_db_call(job, parameters.ToString());
+            if (res.Trim().Length != 0)
+            {
+                DS.Merge(FormatStringToDataTable("get_brand_products_by_id", res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+            return DS;
+        }
+
+        public local_datasets.ProductDS Get_product_sizes(bool refresh)
+        {
+            bool newds = false;
+            if(LocalDS == null)
+            {
+                LocalDS = new local_datasets.ProductDS();
+                newds = true;
+            }
+            string parameters = "";
+            string job = "get_all_product_sizes";
+            if(refresh==true || newds==true)
+            {
+
+                string res = Make_db_call(job, parameters.ToString());
+                if (res.Trim().Length != 0)
+                {
+
+                }
+                else
+                {
+                    FailedWebReseponce("");
+                }
+                LocalDS.Product_Size_Units.Clear();
+                LocalDS.Merge(FormatStringToDataTable(job, res));
+            }
+           
+            
+
+            return LocalDS;
+        }
+
+
+        public local_datasets.ProductDS Get_BrandProduct_Barcodes(int ProductID)
+        {
+            local_datasets.ProductDS DS = new local_datasets.ProductDS();
+            string parameters = "{'BrandProductID': '" + ProductID.ToString() + "'}";
+            string job = "get_product_barcode_by_brandproduct";
+            string res = Make_db_call(job, parameters.ToString());
+            if (res.Trim().Length != 0)
+            {
+                DS.Merge(FormatStringToDataTable(job, res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+            return DS;
+        }
+
+        public local_datasets.ProductDS Update_Product(base_classes.productclass Prod, local_datasets.ProductDS CheckDS)
+        {
+            local_datasets.ProductDS DS = new local_datasets.ProductDS();
+            //Prod.ProductID = 0;//fudge factor 10
+            string parameters="";
+            //If productID is empty then its an INSERT statement
+            if (CheckNewValue(CheckDS, "ProductID") == true) { parameters = AC(parameters) + "'ProductID': '" + Prod.ProductID.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "ProductName") == true) { parameters = AC(parameters) + "'ProductName': '" + Prod.BrandProductName.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "ProductFullName") == true) { parameters = AC(parameters) + "'ProductFullName': '" + Prod.ProductFullName.ToString() + "'"; }
+
+
+            if (CheckNewValue(CheckDS, "BrandID") == true) { parameters = AC(parameters) + "'BrandID': '" + Prod.BrandID.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "BrandInName") == true) { parameters = AC(parameters) + "'BrandInName': '" + Prod.BrandInName.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "BrandProduct") == true) { parameters = AC(parameters) + "'BrandProduct': '" + Prod.BrandProduct.ToString() + "'"; }
+
+
+            if (CheckNewValue(CheckDS, "ProductShortDescription") == true) { parameters = AC(parameters) + "'ProductShortDescription': '" + Prod.ProductShortDescription.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "ProductLongDescription") == true) { parameters = AC(parameters) + "'ProductLongDescription': '" + Prod.ProductLongDescription.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "ProductRealWeight") == true) { parameters = AC(parameters) + "'ProductRealWeight': '" + Prod.ProductRealWeight.ToString() + "'"; }
+
+
+            if (CheckNewValue(CheckDS, "ProductVolumetricWeight") == true) { parameters = AC(parameters) + "'ProductVolumetricWeight': '" + Prod.ProductVolumetricWeight.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "ProductVateCode") == true) { parameters = AC(parameters) + "'ProductVateCode': '" + Prod.ProductVateCode.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "ProductItemRRP") == true) { parameters = AC(parameters) + "'ProductItemRRP': '" + Prod.ProductItemRRP.ToString() + "'"; }
+
+
+
+            if (CheckNewValue(CheckDS, "ProductItemLenght") == true) { parameters = AC(parameters) + "'ProductItemLenght': '" + Prod.ProductItemLenght.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "ProductItemWidth") == true) { parameters = AC(parameters) + "'ProductItemWidth': '" + Prod.ProductItemWidth.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "ProductItemHeight") == true) { parameters = AC(parameters) + "'ProductItemHeight': '" + Prod.ProductItemHeight.ToString() + "'"; }
+
+            if (CheckNewValue(CheckDS, "ProductTotalVolume") == true) { parameters = AC(parameters) + "'ProductTotalVolume': '" + Prod.ProductTotalVolume.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "SizeRelative") == true) { parameters = AC(parameters) + "'SizeRelative': '" + Prod.SizeRelative.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "SizeUnit") == true) { parameters = AC(parameters) + "'SizeUnit': '" + Prod.SizeUnit.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "SizeString") == true) { parameters = AC(parameters) + "'SizeString': '" + Prod.SizeString.ToString() + "'"; }
+
+            if (CheckNewValue(CheckDS, "PreFix") == true) { parameters = AC(parameters) + "'PreFix': '" + Prod.PreFix.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "PostFix") == true) { parameters = AC(parameters) + "'PostFix': '" + Prod.PostFix.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "ISLocked") == true) { parameters = AC(parameters) + "'ISLocked': '" + Prod.ISLocked.ToString() + "'"; }
+
+            if (CheckNewValue(CheckDS, "IsLockedBy") == true) { parameters = AC(parameters) + "'IsLockedBy': '" + Prod.IsLockedBy.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "InnerPackQty") == true) { parameters = AC(parameters) + "'InnerPackQty': '" + Prod.InnerPackQty.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "IsCasePick") == true) { parameters = AC(parameters) + "'IsCasePick': '" + Prod.IsCasePick.ToString() + "'"; }
+            if (CheckNewValue(CheckDS, "ProductDateType") == true) { parameters = AC(parameters) + "'ProductDateType': '" + Prod.ProductDateType.ToString() + "'"; }
+
+
+            string q_params = ",'TableName':'Products','Pk':'ProductID','UpDateWhere':'" + Prod.ProductID.ToString() + "'";
+
+            if(parameters=="")
+            {
+                //nothing to update
+                return DS;
+            }
+            else
+            {
+                parameters = "{" + parameters + q_params + "}";
+            }
+            
+
+          
+
+            string job = "update_product_dataset";
+            string res = Make_db_call(job, parameters.ToString());
+            if (res.Trim().Length != 0)
+            {
+                if(res=="1")
+                {
+                    //its worked
+                }
+                //DS.Merge(FormatStringToDataTable(job, res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+            return DS;
+        }
+        private string AC(string Param)
+        {
+            string retvalue = "";
+            if(Param.Length>0)
+            {
+                retvalue = Param + "," ;
+            }
+            else
+            {
+                retvalue = Param;
+            }
+           
+            return retvalue;
+        }
+        private bool CheckNewValue(local_datasets.ProductDS CheckDS,string Key)
+        {
+            bool ret=false;
+            DataRow[] result;
+            //search for the value pair
+            result = CheckDS.ValuePair.Select("Prop='" + Key + "'");
+            if (result.Length==1)
+            {
+                // the the original value changed?
+                if(result[0]["value"].ToString()!= result[0]["originalValue"].ToString())
+                {
+                    //there has been a change
+                    ret = true;
+                }
+                else
+                {
+                    if(result[0]["value"].ToString()=="")
+                    {
+                        ret = true;
+                    }
+                    else
+                    {
+                        ret = false;
+                    }
+                    
+                }
+            }
+            else
+            {
+                ret = false;
+            }
+
+                return ret;
+        }
+        public local_datasets.StockControlDS GetAllStock()
+        {
+            local_datasets.StockControlDS ret =new local_datasets.StockControlDS();
+
+            string parameters = "{'job':'get_all'}";
+            string job = "get_product_stock";
+            string res = Make_db_call(job, parameters.ToString());
+            if (res.Trim().Length != 0)
+            {
+                ret.Merge(FormatStringToDataTable(job, res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+
+            return ret;
+        }
+        public local_datasets.ProductDS Get_Product_Details_From_ProductID(int ProductID)
+        {   
+            local_datasets.ProductDS ret = new local_datasets.ProductDS();
+            string parameters = "{'productid':'" + ProductID.ToString() + "'}";
+            string job = "get_product_from_product_id";
+            string res = Make_db_call(job, parameters.ToString());
+            if (res.Trim().Length != 0)
+            {
+                ret.Merge(FormatStringToDataTable(job, res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+            return ret;
+        }
+
+
+
+        public local_datasets.ProductDS Get_Product_Case_Configeration(int ProductID)
+        {
+            local_datasets.ProductDS ret = new local_datasets.ProductDS();
+            string parameters = "{'productid':'" + ProductID.ToString() + "'}";
+            string job = "get_caseconfig";
+            string res = Make_db_call(job, parameters.ToString());
+            if (res.Trim().Length != 0)
+            {
+                ret.Merge(FormatStringToDataTable(job, res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+            return ret;
+
+        }
+
+        public int Add_New_Case_Config(string CaseDesc, int caseQTY, string barcode,int productid)
+        {
+            int newCaseID=0;
+            string job = "update_case_config_dataset";
+            string jsonstring = "{'TableName':'ProductCaseConfig','Pk':'CaseConfigID','CaseConfigID':'0','ProductID':'" + productid.ToString() + "','CaseDescription':'" + CaseDesc + "','CaseQty':'" + caseQTY.ToString() + "','CaseBarcode':'" + barcode + "','Deleted':'0'}";
+            string res = Make_db_call(job, jsonstring.ToString());
+            if (res.Trim().Length != 0)
+            {
+                //res="{'dan':'p'}";
+                string newg = res.Replace("[", "");
+                newg = newg.Replace("]", "");
+                var a = new { CaseConfigID = ""};
+                var c = new JsonSerializer();
+                dynamic jsonObject = c.Deserialize(new System.IO.StringReader(newg), a.GetType());
+                int tf;
+                tf=int.Parse(jsonObject.CaseConfigID.ToString());
+                newCaseID = tf;
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+
+            return newCaseID;
+        }
+
+
+        public int Edit_Case_Config(string CaseDesc, int caseQTY, string barcode, int productid, int CaseConfigID, int Del)
+        {
+            int newCaseID = 0;
+            string job = "update_case_config_dataset";
+            string jsonstring = "{'TableName':'ProductCaseConfig','Pk':'CaseConfigID','CaseConfigID':'" + CaseConfigID.ToString() + "','ProductID':'" + productid.ToString() + "','CaseDescription':'" + CaseDesc + "','CaseQty':'" + caseQTY.ToString() + "','CaseBarcode':'" + barcode + "','Deleted':'" + Del + "','UpDateWhere':'" + CaseConfigID.ToString() + "'}";
+            string res = Make_db_call(job, jsonstring.ToString());
+            if (res.Trim().Length != 0)
+            {
+              
+                string newg = res.Replace("[", "");
+                newg = newg.Replace("]", "");
+                var a = new { result = "" };
+                var c = new JsonSerializer();
+                dynamic jsonObject = c.Deserialize(new System.IO.StringReader(newg), a.GetType());
+                int tf;
+                tf = int.Parse(jsonObject.result.ToString());
+                newCaseID = tf;
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+
+            return newCaseID;
+        }
+
+
+        public int Add_ProductInstance(int ProductID, double cost_price,int invoice,int caseconfig)
+        {
+            int newInstance = 0;
+            string job = "update_product_instance_dataset";
+            string extra = "'TableName':'Product_Instance','Pk':'pv_autoID'";
+            string jsonstring = "{" + extra + ",'pv_autoID':'0','productID':'" + ProductID.ToString() + "','Item_costprice':'" + cost_price.ToString() + "','InvoiceID':'" + invoice.ToString() + "','CaseConfig':'" + caseconfig.ToString() + "'}";
+            string res = Make_db_call(job, jsonstring.ToString());
+            if (res.Trim().Length != 0)
+            {
+
+                string newg = res.Replace("[", "");
+                newg = newg.Replace("]", "");
+                var a = new { pv_autoID = "" };
+                var c = new JsonSerializer();
+                dynamic jsonObject = c.Deserialize(new System.IO.StringReader(newg), a.GetType());
+                int tf;
+                tf = int.Parse(jsonObject.pv_autoID.ToString());
+                newInstance = tf;
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+            return newInstance;
+        }
+
+        public int Add_Varient(int instanceID, string BBE)
+        {
+            int newInstance = 0;
+            string job = "update_product_varience_dataset";
+            string extra = "'TableName':'Product_Varient','Pk':'Product_VarientID'";
+            string jsonstring = "{" + extra + ",'Product_VarientID':'0','ProductInstanceID':'" + instanceID.ToString() + "','ProductBBE':'" + BBE.ToString() + "'}";
+            string res = Make_db_call(job, jsonstring.ToString());
+            if (res.Trim().Length != 0)
+            {
+
+                string newg = res.Replace("[", "");
+                newg = newg.Replace("]", "");
+                var a = new { Product_VarientID = "" };
+                var c = new JsonSerializer();
+                dynamic jsonObject = c.Deserialize(new System.IO.StringReader(newg), a.GetType());
+                int tf;
+                tf = int.Parse(jsonObject.Product_VarientID.ToString());
+                newInstance = tf;
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+            return newInstance;
+        }
+        public int Add_Varient_Stock_Instance(int varientID, int qty, int location)
+        {
+            int newInstance = 0;
+            string job = "update_product_stock_varience_dataset";
+            string extra = "'TableName':'Product_Varient_Location_Stock_qty','Pk':'product_stock_VID'";
+            string jsonstring = "{" + extra + ",'product_stock_VID':'0','Product_Instance_ID':'" + varientID.ToString() + "','Varient_QTY':'" + qty.ToString() + "','Varient_Location_ID':'" + location.ToString() + "'}";
+            string res = Make_db_call(job, jsonstring.ToString());
+            if (res.Trim().Length != 0)
+            {
+
+                string newg = res.Replace("[", "");
+                newg = newg.Replace("]", "");
+                var a = new { product_stock_VID = "" };
+                var c = new JsonSerializer();
+                dynamic jsonObject = c.Deserialize(new System.IO.StringReader(newg), a.GetType());
+                int tf;
+                tf = int.Parse(jsonObject.product_stock_VID.ToString());
+                newInstance = tf;
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+            return newInstance;
+        }
+
+        public local_datasets.ProductDS Get_Product_Stock_Locations(int ProductID)
+        {
+            local_datasets.ProductDS ret = new local_datasets.ProductDS();
+            string parameters = "{'productid':'" + ProductID.ToString() + "'}";
+            string job = "get_product_location_qty";
+            string res = Make_db_call(job, parameters.ToString());
+            if (res.Trim().Length != 0)
+            {
+                ret.Merge(FormatStringToDataTable(job, res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+            return ret;
+
+        }
+        public local_datasets.ProductDS Get_Product_Stock_Locations_historical(int ProductID)
+        {
+            local_datasets.ProductDS ret = new local_datasets.ProductDS();
+            string parameters = "{'productid':'" + ProductID.ToString() + "'}";
+            string job = "get_product_instance_history";
+            string res = Make_db_call(job, parameters.ToString());
+            if (res.Trim().Length != 0)
+            {
+                ret.Merge(FormatStringToDataTable("get_product_location_qty", res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+            return ret;
+
+        }
+
+        public local_datasets.StockControlDS Get_Product_Store_Full_View(int ProductID)
+        {
+            local_datasets.StockControlDS ret = new local_datasets.StockControlDS();
+            string parameters = "{'productid':'" + ProductID.ToString() + "'}";
+            string job = "get_product_store_full_view";
+            string res = Make_db_call(job, parameters.ToString());
+            if (res.Trim().Length != 0)
+            {
+                ret.Merge(FormatStringToDataTable("get_product_store_view", res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+            return ret;
+
+        }
+
+        public local_datasets.StockControlDS Get_Product_Store_Instance_View(int ProductInstanceID)
+        {
+            local_datasets.StockControlDS ret = new local_datasets.StockControlDS();
+            string parameters = "{'ProductInstanceID':'" + ProductInstanceID.ToString() + "'}";
+            string job = "get_product_store_instance_view";
+            string res = Make_db_call(job, parameters.ToString());
+            if (res.Trim().Length != 0)
+            {
+                ret.Merge(FormatStringToDataTable("get_product_store_view", res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+            return ret;
+
+        }
+
+        public local_datasets.StockControlDS Get_Product_Store_Varience_View(int ProductInstanceID)
+        {
+            local_datasets.StockControlDS ret = new local_datasets.StockControlDS();
+            string parameters = "{'Product_VarientID':'" + ProductInstanceID.ToString() + "'}";
+            string job = "get_product_store_varience_view";
+            string res = Make_db_call(job, parameters.ToString());
+            if (res.Trim().Length != 0)
+            {
+                ret.Merge(FormatStringToDataTable("get_product_store_view", res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+            return ret;
+
+        }
+
+        public local_datasets.ProductDS Get_Product_Instance_Details(int InstanceID)
+        {
+            local_datasets.ProductDS ret = new local_datasets.ProductDS();
+            string parameters = "{'pv_autoID':'" + InstanceID.ToString() + "'}";
+            string job = "get_product_instance_instanceid";
+            string res = Make_db_call(job, parameters.ToString());
+            if (res.Trim().Length != 0)
+            {
+                ret.Merge(FormatStringToDataTable("get_product_instance_instanceid", res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+            return ret;
+        }
+
+        public local_datasets.ProductDS Get_ExpiryDateType()
+        {
+            local_datasets.ProductDS ret = new local_datasets.ProductDS();
+            string parameters = "{'':''}";
+            string job = "get_product_expiry_date_types";
+            string res = Make_db_call(job, parameters.ToString());
+            if (res.Trim().Length != 0)
+            {
+                ret.Merge(FormatStringToDataTable(job, res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+            return ret;
+        }
+
+        public local_datasets.LocationGrid Get_Bis_Locations(int businessid)
+        {
+            local_datasets.LocationGrid ret = new local_datasets.LocationGrid();
+            string parameters = "{'bisid':'" + businessid + "'}";
+            string job = "get_store_locations_of_bis";
+            string res = Make_db_call(job, parameters.ToString());
+            if (res.Trim().Length != 0)
+            {
+                ret.Merge(FormatStringToDataTable("get_gridlocations", res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+            return ret;
+        }
+
+
+        public local_datasets.LocationGrid Get_Site_Locations(string storename)
+        {
+            local_datasets.LocationGrid ret = new local_datasets.LocationGrid();
+            string parameters = "{'storename':'" + storename + "'}";
+            string job = "get_store_locations_of_store";
+            string res = Make_db_call(job, parameters.ToString());
+            if (res.Trim().Length != 0)
+            {
+                ret.Merge(FormatStringToDataTable("get_gridlocations", res));
+            }
+            else
+            {
+                FailedWebReseponce("");
+            }
+
+            return ret;
+        }
+
+        public void shopify_get_all_products()
+        {
+            string parameters = "{'':''}";
+            string job = "shopify_get_all_products";
+            string res = Make_db_call(job, parameters.ToString());
+        }
+        public void shopify_create_new_product()
+        {
+            string parameters = "{'tags':'langold, milk','vendor':'Big Shaq','title':'Mr Floppy','product_type':'Chocolate Bar','body_html':'some <TAGS>','barcode':'123321','compare_at_price':'1.99','grams':'12','inventory_quantity':'1','price':'12345','sku':'123' ,'taxable':'True','weight':'1.0','weight_unit':'kg','inventory_management':'shopify'}";
+            string job = "shopify_create_new_product";
+            string res = Make_db_call(job, parameters.ToString());
+
+            parameters = "{'tags':'worksop, milk','vendor':'Big Shaq','title':'Mr Floppy','product_type':'Chocolate Bar','body_html':'some <TAGS>','barcode':'123321','compare_at_price':'1.99','grams':'12','inventory_quantity':'1','price':'12345','sku':'123' ,'taxable':'True','weight':'1.0','weight_unit':'kg','inventory_management':'shopify'}";
+            res = Make_db_call(job, parameters.ToString());
+
+            parameters = "{'tags':'tickhill, milk','vendor':'Big Shaq','title':'Mr Floppy','product_type':'Chocolate Bar','body_html':'some <TAGS>','barcode':'123321','compare_at_price':'1.99','grams':'12','inventory_quantity':'1','price':'12345','sku':'123' ,'taxable':'True','weight':'1.0','weight_unit':'kg','inventory_management':'shopify'}";
+            res = Make_db_call(job, parameters.ToString());
+        }
+        private void FailedWebReseponce(string E)
+        {
+
+        }
+}
 }

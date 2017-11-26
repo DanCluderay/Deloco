@@ -127,7 +127,7 @@ namespace Deloco_Pos_C.views
                     ORDER_ID = Int32.Parse(OrderDS.OrderDetails.Rows[0]["order_autoid"].ToString());
                 }
             }
-            local_datasets.OrderDetails_ds.OrderDetailsRow OrderRow;
+            //local_datasets.OrderDetails_ds.OrderDetailsRow OrderRow;
             string FullName = "";
             FullName = OrderDS.OrderDetails.Rows[0]["CustomerTitle"].ToString() + " " + OrderDS.OrderDetails.Rows[0]["Customer_First_Name"].ToString() + " " + OrderDS.OrderDetails.Rows[0]["Customer_Second_Name"].ToString();
 
